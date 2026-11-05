@@ -1,0 +1,83 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>10 Min IT Road Map</title>
+  <meta name="description" content="Learn IT from zero, one 10-minute lesson at a time. Follow the map.">
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header class="top">
+    <a class="logo" href="./">
+      <span class="logo-mark">10</span>
+      <span class="logo-text">min <b>IT</b> road map</span>
+    </a>
+    <nav class="top-nav">
+      <a href="#map">Road map</a>
+      <a href="#labs">Labs</a>
+      <a class="btn btn-small" href="#labs">Get labs</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <p class="eyebrow">Free video lessons</p>
+      <h1>Learn IT from zero.<br><span>10 minutes at a time.</span></h1>
+      <p class="sub">Follow the map. Watch a short lesson, then practice it in a hands-on lab.</p>
+
+      <div class="progress" aria-label="Your progress">
+        <div class="progress-top">
+          <span>Your progress</span>
+          <span id="progress-text">0 / 0 lessons</span>
+        </div>
+        <div class="bar"><div id="bar-fill"></div></div>
+      </div>
+
+      <div class="legend" id="legend"></div>
+    </section>
+
+    <section id="map" class="map-wrap" aria-label="Learning road map">
+      <div class="map" id="map-area">
+        <svg id="lines" class="lines" aria-hidden="true"></svg>
+        <div class="grid" id="grid"></div>
+      </div>
+    </section>
+
+    <section id="labs" class="labs">
+      <div class="labs-card">
+        <h2>Hands-on labs</h2>
+        <p>Every video is free. Labs are where you practice: step-by-step exercises you can follow on your own computer.</p>
+        <ul>
+          <li>Guided lab for each lesson marked with a lock</li>
+          <li>Real tools: VirtualBox, Linux, Wireshark and more</li>
+          <li>New labs added regularly</li>
+        </ul>
+        <a class="btn" href="#" id="subscribe-btn">Subscription coming soon</a>
+      </div>
+    </section>
+  </main>
+
+  <footer class="foot">
+    <span>&copy; <span id="year"></span> 10 Min IT Road Map</span>
+    <span>Videos on <a href="https://www.youtube.com/" target="_blank" rel="noopener">YouTube</a></span>
+  </footer>
+
+  <!-- Lesson panel -->
+  <div class="overlay" id="overlay" hidden>
+    <div class="panel" role="dialog" aria-modal="true" aria-labelledby="p-title">
+      <button class="close" id="p-close" aria-label="Close">&times;</button>
+      <p class="p-track" id="p-track"></p>
+      <h3 id="p-title"></h3>
+      <p class="p-about" id="p-about"></p>
+      <div class="video" id="p-video"></div>
+      <div class="lab-box" id="p-lab"></div>
+      <button class="btn btn-full" id="p-done">Mark as done</button>
+    </div>
+  </div>
+
+  <script src="roadmap.js"></script>
+  <script src="app.js"></script>
+</body>
+</html>
