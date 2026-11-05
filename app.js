@@ -1,4 +1,6 @@
 (function () {
+  var road = document.getElementById("road");
+  var svg = document.getElementById("road-lines");
   var levelsEl = document.getElementById("map");
   var overlay = document.getElementById("overlay");
   var current = null;
@@ -9,7 +11,7 @@
   try { done = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) { done = {}; }
   function save() { try { localStorage.setItem(KEY, JSON.stringify(done)); } catch (e) {} }
 
-  var maps = [];      // one entry per level: { level, grid, svg, nodes: [{el, lesson}], countEl }
+  var maps = [];   // one per level: { level, head, nodes:[{el, lesson}], countEl }
   var total = 0;
 
   // ----- level chips (jump links) -----
@@ -27,26 +29,28 @@
   pa.innerHTML = "<i></i>Level 6";
   chips.appendChild(pa);
 
-  // ----- build every level -----
+  // ----- build levels: Levels 0-2 are the trunk, Levels 3-5 are three branches -----
+  var trunk = document.createElement("div");
+  trunk.className = "trunk";
+  var branches = document.createElement("div");
+  branches.className = "branches";
+  levelsEl.appendChild(trunk);
+  levelsEl.appendChild(branches);
+
   LEVELS.forEach(function (lv, li) {
-    if (li > 0) {
-      var link = document.createElement("div");
-      link.className = "level-link";
-      levelsEl.appendChild(link);
-    }
     var sec = document.createElement("section");
     sec.className = "level";
     sec.id = lv.id;
     sec.style.setProperty("--c", lv.color);
     sec.innerHTML =
-      '<header class="level-head"><span class="badge"></span><h2></h2><span class="level-count"></span></header>' +
-      '<div class="map"><svg class="lines" aria-hidden="true"></svg><div class="grid"></div></div>';
+      '<header class="level-head"><span class="badge"></span><span class="level-count"></span><h2></h2></header>' +
+      '<div class="vmap"></div>';
     sec.querySelector(".badge").textContent = lv.name;
     sec.querySelector("h2").textContent = lv.title;
-    levelsEl.appendChild(sec);
+    (li < 3 ? trunk : branches).appendChild(sec);
 
-    var grid = sec.querySelector(".grid");
-    var entry = { level: lv, grid: grid, svg: sec.querySelector(".lines"), nodes: [], countEl: sec.querySelector(".level-count") };
+    var vmap = sec.querySelector(".vmap");
+    var entry = { level: lv, head: sec.querySelector(".level-head"), nodes: [], countEl: sec.querySelector(".level-count") };
 
     lv.lessons.forEach(function (row) {
       var lesson = { n: row[0], title: row[1], lab: !!row[2], level: lv };
@@ -60,7 +64,7 @@
       b.querySelector(".num").textContent = lesson.n;
       b.querySelector(".n-title").textContent = lesson.title;
       b.addEventListener("click", function () { openPanel(lesson); });
-      grid.appendChild(b);
+      vmap.appendChild(b);
       entry.nodes.push({ el: b, lesson: lesson });
     });
     maps.push(entry);
@@ -83,51 +87,60 @@
     pg.appendChild(card);
   });
 
-  // ----- layout: snake path, number of columns depends on screen width -----
-  function columns() {
-    var w = window.innerWidth;
-    return w >= 820 ? 4 : (w >= 520 ? 3 : 2);
-  }
-  function layout() {
-    var cols = columns();
-    maps.forEach(function (m) {
-      m.grid.style.gridTemplateColumns = "repeat(" + cols + ", 1fr)";
-      m.nodes.forEach(function (nd, i) {
-        var row = Math.floor(i / cols), pos = i % cols;
-        var col = row % 2 === 0 ? pos : cols - 1 - pos;
-        nd.row = row;
-        nd.el.style.gridRow = row + 1;
-        nd.el.style.gridColumn = col + 1;
-      });
-    });
-  }
+  // ----- connecting lines (one overlay for the whole road) -----
+  function drawRoad() {
+    var base = road.getBoundingClientRect();
+    svg.setAttribute("viewBox", "0 0 " + base.width + " " + base.height);
+    var stacked = window.innerWidth <= 720;   // branches stack on phones
+    var out = "";
 
-  // ----- connecting lines -----
-  function drawLines() {
-    maps.forEach(function (m) {
-      var base = m.svg.parentNode.getBoundingClientRect();
-      m.svg.setAttribute("viewBox", "0 0 " + base.width + " " + base.height);
-      var color = m.level.color, out = "";
+    function cx(r) { return r.left + r.width / 2 - base.left; }
+    function curve(x1, y1, x2, y2, color, cls) {
+      var my = (y1 + y2) / 2;
+      var d = (Math.abs(x1 - x2) < 1)
+        ? "M" + x1 + " " + y1 + " L" + x2 + " " + y2
+        : "M" + x1 + " " + y1 + " C" + x1 + " " + my + "," + x2 + " " + my + "," + x2 + " " + y2;
+      out += '<path class="' + (cls || "") + '" stroke="' + color + '" d="' + d + '"/>';
+    }
+    function lastBottom(m) {
+      var r = m.nodes[m.nodes.length - 1].el.getBoundingClientRect();
+      return { x: cx(r), y: r.bottom - base.top + 2 };
+    }
+
+    maps.forEach(function (m, li) {
+      var color = m.level.color;
+      var hr = m.head.getBoundingClientRect();
+
+      // from the previous level (trunk), or from the end of Level 2 (fork into 3 branches)
+      if (li > 0) {
+        var prev = (li <= 3 || stacked) ? maps[li - 1] : maps[2];
+        if (li >= 3 && !stacked) prev = maps[2];
+        var from = lastBottom(prev);
+        curve(from.x, from.y, cx(hr), hr.top - base.top, color);
+      }
+
+      // header -> first lesson, then lesson -> lesson
+      var first = m.nodes[0].el.querySelector(".orb").getBoundingClientRect();
+      curve(cx(hr), hr.bottom - base.top, cx(first), first.top - base.top, color);
+
       for (var i = 1; i < m.nodes.length; i++) {
         var A = m.nodes[i - 1], B = m.nodes[i];
-        var oa = A.el.querySelector(".orb").getBoundingClientRect();
+        var ra = A.el.getBoundingClientRect();
         var ob = B.el.querySelector(".orb").getBoundingClientRect();
         var cls = done[A.lesson.n] && done[B.lesson.n] ? "done" : "";
-        var d;
-        if (A.row === B.row) {
-          d = "M" + (oa.left + oa.width / 2 - base.left) + " " + (oa.top + oa.height / 2 - base.top) +
-              " L" + (ob.left + ob.width / 2 - base.left) + " " + (ob.top + ob.height / 2 - base.top);
-        } else {
-          var na = A.el.getBoundingClientRect();
-          var x1 = na.left + na.width / 2 - base.left, y1 = na.bottom - base.top + 2;
-          var x2 = ob.left + ob.width / 2 - base.left, y2 = ob.top - base.top;
-          var my = (y1 + y2) / 2;
-          d = "M" + x1 + " " + y1 + " C" + x1 + " " + my + "," + x2 + " " + my + "," + x2 + " " + y2;
-        }
-        out += '<path class="' + cls + '" stroke="' + color + '" d="' + d + '"/>';
+        curve(cx(ra), ra.bottom - base.top + 2, cx(ob), ob.top - base.top, color, cls);
       }
-      m.svg.innerHTML = out;
     });
+
+    // merge: the end of the branches flows into Level 6
+    var ph = document.getElementById("paths-head").getBoundingClientRect();
+    var ends = stacked ? [maps[maps.length - 1]] : [maps[3], maps[4], maps[5]];
+    ends.forEach(function (m) {
+      var f = lastBottom(m);
+      curve(f.x, f.y, cx(ph), ph.top - base.top, m.level.color);
+    });
+
+    svg.innerHTML = out;
   }
 
   // ----- progress -----
@@ -144,7 +157,7 @@
     });
     document.getElementById("progress-text").textContent = n + " / " + total + " lessons";
     document.getElementById("bar-fill").style.width = (n / total * 100) + "%";
-    drawLines();
+    drawRoad();
   }
 
   // ----- lesson panel -----
@@ -194,9 +207,8 @@
   var timer;
   window.addEventListener("resize", function () {
     clearTimeout(timer);
-    timer = setTimeout(function () { layout(); drawLines(); }, 80);
+    timer = setTimeout(drawRoad, 80);
   });
-  window.addEventListener("load", drawLines);
-  layout();
+  window.addEventListener("load", drawRoad);
   refresh();
 })();

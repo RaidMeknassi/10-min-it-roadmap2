@@ -6,7 +6,7 @@
   <title>10-Minute IT Roadmap</title>
   <meta name="description" content="From complete beginner to IT specialist, one 10-minute lesson at a time.">
   <link rel="icon" type="image/png" href="assets/favicon.png">
-  <link rel="stylesheet" href="style.css?v=3">
+  <link rel="stylesheet" href="style.css?v=5">
 </head>
 <body>
 
@@ -40,16 +40,20 @@
       <p class="lock-note">&#128274; = has a hands-on lab</p>
     </section>
 
+    <div class="road" id="road">
+    <svg class="road-lines" id="road-lines" aria-hidden="true"></svg>
+
     <section id="map" class="levels" aria-label="Learning road map"></section>
 
     <section id="paths" class="paths">
-      <div class="paths-head">
+      <div class="paths-head" id="paths-head">
         <span class="badge" style="--c:#f472b6">Level 6</span>
         <h2>Advanced IT Specializations</h2>
         <p>Choose a path and learn it in depth.</p>
       </div>
       <div class="paths-grid" id="paths-grid"></div>
     </section>
+    </div>
 
     <section id="labs" class="labs">
       <div class="labs-card">
@@ -82,7 +86,7 @@
     </div>
   </div>
 
-  <script src="roadmap.js?v=3"></script>
-  <script src="app.js?v=3"></script>
+  <script src="roadmap.js?v=5"></script>
+  <script src="app.js?v=5"></script>
 </body>
 </html>
