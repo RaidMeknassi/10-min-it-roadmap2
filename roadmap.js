@@ -125,3 +125,13 @@ const PATH_CERTS = [
 const VIDEOS = {
   // "3": "AbCdEf12345",
 };
+
+/* Web-version lessons (HTML pages inside the "lessons" folder), by lesson number.
+   To add a lesson: put its folder in lessons/ and add a line here. */
+const LESSON_PAGES = {
+  "1": "lessons/whatisacomputer/index.html",
+  "2": "lessons/whatishardware/index.html",
+  "3": "lessons/whatissoftware/index.html",
+  "4": "lessons/howcomputerworks/index.html",
+  "5": "lessons/howrepresent/index.html"
+};

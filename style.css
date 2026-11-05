@@ -274,3 +274,18 @@ h1 span { background: var(--grad); -webkit-background-clip: text; background-cli
   * { transition: none !important; scroll-behavior: auto !important; }
   .logo-anim .needle { animation: none; }
 }
+
+/* wide panel for web-version lessons */
+.panel.wide { max-width: min(1100px, 96vw); padding: 20px 20px 16px; }
+.panel.wide .video { width: 100%; }
+.open-full { display: inline-block; margin: 10px 0 0; font-size: 13px; color: var(--muted); text-decoration: none; }
+.open-full:hover { color: var(--text); }
+@media (max-width: 720px) {
+  .overlay { padding: 8px; }
+  .panel.wide { padding: 14px 10px 12px; }
+  .panel.wide h3 { font-size: 18px; padding-right: 28px; }
+}
+.video .launch { height: 100%; min-height: 150px; display: flex; flex-direction: column; align-items: center; justify-content: center; gap: 6px; text-decoration: none; color: var(--text); font-weight: 700; background: linear-gradient(135deg, #1b1233, #2a1230); }
+.video .launch span { font-size: 34px; }
+.video .launch small { font-weight: 400; color: var(--muted); font-size: 12px; }
+@media (max-width: 720px) { .open-full { display: none; } }

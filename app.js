@@ -175,17 +175,34 @@
 
     var v = document.getElementById("p-video");
     v.innerHTML = "";
+    var oldA = document.querySelector(".open-full"); if (oldA) oldA.remove();
+    var page = (typeof LESSON_PAGES !== "undefined") ? LESSON_PAGES[l.n] : "";
     var id = (typeof VIDEOS !== "undefined") ? VIDEOS[l.n] : "";
-    if (id) {
+    document.querySelector(".panel").classList.toggle("wide", !!page);
+    if (page && window.innerWidth <= 720) {
+      v.innerHTML = '<a class="launch" href="' + page + '" target="_blank" rel="noopener"><span>\u25B6</span>Open the lesson<small>Opens full screen. Turn your phone sideways.</small></a>';
+    } else if (page) {
       var f = document.createElement("iframe");
-      f.src = "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(id);
+      f.src = page;
       f.title = l.title;
-      f.loading = "lazy";
-      f.allow = "accelerometer; encrypted-media; picture-in-picture";
+      f.allow = "autoplay; fullscreen";
       f.allowFullscreen = true;
       v.appendChild(f);
+      var a = document.createElement("a");
+      a.className = "open-full";
+      a.href = page; a.target = "_blank"; a.rel = "noopener";
+      a.textContent = "Open full screen \u2197";
+      v.parentNode.insertBefore(a, v.nextSibling);
+    } else if (id) {
+      var f2 = document.createElement("iframe");
+      f2.src = "https://www.youtube-nocookie.com/embed/" + encodeURIComponent(id);
+      f2.title = l.title;
+      f2.loading = "lazy";
+      f2.allow = "accelerometer; encrypted-media; picture-in-picture";
+      f2.allowFullscreen = true;
+      v.appendChild(f2);
     } else {
-      v.innerHTML = '<div class="soon">Video coming soon</div>';
+      v.innerHTML = '<div class="soon">Lesson coming soon</div>';
     }
 
     document.getElementById("p-lab").innerHTML = l.lab
@@ -201,6 +218,8 @@
     var tr = document.getElementById("p-track");
     tr.textContent = "Level 6 · Specialization path";
     tr.style.color = p.color;
+    document.querySelector(".panel").classList.remove("wide");
+    var oa = document.querySelector(".open-full"); if (oa) oa.remove();
     document.getElementById("p-title").textContent = p.name;
     var ul = document.getElementById("p-topics");
     ul.innerHTML = "";
@@ -213,7 +232,7 @@
     showPanel(false);
   }
 
-  function closePanel() { overlay.hidden = true; document.getElementById("p-video").innerHTML = ""; }
+  function closePanel() { overlay.hidden = true; document.getElementById("p-video").innerHTML = ""; var a = document.querySelector(".open-full"); if (a) a.remove(); }
 
   document.getElementById("p-close").addEventListener("click", closePanel);
   overlay.addEventListener("click", function (e) { if (e.target === overlay) closePanel(); });
