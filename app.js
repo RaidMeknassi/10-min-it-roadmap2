@@ -205,8 +205,19 @@
       v.innerHTML = '<div class="soon">Lesson coming soon</div>';
     }
 
-    document.getElementById("p-lab").innerHTML = l.lab
-      ? "🔒 <b>Lab available.</b> Practise this lesson hands-on. Labs are for subscribers (coming soon)."
+    var qb = document.getElementById("p-quizbtn"), qbox = document.getElementById("p-quiz");
+    qbox.hidden = true; qbox.innerHTML = "";
+    var hasQuiz = (typeof QUIZZES !== "undefined") && QUIZZES[l.n];
+    qb.hidden = !hasQuiz;
+    qb.onclick = function () {
+      qb.hidden = true; qbox.hidden = false;
+      renderQuiz(l.n, qbox, function (s, t) { try { var k = JSON.parse(localStorage.getItem("itroadmap-v2-quiz") || "{}"); if (!k[l.n] || s > k[l.n]) k[l.n] = s; localStorage.setItem("itroadmap-v2-quiz", JSON.stringify(k)); } catch (e) {} });
+      qbox.scrollIntoView({ behavior: "smooth", block: "nearest" });
+    };
+    var lab = (typeof LABS !== "undefined") ? LABS[l.n] : null;
+    document.getElementById("p-lab").innerHTML = lab
+      ? "🔒 <b>Lab: " + lab.title + "</b><br>" + lab.text + "<br><small>Labs are for subscribers (coming soon).</small>"
+      : l.lab ? "🔒 <b>Lab available.</b> Practise this lesson hands-on. Labs are for subscribers (coming soon)."
       : "This lesson has no lab. Just watch and learn.";
     document.getElementById("p-done").textContent = done[l.n] ? "Mark as not done" : "Mark as done";
     showPanel(true);

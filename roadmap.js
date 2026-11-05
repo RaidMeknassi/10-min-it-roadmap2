@@ -20,11 +20,11 @@ const LEVELS = [
   ]},
 
   { id: "l1", name: "Level 1", title: "Computer Fundamentals", color: "#a78bfa", lessons: [
-    ["1", "What Is a Computer?", 0],
-    ["2", "What Is Hardware?", 0],
-    ["3", "What Is Software?", 0],
-    ["4", "How Does a Computer Work?", 0],
-    ["5", "How Computers Represent Information", 0]
+    ["1", "What Is a Computer?", 1],
+    ["2", "What Is Hardware?", 1],
+    ["3", "What Is Software?", 1],
+    ["4", "How Does a Computer Work?", 1],
+    ["5", "How Computers Represent Information", 1]
   ]},
 
   { id: "l2", name: "Level 2", title: "Operating Systems", color: "#fb923c", lessons: [
@@ -134,4 +134,54 @@ const LESSON_PAGES = {
   "3": "lessons/whatissoftware/index.html",
   "4": "lessons/howcomputerworks/index.html",
   "5": "lessons/howrepresent/index.html"
+};
+
+/* QUIZZES - one per lesson, each with its own style (type):
+   mcq (multiple choice) | tf (true/false) | match (pairs) | order (arrange steps) | fill (type the answer)
+   To add a quiz for another lesson, add an entry here. */
+const QUIZZES = {
+  "1": { type: "mcq", color: "#a78bfa", title: "Pick the right answer", items: [
+    { q: "What does a computer do?", o: ["Takes input, processes it, gives output", "Only plays videos", "Only stores paper files", "Only connects to the internet"], a: 0 },
+    { q: "Which one is an INPUT device?", o: ["Monitor", "Speaker", "Keyboard", "Printer"], a: 2 },
+    { q: "Which of these is NOT a computer?", o: ["Smartphone", "Laptop", "Paper notebook", "Smartwatch"], a: 2 },
+    { q: "What is the correct order of how a computer handles data?", o: ["Output, Process, Input", "Input, Process, Output", "Process, Output, Input", "Input, Output, Process"], a: 1 }
+  ]},
+  "2": { type: "tf", color: "#2dd4bf", title: "True or false?", items: [
+    { q: "The CPU is often called the brain of the computer.", a: true },
+    { q: "RAM keeps your files after you turn the computer off.", a: false },
+    { q: "An SSD is usually faster than an HDD.", a: true },
+    { q: "A monitor is an input device.", a: false },
+    { q: "The motherboard connects all the main parts together.", a: true },
+    { q: "Hardware means the parts you can physically touch.", a: true }
+  ]},
+  "3": { type: "match", color: "#fb923c", title: "Match each item with what it is", pairs: [
+    ["Windows", "Operating system"],
+    ["Google Chrome", "Application"],
+    ["Antivirus", "Security software"],
+    ["Driver", "Lets the OS talk to hardware"],
+    ["Firmware", "Software stored on a hardware chip"]
+  ]},
+  "4": { type: "order", color: "#60a5fa", title: "Put the steps in the right order", steps: [
+    "You double-click an app",
+    "The program is copied from storage into RAM",
+    "The CPU fetches instructions from RAM",
+    "The CPU executes the instructions",
+    "The result appears on the screen"
+  ]},
+  "5": { type: "fill", color: "#4ade80", title: "Type the answer", items: [
+    { q: "A single 0 or 1 is called a ...", a: ["bit"] },
+    { q: "How many bits are in one byte?", a: ["8", "eight"] },
+    { q: "The binary number 101 equals what in decimal?", a: ["5", "five"] },
+    { q: "The decimal number 10 equals what in binary?", a: ["1010"] },
+    { q: "Name a standard that gives every letter a number (A = 65).", a: ["ascii", "unicode"] }
+  ]}
+};
+
+/* LABS - hands-on lab description per lesson (labs are for subscribers later) */
+const LABS = {
+  "1": { title: "Know your own computer", text: "Find your computer's model, processor and memory using the system info page, and list its input and output devices." },
+  "2": { title: "Hardware inventory", text: "Use a free tool to list every hardware part in your PC, then label each as CPU, RAM, storage, GPU or motherboard." },
+  "3": { title: "Sort your software", text: "List the programs installed on your computer and classify each one: operating system, application, driver or security." },
+  "4": { title: "Watch it work", text: "Open Task Manager (or System Monitor), start a program, and watch CPU and RAM change while you use it." },
+  "5": { title: "Binary name tag", text: "Use an ASCII table to turn your name into binary, then decode a friend's message back into letters." }
 };
