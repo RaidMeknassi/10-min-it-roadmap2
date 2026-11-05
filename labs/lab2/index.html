@@ -1,0 +1,35 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lab 2 - 3D Hardware Teardown</title>
+<style>
+*{box-sizing:border-box}
+html,body{margin:0;height:100%}
+body{background:radial-gradient(circle at 50% 30%,#1a2140,#07070d 70%);color:#f1f1f7;font-family:system-ui,Segoe UI,Roboto,sans-serif;display:flex;flex-direction:column;min-height:100vh}
+header{padding:14px 16px 0;text-align:center}
+h1{margin:0 0 2px;font-size:clamp(18px,3vw,26px)}
+.sub{margin:0;color:#9a9ab0;font-size:14px}
+#stageBox{position:relative;flex:1;min-height:300px;width:100%;max-width:1000px;margin:0 auto}
+#stage{position:absolute;inset:0}
+#stage canvas{width:100%;height:100%;display:block;touch-action:none}
+#loading{position:absolute;inset:0;display:grid;place-items:center;color:#9a9ab0}
+#tabs{display:flex;gap:8px;justify-content:center;padding:6px 12px;flex-wrap:wrap}
+#tabs button{font:700 13px system-ui;padding:8px 16px;border-radius:999px;border:2px solid var(--c);background:transparent;color:#fff;cursor:pointer}
+#tabs button.on,#tabs button:hover{background:var(--c);color:#07070d}
+#hint{text-align:center;color:#9a9ab0;font-size:13px;padding:2px 0 4px}
+#progress{text-align:center;color:#fbbf24;font-size:13px;font-weight:700;padding-bottom:12px}
+#info{position:absolute;right:12px;bottom:12px;width:min(340px,calc(100% - 24px));padding:14px 16px;border:2px solid var(--c,#2dd4bf);border-radius:14px;background:rgba(10,10,22,.88);backdrop-filter:blur(6px);opacity:0;transform:translateY(10px);pointer-events:none;transition:.3s}
+#info.show{opacity:1;transform:none}
+#info h2{margin:0;color:var(--c);font-size:20px}
+#info .what{margin:2px 0 8px;font-weight:700}
+#info ul{margin:0;padding-left:18px;font-size:13px;line-height:1.5;color:#d4d4e6}
+#back{position:absolute;left:12px;top:12px;font:700 13px system-ui;padding:8px 14px;border-radius:999px;border:0;background:#fff;color:#07070d;cursor:pointer;display:none}
+#back.show{display:block}
+@media(max-width:640px){#info{position:static;width:auto;margin:8px 12px 0;transform:none;display:none}#info.show{display:block}#stageBox{min-height:320px;flex:none;height:55vh}}
+</style></head><body>
+<header><h1>Lab 2: 3D Hardware Teardown</h1><p class="sub">Click a part. It floats up so you can turn it around and learn what it does.</p></header>
+<div id="stageBox"><div id="stage"></div><div id="loading">Loading 3D models...</div><button id="back" type="button">← Back to all parts</button><div id="info"></div></div>
+<div id="tabs"></div>
+<div id="hint">Click a part to look closer.</div>
+<div id="progress">Explored 0 of 3</div>
+<script src="lab2.js"></script>
+</body></html>
