@@ -334,3 +334,9 @@ h1 span { background: var(--grad); -webkit-background-clip: text; background-cli
 .q-result { text-align: center; padding: 10px 0; }
 .q-score { font-size: 44px; font-weight: 800; color: var(--qc); }
 @media (max-width: 720px) { .m-wrap { grid-template-columns: 1fr; } .q-q { font-size: 17px; } }
+.lab-start { margin-top: 12px; }
+.video.lab-view { aspect-ratio: 16 / 11; }
+@media (max-width: 720px) { .video.lab-view { aspect-ratio: auto; } }
+.lab-start { margin-top: 12px; }
+.video.lab-view { aspect-ratio: 16 / 11; }
+@media (max-width: 720px) { .video.lab-view { aspect-ratio: auto; } }

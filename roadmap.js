@@ -179,9 +179,18 @@ const QUIZZES = {
 
 /* LABS - hands-on lab description per lesson (labs are for subscribers later) */
 const LABS = {
-  "1": { title: "Know your own computer", text: "Find your computer's model, processor and memory using the system info page, and list its input and output devices." },
-  "2": { title: "Hardware inventory", text: "Use a free tool to list every hardware part in your PC, then label each as CPU, RAM, storage, GPU or motherboard." },
-  "3": { title: "Sort your software", text: "List the programs installed on your computer and classify each one: operating system, application, driver or security." },
-  "4": { title: "Watch it work", text: "Open Task Manager (or System Monitor), start a program, and watch CPU and RAM change while you use it." },
+  "1": { title: "Input, Process, Output", text: "Type any number into the input box, watch the processor work, and see which emoji comes out. Then find the secret rule." },
+  "2": { title: "3D hardware teardown", text: "Click a part (CPU, RAM, CPU cooler) and see it float in 3D. Turn it around and learn what it does." },
+  "3": { title: "Build the software stack", text: "Drag the layers into place: hardware, BIOS/UEFI, drivers, operating system, applications. Then press Power On and watch the layers work together." },
+  "4": { title: "Build your PC", text: "Drag the CPU, fan, RAM, SSD and graphics card onto the motherboard, then mount the board and power supply in the case and power on." },
   "5": { title: "Binary name tag", text: "Use an ASCII table to turn your name into binary, then decode a friend's message back into letters." }
+};
+
+/* Interactive labs (web pages inside the "labs" folder), by lesson number.
+   Lessons without a page here show only the lab description for now. */
+const LAB_PAGES = {
+  "1": "labs/lab1/index.html",
+  "2": "labs/lab2/index.html",
+  "3": "labs/lab3/index.html",
+  "4": "labs/lab4/index.html"
 };

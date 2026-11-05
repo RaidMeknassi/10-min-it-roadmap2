@@ -1,0 +1,97 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lab 3 - Build the Software Stack</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:radial-gradient(circle at 50% 0,#2a1a10,#07070d 60%);color:#f1f1f7;font-family:system-ui,Segoe UI,Roboto,sans-serif;padding:16px 14px 26px;touch-action:pan-y}
+h1{margin:0 0 4px;font-size:clamp(18px,3vw,26px);text-align:center}
+.sub{margin:0 0 14px;color:#9a9ab0;font-size:14px;text-align:center}
+.wrap{display:grid;grid-template-columns:1fr 1.2fr;gap:20px;max-width:900px;margin:0 auto}
+h2{margin:0 0 8px;font-size:12px;letter-spacing:.12em;color:#fb923c;text-transform:uppercase}
+.tray,.stack{display:flex;flex-direction:column;gap:8px}
+.stack{flex-direction:column-reverse}
+.piece{touch-action:none;user-select:none;cursor:grab;display:flex;align-items:center;gap:10px;padding:10px 12px;border-radius:12px;border:2px solid var(--c);background:linear-gradient(90deg,color-mix(in srgb,var(--c) 22%,#10101c),#10101c)}
+.piece .ic{font-size:24px;flex:none}
+.piece b{display:block;font-size:14px}
+.piece small{color:#b4b4c8;font-size:12px;line-height:1.3;display:block}
+.piece.drag{opacity:.3}
+.ghost{position:fixed;z-index:99;pointer-events:none;box-shadow:0 12px 30px rgba(0,0,0,.6);transform:rotate(-2deg)}
+.slot{min-height:62px;border:2px dashed #3b3b55;border-radius:12px;display:flex;align-items:center;padding:0;position:relative}
+.slot:before{content:attr(data-n);position:absolute;left:-1px;top:-1px;transform:translate(-50%,-50%);width:24px;height:24px;border-radius:50%;background:#2a2a40;color:#fff;display:grid;place-items:center;font-size:12px;font-weight:700;z-index:2}
+.slot .hint{margin:auto;color:#6a6a85;font-size:13px}
+.slot.over{border-color:#fb923c;background:rgba(251,146,60,.08)}
+.slot.shake{animation:shake .35s}
+@keyframes shake{25%{transform:translateX(-7px)}75%{transform:translateX(7px)}}
+.slot .piece{width:100%;cursor:default;border-style:solid}
+.slot.on{border-style:solid;border-color:#fff;box-shadow:0 0 20px var(--c)}
+.slot.done{border-style:solid}
+.msg{margin:14px auto 0;max-width:900px;text-align:center;min-height:44px;font-size:15px;color:#d4d4e6}
+.msg.err{color:#fbbf24}
+.go{display:block;margin:10px auto 0;font:800 16px system-ui;border:0;border-radius:999px;padding:12px 30px;color:#07070d;background:linear-gradient(90deg,#fb923c,#f472b6);cursor:pointer}
+.go:disabled{opacity:.35;cursor:default}
+.desk{margin:14px auto 0;max-width:900px;border-radius:14px;border:2px solid #4ade80;background:linear-gradient(135deg,#0e2a3a,#1a1245);padding:14px;display:none;text-align:center}
+.desk.show{display:block;animation:pop .5s}
+@keyframes pop{from{transform:scale(.9);opacity:0}}
+.desk .apps{display:flex;gap:14px;justify-content:center;font-size:34px;margin-top:6px}
+@media(max-width:640px){.wrap{grid-template-columns:1fr}}
+</style></head><body>
+<h1>Lab 3: Build the Software Stack</h1>
+<p class="sub">Drag each layer into the stack. Start at the bottom with the hardware and build upwards.</p>
+<div class="wrap">
+  <div><h2>Layers to place</h2><div class="tray" id="tray"></div></div>
+  <div><h2>Your computer (bottom to top)</h2><div class="stack" id="stack"></div></div>
+</div>
+<div class="msg" id="msg">Which layer must exist first?</div>
+<button class="go" id="power" disabled>⏻ Power On</button>
+<div class="desk" id="desk"><b>Your computer is ready!</b><div class="apps">🌐 📝 🎵 📁</div></div>
+
+<script>
+var L=[
+ {id:"hw",ic:"🔩",t:"Hardware",d:"CPU, RAM, storage, motherboard. The physical parts.",c:"#fb923c",say:"Power flows into the hardware: CPU, RAM and storage wake up.",hint:"The physical parts come first. Nothing can run without them."},
+ {id:"fw",ic:"💾",t:"BIOS / UEFI firmware",d:"Tiny program on a chip. Checks the hardware and finds the boot drive.",c:"#f472b6",say:"The BIOS/UEFI runs a self-test (POST) and looks for a drive to boot from.",hint:"Firmware starts the machine. What must it check before anything else is installed?"},
+ {id:"dr",ic:"🔌",t:"Drivers & system software",d:"Translators that let the system talk to each device.",c:"#2dd4bf",say:"Drivers load so the system can talk to the screen, keyboard, disk and network.",hint:"The OS needs these to talk to hardware, so they go below it."},
+ {id:"os",ic:"🪟",t:"Operating system",d:"Windows, Linux, macOS. Manages everything and runs apps.",c:"#60a5fa",say:"The operating system takes control: memory, files and processes are managed.",hint:"The OS sits on drivers and hardware. Apps need it, so it is not last."},
+ {id:"ap",ic:"🌐",t:"Applications",d:"Browser, games, Office. What you actually use.",c:"#4ade80",say:"Applications start. Now you can browse, type and play.",hint:"Applications always sit on top of the operating system."}
+];
+var $=function(i){return document.getElementById(i)};
+var tray=$("tray"),stack=$("stack"),placed=0;
+function card(l){var p=document.createElement("div");p.className="piece";p.dataset.id=l.id;p.style.setProperty("--c",l.c);
+  p.innerHTML='<span class="ic">'+l.ic+'</span><span><b>'+l.t+'</b><small>'+l.d+'</small></span>';return p}
+L.forEach(function(l,i){var s=document.createElement("div");s.className="slot";s.dataset.n=i+1;s.dataset.i=i;s.style.setProperty("--c",l.c);
+  s.innerHTML='<span class="hint">'+(i===0?"Bottom layer":i===4?"Top layer":"Layer "+(i+1))+'</span>';stack.appendChild(s)});
+L.slice().sort(function(){return Math.random()-.5}).forEach(function(l){tray.appendChild(card(l))});
+
+var drag=null;
+document.addEventListener("pointerdown",function(e){
+  var p=e.target.closest(".tray .piece"); if(!p)return; e.preventDefault();
+  var r=p.getBoundingClientRect(),g=p.cloneNode(true);g.className="piece ghost";g.style.width=r.width+"px";
+  g.style.left=r.left+"px";g.style.top=r.top+"px";document.body.appendChild(g);
+  drag={p:p,g:g,dx:e.clientX-r.left,dy:e.clientY-r.top};p.classList.add("drag");
+});
+document.addEventListener("pointermove",function(e){
+  if(!drag)return;drag.g.style.left=(e.clientX-drag.dx)+"px";drag.g.style.top=(e.clientY-drag.dy)+"px";
+  document.querySelectorAll(".slot.over").forEach(function(s){s.classList.remove("over")});
+  var t=document.elementFromPoint(e.clientX,e.clientY),s=t&&t.closest(".slot");if(s&&!s.querySelector(".piece"))s.classList.add("over");
+});
+document.addEventListener("pointerup",function(e){
+  if(!drag)return;var d=drag;drag=null;d.g.remove();d.p.classList.remove("drag");
+  document.querySelectorAll(".slot.over").forEach(function(s){s.classList.remove("over")});
+  var t=document.elementFromPoint(e.clientX,e.clientY),s=t&&t.closest(".slot");
+  if(!s||s.querySelector(".piece"))return;
+  var want=L[+s.dataset.i],l=L.filter(function(x){return x.id===d.p.dataset.id})[0];
+  if(want.id===l.id){s.innerHTML="";s.appendChild(d.p);s.classList.add("done");placed++;
+    $("msg").className="msg";$("msg").textContent="Correct! "+(placed<5?"What comes next?":"The stack is complete. Press Power On!");
+    if(placed===5)$("power").disabled=false;
+  }else{s.classList.add("shake");setTimeout(function(){s.classList.remove("shake")},400);
+    $("msg").className="msg err";$("msg").textContent="Not here. "+l.hint;}
+});
+
+$("power").onclick=function(){
+  var b=$("power");b.disabled=true;var slots=stack.querySelectorAll(".slot"),i=0;
+  (function step(){
+    slots.forEach(function(s){s.classList.remove("on")});
+    if(i===5){$("msg").className="msg";$("msg").textContent="Every layer depends on the one below it.";$("desk").classList.add("show");b.textContent="⏻ Power On again";b.disabled=false;return}
+    slots[i].classList.add("on");$("msg").className="msg";$("msg").textContent=(i+1)+". "+L[i].say;i++;setTimeout(step,1900);
+  })();
+};
+</script></body></html>

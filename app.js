@@ -174,7 +174,7 @@
     document.getElementById("p-title").textContent = l.title;
 
     var v = document.getElementById("p-video");
-    v.innerHTML = "";
+    v.innerHTML = ""; v.classList.remove("lab-view");
     var oldA = document.querySelector(".open-full"); if (oldA) oldA.remove();
     var page = (typeof LESSON_PAGES !== "undefined") ? LESSON_PAGES[l.n] : "";
     var id = (typeof VIDEOS !== "undefined") ? VIDEOS[l.n] : "";
@@ -219,6 +219,29 @@
       ? "🔒 <b>Lab: " + lab.title + "</b><br>" + lab.text + "<br><small>Labs are for subscribers (coming soon).</small>"
       : l.lab ? "🔒 <b>Lab available.</b> Practise this lesson hands-on. Labs are for subscribers (coming soon)."
       : "This lesson has no lab. Just watch and learn.";
+    var labPage = (typeof LAB_PAGES !== "undefined") ? LAB_PAGES[l.n] : "";
+    if (labPage && lab) {
+      var lb = document.createElement("button");
+      lb.type = "button"; lb.className = "btn btn-full lab-start"; lb.textContent = "\u25B6 Start the lab";
+      var mobile = window.innerWidth <= 720, inLab = false;
+      lb.onclick = function () {
+        if (mobile) { window.open(labPage, "_blank", "noopener"); return; }
+        var vv = document.getElementById("p-video"), oa = document.querySelector(".open-full");
+        inLab = !inLab; vv.innerHTML = "";
+        var ff = document.createElement("iframe");
+        ff.src = inLab ? labPage : (page || "");
+        ff.title = inLab ? lab.title : l.title;
+        ff.allow = "autoplay; fullscreen"; ff.allowFullscreen = true;
+        if (inLab || page) vv.appendChild(ff);
+        vv.classList.toggle("lab-view", inLab);
+        if (oa) oa.href = inLab ? labPage : page;
+        lb.textContent = inLab ? "\u2190 Back to the lesson" : "\u25B6 Start the lab";
+        document.querySelector(".panel").classList.add("wide");
+        vv.scrollIntoView({ behavior: "smooth", block: "nearest" });
+      };
+      document.getElementById("p-lab").appendChild(document.createElement("br"));
+      document.getElementById("p-lab").appendChild(lb);
+    }
     document.getElementById("p-done").textContent = done[l.n] ? "Mark as not done" : "Mark as done";
     showPanel(true);
   }
@@ -243,7 +266,7 @@
     showPanel(false);
   }
 
-  function closePanel() { overlay.hidden = true; document.getElementById("p-video").innerHTML = ""; var a = document.querySelector(".open-full"); if (a) a.remove(); }
+  function closePanel() { overlay.hidden = true; document.getElementById("p-video").innerHTML = ""; document.getElementById("p-video").classList.remove("lab-view"); document.getElementById("p-quiz").innerHTML = ""; var a = document.querySelector(".open-full"); if (a) a.remove(); }
 
   document.getElementById("p-close").addEventListener("click", closePanel);
   overlay.addEventListener("click", function (e) { if (e.target === overlay) closePanel(); });

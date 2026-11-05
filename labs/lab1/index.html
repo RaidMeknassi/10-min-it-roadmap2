@@ -1,0 +1,129 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lab 1 - Input, Process, Output</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:radial-gradient(circle at 50% 0,#1a1236,#07070d 60%);color:#f1f1f7;font-family:system-ui,Segoe UI,Roboto,sans-serif;display:flex;flex-direction:column;align-items:center;padding:18px 14px 28px}
+h1{margin:0 0 4px;font-size:clamp(18px,3vw,26px)}
+.sub{margin:0 0 18px;color:#9a9ab0;font-size:14px;text-align:center}
+.machine{display:flex;align-items:center;justify-content:center;gap:clamp(8px,2vw,22px);width:100%;max-width:900px}
+.box{flex:1 1 0;min-width:0;aspect-ratio:1;max-width:230px;border:2px solid #a78bfa;border-radius:18px;background:rgba(167,139,250,.07);display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;padding:12px;position:relative}
+.box small{position:absolute;top:8px;left:12px;font-size:11px;letter-spacing:.12em;color:#a78bfa;font-weight:700}
+.box input{width:80%;font:700 clamp(20px,4vw,34px) system-ui;text-align:center;padding:8px;border-radius:12px;border:2px solid #3b3b55;background:#0d0d1a;color:#fff;outline:none}
+.box input:focus{border-color:#a78bfa}
+button{font:700 14px system-ui;border:0;border-radius:999px;padding:10px 20px;color:#07070d;background:linear-gradient(90deg,#a78bfa,#f472b6);cursor:pointer}
+button:disabled{opacity:.4;cursor:default}
+.arrow{flex:none;width:clamp(26px,5vw,60px);height:6px;border-radius:3px;background:#2a2a40;position:relative;overflow:hidden}
+.arrow i{position:absolute;top:0;left:-40%;width:40%;height:100%;background:linear-gradient(90deg,transparent,#2dd4bf,transparent);opacity:0}
+.arrow.go i{opacity:1;animation:flow .7s linear infinite}
+@keyframes flow{to{left:100%}}
+.cpu{border-color:#2dd4bf;background:rgba(45,212,191,.07)}
+.cpu small{color:#2dd4bf}
+.chip{width:62%;aspect-ratio:1;border-radius:12px;background:linear-gradient(145deg,#3c3c58,#1a1a2c);border:2px solid #5a5a7c;display:grid;place-items:center;font:800 clamp(11px,2vw,16px) system-ui;color:#2dd4bf;position:relative;box-shadow:0 6px 18px rgba(0,0,0,.5)}
+.chip:before,.chip:after{content:"";position:absolute;inset:-7px 14%;border-left:3px dotted #8a8aa8;border-right:3px dotted #8a8aa8}
+.chip:after{inset:14% -7px;border:0;border-top:3px dotted #8a8aa8;border-bottom:3px dotted #8a8aa8}
+.chip.busy{animation:glow .5s ease-in-out infinite alternate;border-color:#2dd4bf}
+@keyframes glow{to{box-shadow:0 0 28px #2dd4bf,0 6px 18px rgba(0,0,0,.5)}}
+.state{font-size:12px;color:#9a9ab0;min-height:16px}
+.out{border-color:#f472b6;background:rgba(244,114,182,.07)}
+.out small{color:#f472b6}
+.emoji{font-size:clamp(46px,10vw,92px);line-height:1}
+.emoji.pop{animation:pop .45s cubic-bezier(.2,1.6,.4,1)}
+@keyframes pop{from{transform:scale(.2);opacity:0}}
+.trace{margin:18px 0 8px;font-size:15px;color:#d4d4e6;min-height:22px;text-align:center}
+.hist{display:flex;gap:8px;flex-wrap:wrap;justify-content:center;max-width:700px;min-height:34px}
+.hist span{padding:4px 10px;border-radius:999px;background:#15152a;border:1px solid #2a2a45;font-size:14px}
+.mission{margin-top:20px;width:100%;max-width:640px;border:1px solid #2a2a45;border-radius:14px;padding:16px;background:rgba(255,255,255,.03);text-align:center}
+.mission h2{margin:0 0 6px;font-size:16px;color:#fbbf24}
+.mission p{margin:6px 0;color:#c7c7da;font-size:14px}
+.opts{display:flex;gap:10px;justify-content:center;flex-wrap:wrap;margin-top:10px}
+.opts button{background:#15152a;color:#fff;border:2px solid #3b3b55;font-size:30px;padding:8px 14px;border-radius:14px}
+.opts button:hover{border-color:#fbbf24}
+.opts .good{border-color:#4ade80;background:rgba(74,222,128,.15)}
+.opts .bad{border-color:#f87171;background:rgba(248,113,113,.15)}
+.hidden{display:none}
+@media(max-width:560px){.machine{flex-direction:column}.arrow{width:6px;height:28px}.arrow i{width:100%;height:40%;left:0;top:-40%}@keyframes flow{to{top:100%}}.box{max-width:200px}}
+</style></head><body>
+<h1>Lab 1: Input, Process, Output</h1>
+<p class="sub">Type any number. Watch the processor work. See what comes out.</p>
+
+<div class="machine">
+  <div class="box"><small>INPUT</small>
+    <input id="num" type="number" inputmode="numeric" placeholder="42" aria-label="Type a number">
+    <button id="send">Send</button>
+  </div>
+  <div class="arrow" id="a1"><i></i></div>
+  <div class="box cpu"><small>PROCESSOR</small>
+    <div class="chip" id="chip">CPU</div>
+    <div class="state" id="state">waiting</div>
+  </div>
+  <div class="arrow" id="a2"><i></i></div>
+  <div class="box out"><small>OUTPUT</small>
+    <div class="emoji" id="emoji">?</div>
+  </div>
+</div>
+
+<div class="trace" id="trace">Try a few numbers. Different ones. Big ones too.</div>
+<div class="hist" id="hist"></div>
+
+<div class="mission hidden" id="mission">
+  <h2>Mission: find the rule</h2>
+  <p>You sent 3 numbers. The processor follows a secret rule. Can you predict its output?</p>
+  <button id="startm">Start the mission</button>
+  <div id="mbody"></div>
+</div>
+
+<script>
+var EM=["😴","😀","✌️","🍀","🎸","🖐️","🎲","🌈","🎱","🚀"];
+var sent=0,busy=false;
+var $=function(i){return document.getElementById(i)};
+function run(){
+  if(busy)return;
+  var v=$("num").value.trim(); if(v===""||isNaN(+v)){$("trace").textContent="Please type a number first.";return}
+  var n=Math.abs(Math.floor(+v)); busy=true; $("send").disabled=true;
+  $("emoji").textContent="?"; $("emoji").className="emoji";
+  $("a1").classList.add("go"); $("trace").textContent="INPUT: "+v+"  →  sending to the processor...";
+  setTimeout(function(){
+    $("a1").classList.remove("go"); $("chip").classList.add("busy"); $("state").textContent="processing...";
+    $("trace").textContent="PROCESSOR: working on "+v+"...";
+    setTimeout(function(){
+      $("chip").classList.remove("busy"); $("state").textContent="done"; $("a2").classList.add("go");
+      setTimeout(function(){
+        $("a2").classList.remove("go"); var e=EM[n%10];
+        $("emoji").textContent=e; $("emoji").className="emoji pop";
+        $("trace").textContent="INPUT "+v+"  →  PROCESSOR  →  OUTPUT "+e;
+        var s=document.createElement("span"); s.textContent=v+" → "+e; $("hist").insertBefore(s,$("hist").firstChild);
+        if($("hist").children.length>8)$("hist").removeChild($("hist").lastChild);
+        sent++; busy=false; $("send").disabled=false; $("state").textContent="waiting";
+        if(sent>=3)$("mission").classList.remove("hidden");
+      },500);
+    },900);
+  },700);
+}
+$("send").onclick=run;
+$("num").addEventListener("keydown",function(e){if(e.key==="Enter")run()});
+
+// mission: predict 3 outputs
+$("startm").onclick=function(){
+  $("startm").classList.add("hidden");
+  var round=0,score=0,seen={};
+  function ask(){
+    var b=$("mbody"); b.innerHTML="";
+    if(round===3){
+      b.innerHTML="<p style='font-size:34px;margin:8px 0'>"+score+" / 3</p><p>"+(score===3?"You found it! ":"Almost. ")+"<b>The rule:</b> the processor looks only at the <b>last digit</b> of your number and picks the emoji for it. A computer follows rules exactly, with no guessing.</p><button id='again'>Try again</button>";
+      $("again").onclick=function(){round=0;score=0;seen={};ask()};
+      return;
+    }
+    var n; do{n=Math.floor(Math.random()*900)+10}while(seen[n%10]); seen[n%10]=1;
+    var ans=EM[n%10], opts=[ans];
+    while(opts.length<4){var e=EM[Math.floor(Math.random()*10)]; if(opts.indexOf(e)<0)opts.push(e)}
+    opts.sort(function(){return Math.random()-.5});
+    b.innerHTML="<p>Round "+(round+1)+" of 3: what will <b style='font-size:20px'>"+n+"</b> give?</p><div class='opts'></div>";
+    opts.forEach(function(e){var x=document.createElement("button");x.textContent=e;x.onclick=function(){
+      var all=b.querySelectorAll(".opts button");all.forEach(function(k){k.disabled=true});
+      if(e===ans){score++;x.classList.add("good")}else{x.classList.add("bad");all.forEach(function(k){if(k.textContent===ans)k.classList.add("good")})}
+      round++;setTimeout(ask,1100)};b.lastChild.appendChild(x)});
+  }
+  ask();
+};
+</script></body></html>

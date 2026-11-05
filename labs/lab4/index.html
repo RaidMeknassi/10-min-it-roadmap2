@@ -1,0 +1,150 @@
+<!doctype html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Lab 4 - Build Your PC</title>
+<style>
+*{box-sizing:border-box}
+body{margin:0;min-height:100vh;background:radial-gradient(circle at 50% 0,#10213d,#07070d 60%);color:#f1f1f7;font-family:system-ui,Segoe UI,Roboto,sans-serif;padding:16px 14px 26px}
+h1{margin:0 0 4px;font-size:clamp(18px,3vw,26px);text-align:center}
+.sub{margin:0 0 14px;color:#9a9ab0;font-size:14px;text-align:center}
+.wrap{display:grid;grid-template-columns:230px 1fr;gap:20px;max-width:940px;margin:0 auto;align-items:start}
+h2{margin:0 0 8px;font-size:12px;letter-spacing:.12em;color:#60a5fa;text-transform:uppercase}
+.tray{display:flex;flex-wrap:wrap;gap:12px;align-items:flex-end;padding:12px;border:1px solid #2a2a45;border-radius:12px;background:rgba(255,255,255,.03);min-height:120px}
+.piece{touch-action:none;user-select:none;cursor:grab;filter:drop-shadow(0 8px 6px rgba(0,0,0,.55))}
+.piece svg{display:block;width:100%;height:100%}
+.piece:hover{transform:translateY(-3px)}
+.piece.drag{opacity:.25}
+.ghost{position:fixed;z-index:99;pointer-events:none;filter:drop-shadow(0 16px 12px rgba(0,0,0,.6));transform:scale(1.06) rotate(-3deg)}
+.t-cpu{width:72px;aspect-ratio:1}.t-fan{width:88px;aspect-ratio:1}.t-ram{width:30px;aspect-ratio:30/120}.t-ssd{width:104px;aspect-ratio:110/30}.t-gpu{width:200px;aspect-ratio:230/60}
+.t-mb{width:150px;aspect-ratio:7/5}.t-psu{width:130px;aspect-ratio:3/2}
+.board{position:relative;width:min(100%,560px);aspect-ratio:560/400;margin:0 auto;border-radius:14px;border:3px solid #0b3b2a;background:
+  repeating-linear-gradient(90deg,rgba(255,255,255,.04) 0 2px,transparent 2px 22px),
+  repeating-linear-gradient(0deg,rgba(255,255,255,.04) 0 2px,transparent 2px 22px),
+  linear-gradient(135deg,#1c7a4f,#0f4f35);box-shadow:0 22px 40px rgba(0,0,0,.6),inset 0 2px 0 rgba(255,255,255,.2)}
+.deco{position:absolute;background:#c9cdd6;border-radius:3px;box-shadow:0 3px 4px rgba(0,0,0,.5)}
+.slot{position:absolute;border:2px dashed rgba(255,255,255,.45);border-radius:6px;display:grid;place-items:center;color:rgba(255,255,255,.7);font:700 11px system-ui;letter-spacing:.1em;background:rgba(0,0,0,.18)}
+.slot.over{border-color:#fbbf24;background:rgba(251,191,36,.2)}
+.slot.shake{animation:shake .35s}
+@keyframes shake{25%{transform:translateX(-6px)}75%{transform:translateX(6px)}}
+.slot.full{border:0;background:none}
+.slot .piece{width:100%;height:100%;cursor:default}
+.slot .piece:hover{transform:none}
+#s-fan{z-index:3}
+.msg{margin:14px auto 0;max-width:940px;text-align:center;min-height:44px;font-size:15px;color:#d4d4e6}
+.msg.err{color:#fbbf24}
+.go{display:none;margin:10px auto 0;font:800 16px system-ui;border:0;border-radius:999px;padding:12px 30px;color:#07070d;background:linear-gradient(90deg,#60a5fa,#2dd4bf);cursor:pointer}
+.go.show{display:block}
+.counter{text-align:center;font-size:13px;color:#9a9ab0;margin-top:8px}
+.case{position:relative;width:min(100%,300px);aspect-ratio:3/4;margin:0 auto;border-radius:16px;border:3px solid #2a2f3c;background:linear-gradient(160deg,#2c3140,#14161e);box-shadow:0 22px 40px rgba(0,0,0,.6),inset 0 2px 0 rgba(255,255,255,.12)}
+.case .slot{border-color:rgba(255,255,255,.4)}
+#s-mb{left:8%;top:6%;width:84%;height:62%}
+#s-psu{left:8%;top:72%;width:84%;height:21%}
+.led{position:absolute;right:12px;top:-10px;width:10px;height:10px;border-radius:50%;background:#444}
+.case.on{box-shadow:0 0 60px rgba(96,165,250,.55),0 22px 40px rgba(0,0,0,.6)}
+.case.on .led{background:#4ade80;box-shadow:0 0 12px #4ade80}
+.spin{transform-origin:50% 50%}
+.on .spin,.running .spin{animation:spin .5s linear infinite}
+@keyframes spin{to{transform:rotate(360deg)}}
+.hide{display:none!important}
+@media(max-width:700px){.wrap{grid-template-columns:1fr}}
+</style></head><body>
+<h1>Lab 4: Build Your PC</h1>
+<p class="sub" id="sub">Step 1: drag each part onto its place on the motherboard.</p>
+<div class="wrap">
+  <div><h2 id="th">Parts</h2><div class="tray" id="tray"></div><div class="counter" id="count"></div></div>
+  <div>
+    <div id="st1"><div class="board" id="board">
+      <div class="deco" style="left:2%;top:10%;width:5%;height:12%"></div>
+      <div class="deco" style="left:2%;top:26%;width:5%;height:12%"></div>
+      <div class="deco" style="left:54%;top:50%;width:14%;height:12%;background:#8b93a6"></div>
+      <div class="slot" id="s-cpu" data-accept="cpu" style="left:30%;top:23%;width:14.3%;height:20%">CPU</div>
+      <div class="slot" id="s-fan" data-accept="fan" style="left:28.2%;top:19.5%;width:17.9%;height:25%;background:none;border-style:dotted">FAN</div>
+      <div class="slot" id="s-r1" data-accept="ram" style="left:62%;top:12%;width:5.4%;height:30%">RAM</div>
+      <div class="slot" id="s-r2" data-accept="ram" style="left:70%;top:12%;width:5.4%;height:30%">RAM</div>
+      <div class="slot" id="s-ssd" data-accept="ssd" style="left:30%;top:55%;width:19.6%;height:7.5%">SSD</div>
+      <div class="slot" id="s-gpu" data-accept="gpu" style="left:12%;top:75%;width:41%;height:15%">GRAPHICS CARD</div>
+    </div></div>
+    <div id="st2" class="hide"><div class="case" id="case"><span class="led"></span>
+      <div class="slot" id="s-mb" data-accept="mb">MOTHERBOARD BAY</div>
+      <div class="slot" id="s-psu" data-accept="psu">POWER SUPPLY BAY</div>
+    </div></div>
+  </div>
+</div>
+<div class="msg" id="msg">Start with the brain of the computer.</div>
+<button class="go" id="next">Next: put it in the case →</button>
+<button class="go" id="power">⏻ Power On</button>
+
+<script>
+function blades(n,cx,cy,rx,ry,off,fill){var s="";for(var i=0;i<n;i++)s+='<ellipse cx="'+cx+'" cy="'+(cy-off)+'" rx="'+rx+'" ry="'+ry+'" fill="'+fill+'" transform="rotate('+(i*360/n)+' '+cx+' '+cy+') skewX(-12)"/>';return s}
+var ART={
+cpu:'<svg viewBox="0 0 80 80"><defs><linearGradient id="gc" x1="0" y1="0" x2="1" y2="1"><stop offset="0" stop-color="#eef0f6"/><stop offset=".5" stop-color="#aeb4c4"/><stop offset="1" stop-color="#7c8397"/></linearGradient></defs><rect x="2" y="2" width="76" height="76" rx="8" fill="#2a8f5c"/><rect x="2" y="2" width="76" height="76" rx="8" fill="none" stroke="#d9a441" stroke-width="3" stroke-dasharray="2 3"/><rect x="12" y="12" width="56" height="56" rx="6" fill="url(#gc)" stroke="#6b7186"/><rect x="24" y="24" width="32" height="32" rx="3" fill="#4a5064"/><path d="M12 12h14l-14 14z" fill="#d9a441"/><text x="40" y="45" fill="#fff" font-size="11" font-weight="800" text-anchor="middle" font-family="system-ui">CPU</text></svg>',
+fan:'<svg viewBox="0 0 100 100"><rect x="2" y="2" width="96" height="96" rx="12" fill="#1a1d27" stroke="#4a5064" stroke-width="2"/><circle cx="12" cy="12" r="3" fill="#8b93a6"/><circle cx="88" cy="12" r="3" fill="#8b93a6"/><circle cx="12" cy="88" r="3" fill="#8b93a6"/><circle cx="88" cy="88" r="3" fill="#8b93a6"/><circle cx="50" cy="50" r="40" fill="#0c0e14" stroke="#2dd4bf" stroke-width="2"/><g class="spin">'+blades(7,50,50,9,17,19,"#3a8fa8")+'<circle cx="50" cy="50" r="9" fill="#c9cdd6"/></g></svg>',
+ram:'<svg viewBox="0 0 30 120"><rect x="2" y="2" width="26" height="110" rx="3" fill="#1f6f4a" stroke="#0b3b2a"/><rect x="5" y="10" width="20" height="16" rx="2" fill="#15151f"/><rect x="5" y="30" width="20" height="16" rx="2" fill="#15151f"/><rect x="5" y="50" width="20" height="16" rx="2" fill="#15151f"/><rect x="5" y="70" width="20" height="16" rx="2" fill="#15151f"/><rect x="2" y="106" width="26" height="8" fill="#d9a441"/><rect x="13" y="104" width="4" height="10" fill="#1f6f4a"/><rect x="2" y="2" width="26" height="4" fill="#2dd4bf"/></svg>',
+ssd:'<svg viewBox="0 0 110 30"><rect x="2" y="2" width="106" height="26" rx="3" fill="#1d2f6b" stroke="#0e1a3d"/><rect x="14" y="6" width="22" height="18" rx="2" fill="#15151f"/><rect x="42" y="6" width="22" height="18" rx="2" fill="#15151f"/><rect x="70" y="8" width="14" height="14" rx="2" fill="#2a2f45"/><rect x="2" y="4" width="8" height="22" fill="#d9a441"/><text x="92" y="19" fill="#9fb4ff" font-size="8" font-weight="700" font-family="system-ui">SSD</text></svg>',
+gpu:'<svg viewBox="0 0 230 60"><rect x="2" y="4" width="226" height="48" rx="6" fill="#1b1d26" stroke="#4a5064" stroke-width="2"/><rect x="2" y="48" width="226" height="10" fill="#d9a441"/><rect x="2" y="4" width="8" height="52" fill="#8b93a6"/><rect x="16" y="9" width="200" height="3" fill="#f43f5e"/><circle cx="62" cy="30" r="19" fill="#0c0e14" stroke="#f43f5e"/><circle cx="62" cy="30" r="19" fill="none"/><g class="spin" style="transform-origin:62px 30px">'+blades(7,62,30,5,9,10,"#6b7186")+'</g><circle cx="62" cy="30" r="4" fill="#c9cdd6"/><circle cx="162" cy="30" r="19" fill="#0c0e14" stroke="#f43f5e"/><g class="spin" style="transform-origin:162px 30px">'+blades(7,162,30,5,9,10,"#6b7186")+'</g><circle cx="162" cy="30" r="4" fill="#c9cdd6"/></svg>',
+mb:'<svg viewBox="0 0 70 50"><rect x="1" y="1" width="68" height="48" rx="3" fill="#1c7a4f" stroke="#0b3b2a"/><rect x="22" y="12" width="12" height="12" rx="1" fill="#aeb4c4"/><circle cx="28" cy="18" r="9" fill="#0c0e14" stroke="#2dd4bf" stroke-width="1"/><rect x="44" y="6" width="3" height="16" fill="#15151f"/><rect x="50" y="6" width="3" height="16" fill="#15151f"/><rect x="22" y="30" width="14" height="4" fill="#1d2f6b"/><rect x="8" y="39" width="30" height="6" rx="1" fill="#1b1d26"/></svg>',
+psu:'<svg viewBox="0 0 90 60"><rect x="2" y="2" width="86" height="56" rx="4" fill="#4a5064" stroke="#2a2f3c" stroke-width="2"/><circle cx="30" cy="30" r="20" fill="#14161e" stroke="#9aa1b4"/><g class="spin" style="transform-origin:30px 30px">'+blades(5,30,30,4,8,9,"#8b93a6")+'</g><circle cx="30" cy="30" r="3" fill="#c9cdd6"/><rect x="58" y="10" width="26" height="8" rx="2" fill="#f59e0b"/><rect x="58" y="22" width="26" height="8" rx="2" fill="#ef4444"/><text x="71" y="47" fill="#e5e7eb" font-size="9" font-weight="800" text-anchor="middle" font-family="system-ui">PSU</text></svg>'
+};
+var HINT={cpu:"The CPU goes into the big square socket. It is the brain.",fan:"The fan sits on top of the CPU, not in another place.",ram:"RAM sticks go in the tall slim slots on the right.",ssd:"The SSD goes in the small flat slot.",gpu:"The graphics card goes in the long slot at the bottom.",mb:"The motherboard goes in the big bay.",psu:"The power supply goes in the bottom bay."};
+var NAME={cpu:"CPU",fan:"CPU fan",ram:"RAM",ssd:"SSD",gpu:"Graphics card",mb:"Motherboard",psu:"Power supply"};
+var WHY={cpu:"The CPU is installed. It runs every instruction.",fan:"The fan keeps the CPU cool.",ram:"RAM installed: short-term memory.",ssd:"The SSD stores your files permanently.",gpu:"The graphics card draws the picture on screen."};
+var $=function(i){return document.getElementById(i)};
+var tray=$("tray"),stage=1,filled={};
+function mk(t,cls){var p=document.createElement("div");p.className="piece "+cls;p.dataset.type=t;p.innerHTML=ART[t];p.title=NAME[t];return p}
+function fill1(){tray.innerHTML="";["cpu","fan","ram","ram","ssd","gpu"].sort(function(){return Math.random()-.5}).forEach(function(t){tray.appendChild(mk(t,"t-"+t))});upd()}
+function upd(){var n=document.querySelectorAll("#st1 .piece").length;$("count").textContent=stage===1?"Placed "+n+" of 6":"Placed "+document.querySelectorAll("#st2 .piece").length+" of 2"}
+fill1();
+
+var drag=null;
+document.addEventListener("pointerdown",function(e){
+  var p=e.target.closest(".tray .piece");if(!p)return;e.preventDefault();
+  var r=p.getBoundingClientRect(),g=p.cloneNode(true);g.className="piece ghost";g.style.width=r.width+"px";g.style.height=r.height+"px";
+  g.style.left=r.left+"px";g.style.top=r.top+"px";document.body.appendChild(g);
+  drag={p:p,g:g,dx:e.clientX-r.left,dy:e.clientY-r.top};p.classList.add("drag");
+});
+function slotAt(x,y){
+  var best=null,ba=1e9;
+  document.querySelectorAll(stage===1?"#st1 .slot":"#st2 .slot").forEach(function(s){
+    if(s.querySelector(".piece"))return;var r=s.getBoundingClientRect(),m=10;
+    if(x>=r.left-m&&x<=r.right+m&&y>=r.top-m&&y<=r.bottom+m){var a=r.width*r.height;if(a<ba){ba=a;best=s}}});
+  return best;
+}
+document.addEventListener("pointermove",function(e){
+  if(!drag)return;drag.g.style.left=(e.clientX-drag.dx)+"px";drag.g.style.top=(e.clientY-drag.dy)+"px";
+  document.querySelectorAll(".slot.over").forEach(function(s){s.classList.remove("over")});
+  var s=slotAt(e.clientX,e.clientY);if(s)s.classList.add("over");
+});
+document.addEventListener("pointerup",function(e){
+  if(!drag)return;var d=drag;drag=null;d.g.remove();d.p.classList.remove("drag");
+  document.querySelectorAll(".slot.over").forEach(function(s){s.classList.remove("over")});
+  var s=slotAt(e.clientX,e.clientY);if(!s)return;
+  var t=d.p.dataset.type,msg=$("msg");
+  // among free slots under the pointer, prefer one that accepts this part
+  var ok=s.dataset.accept===t;
+  if(ok&&t==="fan"&&!$("s-cpu").querySelector(".piece")){ok=false;msg.className="msg err";msg.textContent="Install the CPU first. The fan clips on top of it.";bad(s);return}
+  if(!ok){msg.className="msg err";msg.textContent=HINT[t];bad(s);return}
+  s.textContent="";s.classList.add("full");d.p.className="piece";s.appendChild(d.p);upd();msg.className="msg";
+  if(stage===1){
+    msg.textContent=WHY[t];
+    if(document.querySelectorAll("#st1 .piece").length===6){
+      msg.textContent="The motherboard is complete! Every part is in its place.";$("next").classList.add("show");
+      document.querySelectorAll("#st1 .piece svg .spin").forEach(function(x){x.style.animation="none"});
+    }
+  }else{
+    msg.textContent=t==="mb"?"The motherboard is mounted in the case.":"The power supply feeds electricity to every part.";
+    if(document.querySelectorAll("#st2 .piece").length===2){msg.textContent="Everything is installed. Press Power On!";$("power").classList.add("show")}
+  }
+});
+function bad(s){s.classList.add("shake");setTimeout(function(){s.classList.remove("shake")},400)}
+
+$("next").onclick=function(){
+  stage=2;$("next").classList.remove("show");$("st1").classList.add("hide");$("st2").classList.remove("hide");
+  $("sub").textContent="Step 2: put the motherboard and the power supply into the PC case.";$("th").textContent="Case parts";
+  tray.innerHTML="";tray.appendChild(mk("mb","t-mb"));tray.appendChild(mk("psu","t-psu"));
+  $("msg").className="msg";$("msg").textContent="Mount the finished motherboard first.";upd();
+};
+$("power").onclick=function(){
+  $("case").classList.add("on");$("power").classList.remove("show");
+  $("msg").className="msg";$("msg").textContent="🎉 Your PC is built and running! Power → CPU → memory → storage → screen.";
+  $("sub").textContent="Well done. You built a computer.";
+};
+</script></body></html>
