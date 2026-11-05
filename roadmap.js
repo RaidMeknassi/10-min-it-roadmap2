@@ -1,45 +1,103 @@
 /* ------------------------------------------------------------
-   ROADMAP DATA  -  edit this file to add or change lessons.
-   Each lesson is one node on the map.
+   ROADMAP DATA  -  edit this file to change lessons.
 
-   id      : unique short name (no spaces)
-   title   : text shown on the map
-   row     : which level of the tree (0 = top)
-   col     : 0 = left, 1 = middle, 2 = right
-   from    : list of ids this lesson connects FROM (the line above it)
-   track   : "core", "net", "sys", "sec" (controls the colour)
-   video   : YouTube video ID (the part after v=). Leave "" until ready.
-   lab     : true if this lesson has a paid lab (shows a lock)
-   about   : one or two sentences about the lesson
+   Each lesson is written as:   ["number", "Title", lab]
+     number : shown inside the circle on the map
+     Title  : the lesson name
+     lab    : 1 = this lesson has a hands-on lab (shows a lock), 0 = no lab
+
+   To add a YouTube video to a lesson, add its video ID in the VIDEOS
+   list at the bottom:   "15": "AbCdEf12345"
+   (the ID is the part after v= in the YouTube link)
    ------------------------------------------------------------ */
-const LESSONS = [
-  { id: "start",   title: "What is IT?",            row: 0, col: 1, from: [],                         track: "core", video: "", lab: false, about: "A friendly 10-minute tour of what IT people actually do, and where you fit in." },
-  { id: "hw",      title: "Computer Hardware",      row: 1, col: 1, from: ["start"],                  track: "core", video: "", lab: false, about: "CPU, RAM, storage and motherboard explained with simple examples." },
-  { id: "os",      title: "Operating Systems",      row: 2, col: 1, from: ["hw"],                     track: "core", video: "", lab: true,  about: "What an operating system does, and how Windows and Linux differ." },
 
-  { id: "net1",    title: "Networking Basics",      row: 3, col: 0, from: ["os"],                     track: "net",  video: "", lab: false, about: "How computers talk to each other: cables, Wi-Fi, switches and routers." },
-  { id: "lin1",    title: "Linux Basics",           row: 3, col: 1, from: ["os"],                     track: "sys",  video: "", lab: true,  about: "Your first steps in Linux: files, folders and the terminal." },
-  { id: "sec1",    title: "Security Basics",        row: 3, col: 2, from: ["os"],                     track: "sec",  video: "", lab: false, about: "The CIA triad and why security matters in every IT job." },
+const LEVELS = [
+  { id: "l0", name: "Level 0", title: "Introduction to IT", color: "#2dd4bf", lessons: [
+    ["0.1", "Welcome to the IT Roadmap", 0],
+    ["0.2", "What Is Information Technology?", 0],
+    ["0.3", "Different Careers in IT", 0],
+    ["0.4", "How to Learn IT and Practise", 0]
+  ]},
 
-  { id: "net2",    title: "IP Addresses",           row: 4, col: 0, from: ["net1"],                   track: "net",  video: "", lab: true,  about: "IPv4, private vs public addresses, and a gentle intro to subnets." },
-  { id: "lin2",    title: "Linux Commands",         row: 4, col: 1, from: ["lin1"],                   track: "sys",  video: "", lab: true,  about: "The 15 commands you will use every day." },
-  { id: "sec2",    title: "Threats & Attacks",      row: 4, col: 2, from: ["sec1"],                   track: "sec",  video: "", lab: false, about: "Phishing, malware and common attacks, explained simply." },
+  { id: "l1", name: "Level 1", title: "Computer Fundamentals", color: "#a78bfa", lessons: [
+    ["1", "What Is a Computer?", 0],
+    ["2", "What Is Hardware?", 0],
+    ["3", "What Is Software?", 0],
+    ["4", "How Does a Computer Work?", 0],
+    ["5", "How Computers Represent Information", 0]
+  ]},
 
-  { id: "net3",    title: "DNS & DHCP",             row: 5, col: 0, from: ["net2"],                   track: "net",  video: "", lab: true,  about: "How names become addresses, and how devices get their IP." },
-  { id: "lin3",    title: "Users & Permissions",    row: 5, col: 1, from: ["lin2"],                   track: "sys",  video: "", lab: true,  about: "Who can do what on a system, and how to control it." },
-  { id: "sec3",    title: "Passwords & MFA",        row: 5, col: 2, from: ["sec2"],                   track: "sec",  video: "", lab: false, about: "Strong passwords, password managers and multi-factor authentication." },
+  { id: "l2", name: "Level 2", title: "Operating Systems", color: "#fb923c", lessons: [
+    ["6", "Understanding Operating Systems", 0],
+    ["7", "Types of Operating Systems", 0],
+    ["8", "How an Operating System Works", 0],
+    ["9", "How Computers Start: BIOS, UEFI and Boot Process", 0],
+    ["10", "Windows: Understanding the Operating System", 1],
+    ["11", "Linux: Understanding the Operating System", 1],
+    ["12", "macOS: Understanding Apple's Operating System", 0],
+    ["13", "Android and iOS: Mobile Operating Systems", 0],
+    ["14", "Comparing Operating Systems", 0]
+  ]},
 
-  { id: "net4",    title: "Firewalls & Ports",      row: 6, col: 0, from: ["net3"],                   track: "net",  video: "", lab: true,  about: "What ports are and how firewalls allow or block traffic." },
-  { id: "lin4",    title: "Services & Logs",        row: 6, col: 1, from: ["lin3"],                   track: "sys",  video: "", lab: true,  about: "Start, stop and read what your system is doing." },
-  { id: "sec4",    title: "Logs & SIEM Intro",      row: 6, col: 2, from: ["sec3"],                   track: "sec",  video: "", lab: true,  about: "How security teams collect and read logs to spot problems." },
+  { id: "l3", name: "Level 3", title: "Networking Fundamentals", color: "#60a5fa", lessons: [
+    ["15", "What Is a Network?", 0],
+    ["16", "Network Devices and Components", 0],
+    ["17", "IP Addressing", 1],
+    ["18", "Subnetting Basics", 1],
+    ["19", "MAC Addresses", 1],
+    ["20", "DNS", 1],
+    ["21", "DHCP", 1],
+    ["22", "TCP and UDP", 1],
+    ["23", "Common Network Ports and Protocols", 1],
+    ["24", "Routers, Switches and Access Points", 1],
+    ["25", "Wireless Networks and Wi-Fi", 0],
+    ["26", "Network Troubleshooting", 1]
+  ]},
 
-  { id: "cloud",   title: "Cloud Basics",           row: 7, col: 1, from: ["net4", "lin4", "sec4"],   track: "core", video: "", lab: true,  about: "What the cloud is, and how it brings networking, systems and security together." },
-  { id: "career",  title: "Certs & First Job",      row: 8, col: 1, from: ["cloud"],                  track: "core", video: "", lab: false, about: "Which certifications to aim for, and how to land your first IT role." }
+  { id: "l4", name: "Level 4", title: "Cybersecurity Fundamentals", color: "#f472b6", lessons: [
+    ["27", "What Is Cybersecurity?", 0],
+    ["28", "Common Cyber Threats and Attacks", 0],
+    ["29", "Malware and Ransomware", 0],
+    ["30", "Phishing and Social Engineering", 1],
+    ["31", "Password Security and MFA", 1],
+    ["32", "Authentication and Authorization", 0],
+    ["33", "Security Principles: CIA Triad", 0],
+    ["34", "Firewalls and Network Security", 1],
+    ["35", "Encryption Basics", 1],
+    ["36", "Vulnerabilities and Risk Management", 0],
+    ["37", "Security Monitoring and Incident Response", 1]
+  ]},
+
+  { id: "l5", name: "Level 5", title: "IT Administration and Operations", color: "#4ade80", lessons: [
+    ["38", "Introduction to IT Administration", 0],
+    ["39", "Managing Users and Groups", 1],
+    ["40", "Permissions and Access Control", 1],
+    ["41", "Active Directory Fundamentals", 1],
+    ["42", "Managing Windows Systems", 1],
+    ["43", "Linux System Administration", 1],
+    ["44", "Services, Processes and Logs", 1],
+    ["45", "Software Installation and Updates", 1],
+    ["46", "Command Line Fundamentals", 1],
+    ["47", "Scripting and Automation Basics", 1],
+    ["48", "System Monitoring and Performance", 1],
+    ["49", "Backup and Recovery", 1],
+    ["50", "Virtualization Fundamentals", 1]
+  ]}
 ];
 
-const TRACKS = {
-  core: { name: "Core",       color: "#a78bfa" },
-  net:  { name: "Networking", color: "#60a5fa" },
-  sys:  { name: "Systems",    color: "#fb923c" },
-  sec:  { name: "Security",   color: "#f472b6" }
+/* Level 6 - choose a specialization path */
+const PATHS = [
+  { name: "Cybersecurity", color: "#f472b6", items: ["SOC Analyst", "Blue Team", "Penetration Testing", "Digital Forensics", "Threat Hunting", "Incident Response"] },
+  { name: "Networking", color: "#60a5fa", items: ["Network Engineering", "Network Security", "Wireless Networking", "Advanced Routing and Switching"] },
+  { name: "Cloud Computing", color: "#22d3ee", items: ["Microsoft Azure", "Amazon AWS", "Google Cloud", "Cloud Security", "Cloud Administration"] },
+  { name: "DevOps and Automation", color: "#a78bfa", items: ["Git and GitHub", "CI/CD", "Docker and Containers", "Kubernetes", "Infrastructure as Code"] },
+  { name: "System Engineering", color: "#fb923c", items: ["Windows Server", "Linux Server", "Active Directory", "Virtualization", "Enterprise Infrastructure"] },
+  { name: "Software Development", color: "#4ade80", items: ["Programming", "Web Development", "Backend Development", "APIs", "Application Development"] },
+  { name: "Data and AI", color: "#fbbf24", items: ["Databases and SQL", "Data Analysis", "Data Engineering", "Machine Learning", "Artificial Intelligence"] },
+  { name: "IT Support", color: "#2dd4bf", items: ["Help Desk", "Desktop Support", "Hardware Troubleshooting", "Technical Support"] }
+];
+
+/* YouTube video IDs, by lesson number. Leave empty until the video is ready. */
+const VIDEOS = {
+  // "3": "AbCdEf12345",
 };

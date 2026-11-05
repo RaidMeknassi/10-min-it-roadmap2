@@ -3,19 +3,20 @@
 <head>
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1">
-  <title>10 Min IT Road Map</title>
-  <meta name="description" content="Learn IT from zero, one 10-minute lesson at a time. Follow the map.">
+  <title>10-Minute IT Roadmap</title>
+  <meta name="description" content="From complete beginner to IT specialist, one 10-minute lesson at a time.">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
   <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
   <header class="top">
-    <a class="logo" href="./">
-      <span class="logo-mark">10</span>
-      <span class="logo-text">min <b>IT</b> road map</span>
+    <a class="logo" href="./" aria-label="10 Min IT Roadmap">
+      <span class="logo-pad"><img src="assets/logo-small.png" alt="10 Min IT Roadmap" width="46" height="37"></span>
     </a>
     <nav class="top-nav">
       <a href="#map">Road map</a>
+      <a href="#paths">Paths</a>
       <a href="#labs">Labs</a>
       <a class="btn btn-small" href="#labs">Get labs</a>
     </nav>
@@ -23,9 +24,9 @@
 
   <main>
     <section class="hero">
-      <p class="eyebrow">Free video lessons</p>
-      <h1>Learn IT from zero.<br><span>10 minutes at a time.</span></h1>
-      <p class="sub">Follow the map. Watch a short lesson, then practice it in a hands-on lab.</p>
+      <div class="hero-logo"><img src="assets/logo.png" alt="10 Min IT Roadmap" width="280" height="225"></div>
+      <h1>From complete beginner<br><span>to IT specialist.</span></h1>
+      <p class="sub" id="sub">Follow the map. Watch a free 10-minute lesson, then practise it in a hands-on lab.</p>
 
       <div class="progress" aria-label="Your progress">
         <div class="progress-top">
@@ -35,22 +36,27 @@
         <div class="bar"><div id="bar-fill"></div></div>
       </div>
 
-      <div class="legend" id="legend"></div>
+      <nav class="chips" id="chips" aria-label="Jump to a level"></nav>
+      <p class="lock-note">&#128274; = has a hands-on lab</p>
     </section>
 
-    <section id="map" class="map-wrap" aria-label="Learning road map">
-      <div class="map" id="map-area">
-        <svg id="lines" class="lines" aria-hidden="true"></svg>
-        <div class="grid" id="grid"></div>
+    <section id="map" class="levels" aria-label="Learning road map"></section>
+
+    <section id="paths" class="paths">
+      <div class="paths-head">
+        <span class="badge" style="--c:#f472b6">Level 6</span>
+        <h2>Advanced IT Specializations</h2>
+        <p>Choose a path and learn it in depth.</p>
       </div>
+      <div class="paths-grid" id="paths-grid"></div>
     </section>
 
     <section id="labs" class="labs">
       <div class="labs-card">
         <h2>Hands-on labs</h2>
-        <p>Every video is free. Labs are where you practice: step-by-step exercises you can follow on your own computer.</p>
+        <p>Every video is free. Labs are where you practise: step-by-step exercises you can follow on your own computer.</p>
         <ul>
-          <li>Guided lab for each lesson marked with a lock</li>
+          <li>A guided lab for every lesson marked with a lock</li>
           <li>Real tools: VirtualBox, Linux, Wireshark and more</li>
           <li>New labs added regularly</li>
         </ul>
@@ -60,7 +66,7 @@
   </main>
 
   <footer class="foot">
-    <span>&copy; <span id="year"></span> 10 Min IT Road Map</span>
+    <span>&copy; <span id="year"></span> 10-Minute IT Roadmap</span>
     <span>Videos on <a href="https://www.youtube.com/" target="_blank" rel="noopener">YouTube</a></span>
   </footer>
 
@@ -70,7 +76,6 @@
       <button class="close" id="p-close" aria-label="Close">&times;</button>
       <p class="p-track" id="p-track"></p>
       <h3 id="p-title"></h3>
-      <p class="p-about" id="p-about"></p>
       <div class="video" id="p-video"></div>
       <div class="lab-box" id="p-lab"></div>
       <button class="btn btn-full" id="p-done">Mark as done</button>
