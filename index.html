@@ -6,7 +6,7 @@
   <title>10-Minute IT Roadmap</title>
   <meta name="description" content="From complete beginner to IT specialist, one 10-minute lesson at a time.">
   <link rel="icon" type="image/png" href="assets/favicon.png">
-  <link rel="stylesheet" href="style.css?v=5">
+  <link rel="stylesheet" href="style.css?v=6">
 </head>
 <body>
 
@@ -16,7 +16,7 @@
     </a>
     <nav class="top-nav">
       <a href="#map">Road map</a>
-      <a href="#paths">Paths</a>
+      <a href="#l6">Paths</a>
       <a href="#labs">Labs</a>
       <a class="btn btn-small" href="#labs">Get labs</a>
     </nav>
@@ -37,7 +37,7 @@
       </div>
 
       <nav class="chips" id="chips" aria-label="Jump to a level"></nav>
-      <p class="lock-note">&#128274; = has a hands-on lab</p>
+      <p class="lock-note">Hover a level (or tap it) to see its lessons &nbsp;&middot;&nbsp; &#128274; = has a hands-on lab</p>
     </section>
 
     <div class="road" id="road">
@@ -45,14 +45,6 @@
 
     <section id="map" class="levels" aria-label="Learning road map"></section>
 
-    <section id="paths" class="paths">
-      <div class="paths-head" id="paths-head">
-        <span class="badge" style="--c:#f472b6">Level 6</span>
-        <h2>Advanced IT Specializations</h2>
-        <p>Choose a path and learn it in depth.</p>
-      </div>
-      <div class="paths-grid" id="paths-grid"></div>
-    </section>
     </div>
 
     <section id="labs" class="labs">
@@ -81,12 +73,13 @@
       <p class="p-track" id="p-track"></p>
       <h3 id="p-title"></h3>
       <div class="video" id="p-video"></div>
+      <ul class="topics" id="p-topics" hidden></ul>
       <div class="lab-box" id="p-lab"></div>
       <button class="btn btn-full" id="p-done">Mark as done</button>
     </div>
   </div>
 
-  <script src="roadmap.js?v=5"></script>
-  <script src="app.js?v=5"></script>
+  <script src="roadmap.js?v=6"></script>
+  <script src="app.js?v=6"></script>
 </body>
 </html>

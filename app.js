@@ -11,158 +11,163 @@
   try { done = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) { done = {}; }
   function save() { try { localStorage.setItem(KEY, JSON.stringify(done)); } catch (e) {} }
 
-  var maps = [];   // one per level: { level, head, nodes:[{el, lesson}], countEl }
+  var entries = [];   // 0..5 = Levels 0-5, 6 = Level 6 (paths)
   var total = 0;
+
+  var LEVEL6 = { id: "l6", name: "Level 6", title: "Advanced IT Specializations", color: "#f472b6" };
 
   // ----- level chips (jump links) -----
   var chips = document.getElementById("chips");
-  LEVELS.forEach(function (lv) {
+  LEVELS.concat([LEVEL6]).forEach(function (lv) {
     var a = document.createElement("a");
     a.href = "#" + lv.id;
     a.style.setProperty("--c", lv.color);
     a.innerHTML = "<i></i>" + lv.name;
     chips.appendChild(a);
   });
-  var pa = document.createElement("a");
-  pa.href = "#paths";
-  pa.style.setProperty("--c", "#f472b6");
-  pa.innerHTML = "<i></i>Level 6";
-  chips.appendChild(pa);
 
-  // ----- build levels: Levels 0-2 are the trunk, Levels 3-5 are three branches -----
-  var trunk = document.createElement("div");
-  trunk.className = "trunk";
-  var branches = document.createElement("div");
-  branches.className = "branches";
+  // ----- containers: trunk (Levels 0-2), three branches (Levels 3-5), final (Level 6) -----
+  var trunk = document.createElement("div");   trunk.className = "trunk";
+  var branches = document.createElement("div"); branches.className = "branches";
+  var finalEl = document.createElement("div");  finalEl.className = "final";
   levelsEl.appendChild(trunk);
   levelsEl.appendChild(branches);
+  levelsEl.appendChild(finalEl);
 
+  function closeAll(except) {
+    entries.forEach(function (en) { if (en.lv !== except) en.lv.classList.remove("open"); });
+  }
+
+  function makeLevel(info, container, flip) {
+    var lv = document.createElement("div");
+    lv.className = "lv" + (flip ? " flip" : "");
+    lv.id = info.id;
+    lv.style.setProperty("--c", info.color);
+    lv.innerHTML =
+      '<button type="button" class="lv-card" aria-haspopup="true">' +
+        '<span class="badge"></span><h2></h2><div class="lv-meta"></div>' +
+        '<div class="lv-bar"><i></i></div>' +
+      '</button>' +
+      '<div class="flyout"><div class="flyout-card"><div class="fl-head"></div><div class="fl-list"></div></div></div>';
+    lv.querySelector(".badge").textContent = info.name;
+    lv.querySelector("h2").textContent = info.title;
+    lv.querySelector(".fl-head").textContent = info.name + " · " + info.title;
+    container.appendChild(lv);
+
+    var card = lv.querySelector(".lv-card");
+    card.addEventListener("click", function (e) {
+      e.stopPropagation();
+      var willOpen = !lv.classList.contains("open");
+      closeAll(lv);
+      lv.classList.toggle("open", willOpen);
+      requestAnimationFrame(drawRoad);
+    });
+
+    var en = { info: info, lv: lv, card: card, metaEl: lv.querySelector(".lv-meta"),
+               barEl: lv.querySelector(".lv-bar i"), barWrap: lv.querySelector(".lv-bar"), items: [] };
+    entries.push(en);
+    return en;
+  }
+
+  // Levels 0-5: lessons
   LEVELS.forEach(function (lv, li) {
-    var sec = document.createElement("section");
-    sec.className = "level";
-    sec.id = lv.id;
-    sec.style.setProperty("--c", lv.color);
-    sec.innerHTML =
-      '<header class="level-head"><span class="badge"></span><span class="level-count"></span><h2></h2></header>' +
-      '<div class="vmap"></div>';
-    sec.querySelector(".badge").textContent = lv.name;
-    sec.querySelector("h2").textContent = lv.title;
-    (li < 3 ? trunk : branches).appendChild(sec);
-
-    var vmap = sec.querySelector(".vmap");
-    var entry = { level: lv, head: sec.querySelector(".level-head"), nodes: [], countEl: sec.querySelector(".level-count") };
-
+    var en = makeLevel(lv, li < 3 ? trunk : branches, li === 5);
+    var list = en.lv.querySelector(".fl-list");
     lv.lessons.forEach(function (row) {
       var lesson = { n: row[0], title: row[1], lab: !!row[2], level: lv };
       total++;
       var b = document.createElement("button");
-      b.className = "node";
       b.type = "button";
-      b.innerHTML =
-        '<span class="orb"><span class="num"></span>' + (lesson.lab ? '<span class="lock" title="Has a lab">🔒</span>' : "") + "</span>" +
-        '<span class="n-title"></span><span class="n-meta">10 min</span>';
-      b.querySelector(".num").textContent = lesson.n;
-      b.querySelector(".n-title").textContent = lesson.title;
-      b.addEventListener("click", function () { openPanel(lesson); });
-      vmap.appendChild(b);
-      entry.nodes.push({ el: b, lesson: lesson });
+      b.className = "fl-item";
+      b.innerHTML = '<span class="fl-num"></span><span class="fl-title"></span>' + (lesson.lab ? '<span class="fl-lock" title="Has a lab">🔒</span>' : "");
+      b.querySelector(".fl-num").textContent = lesson.n;
+      b.querySelector(".fl-title").textContent = lesson.title;
+      b.addEventListener("click", function (e) { e.stopPropagation(); openLesson(lesson); });
+      list.appendChild(b);
+      en.items.push({ el: b, lesson: lesson });
     });
-    maps.push(entry);
   });
 
-  // ----- Level 6 paths -----
-  var pg = document.getElementById("paths-grid");
-  PATHS.forEach(function (p) {
-    var card = document.createElement("div");
-    card.className = "path";
-    card.style.setProperty("--c", p.color);
-    card.innerHTML = "<h3></h3><ul></ul>";
-    card.querySelector("h3").textContent = p.name;
-    var ul = card.querySelector("ul");
-    p.items.forEach(function (t) {
-      var li = document.createElement("li");
-      li.textContent = t;
-      ul.appendChild(li);
+  // Level 6: specialization paths
+  (function () {
+    var en = makeLevel(LEVEL6, finalEl, false);
+    var list = en.lv.querySelector(".fl-list");
+    en.barWrap.style.display = "none";
+    en.metaEl.textContent = PATHS.length + " paths · choose one";
+    PATHS.forEach(function (p) {
+      var b = document.createElement("button");
+      b.type = "button";
+      b.className = "fl-item";
+      b.style.setProperty("--c", p.color);
+      b.innerHTML = '<span class="fl-dot"></span><span class="fl-title"></span>';
+      b.querySelector(".fl-title").textContent = p.name;
+      b.addEventListener("click", function (e) { e.stopPropagation(); openPath(p); });
+      list.appendChild(b);
     });
-    pg.appendChild(card);
-  });
+  })();
 
-  // ----- connecting lines (one overlay for the whole road) -----
+  // ----- connecting lines between the level nodes -----
   function drawRoad() {
     var base = road.getBoundingClientRect();
     svg.setAttribute("viewBox", "0 0 " + base.width + " " + base.height);
-    var stacked = window.innerWidth <= 720;   // branches stack on phones
+    var stacked = window.innerWidth <= 720;
     var out = "";
 
-    function cx(r) { return r.left + r.width / 2 - base.left; }
-    function curve(x1, y1, x2, y2, color, cls) {
+    function link(i, j, colorIdx) {
+      var a = entries[i].card.getBoundingClientRect();
+      var b = entries[j].card.getBoundingClientRect();
+      var x1 = a.left + a.width / 2 - base.left, y1 = a.bottom - base.top;
+      var x2 = b.left + b.width / 2 - base.left, y2 = b.top - base.top;
       var my = (y1 + y2) / 2;
-      var d = (Math.abs(x1 - x2) < 1)
+      var d = Math.abs(x1 - x2) < 1
         ? "M" + x1 + " " + y1 + " L" + x2 + " " + y2
         : "M" + x1 + " " + y1 + " C" + x1 + " " + my + "," + x2 + " " + my + "," + x2 + " " + y2;
-      out += '<path class="' + (cls || "") + '" stroke="' + color + '" d="' + d + '"/>';
-    }
-    function lastBottom(m) {
-      var r = m.nodes[m.nodes.length - 1].el.getBoundingClientRect();
-      return { x: cx(r), y: r.bottom - base.top + 2 };
+      var cls = entries[i].complete ? "done" : "";
+      out += '<path class="' + cls + '" stroke="' + entries[colorIdx].info.color + '" d="' + d + '"/>';
     }
 
-    maps.forEach(function (m, li) {
-      var color = m.level.color;
-      var hr = m.head.getBoundingClientRect();
-
-      // from the previous level (trunk), or from the end of Level 2 (fork into 3 branches)
-      if (li > 0) {
-        var prev = (li <= 3 || stacked) ? maps[li - 1] : maps[2];
-        if (li >= 3 && !stacked) prev = maps[2];
-        var from = lastBottom(prev);
-        curve(from.x, from.y, cx(hr), hr.top - base.top, color);
-      }
-
-      // header -> first lesson, then lesson -> lesson
-      var first = m.nodes[0].el.querySelector(".orb").getBoundingClientRect();
-      curve(cx(hr), hr.bottom - base.top, cx(first), first.top - base.top, color);
-
-      for (var i = 1; i < m.nodes.length; i++) {
-        var A = m.nodes[i - 1], B = m.nodes[i];
-        var ra = A.el.getBoundingClientRect();
-        var ob = B.el.querySelector(".orb").getBoundingClientRect();
-        var cls = done[A.lesson.n] && done[B.lesson.n] ? "done" : "";
-        curve(cx(ra), ra.bottom - base.top + 2, cx(ob), ob.top - base.top, color, cls);
-      }
-    });
-
-    // merge: the end of the branches flows into Level 6
-    var ph = document.getElementById("paths-head").getBoundingClientRect();
-    var ends = stacked ? [maps[maps.length - 1]] : [maps[3], maps[4], maps[5]];
-    ends.forEach(function (m) {
-      var f = lastBottom(m);
-      curve(f.x, f.y, cx(ph), ph.top - base.top, m.level.color);
-    });
-
+    link(0, 1, 1);
+    link(1, 2, 2);
+    if (stacked) {
+      link(2, 3, 3); link(3, 4, 4); link(4, 5, 5); link(5, 6, 6);
+    } else {
+      link(2, 3, 3); link(2, 4, 4); link(2, 5, 5);
+      link(3, 6, 3); link(4, 6, 4); link(5, 6, 5);
+    }
     svg.innerHTML = out;
   }
 
   // ----- progress -----
   function refresh() {
     var n = 0;
-    maps.forEach(function (m) {
+    entries.forEach(function (en, i) {
+      if (i > 5) return;
       var c = 0;
-      m.nodes.forEach(function (nd) {
-        var d = !!done[nd.lesson.n];
+      en.items.forEach(function (it) {
+        var d = !!done[it.lesson.n];
         if (d) { n++; c++; }
-        nd.el.classList.toggle("done", d);
+        it.el.classList.toggle("done", d);
       });
-      m.countEl.textContent = c + " / " + m.nodes.length + " done";
+      en.complete = (c === en.items.length);
+      en.metaEl.textContent = en.items.length + " lessons · " + c + " / " + en.items.length + " done";
+      en.barEl.style.width = (c / en.items.length * 100) + "%";
     });
     document.getElementById("progress-text").textContent = n + " / " + total + " lessons";
     document.getElementById("bar-fill").style.width = (n / total * 100) + "%";
     drawRoad();
   }
 
-  // ----- lesson panel -----
-  function openPanel(l) {
+  // ----- panel (lesson or specialization path) -----
+  function showPanel(isLesson) {
+    document.getElementById("p-video").style.display = isLesson ? "" : "none";
+    document.getElementById("p-topics").hidden = isLesson;
+    document.getElementById("p-done").style.display = isLesson ? "" : "none";
+    overlay.hidden = false;
+  }
+
+  function openLesson(l) {
     current = l;
+    closeAll();
     var tr = document.getElementById("p-track");
     tr.textContent = l.level.name + " · Lesson " + l.n + " · 10 min";
     tr.style.color = l.level.color;
@@ -186,15 +191,36 @@
     document.getElementById("p-lab").innerHTML = l.lab
       ? "🔒 <b>Lab available.</b> Practise this lesson hands-on. Labs are for subscribers (coming soon)."
       : "This lesson has no lab. Just watch and learn.";
-
     document.getElementById("p-done").textContent = done[l.n] ? "Mark as not done" : "Mark as done";
-    overlay.hidden = false;
+    showPanel(true);
   }
+
+  function openPath(p) {
+    current = null;
+    closeAll();
+    var tr = document.getElementById("p-track");
+    tr.textContent = "Level 6 · Specialization path";
+    tr.style.color = p.color;
+    document.getElementById("p-title").textContent = p.name;
+    var ul = document.getElementById("p-topics");
+    ul.innerHTML = "";
+    p.items.forEach(function (t) {
+      var li = document.createElement("li");
+      li.textContent = t;
+      ul.appendChild(li);
+    });
+    document.getElementById("p-lab").innerHTML = "Detailed lessons for this path are <b>coming soon</b>.";
+    showPanel(false);
+  }
+
   function closePanel() { overlay.hidden = true; document.getElementById("p-video").innerHTML = ""; }
 
   document.getElementById("p-close").addEventListener("click", closePanel);
   overlay.addEventListener("click", function (e) { if (e.target === overlay) closePanel(); });
-  document.addEventListener("keydown", function (e) { if (e.key === "Escape") closePanel(); });
+  document.addEventListener("keydown", function (e) { if (e.key === "Escape") { closePanel(); closeAll(); drawRoad(); } });
+  document.addEventListener("click", function (e) {
+    if (!e.target.closest(".lv")) { var any = document.querySelector(".lv.open"); closeAll(); if (any) drawRoad(); }
+  });
   document.getElementById("p-done").addEventListener("click", function () {
     if (!current) return;
     if (done[current.n]) delete done[current.n]; else done[current.n] = true;
@@ -205,10 +231,7 @@
   document.getElementById("year").textContent = new Date().getFullYear();
 
   var timer;
-  window.addEventListener("resize", function () {
-    clearTimeout(timer);
-    timer = setTimeout(drawRoad, 80);
-  });
+  window.addEventListener("resize", function () { clearTimeout(timer); timer = setTimeout(drawRoad, 80); });
   window.addEventListener("load", drawRoad);
   refresh();
 })();
