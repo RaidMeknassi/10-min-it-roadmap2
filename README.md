@@ -1,1 +1,1 @@
-https://github.com/RaidMeknassi/10-min-it-roadmap2
+https://raidmeknassi.github.io/10-min-it-roadmap2/
