@@ -97,6 +97,30 @@ const PATHS = [
   { name: "IT Support", color: "#2dd4bf", items: ["Help Desk", "Desktop Support", "Hardware Troubleshooting", "Technical Support"] }
 ];
 
+/* Certifications to aim for (edit freely). Shown in the Certifications section. */
+const CERTS = [
+  { stage: "Levels 0-2", title: "Foundations", color: "#a78bfa",
+    items: ["CompTIA IT Fundamentals (ITF+)", "CompTIA A+", "Google IT Support Professional Certificate"] },
+  { stage: "Level 3", title: "Networking", color: "#60a5fa",
+    items: ["CompTIA Network+", "Cisco CCNA"] },
+  { stage: "Level 4", title: "Cybersecurity", color: "#f472b6",
+    items: ["CompTIA Security+", "ISC2 Certified in Cybersecurity (CC)", "Microsoft SC-900"] },
+  { stage: "Level 5", title: "IT Administration", color: "#4ade80",
+    items: ["CompTIA Linux+", "Red Hat RHCSA", "Microsoft Endpoint Administrator (MD-102)"] }
+];
+
+/* Level 6: certifications for each specialization path */
+const PATH_CERTS = [
+  ["Cybersecurity", "#f472b6", ["Microsoft SC-200", "CompTIA CySA+", "CompTIA PenTest+", "OffSec OSCP"]],
+  ["Networking", "#60a5fa", ["Cisco CCNP Enterprise", "Cisco CCNP Security"]],
+  ["Cloud Computing", "#22d3ee", ["Microsoft AZ-900 / AZ-104", "AWS Cloud Practitioner / Solutions Architect Associate", "Google Associate Cloud Engineer"]],
+  ["DevOps and Automation", "#a78bfa", ["Certified Kubernetes Administrator (CKA)", "HashiCorp Terraform Associate", "GitHub Foundations"]],
+  ["System Engineering", "#fb923c", ["Microsoft Windows Server Hybrid Administrator (AZ-800)", "Red Hat RHCSA", "VMware VCP"]],
+  ["Software Development", "#4ade80", ["Python Institute PCEP / PCAP", "Microsoft Azure Developer (AZ-204)"]],
+  ["Data and AI", "#fbbf24", ["Microsoft DP-900 / AI-900", "Google Data Analytics Certificate"]],
+  ["IT Support", "#2dd4bf", ["CompTIA A+", "ITIL 4 Foundation", "Microsoft Endpoint Administrator (MD-102)"]]
+];
+
 /* YouTube video IDs, by lesson number. Leave empty until the video is ready. */
 const VIDEOS = {
   // "3": "AbCdEf12345",

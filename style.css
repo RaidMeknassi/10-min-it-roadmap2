@@ -27,7 +27,7 @@ a { color: inherit; }
 /* ---------- header ---------- */
 .top {
   position: sticky; top: 0; z-index: 20;
-  display: flex; align-items: center; justify-content: space-between;
+  display: flex; align-items: center; justify-content: flex-start; gap: 28px;
   padding: 12px 20px;
   background: rgba(7, 7, 13, .85);
   backdrop-filter: blur(8px);
@@ -42,7 +42,9 @@ a { color: inherit; }
   color: var(--cyan); font-weight: 800;
 }
 .logo-text b { color: var(--cyan); }
-.top-nav { display: flex; align-items: center; gap: 18px; font-size: 14px; }
+.top-nav { display: flex; align-items: center; gap: 24px; font-size: 14.5px; flex: 1; }
+.top .btn-small { margin-left: auto; }
+html { scroll-padding-top: 84px; }
 .top-nav a { text-decoration: none; color: var(--muted); }
 .top-nav a:hover { color: var(--text); }
 
@@ -59,7 +61,7 @@ a { color: inherit; }
 .btn.ghost { background: transparent; color: var(--text); border: 1px solid var(--line); }
 
 /* ---------- animated logo (clock hand sweeps around the hub) ---------- */
-.logo-anim { position: relative; }
+.logo-anim { position: relative; overflow: hidden; }   /* the turning hand must not widen the page */
 .logo-anim img { display: block; }
 .logo-anim .base { width: 100%; height: auto; }
 .logo-anim .needle {
@@ -179,6 +181,33 @@ h1 span { background: var(--grad); -webkit-background-clip: text; background-cli
 .topics { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 7px; }
 .topics li { padding: 9px 12px; border-radius: 9px; background: var(--bg); border: 1px solid var(--line); font-size: 14px; }
 
+/* ---------- certifications ---------- */
+.certs { max-width: 980px; margin: 0 auto; padding: 30px 14px 20px; }
+.certs-head { text-align: center; margin-bottom: 24px; }
+.certs-head h2 { margin: 0 0 6px; font-size: 28px; }
+.certs-head p { margin: 0; color: var(--muted); }
+.certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(210px, 1fr)); gap: 14px; }
+.cert-card {
+  background: var(--bg-2); border: 1px solid var(--line); border-top: 4px solid var(--c);
+  border-radius: var(--radius); padding: 16px 18px;
+}
+.cert-card h3 { margin: 10px 0 10px; font-size: 18px; }
+.cert-card ul { list-style: none; margin: 0; padding: 0; display: flex; flex-direction: column; gap: 7px; }
+.cert-card li { font-size: 14px; padding-left: 16px; position: relative; }
+.cert-card li::before { content: ""; position: absolute; left: 0; top: 8px; width: 7px; height: 7px; border-radius: 50%; background: var(--c); }
+.cert-paths { margin-top: 22px; background: var(--bg-2); border: 1px solid var(--line); border-radius: var(--radius); padding: 18px 20px; }
+.cert-paths h3 { margin: 0 0 12px; font-size: 18px; }
+.cert-rows { display: flex; flex-direction: column; }
+.cert-row {
+  display: grid; grid-template-columns: 190px 1fr; gap: 6px 16px; align-items: baseline;
+  padding: 10px 0; border-top: 1px solid var(--line); font-size: 14px;
+}
+.cert-row:first-child { border-top: 0; }
+.cert-row b { color: var(--c); }
+.cert-row span { color: var(--text); }
+.certs-note { text-align: center; color: var(--muted); font-size: 12.5px; margin: 16px 0 0; }
+@media (max-width: 640px) { .cert-row { grid-template-columns: 1fr; } }
+
 /* ---------- labs section ---------- */
 .labs { padding: 10px 20px 60px; }
 .labs-card {
@@ -235,7 +264,9 @@ h1 span { background: var(--grad); -webkit-background-clip: text; background-cli
   .flyout-card { max-height: none; }
 }
 @media (max-width: 640px) {
-  .top-nav a:not(.btn) { display: none; }
+  .top { flex-wrap: wrap; gap: 6px 12px; padding: 10px 14px 8px; }
+  .top-nav { order: 3; flex: 1 1 100%; gap: 20px; overflow-x: auto; white-space: nowrap; padding-bottom: 2px; font-size: 14px; }
+  html { scroll-padding-top: 118px; }
   .lock-note { font-size: 12px; }
 }
 

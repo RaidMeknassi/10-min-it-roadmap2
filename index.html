@@ -6,7 +6,7 @@
   <title>10-Minute IT Roadmap</title>
   <meta name="description" content="From complete beginner to IT specialist, one 10-minute lesson at a time.">
   <link rel="icon" type="image/png" href="assets/favicon.png">
-  <link rel="stylesheet" href="style.css?v=7">
+  <link rel="stylesheet" href="style.css?v=8">
 </head>
 <body>
 
@@ -14,12 +14,13 @@
     <a class="logo" href="./" aria-label="10 Min IT Roadmap">
       <span class="logo-pad logo-anim"><img class="base" src="assets/logo-small-base.png" alt="10 Min IT Roadmap" width="160" height="128"><img class="needle" src="assets/logo-small-needle.png" alt="" aria-hidden="true" width="160" height="128"></span>
     </a>
-    <nav class="top-nav">
+    <nav class="top-nav" aria-label="Main">
       <a href="#map">Road map</a>
       <a href="#l6">Paths</a>
       <a href="#labs">Labs</a>
-      <a class="btn btn-small" href="#labs">Get labs</a>
+      <a href="#certs">Certifications</a>
     </nav>
+    <a class="btn btn-small" href="#labs">Get labs</a>
   </header>
 
   <main>
@@ -46,6 +47,16 @@
     <section id="map" class="levels" aria-label="Learning road map"></section>
 
     </div>
+
+    <section id="certs" class="certs">
+      <div class="certs-head">
+        <h2>Certifications</h2>
+        <p>Optional exams you can aim for as you move along the map.</p>
+      </div>
+      <div class="certs-grid" id="certs-grid"></div>
+      <div class="cert-paths" id="cert-paths"></div>
+      <p class="certs-note">Exam names and versions change. Always check the official provider page before you book.</p>
+    </section>
 
     <section id="labs" class="labs">
       <div class="labs-card">
@@ -79,7 +90,7 @@
     </div>
   </div>
 
-  <script src="roadmap.js?v=7"></script>
-  <script src="app.js?v=7"></script>
+  <script src="roadmap.js?v=8"></script>
+  <script src="app.js?v=8"></script>
 </body>
 </html>
