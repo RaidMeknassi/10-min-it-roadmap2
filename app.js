@@ -80,7 +80,7 @@
       var ic = b.querySelector(".ico"); ic.style.setProperty("--c", lv.color);
       ic.innerHTML = iconSVG(lesson.n, lv.color);
       b.querySelector(".fl-title").textContent = lesson.title;
-      b.addEventListener("click", function (e) { e.stopPropagation(); openLesson(lesson); });
+      b.addEventListener("click", function (e) { e.stopPropagation(); location.href = "lesson.html?n=" + encodeURIComponent(lesson.n); });
       list.appendChild(b);
       en.items.push({ el: b, lesson: lesson });
     });
@@ -99,7 +99,7 @@
       b.style.setProperty("--c", p.color);
       b.innerHTML = '<span class="fl-dot"></span><span class="fl-title"></span>';
       b.querySelector(".fl-title").textContent = p.name;
-      b.addEventListener("click", function (e) { e.stopPropagation(); openPath(p); });
+      b.addEventListener("click", function (e) { e.stopPropagation(); location.href = "lesson.html?p=" + PATHS.indexOf(p); });
       list.appendChild(b);
     });
   })();
