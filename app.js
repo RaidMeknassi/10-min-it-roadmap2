@@ -4,8 +4,7 @@
   var levelsEl = document.getElementById("map");
   var overlay = document.getElementById("overlay");
   var current = null;
-  var LEVEL_MODE = !!document.getElementById("level-list");
-  var qLevel = new URLSearchParams(location.search).get("l");
+  var LEVEL_MODE = false;
 
   // ----- saved progress (stays in this browser only) -----
   var KEY = "itroadmap-v2-done";
@@ -79,7 +78,7 @@
       b.innerHTML = '<span class="ico"></span><span class="fl-num"></span><span class="fl-title"></span>' + (lesson.lab ? '<span class="fl-lock" title="Has a lab">🔒</span>' : "");
       b.querySelector(".fl-num").textContent = lesson.n;
       var ic = b.querySelector(".ico"); ic.style.setProperty("--c", lv.color);
-      ic.textContent = (typeof ICONS !== "undefined" && ICONS[lesson.n]) || "\u2B50";
+      ic.innerHTML = iconSVG(lesson.n, lv.color);
       b.querySelector(".fl-title").textContent = lesson.title;
       b.addEventListener("click", function (e) { e.stopPropagation(); openLesson(lesson); });
       list.appendChild(b);
@@ -137,59 +136,6 @@
     svg.innerHTML = out;
   }
 
-  // ----- level page (level.html?l=l1) -----
-  if (LEVEL_MODE) (function () {
-    var ALL = LEVELS.concat([LEVEL6]);
-    var idx = -1; ALL.forEach(function (x, i) { if (x.id === qLevel) idx = i; });
-    if (idx < 0) { location.replace("index.html"); return; }
-    var info = ALL[idx], isPaths = info.id === "l6";
-    document.title = info.name + " · " + info.title + " · 10-Minute IT Roadmap";
-    document.body.style.setProperty("--c", info.color);
-    document.getElementById("lv-badge").textContent = info.name;
-    document.getElementById("lv-title").textContent = info.title;
-    var list = document.getElementById("level-list");
-    var en = { info: info, lv: document.createElement("div"), card: null, metaEl: document.getElementById("lv-meta"),
-               barEl: document.querySelector("#lv-bar i"), barWrap: document.getElementById("lv-bar"), items: [] };
-    entries.push(en);
-    function tag(t, cls) { var s = document.createElement("span"); s.className = "tg " + cls; s.textContent = t; return s; }
-    if (isPaths) {
-      en.barWrap.style.display = "none";
-      en.metaEl.textContent = PATHS.length + " paths \u00B7 choose one";
-      PATHS.forEach(function (p) {
-        var b = document.createElement("button"); b.type = "button"; b.className = "lc"; b.style.setProperty("--c", p.color);
-        b.innerHTML = '<span class="lc-dot"></span><span class="lc-body"><b></b><small></small></span>';
-        b.querySelector("b").textContent = p.name; b.querySelector("small").textContent = p.items.length + " topics";
-        b.addEventListener("click", function () { openPath(p); });
-        list.appendChild(b);
-      });
-    } else {
-      info.lessons.forEach(function (row) {
-        var lesson = { n: row[0], title: row[1], lab: !!row[2], level: info };
-        total++;
-        var b = document.createElement("button"); b.type = "button"; b.className = "lc";
-        b.innerHTML = '<span class="ico"></span><span class="lc-body"><b></b><small></small></span><span class="lc-tags"></span><span class="lc-check">\u2713</span>';
-        var ic = b.querySelector(".ico"); ic.style.setProperty("--c", info.color);
-        ic.textContent = (typeof ICONS !== "undefined" && ICONS[lesson.n]) || "\u2B50";
-        b.querySelector("b").textContent = lesson.title;
-        b.querySelector("small").textContent = "Lesson " + lesson.n + " \u00B7 10 min";
-        var tg = b.querySelector(".lc-tags");
-        var hasPage = (typeof LESSON_PAGES !== "undefined") && LESSON_PAGES[lesson.n];
-        if (hasPage) tg.appendChild(tag("Lesson", "t-les"));
-        if ((typeof QUIZZES !== "undefined") && QUIZZES[lesson.n]) tg.appendChild(tag("Quiz", "t-quiz"));
-        if ((typeof LAB_PAGES !== "undefined") && LAB_PAGES[lesson.n]) tg.appendChild(tag("Lab", "t-lab"));
-        else if (lesson.lab) tg.appendChild(tag("\uD83D\uDD12 Lab", "t-lock"));
-        if (!hasPage) tg.appendChild(tag("Coming soon", "t-soon"));
-        b.addEventListener("click", function () { openLesson(lesson); });
-        list.appendChild(b);
-        en.items.push({ el: b, lesson: lesson });
-      });
-    }
-    var prev = ALL[idx - 1], next = ALL[idx + 1], nav = document.getElementById("lv-nav");
-    function nl(x, txt, cls) { var a = document.createElement("a"); a.className = "lv-nl " + cls; a.href = "level.html?l=" + x.id; a.style.setProperty("--c", x.color); a.textContent = txt; nav.appendChild(a); }
-    if (prev) nl(prev, "\u2190 " + prev.name + " \u00B7 " + prev.title, "prev"); else nav.appendChild(document.createElement("span"));
-    if (next) nl(next, next.name + " \u00B7 " + next.title + " \u2192", "next");
-  })();
-
   // ----- progress -----
   function refresh() {
     var n = 0;
@@ -228,7 +174,7 @@
     var pt = document.getElementById("p-title");
     pt.innerHTML = '<span class="ico ico-big"></span><span class="pt-text"></span>';
     pt.querySelector(".ico").style.setProperty("--c", l.level.color);
-    pt.querySelector(".ico").textContent = (typeof ICONS !== "undefined" && ICONS[l.n]) || "\u2B50";
+    pt.querySelector(".ico").innerHTML = iconSVG(l.n, l.level.color);
     pt.querySelector(".pt-text").textContent = l.title;
 
     var v = document.getElementById("p-video");

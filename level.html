@@ -3,12 +3,12 @@
 <head>
   <meta charset="utf-8">
   <meta name="robots" content="noindex,nofollow">
-  <script src="gate.js?v=14"></script>
+  <script src="gate.js?v=15"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <title>Level · 10-Minute IT Roadmap</title>
   <meta name="description" content="From complete beginner to IT specialist, one 10-minute lesson at a time.">
   <link rel="icon" type="image/png" href="assets/favicon.png">
-  <link rel="stylesheet" href="style.css?v=14">
+  <link rel="stylesheet" href="style.css?v=15">
 </head>
 <body data-page="level">
 
@@ -25,40 +25,20 @@
     <a class="btn btn-small" href="index.html#labs">Get labs</a>
   </header>
 
-  <main class="levelpage">
-    <section class="lvhero">
-      <a class="back" href="index.html#map">← Back to the road map</a>
-      <span class="badge" id="lv-badge"></span>
-      <h1 id="lv-title"></h1>
-      <p class="lv-meta" id="lv-meta"></p>
-      <div class="lv-bar" id="lv-bar"><i></i></div>
-    </section>
-    <section class="lvlist" id="level-list" aria-label="Lessons in this level"></section>
-    <nav class="lv-nav" id="lv-nav" aria-label="Other levels"></nav>
-  </main>
+  <button class="sb-toggle" id="sb-toggle" type="button">☰ Levels &amp; progress</button>
+  <div class="lvapp">
+    <aside class="sb" id="sb" aria-label="Levels and progress"></aside>
+    <main class="lp" id="lp"></main>
+  </div>
 
   <footer class="foot">
     <span>&copy; <span id="year"></span> 10-Minute IT Roadmap</span>
     <span>Videos on <a href="https://www.youtube.com/" target="_blank" rel="noopener">YouTube</a></span>
   </footer>
 
-  <!-- Lesson panel -->
-  <div class="overlay" id="overlay" hidden>
-    <div class="panel" role="dialog" aria-modal="true" aria-labelledby="p-title">
-      <button class="close" id="p-close" aria-label="Close">&times;</button>
-      <p class="p-track" id="p-track"></p>
-      <h3 id="p-title"></h3>
-      <div class="video" id="p-video"></div>
-      <ul class="topics" id="p-topics" hidden></ul>
-      <button class="btn btn-full btn-quiz" id="p-quizbtn" type="button" hidden>Take the quiz</button>
-      <div id="p-quiz" hidden></div>
-      <div class="lab-box" id="p-lab"></div>
-      <button class="btn btn-full" id="p-done">Mark as done</button>
-    </div>
-  </div>
-
-  <script src="roadmap.js?v=14"></script>
-  <script src="quiz.js?v=14"></script>
-  <script src="app.js?v=14"></script>
+  <script src="roadmap.js?v=15"></script>
+  <script src="icons.js?v=15"></script>
+  <script src="quiz.js?v=15"></script>
+  <script src="level.js?v=15"></script>
 </body>
 </html>
