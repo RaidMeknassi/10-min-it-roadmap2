@@ -4,6 +4,8 @@
   var levelsEl = document.getElementById("map");
   var overlay = document.getElementById("overlay");
   var current = null;
+  var LEVEL_MODE = !!document.getElementById("level-list");
+  var qLevel = new URLSearchParams(location.search).get("l");
 
   // ----- saved progress (stays in this browser only) -----
   var KEY = "itroadmap-v2-done";
@@ -18,7 +20,7 @@
 
   // ----- level chips (jump links) -----
   var chips = document.getElementById("chips");
-  LEVELS.concat([LEVEL6]).forEach(function (lv) {
+  if (chips) LEVELS.concat([LEVEL6]).forEach(function (lv) {
     var a = document.createElement("a");
     a.href = "#" + lv.id;
     a.style.setProperty("--c", lv.color);
@@ -30,9 +32,7 @@
   var trunk = document.createElement("div");   trunk.className = "trunk";
   var branches = document.createElement("div"); branches.className = "branches";
   var finalEl = document.createElement("div");  finalEl.className = "final";
-  levelsEl.appendChild(trunk);
-  levelsEl.appendChild(branches);
-  levelsEl.appendChild(finalEl);
+  if (levelsEl) { levelsEl.appendChild(trunk); levelsEl.appendChild(branches); levelsEl.appendChild(finalEl); }
 
   function closeAll(except) {
     entries.forEach(function (en) { if (en.lv !== except) en.lv.classList.remove("open"); });
@@ -57,10 +57,7 @@
     var card = lv.querySelector(".lv-card");
     card.addEventListener("click", function (e) {
       e.stopPropagation();
-      var willOpen = !lv.classList.contains("open");
-      closeAll(lv);
-      lv.classList.toggle("open", willOpen);
-      requestAnimationFrame(drawRoad);
+      location.href = "level.html?l=" + info.id;
     });
 
     var en = { info: info, lv: lv, card: card, metaEl: lv.querySelector(".lv-meta"),
@@ -70,7 +67,7 @@
   }
 
   // Levels 0-5: lessons
-  LEVELS.forEach(function (lv, li) {
+  if (!LEVEL_MODE) LEVELS.forEach(function (lv, li) {
     var en = makeLevel(lv, li < 3 ? trunk : branches, li === 5);
     var list = en.lv.querySelector(".fl-list");
     lv.lessons.forEach(function (row) {
@@ -91,7 +88,7 @@
   });
 
   // Level 6: specialization paths
-  (function () {
+  if (!LEVEL_MODE) (function () {
     var en = makeLevel(LEVEL6, finalEl, false);
     var list = en.lv.querySelector(".fl-list");
     en.barWrap.style.display = "none";
@@ -110,6 +107,7 @@
 
   // ----- connecting lines between the level nodes -----
   function drawRoad() {
+    if (!svg || !road || entries.length < 7) return;
     var base = road.getBoundingClientRect();
     svg.setAttribute("viewBox", "0 0 " + base.width + " " + base.height);
     var stacked = window.innerWidth <= 720;
@@ -139,11 +137,64 @@
     svg.innerHTML = out;
   }
 
+  // ----- level page (level.html?l=l1) -----
+  if (LEVEL_MODE) (function () {
+    var ALL = LEVELS.concat([LEVEL6]);
+    var idx = -1; ALL.forEach(function (x, i) { if (x.id === qLevel) idx = i; });
+    if (idx < 0) { location.replace("index.html"); return; }
+    var info = ALL[idx], isPaths = info.id === "l6";
+    document.title = info.name + " · " + info.title + " · 10-Minute IT Roadmap";
+    document.body.style.setProperty("--c", info.color);
+    document.getElementById("lv-badge").textContent = info.name;
+    document.getElementById("lv-title").textContent = info.title;
+    var list = document.getElementById("level-list");
+    var en = { info: info, lv: document.createElement("div"), card: null, metaEl: document.getElementById("lv-meta"),
+               barEl: document.querySelector("#lv-bar i"), barWrap: document.getElementById("lv-bar"), items: [] };
+    entries.push(en);
+    function tag(t, cls) { var s = document.createElement("span"); s.className = "tg " + cls; s.textContent = t; return s; }
+    if (isPaths) {
+      en.barWrap.style.display = "none";
+      en.metaEl.textContent = PATHS.length + " paths \u00B7 choose one";
+      PATHS.forEach(function (p) {
+        var b = document.createElement("button"); b.type = "button"; b.className = "lc"; b.style.setProperty("--c", p.color);
+        b.innerHTML = '<span class="lc-dot"></span><span class="lc-body"><b></b><small></small></span>';
+        b.querySelector("b").textContent = p.name; b.querySelector("small").textContent = p.items.length + " topics";
+        b.addEventListener("click", function () { openPath(p); });
+        list.appendChild(b);
+      });
+    } else {
+      info.lessons.forEach(function (row) {
+        var lesson = { n: row[0], title: row[1], lab: !!row[2], level: info };
+        total++;
+        var b = document.createElement("button"); b.type = "button"; b.className = "lc";
+        b.innerHTML = '<span class="ico"></span><span class="lc-body"><b></b><small></small></span><span class="lc-tags"></span><span class="lc-check">\u2713</span>';
+        var ic = b.querySelector(".ico"); ic.style.setProperty("--c", info.color);
+        ic.textContent = (typeof ICONS !== "undefined" && ICONS[lesson.n]) || "\u2B50";
+        b.querySelector("b").textContent = lesson.title;
+        b.querySelector("small").textContent = "Lesson " + lesson.n + " \u00B7 10 min";
+        var tg = b.querySelector(".lc-tags");
+        var hasPage = (typeof LESSON_PAGES !== "undefined") && LESSON_PAGES[lesson.n];
+        if (hasPage) tg.appendChild(tag("Lesson", "t-les"));
+        if ((typeof QUIZZES !== "undefined") && QUIZZES[lesson.n]) tg.appendChild(tag("Quiz", "t-quiz"));
+        if ((typeof LAB_PAGES !== "undefined") && LAB_PAGES[lesson.n]) tg.appendChild(tag("Lab", "t-lab"));
+        else if (lesson.lab) tg.appendChild(tag("\uD83D\uDD12 Lab", "t-lock"));
+        if (!hasPage) tg.appendChild(tag("Coming soon", "t-soon"));
+        b.addEventListener("click", function () { openLesson(lesson); });
+        list.appendChild(b);
+        en.items.push({ el: b, lesson: lesson });
+      });
+    }
+    var prev = ALL[idx - 1], next = ALL[idx + 1], nav = document.getElementById("lv-nav");
+    function nl(x, txt, cls) { var a = document.createElement("a"); a.className = "lv-nl " + cls; a.href = "level.html?l=" + x.id; a.style.setProperty("--c", x.color); a.textContent = txt; nav.appendChild(a); }
+    if (prev) nl(prev, "\u2190 " + prev.name + " \u00B7 " + prev.title, "prev"); else nav.appendChild(document.createElement("span"));
+    if (next) nl(next, next.name + " \u00B7 " + next.title + " \u2192", "next");
+  })();
+
   // ----- progress -----
   function refresh() {
     var n = 0;
     entries.forEach(function (en, i) {
-      if (i > 5) return;
+      if (i > 5 || !en.items.length) return;
       var c = 0;
       en.items.forEach(function (it) {
         var d = !!done[it.lesson.n];
@@ -154,8 +205,9 @@
       en.metaEl.textContent = en.items.length + " lessons · " + c + " / " + en.items.length + " done";
       en.barEl.style.width = (c / en.items.length * 100) + "%";
     });
-    document.getElementById("progress-text").textContent = n + " / " + total + " lessons";
-    document.getElementById("bar-fill").style.width = (n / total * 100) + "%";
+    var pt = document.getElementById("progress-text"), bf = document.getElementById("bar-fill");
+    if (pt && total) pt.textContent = n + " / " + total + " lessons";
+    if (bf && total) bf.style.width = (n / total * 100) + "%";
     drawRoad();
   }
 
@@ -287,7 +339,7 @@
   });
 
   // ----- certifications -----
-  (function () {
+  if (document.getElementById("certs-grid")) (function () {
     var grid = document.getElementById("certs-grid");
     CERTS.forEach(function (c) {
       var card = document.createElement("div");
@@ -323,8 +375,8 @@
     wrap.appendChild(rows);
   })();
 
-  document.getElementById("subscribe-btn").addEventListener("click", function (e) { e.preventDefault(); });
-  document.getElementById("year").textContent = new Date().getFullYear();
+  var sb = document.getElementById("subscribe-btn"); if (sb) sb.addEventListener("click", function (e) { e.preventDefault(); });
+  var yr = document.getElementById("year"); if (yr) yr.textContent = new Date().getFullYear();
 
   var timer;
   window.addEventListener("resize", function () { clearTimeout(timer); timer = setTimeout(drawRoad, 80); });

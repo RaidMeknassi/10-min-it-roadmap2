@@ -1,0 +1,64 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="robots" content="noindex,nofollow">
+  <script src="gate.js?v=14"></script>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>Level · 10-Minute IT Roadmap</title>
+  <meta name="description" content="From complete beginner to IT specialist, one 10-minute lesson at a time.">
+  <link rel="icon" type="image/png" href="assets/favicon.png">
+  <link rel="stylesheet" href="style.css?v=14">
+</head>
+<body data-page="level">
+
+  <header class="top">
+    <a class="logo" href="index.html" aria-label="10 Min IT Roadmap">
+      <span class="logo-pad logo-anim"><img class="base" src="assets/logo-small-base.png" alt="10 Min IT Roadmap" width="160" height="128"><img class="needle" src="assets/logo-small-needle.png" alt="" aria-hidden="true" width="160" height="128"></span>
+    </a>
+    <nav class="top-nav" aria-label="Main">
+      <a href="index.html#map">Road map</a>
+      <a href="level.html?l=l6">Paths</a>
+      <a href="index.html#labs">Labs</a>
+      <a href="index.html#certs">Certifications</a>
+    </nav>
+    <a class="btn btn-small" href="index.html#labs">Get labs</a>
+  </header>
+
+  <main class="levelpage">
+    <section class="lvhero">
+      <a class="back" href="index.html#map">← Back to the road map</a>
+      <span class="badge" id="lv-badge"></span>
+      <h1 id="lv-title"></h1>
+      <p class="lv-meta" id="lv-meta"></p>
+      <div class="lv-bar" id="lv-bar"><i></i></div>
+    </section>
+    <section class="lvlist" id="level-list" aria-label="Lessons in this level"></section>
+    <nav class="lv-nav" id="lv-nav" aria-label="Other levels"></nav>
+  </main>
+
+  <footer class="foot">
+    <span>&copy; <span id="year"></span> 10-Minute IT Roadmap</span>
+    <span>Videos on <a href="https://www.youtube.com/" target="_blank" rel="noopener">YouTube</a></span>
+  </footer>
+
+  <!-- Lesson panel -->
+  <div class="overlay" id="overlay" hidden>
+    <div class="panel" role="dialog" aria-modal="true" aria-labelledby="p-title">
+      <button class="close" id="p-close" aria-label="Close">&times;</button>
+      <p class="p-track" id="p-track"></p>
+      <h3 id="p-title"></h3>
+      <div class="video" id="p-video"></div>
+      <ul class="topics" id="p-topics" hidden></ul>
+      <button class="btn btn-full btn-quiz" id="p-quizbtn" type="button" hidden>Take the quiz</button>
+      <div id="p-quiz" hidden></div>
+      <div class="lab-box" id="p-lab"></div>
+      <button class="btn btn-full" id="p-done">Mark as done</button>
+    </div>
+  </div>
+
+  <script src="roadmap.js?v=14"></script>
+  <script src="quiz.js?v=14"></script>
+  <script src="app.js?v=14"></script>
+</body>
+</html>
