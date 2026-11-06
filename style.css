@@ -340,3 +340,21 @@ h1 span { background: var(--grad); -webkit-background-clip: text; background-cli
 .lab-start { margin-top: 12px; }
 .video.lab-view { aspect-ratio: 16 / 11; }
 @media (max-width: 720px) { .video.lab-view { aspect-ratio: auto; } }
+
+/* 3D-style lesson icons: glossy extruded tile in the level colour */
+.ico {
+  --c: #a78bfa;
+  flex: none; width: 30px; height: 30px; margin-right: 10px; border-radius: 9px;
+  display: grid; place-items: center; font-size: 16px; line-height: 1;
+  background: linear-gradient(145deg, color-mix(in srgb, var(--c) 62%, #fff), var(--c) 55%, color-mix(in srgb, var(--c) 58%, #000));
+  box-shadow: inset 0 2px 0 rgba(255,255,255,.55), inset 0 -3px 0 rgba(0,0,0,.28),
+              0 3px 0 color-mix(in srgb, var(--c) 42%, #000), 0 7px 9px rgba(0,0,0,.45);
+  transition: transform .15s;
+}
+.ico { text-shadow: 0 2px 2px rgba(0,0,0,.4); }
+.fl-item:hover .ico { transform: translateY(-2px) rotate(-4deg); }
+.fl-item.done .ico { filter: saturate(.55) brightness(.9); }
+.fl-item .ico { margin-right: 0; }
+.ico-big { width: 44px; height: 44px; font-size: 24px; border-radius: 13px; margin-right: 12px; vertical-align: middle; display: inline-grid; }
+#p-title { display: flex; align-items: center; }
+#p-title .pt-text { flex: 1; }

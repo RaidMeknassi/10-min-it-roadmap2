@@ -79,8 +79,10 @@
       var b = document.createElement("button");
       b.type = "button";
       b.className = "fl-item";
-      b.innerHTML = '<span class="fl-num"></span><span class="fl-title"></span>' + (lesson.lab ? '<span class="fl-lock" title="Has a lab">🔒</span>' : "");
+      b.innerHTML = '<span class="ico"></span><span class="fl-num"></span><span class="fl-title"></span>' + (lesson.lab ? '<span class="fl-lock" title="Has a lab">🔒</span>' : "");
       b.querySelector(".fl-num").textContent = lesson.n;
+      var ic = b.querySelector(".ico"); ic.style.setProperty("--c", lv.color);
+      ic.textContent = (typeof ICONS !== "undefined" && ICONS[lesson.n]) || "\u2B50";
       b.querySelector(".fl-title").textContent = lesson.title;
       b.addEventListener("click", function (e) { e.stopPropagation(); openLesson(lesson); });
       list.appendChild(b);
@@ -171,7 +173,11 @@
     var tr = document.getElementById("p-track");
     tr.textContent = l.level.name + " · Lesson " + l.n + " · 10 min";
     tr.style.color = l.level.color;
-    document.getElementById("p-title").textContent = l.title;
+    var pt = document.getElementById("p-title");
+    pt.innerHTML = '<span class="ico ico-big"></span><span class="pt-text"></span>';
+    pt.querySelector(".ico").style.setProperty("--c", l.level.color);
+    pt.querySelector(".ico").textContent = (typeof ICONS !== "undefined" && ICONS[l.n]) || "\u2B50";
+    pt.querySelector(".pt-text").textContent = l.title;
 
     var v = document.getElementById("p-video");
     v.innerHTML = ""; v.classList.remove("lab-view");
