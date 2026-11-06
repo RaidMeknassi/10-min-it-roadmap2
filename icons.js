@@ -132,7 +132,10 @@
     "50": function () { return cube("sky", "blue", "teal", 50, 52, 38) + cube("white", "gray", "white", 50, 52, 17); }
   };
 
+  var FILES = {};
+  ["0.1","0.2","0.3","0.4"].concat(Array.from({ length: 50 }, function (_, i) { return String(i + 1); })).forEach(function (k) { FILES[k] = 1; });
   window.iconSVG = function (n, color) {
+    if (FILES[n]) return '<img src="assets/icons/' + n + '.png" alt="" loading="lazy" decoding="async" width="256" height="256">';
     defs();
     var g = G[n]; var body = g ? g() : ci(50, 50, 28, "gold");
     var id = "t" + (++uid);

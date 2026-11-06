@@ -417,3 +417,5 @@ h1 span { background: var(--grad); -webkit-background-clip: text; background-cli
   .sb.show { display: block; }
   .lp-head .ico { width: 52px; height: 52px; }
 }
+
+.ico img { width: 100%; height: 100%; display: block; object-fit: contain; filter: drop-shadow(0 4px 5px rgba(0,0,0,.45)); }
