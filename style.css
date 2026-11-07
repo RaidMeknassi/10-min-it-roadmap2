@@ -155,7 +155,9 @@ h1 span { background: var(--grad); -webkit-background-clip: text; background-cli
 /* side list of lessons, shown on hover / tap */
 .flyout { display: none; position: absolute; top: -8px; left: 100%; width: 350px; padding-left: 14px; z-index: 30; }
 .lv.flip .flyout { left: auto; right: 100%; padding-left: 0; padding-right: 14px; }
-.lv:hover .flyout, .lv:focus-within .flyout, .lv.open .flyout { display: block; }
+.lv:hover .flyout, .lv:has(:focus-visible) .flyout, .lv.open .flyout { display: block; }
+/* only one lesson list at a time: while any level is hovered, the others close */
+.levels:has(.lv:hover) .lv:not(:hover) .flyout { display: none; }
 .flyout-card {
   background: var(--bg-2); border: 1px solid var(--line); border-left: 4px solid var(--c);
   border-radius: 14px; padding: 8px; max-height: 74vh; overflow: auto;

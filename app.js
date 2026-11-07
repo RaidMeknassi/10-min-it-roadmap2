@@ -324,6 +324,8 @@
   var sb = document.getElementById("subscribe-btn"); if (sb) sb.addEventListener("click", function (e) { e.preventDefault(); });
   var yr = document.getElementById("year"); if (yr) yr.textContent = new Date().getFullYear();
 
+  // coming back with the Back button must not leave a lesson list open
+  window.addEventListener("pageshow", function () { var a = document.activeElement; if (a && a.blur && a !== document.body) a.blur(); closeAll(); });
   var timer;
   window.addEventListener("resize", function () { clearTimeout(timer); timer = setTimeout(drawRoad, 80); });
   window.addEventListener("load", drawRoad);
