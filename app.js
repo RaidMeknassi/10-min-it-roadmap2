@@ -57,7 +57,7 @@
     var card = lv.querySelector(".lv-card");
     card.addEventListener("click", function (e) {
       e.stopPropagation();
-      location.href = "level.html?l=" + info.id;
+      location.href = info.href || ("level.html?l=" + info.id);
     });
 
     var en = { info: info, lv: lv, card: card, metaEl: lv.querySelector(".lv-meta"),
@@ -105,28 +105,52 @@
     });
   })();
 
-  // Levels 7-8: the Cybersecurity track (groups of paths)
-  if (!LEVEL_MODE) [LEVEL7, LEVEL8].forEach(function (lvInfo) {
-    var groups = TRACKS[lvInfo.id], en = makeLevel(lvInfo, trackEl, false);
-    var list = en.lv.querySelector(".fl-list"), count = 0;
-    en.barWrap.style.display = "none";
-    groups.forEach(function (g, gi) {
-      var h = document.createElement("div"); h.className = "fl-group"; h.style.setProperty("--c", g.color); h.textContent = g.name; list.appendChild(h);
-      g.paths.forEach(function (pt, pi) {
-        count++;
-        var b = document.createElement("button"); b.type = "button"; b.className = "fl-item"; b.style.setProperty("--c", g.color);
-        b.innerHTML = '<span class="fl-dot"></span><span class="fl-title"></span>';
-        b.querySelector(".fl-title").textContent = pt.name;
-        b.addEventListener("click", function (e) { e.stopPropagation(); location.href = "lesson.html?t=" + lvInfo.id + "&g=" + gi + "&p=" + pi; });
+  // Level 6 splits into one separate card per specialization. Cybersecurity continues down into Levels 7 and 8.
+  if (!LEVEL_MODE) (function () {
+    function spec(p, i, flip) {
+      var info = { id: "s" + i, name: "Specialization", title: p.name, color: p.color, href: "lesson.html?p=" + i };
+      var en = makeLevel(info, trackEl, flip), list = en.lv.querySelector(".fl-list");
+      en.barWrap.style.display = "none";
+      en.lv.classList.add("spec");
+      p.items.forEach(function (t) {
+        var b = document.createElement("button"); b.type = "button"; b.className = "fl-item"; b.style.setProperty("--c", p.color);
+        b.innerHTML = '<span class="fl-dot"></span><span class="fl-title"></span>'; b.querySelector(".fl-title").textContent = t;
+        b.addEventListener("click", function (e) { e.stopPropagation(); location.href = "lesson.html?p=" + i; });
         list.appendChild(b);
       });
+      en.metaEl.textContent = p.items.length + " topics \u00B7 coming soon";
+      return en;
+    }
+    function track(lvInfo, row) {
+      var groups = TRACKS[lvInfo.id], en = makeLevel(lvInfo, trackEl, false), list = en.lv.querySelector(".fl-list"), count = 0;
+      en.barWrap.style.display = "none"; en.lv.style.gridColumn = "1"; en.lv.style.gridRow = String(row);
+      groups.forEach(function (g, gi) {
+        var h = document.createElement("div"); h.className = "fl-group"; h.style.setProperty("--c", g.color); h.textContent = g.name; list.appendChild(h);
+        g.paths.forEach(function (pt, pi) {
+          count++;
+          var b = document.createElement("button"); b.type = "button"; b.className = "fl-item"; b.style.setProperty("--c", g.color);
+          b.innerHTML = '<span class="fl-dot"></span><span class="fl-title"></span>'; b.querySelector(".fl-title").textContent = pt.name;
+          b.addEventListener("click", function (e) { e.stopPropagation(); location.href = "lesson.html?t=" + lvInfo.id + "&g=" + gi + "&p=" + pi; });
+          list.appendChild(b);
+        });
+      });
+      en.metaEl.textContent = groups.length + " groups \u00B7 " + count + " paths";
+    }
+    // entries: 7 = Cybersecurity, 8 = Level 7, 9 = Level 8, 10..16 = the other specializations
+    var cy = spec(PATHS[0], 0, false); cy.lv.style.gridColumn = "1"; cy.lv.style.gridRow = "1";
+    cy.metaEl.textContent = "Continues with Levels 7 and 8 \u2193";
+    track(LEVEL7, 2); track(LEVEL8, 3);
+    PATHS.slice(1).forEach(function (p, k) {
+      var en = spec(p, k + 1, k % 3 !== 0 || false);
+      en.lv.style.gridColumn = String(2 + (k % 3)); en.lv.style.gridRow = String(1 + Math.floor(k / 3));
+      if (k % 3 === 0) en.lv.classList.remove("flip");
+      if (k % 3 === 2) en.lv.classList.add("flip");
     });
-    en.metaEl.textContent = groups.length + " groups \u00B7 " + count + " paths";
-  });
+  })();
 
   // ----- connecting lines between the level nodes -----
   function drawRoad() {
-    if (!svg || !road || entries.length < 9) return;
+    if (!svg || !road || entries.length < 17) return;
     var base = road.getBoundingClientRect();
     svg.setAttribute("viewBox", "0 0 " + base.width + " " + base.height);
     var stacked = window.innerWidth <= 720;
@@ -148,10 +172,14 @@
     link(0, 1, 1);
     link(1, 2, 2);
     if (stacked) {
-      link(2, 3, 3); link(3, 4, 4); link(4, 5, 5); link(5, 6, 6); link(6, 7, 7); link(7, 8, 8);
+      link(2, 3, 3); link(3, 4, 4); link(4, 5, 5); link(5, 6, 6);
+      for (var q = 6; q < 16; q++) link(q, q + 1, q + 1);
     } else {
       link(2, 3, 3); link(2, 4, 4); link(2, 5, 5);
-      link(3, 6, 3); link(4, 6, 4); link(5, 6, 5); link(6, 7, 7); link(7, 8, 8);
+      link(3, 6, 3); link(4, 6, 4); link(5, 6, 5);
+      link(6, 7, 7); link(7, 8, 8); link(8, 9, 9);
+      for (var q = 10; q < 13; q++) link(6, q, q);
+      for (var q2 = 13; q2 < 17; q2++) link(q2 - 3, q2, q2);
     }
     svg.innerHTML = out;
   }

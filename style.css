@@ -482,7 +482,10 @@ body::before {
   mask-image: radial-gradient(ellipse 90% 80% at 50% 38%, #000 25%, transparent 88%);
 }
 /* cybersecurity track (levels 7 and 8) */
-.final.track { flex-direction: column; align-items: center; gap: 110px; }
+.final.track { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 70px 16px; align-items: start; justify-content: stretch; }
+.final.track .lv { width: 100%; max-width: none; }
+.final.track .lv-card { padding: 14px; }
+.final.track .lv-card h2 { font-size: 16px; }
 .fl-group { margin: 10px 8px 2px; padding-top: 8px; border-top: 1px solid var(--line); font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--c); }
 .fl-group:first-child { border-top: 0; margin-top: 0; }
 .lvlist.groups { grid-template-columns: 1fr 1fr; }
@@ -490,4 +493,14 @@ body::before {
 .grp-head h2 { margin: 0; font-size: 20px; color: var(--c); }
 .grp-head p { margin: 2px 0 0; color: var(--muted); font-size: 14px; }
 .lv-note { margin: 0 0 16px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 12px; background: rgba(255,255,255,.03); color: #c7c7da; font-size: 14px; line-height: 1.55; }
-@media (max-width: 720px) { .final.track { gap: 70px; } .lvlist.groups { grid-template-columns: 1fr; } }
+@media (max-width: 720px) { .final.track { grid-template-columns: 1fr; gap: 70px; } .final.track > .lv { grid-column: auto !important; grid-row: auto !important; } .lvlist.groups { grid-template-columns: 1fr; } }
+
+/* ---- custom slim scrollbar (matches the dark theme) ---- */
+html { scrollbar-width: thin; scrollbar-color: rgba(120,140,255,.45) transparent; }
+* { scrollbar-width: thin; scrollbar-color: rgba(120,140,255,.45) transparent; }
+::-webkit-scrollbar { width: 9px; height: 9px; background: transparent; }
+::-webkit-scrollbar-track { background: rgba(255,255,255,.03); }
+::-webkit-scrollbar-thumb { background: linear-gradient(180deg, rgba(120,140,255,.55), rgba(168,85,247,.5)); border-radius: 10px; border: 2px solid transparent; background-clip: padding-box; }
+::-webkit-scrollbar-thumb:hover { background: linear-gradient(180deg, rgba(140,160,255,.85), rgba(190,110,255,.8)); background-clip: padding-box; border: 2px solid transparent; }
+::-webkit-scrollbar-button { display: none; width: 0; height: 0; }
+::-webkit-scrollbar-corner { background: transparent; }
