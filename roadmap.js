@@ -12,14 +12,14 @@
    ------------------------------------------------------------ */
 
 const LEVELS = [
-  { id: "l0", name: "Level 0", title: "Introduction to IT", color: "#2dd4bf", lessons: [
+  { id: "l0", desc: "Start here: what IT is, the careers it offers and how to learn.", name: "Level 0", title: "Introduction to IT", color: "#2dd4bf", lessons: [
     ["0.1", "Welcome to the IT Roadmap", 0],
     ["0.2", "What Is Information Technology?", 0],
     ["0.3", "Different Careers in IT", 0],
     ["0.4", "How to Learn IT and Practise", 0]
   ]},
 
-  { id: "l1", name: "Level 1", title: "Computer Fundamentals", color: "#a78bfa", lessons: [
+  { id: "l1", desc: "Understand how a computer is built, runs and stores information.", name: "Level 1", title: "Computer Fundamentals", color: "#a78bfa", lessons: [
     ["1", "What Is a Computer?", 1],
     ["2", "What Is Hardware?", 1],
     ["3", "What Is Software?", 1],
@@ -27,7 +27,7 @@ const LEVELS = [
     ["5", "How Computers Represent Information", 1]
   ]},
 
-  { id: "l2", name: "Level 2", title: "Operating Systems", color: "#fb923c", lessons: [
+  { id: "l2", desc: "Learn how Windows, Linux, macOS and mobile systems work.", name: "Level 2", title: "Operating Systems", color: "#fb923c", lessons: [
     ["6", "Understanding Operating Systems", 0],
     ["7", "Types of Operating Systems", 0],
     ["8", "How an Operating System Works", 0],
@@ -39,7 +39,7 @@ const LEVELS = [
     ["14", "Comparing Operating Systems", 0]
   ]},
 
-  { id: "l25", name: "Level 2.5", title: "Optional Level: IT in the Workplace", color: "#fbbf24", jobReady: "Ready to start applying for L1 Help Desk / IT Support", lessons: [
+  { id: "l25", desc: "How real IT teams work: tickets, ITIL and support scenarios.", name: "Level 2.5", title: "Optional Level: IT in the Workplace", color: "#fbbf24", jobReady: "Ready to start applying for L1 Help Desk / IT Support", lessons: [
     ["2.5.1", "Introduction to Corporate IT Environments", 0],
     ["2.5.2", "How IT Departments Are Structured", 0],
     ["2.5.3", "IT Service Management (ITSM) and ITIL Basics", 0],
@@ -54,7 +54,7 @@ const LEVELS = [
     ["2.5.12", "Working with Real IT Support Scenarios", 0]
   ]},
 
-  { id: "l3", name: "Level 3", title: "Networking Fundamentals", color: "#60a5fa", lessons: [
+  { id: "l3", desc: "Learn how devices talk: IP, DNS, DHCP, ports and Wi-Fi.", name: "Level 3", title: "Networking Fundamentals", color: "#60a5fa", lessons: [
     ["15", "What Is a Network?", 0],
     ["16", "Network Devices and Components", 0],
     ["17", "IP Addressing", 1],
@@ -69,7 +69,7 @@ const LEVELS = [
     ["26", "Network Troubleshooting", 1]
   ]},
 
-  { id: "l4", name: "Level 4", title: "Cybersecurity Fundamentals", color: "#f472b6", lessons: [
+  { id: "l4", desc: "Threats, attacks and the basics of protecting systems and data.", name: "Level 4", title: "Cybersecurity Fundamentals", color: "#f472b6", lessons: [
     ["27", "What Is Cybersecurity?", 0],
     ["28", "Common Cyber Threats and Attacks", 0],
     ["29", "Malware and Ransomware", 0],
@@ -83,7 +83,7 @@ const LEVELS = [
     ["37", "Security Monitoring and Incident Response", 1]
   ]},
 
-  { id: "l5", name: "Level 5", title: "IT Administration and Operations", color: "#4ade80", lessons: [
+  { id: "l5", desc: "Run servers, users, backups and monitoring in a company.", name: "Level 5", title: "IT Administration and Operations", color: "#4ade80", lessons: [
     ["38", "Introduction to IT Administration", 0],
     ["39", "Managing Users and Groups", 1],
     ["40", "Permissions and Access Control", 1],
@@ -223,8 +223,8 @@ const ICONS = {
 
 /* ---------- Cybersecurity track: Level 7 (career skills) and Level 8 (real attack practice) ----------
    Choose Cybersecurity in Level 6, then continue here. Edit names and topics freely. */
-const LEVEL7 = { id: "l7", name: "Level 7", title: "Cybersecurity Career Skills", color: "#fb7185" };
-const LEVEL8 = { id: "l8", name: "Level 8", title: "Real Attack Practice", color: "#ef4444" };
+const LEVEL7 = { id: "l7", desc: "Career skills for Analyst, Pentester and Security Engineer.", name: "Level 7", title: "Cybersecurity Career Skills", color: "#fb7185" };
+const LEVEL8 = { id: "l8", desc: "Practise real attack chains safely in guided labs.", name: "Level 8", title: "Real Attack Practice", color: "#ef4444" };
 
 const TRACKS = {
   l7: [

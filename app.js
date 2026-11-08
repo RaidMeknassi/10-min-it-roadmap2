@@ -15,7 +15,7 @@
   var entries = [];   // 0..5 = Levels 0-5, 6 = Level 6 (paths)
   var total = 0;
 
-  var LEVEL6 = { id: "l6", name: "Level 6", title: "Advanced IT Specializations", color: "#f472b6" };
+  var LEVEL6 = { id: "l6", desc: "Choose the specialization you want to grow into.", name: "Level 6", title: "Advanced IT Specializations", color: "#f472b6" };
 
   // ----- level chips (jump links) -----
   var chips = document.getElementById("chips");
@@ -45,11 +45,12 @@
     lv.style.setProperty("--c", info.color);
     lv.innerHTML =
       '<button type="button" class="lv-card" aria-haspopup="true">' +
-        '<span class="badge"></span><h2></h2><div class="lv-meta"></div>' +
+        '<span class="badge"></span><h2></h2><p class="lv-desc"></p><div class="lv-meta"></div>' +
         '<div class="lv-bar"><i></i></div>' +
       '</button>' +
       '<div class="flyout"><div class="flyout-card"><div class="fl-head"></div><div class="fl-list"></div></div></div>';
     lv.querySelector(".badge").textContent = info.name;
+    var dEl = lv.querySelector(".lv-desc"); if (info.desc) dEl.textContent = info.desc; else dEl.remove();
     lv.querySelector("h2").textContent = info.title;
     lv.querySelector(".fl-head").textContent = info.name + " · " + info.title;
     container.appendChild(lv);
@@ -109,7 +110,7 @@
   // Level 6 splits into one separate card per specialization. Cybersecurity continues down into Levels 7 and 8.
   if (!LEVEL_MODE) (function () {
     function spec(p, i, flip) {
-      var info = { id: "s" + i, name: "Specialization", title: p.name, color: p.color, href: "lesson.html?p=" + i };
+      var info = { id: "s" + i, desc: (i === 0 ? "Blue team, red team and security operations." : "Optional path: " + p.items.slice(0, 2).join(", ") + " and more."), name: "Specialization", title: p.name, color: p.color, href: "lesson.html?p=" + i };
       var en = makeLevel(info, trackEl, flip), list = en.lv.querySelector(".fl-list");
       en.barWrap.style.display = "none";
       en.lv.classList.add("spec");
