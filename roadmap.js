@@ -39,6 +39,21 @@ const LEVELS = [
     ["14", "Comparing Operating Systems", 0]
   ]},
 
+  { id: "l25", name: "Level 2.5", title: "Optional Level: IT in the Workplace", color: "#fbbf24", jobReady: "Ready to start applying for L1 Help Desk / IT Support", lessons: [
+    ["2.5.1", "Introduction to Corporate IT Environments", 0],
+    ["2.5.2", "How IT Departments Are Structured", 0],
+    ["2.5.3", "IT Service Management (ITSM) and ITIL Basics", 0],
+    ["2.5.4", "Understanding Ticketing Systems", 0],
+    ["2.5.5", "Incident Management", 0],
+    ["2.5.6", "Service Requests and Request Fulfilment", 0],
+    ["2.5.7", "Problem Management and Root Cause Analysis", 0],
+    ["2.5.8", "Change Management", 0],
+    ["2.5.9", "Service Level Agreements (SLA) and Priorities", 0],
+    ["2.5.10", "Documentation and Knowledge Bases", 0],
+    ["2.5.11", "Communication with Users and Customers", 0],
+    ["2.5.12", "Working with Real IT Support Scenarios", 0]
+  ]},
+
   { id: "l3", name: "Level 3", title: "Networking Fundamentals", color: "#60a5fa", lessons: [
     ["15", "What Is a Network?", 0],
     ["16", "Network Devices and Components", 0],

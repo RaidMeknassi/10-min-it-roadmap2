@@ -68,8 +68,9 @@
 
   // Levels 0-5: lessons
   if (!LEVEL_MODE) LEVELS.forEach(function (lv, li) {
-    var en = makeLevel(lv, li < 3 ? trunk : branches, li === 5);
+    var en = makeLevel(lv, li < 4 ? trunk : branches, li === 6);
     var list = en.lv.querySelector(".fl-list");
+    if (lv.jobReady) { var fl = document.createElement("div"); fl.className = "job-flag"; fl.innerHTML = '<span class="jf-text"></span><span class="jf-arrow" aria-hidden="true">\u2192</span>'; fl.querySelector(".jf-text").textContent = lv.jobReady; en.lv.appendChild(fl); }
     lv.lessons.forEach(function (row) {
       var lesson = { n: row[0], title: row[1], lab: !!row[2], level: lv };
       total++;
@@ -150,7 +151,7 @@
 
   // ----- connecting lines between the level nodes -----
   function drawRoad() {
-    if (!svg || !road || entries.length < 17) return;
+    if (!svg || !road || entries.length < 18) return;
     var base = road.getBoundingClientRect();
     svg.setAttribute("viewBox", "0 0 " + base.width + " " + base.height);
     var stacked = window.innerWidth <= 720;
@@ -171,15 +172,16 @@
 
     link(0, 1, 1);
     link(1, 2, 2);
+    link(2, 3, 3);
     if (stacked) {
-      link(2, 3, 3); link(3, 4, 4); link(4, 5, 5); link(5, 6, 6);
-      for (var q = 6; q < 16; q++) link(q, q + 1, q + 1);
+      link(3, 4, 4); link(4, 5, 5); link(5, 6, 6); link(6, 7, 7);
+      for (var q = 7; q < 17; q++) link(q, q + 1, q + 1);
     } else {
-      link(2, 3, 3); link(2, 4, 4); link(2, 5, 5);
-      link(3, 6, 3); link(4, 6, 4); link(5, 6, 5);
-      link(6, 7, 7); link(7, 8, 8); link(8, 9, 9);
-      for (var q = 10; q < 13; q++) link(6, q, q);
-      for (var q2 = 13; q2 < 17; q2++) link(q2 - 3, q2, q2);
+      link(3, 4, 4); link(3, 5, 5); link(3, 6, 6);
+      link(4, 7, 4); link(5, 7, 5); link(6, 7, 6);
+      link(7, 8, 8); link(8, 9, 9); link(9, 10, 10);
+      for (var q = 11; q < 14; q++) link(7, q, q);
+      for (var q2 = 14; q2 < 18; q2++) link(q2 - 3, q2, q2);
     }
     svg.innerHTML = out;
   }
@@ -188,7 +190,7 @@
   function refresh() {
     var n = 0;
     entries.forEach(function (en, i) {
-      if (i > 5 || !en.items.length) return;
+      if (i > 6 || !en.items.length) return;
       var c = 0;
       en.items.forEach(function (it) {
         var d = !!done[it.lesson.n];
