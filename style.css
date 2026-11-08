@@ -16,7 +16,13 @@
 html { scroll-behavior: smooth; }
 body {
   margin: 0;
-  background: radial-gradient(1100px 620px at 50% -10%, #1c1136 0%, var(--bg) 62%);
+  background:
+    radial-gradient(1100px 640px at 12% -8%, rgba(139, 92, 246, .34), transparent 62%),
+    radial-gradient(900px 600px at 92% 6%, rgba(45, 212, 191, .20), transparent 62%),
+    radial-gradient(1000px 760px at 50% 108%, rgba(236, 72, 153, .20), transparent 62%),
+    radial-gradient(800px 600px at 100% 55%, rgba(59, 130, 246, .14), transparent 65%),
+    linear-gradient(180deg, #060b1a 0%, #070812 55%, #0b0716 100%);
+  background-attachment: fixed;
   color: var(--text);
   font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
   line-height: 1.5;
@@ -464,3 +470,24 @@ h1 span { background: var(--grad); -webkit-background-clip: text; background-cli
 .lp-stage.t-lab { aspect-ratio: 16 / 11; }
 .lp-foot { align-items: center; }
 @media (max-width: 720px) { .lvlist { grid-template-columns: 1fr; } .lc-tags { flex-direction: row; flex-wrap: wrap; justify-content: flex-end; max-width: 120px; } .lp-foot { flex-direction: column; align-items: stretch; } .lp-btn { max-width: 100%; text-align: center; } .lp-mid { order: 3; } }
+
+/* background mesh: a faint grid that fades out toward the edges */
+body::before {
+  content: ""; position: fixed; inset: 0; z-index: -1; pointer-events: none;
+  background-image:
+    linear-gradient(rgba(120, 165, 230, .10) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(120, 165, 230, .10) 1px, transparent 1px);
+  background-size: 52px 52px;
+  -webkit-mask-image: radial-gradient(ellipse 90% 80% at 50% 38%, #000 25%, transparent 88%);
+  mask-image: radial-gradient(ellipse 90% 80% at 50% 38%, #000 25%, transparent 88%);
+}
+/* cybersecurity track (levels 7 and 8) */
+.final.track { flex-direction: column; align-items: center; gap: 110px; }
+.fl-group { margin: 10px 8px 2px; padding-top: 8px; border-top: 1px solid var(--line); font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--c); }
+.fl-group:first-child { border-top: 0; margin-top: 0; }
+.lvlist.groups { grid-template-columns: 1fr 1fr; }
+.grp-head { grid-column: 1 / -1; margin-top: 14px; padding-left: 12px; border-left: 4px solid var(--c); }
+.grp-head h2 { margin: 0; font-size: 20px; color: var(--c); }
+.grp-head p { margin: 2px 0 0; color: var(--muted); font-size: 14px; }
+.lv-note { margin: 0 0 16px; padding: 12px 14px; border: 1px solid var(--line); border-radius: 12px; background: rgba(255,255,255,.03); color: #c7c7da; font-size: 14px; line-height: 1.55; }
+@media (max-width: 720px) { .final.track { gap: 70px; } .lvlist.groups { grid-template-columns: 1fr; } }

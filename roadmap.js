@@ -205,3 +205,53 @@ const ICONS = {
   "27":"🛡️","28":"☠️","29":"🦠","30":"🎣","31":"🔑","32":"🪪","33":"🔺","34":"🧱","35":"🔐","36":"⚠️","37":"🚨",
   "38":"🏢","39":"👥","40":"🔒","41":"🗃️","42":"🧰","43":"🧑‍💻","44":"📜","45":"⬇️","46":"⌨️","47":"🤖","48":"📈","49":"💾","50":"🧊"
 };
+
+/* ---------- Cybersecurity track: Level 7 (career skills) and Level 8 (real attack practice) ----------
+   Choose Cybersecurity in Level 6, then continue here. Edit names and topics freely. */
+const LEVEL7 = { id: "l7", name: "Level 7", title: "Cybersecurity Career Skills", color: "#fb7185" };
+const LEVEL8 = { id: "l8", name: "Level 8", title: "Real Attack Practice", color: "#ef4444" };
+
+const TRACKS = {
+  l7: [
+    { name: "Security Analyst", color: "#60a5fa", blurb: "Detect, investigate and respond to attacks as a SOC analyst.", paths: [
+      { name: "SOC Level 1", topics: ["Alerts and triage", "Phishing analysis", "SIEM basics and log searching", "Endpoint and network monitoring", "Writing an incident report"] },
+      { name: "SOC Level 2", topics: ["Threat hunting", "Detection engineering and rules", "Malware triage", "Threat intelligence", "Escalation and response playbooks"] },
+      { name: "Advanced Endpoint Investigations", topics: ["Windows and Linux artifacts", "Process and persistence analysis", "EDR investigations", "Timeline building", "Memory basics"] },
+      { name: "Windows Incident Response and Forensics", topics: ["Event logs and registry", "Disk and memory acquisition", "Lateral movement evidence", "Containment and recovery", "Forensic reporting"] },
+      { name: "Defending Azure", topics: ["Microsoft Entra ID security", "Defender and Sentinel basics", "Azure logging", "Detecting cloud attacks", "Hardening Azure resources"] }
+    ]},
+    { name: "Penetration Tester", color: "#f472b6", blurb: "Think like an attacker to find weaknesses before real attackers do.", paths: [
+      { name: "Junior Penetration Tester", topics: ["Penetration testing process and rules", "Recon and enumeration", "Scanning and vulnerability assessment", "Exploitation basics", "Privilege escalation", "Reporting findings"] },
+      { name: "Web Application Pentesting", topics: ["How web apps work", "Injection and XSS", "Authentication and session flaws", "Access control bugs", "APIs", "Writing a web test report"] },
+      { name: "Web Application Red Teaming", topics: ["Advanced web exploitation", "Chaining vulnerabilities", "Business logic abuse", "Bypassing defenses", "Reporting at professional level"] },
+      { name: "Red Teaming", topics: ["Adversary emulation", "Initial access", "Active Directory attacks", "Command and control basics", "Evading detection", "Full operation planning"] }
+    ]},
+    { name: "Security Engineer", color: "#4ade80", blurb: "Build and automate security into systems, pipelines and the cloud.", paths: [
+      { name: "Security Engineer", topics: ["Secure architecture", "Hardening systems and networks", "Identity and access management", "Security tooling and automation", "Vulnerability management"] },
+      { name: "DevSecOps", topics: ["Secure CI/CD pipelines", "Code and dependency scanning", "Container and Kubernetes security", "Secrets management", "Infrastructure as code security"] },
+      { name: "Defending AWS", topics: ["AWS IAM security", "Logging with CloudTrail and GuardDuty", "Network and storage security", "Detecting cloud attacks", "Incident response in AWS"] }
+    ]},
+    { name: "AI Security", color: "#a78bfa", blurb: "Secure AI systems and understand how they get attacked.", paths: [
+      { name: "AI Security", topics: ["How AI and LLM systems work", "Prompt injection", "Data and model risks", "Securing AI applications", "AI in defence"] },
+      { name: "Agentic AI Security", topics: ["How AI agents use tools", "Excessive permissions and tool abuse", "Indirect prompt injection", "Guardrails and monitoring", "Safe agent design"] }
+    ]}
+  ],
+  l8: [
+    { name: "Attack Chains", color: "#ef4444", blurb: "Follow a real attack from the first click to the final damage, inside a safe lab.", paths: [
+      { name: "Phishing to Ransomware", topics: ["A phishing email lands", "Initial foothold on a workstation", "Spreading through the network", "Encryption and the ransom note", "How each step could have been stopped"] },
+      { name: "Web Application Breach", topics: ["Finding the weak page", "Exploiting it", "Stealing data", "Reading the logs afterwards", "Fixing the root cause"] },
+      { name: "Active Directory Takeover", topics: ["From one user to domain admin", "Credential attacks", "Lateral movement", "Persistence", "Detection and cleanup"] },
+      { name: "Cloud Account Compromise", topics: ["Leaked keys", "Abusing cloud permissions", "Data exposure", "Detecting it in cloud logs", "Locking it down"] }
+    ]},
+    { name: "Red vs Blue", color: "#fb923c", blurb: "Play both sides: attack the lab, then defend it.", paths: [
+      { name: "Attack Day", topics: ["Plan the attack", "Break into a practice network", "Move and collect proof", "Document what you did"] },
+      { name: "Defense Day", topics: ["Spot the attack in the logs", "Contain the damage", "Remove the attacker", "Harden what was weak"] },
+      { name: "Purple Team Exercise", topics: ["Attack and detect together", "Tune detections", "Measure what you missed", "Improve the defence"] },
+      { name: "Incident Response War Room", topics: ["A live incident scenario", "Triage under time pressure", "Decisions and communication", "Post-incident review"] }
+    ]},
+    { name: "Capstone", color: "#fbbf24", blurb: "Prove everything you learned.", paths: [
+      { name: "Final Challenge", topics: ["A full attack and defence scenario", "Your report", "Review and feedback"] },
+      { name: "Build Your Portfolio", topics: ["Choose your best work", "Write clear case studies", "Prepare for interviews"] }
+    ]}
+  ]
+};

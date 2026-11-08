@@ -1,7 +1,7 @@
 /* Level page: every lesson of the level as a card. A card opens that lesson on its own page. */
 (function () {
   var $ = function (i) { return document.getElementById(i); };
-  var ALL = LEVELS.concat([{ id: "l6", name: "Level 6", title: "Advanced IT Specializations", color: "#f472b6" }]);
+  var ALL = LEVELS.concat([{ id: "l6", name: "Level 6", title: "Advanced IT Specializations", color: "#f472b6" }, LEVEL7, LEVEL8]);
   var done = {}; try { done = JSON.parse(localStorage.getItem("itroadmap-v2-done") || "{}"); } catch (e) { done = {}; }
   var idx = -1, id = new URLSearchParams(location.search).get("l");
   ALL.forEach(function (x, i) { if (x.id === id) idx = i; });
@@ -14,7 +14,25 @@
   function tag(t, cls) { return el("span", "tg " + cls, t); }
   var list = $("level-list");
 
-  if (isPaths) {
+  if (TRACKS[lv.id]) {
+    var groups = TRACKS[lv.id], total = 0;
+    $("lv-bar").style.display = "none";
+    list.className = "lvlist groups";
+    if (lv.id === "l8") { var note = el("p", "lv-note", "You work through real attacks step by step, only inside safe practice labs that we provide. Never try these techniques on systems you do not own or have written permission to test."); list.parentNode.insertBefore(note, list); }
+    else { var note7 = el("p", "lv-note", "Pick the career you want. Each group is a set of paths, from beginner to advanced."); list.parentNode.insertBefore(note7, list); }
+    groups.forEach(function (g, gi) {
+      var head = el("div", "grp-head"); head.style.setProperty("--c", g.color);
+      head.innerHTML = "<h2></h2><p></p>"; head.querySelector("h2").textContent = g.name; head.querySelector("p").textContent = g.blurb; list.appendChild(head);
+      g.paths.forEach(function (pt, pi) {
+        total++;
+        var a = el("a", "lc"); a.href = "lesson.html?t=" + lv.id + "&g=" + gi + "&p=" + pi; a.style.setProperty("--c", g.color);
+        a.innerHTML = '<span class="lc-dot"></span><span class="lc-body"><b></b><small></small></span><span class="lc-tags"><span class="tg t-soon">Coming soon</span></span>';
+        a.querySelector("b").textContent = pt.name; a.querySelector("small").textContent = pt.topics.length + " topics";
+        list.appendChild(a);
+      });
+    });
+    $("lv-meta").textContent = groups.length + " groups \u00B7 " + total + " paths";
+  } else if (isPaths) {
     $("lv-bar").style.display = "none"; $("lv-meta").textContent = PATHS.length + " paths · choose one";
     PATHS.forEach(function (p, i) {
       var a = el("a", "lc"); a.href = "lesson.html?p=" + i; a.style.setProperty("--c", p.color);

@@ -19,7 +19,7 @@
 
   // ----- level chips (jump links) -----
   var chips = document.getElementById("chips");
-  if (chips) LEVELS.concat([LEVEL6]).forEach(function (lv) {
+  if (chips) LEVELS.concat([LEVEL6, LEVEL7, LEVEL8]).forEach(function (lv) {
     var a = document.createElement("a");
     a.href = "#" + lv.id;
     a.style.setProperty("--c", lv.color);
@@ -31,7 +31,8 @@
   var trunk = document.createElement("div");   trunk.className = "trunk";
   var branches = document.createElement("div"); branches.className = "branches";
   var finalEl = document.createElement("div");  finalEl.className = "final";
-  if (levelsEl) { levelsEl.appendChild(trunk); levelsEl.appendChild(branches); levelsEl.appendChild(finalEl); }
+  var trackEl = document.createElement("div");  trackEl.className = "final track";
+  if (levelsEl) { levelsEl.appendChild(trunk); levelsEl.appendChild(branches); levelsEl.appendChild(finalEl); levelsEl.appendChild(trackEl); }
 
   function closeAll(except) {
     entries.forEach(function (en) { if (en.lv !== except) en.lv.classList.remove("open"); });
@@ -104,9 +105,28 @@
     });
   })();
 
+  // Levels 7-8: the Cybersecurity track (groups of paths)
+  if (!LEVEL_MODE) [LEVEL7, LEVEL8].forEach(function (lvInfo) {
+    var groups = TRACKS[lvInfo.id], en = makeLevel(lvInfo, trackEl, false);
+    var list = en.lv.querySelector(".fl-list"), count = 0;
+    en.barWrap.style.display = "none";
+    groups.forEach(function (g, gi) {
+      var h = document.createElement("div"); h.className = "fl-group"; h.style.setProperty("--c", g.color); h.textContent = g.name; list.appendChild(h);
+      g.paths.forEach(function (pt, pi) {
+        count++;
+        var b = document.createElement("button"); b.type = "button"; b.className = "fl-item"; b.style.setProperty("--c", g.color);
+        b.innerHTML = '<span class="fl-dot"></span><span class="fl-title"></span>';
+        b.querySelector(".fl-title").textContent = pt.name;
+        b.addEventListener("click", function (e) { e.stopPropagation(); location.href = "lesson.html?t=" + lvInfo.id + "&g=" + gi + "&p=" + pi; });
+        list.appendChild(b);
+      });
+    });
+    en.metaEl.textContent = groups.length + " groups \u00B7 " + count + " paths";
+  });
+
   // ----- connecting lines between the level nodes -----
   function drawRoad() {
-    if (!svg || !road || entries.length < 7) return;
+    if (!svg || !road || entries.length < 9) return;
     var base = road.getBoundingClientRect();
     svg.setAttribute("viewBox", "0 0 " + base.width + " " + base.height);
     var stacked = window.innerWidth <= 720;
@@ -128,10 +148,10 @@
     link(0, 1, 1);
     link(1, 2, 2);
     if (stacked) {
-      link(2, 3, 3); link(3, 4, 4); link(4, 5, 5); link(5, 6, 6);
+      link(2, 3, 3); link(3, 4, 4); link(4, 5, 5); link(5, 6, 6); link(6, 7, 7); link(7, 8, 8);
     } else {
       link(2, 3, 3); link(2, 4, 4); link(2, 5, 5);
-      link(3, 6, 3); link(4, 6, 4); link(5, 6, 5);
+      link(3, 6, 3); link(4, 6, 4); link(5, 6, 5); link(6, 7, 7); link(7, 8, 8);
     }
     svg.innerHTML = out;
   }

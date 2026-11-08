@@ -20,6 +20,32 @@
     return c;
   }
 
+  // ---------- Level 7 / 8 path (cybersecurity track) ----------
+  if (qs.get("t") !== null) {
+    var tid = qs.get("t"), gi = parseInt(qs.get("g"), 10), pi = parseInt(qs.get("p"), 10);
+    var grp = TRACKS[tid] && TRACKS[tid][gi], tp = grp && grp.paths[pi], tl = tid === "l7" ? LEVEL7 : LEVEL8;
+    if (!tp) { location.replace("index.html"); return; }
+    document.title = tp.name + " · 10-Minute IT Roadmap"; main.style.setProperty("--c", grp.color);
+    main.appendChild(crumbs([["Road map", "index.html#map"], [tl.name + " · " + tl.title, "level.html?l=" + tid], [grp.name], [tp.name]]));
+    var th = el("div", "lp-head"); th.innerHTML = '<div class="lp-title"><p class="lp-track"></p><h1></h1></div>';
+    th.querySelector(".lp-track").textContent = tl.name + " · " + grp.name; th.querySelector("h1").textContent = tp.name; main.appendChild(th);
+    var tc = el("div", "lp-stage t-card");
+    tc.innerHTML = "<div class='lp-card'><h3>What you will learn</h3><ul class='lp-topics'></ul><p></p></div>";
+    tp.topics.forEach(function (t) { tc.querySelector("ul").appendChild(el("li", "", t)); });
+    tc.querySelector("p").innerHTML = tid === "l8" ? "These are <b>real attack practice</b> labs in a safe environment. Coming soon. Only practise on systems you own or are allowed to test." : "Lessons and labs for this path are <b>coming soon</b>.";
+    main.appendChild(tc);
+    var tf = el("div", "lp-foot"), flatPaths = [];
+    TRACKS[tid].forEach(function (g, a) { g.paths.forEach(function (x, b) { flatPaths.push([a, b, x, g]); }); });
+    var fi = 0; flatPaths.forEach(function (x, i) { if (x[0] === gi && x[1] === pi) fi = i; });
+    function tb(x, txt) { var l = el("a", "lp-btn", txt); l.href = "lesson.html?t=" + tid + "&g=" + x[0] + "&p=" + x[1]; l.style.setProperty("--c", x[3].color); return l; }
+    tf.appendChild(fi > 0 ? tb(flatPaths[fi - 1], "← " + flatPaths[fi - 1][2].name) : el("span"));
+    var tm = el("a", "lp-btn lp-mid", "All " + tl.name + " paths"); tm.href = "level.html?l=" + tid; tf.appendChild(tm);
+    tf.appendChild(fi < flatPaths.length - 1 ? tb(flatPaths[fi + 1], flatPaths[fi + 1][2].name + " →") : el("span"));
+    main.appendChild(tf);
+    var yy = $("year"); if (yy) yy.textContent = new Date().getFullYear();
+    return;
+  }
+
   // ---------- Level 6 path ----------
   if (qs.get("p") !== null) {
     var p = PATHS[parseInt(qs.get("p"), 10)];
@@ -29,7 +55,9 @@
     var h = el("div", "lp-head"); h.innerHTML = '<div class="lp-title"><p class="lp-track">Level 6 · Specialization path</p><h1></h1></div>'; h.querySelector("h1").textContent = p.name; main.appendChild(h);
     var card = el("div", "lp-stage t-card"); card.innerHTML = "<div class='lp-card'><h3>Topics in this path</h3><ul class='lp-topics'></ul><p>Detailed lessons for this path are <b>coming soon</b>.</p></div>";
     p.items.forEach(function (t) { card.querySelector("ul").appendChild(el("li", "", t)); }); main.appendChild(card);
-    var back = el("div", "lp-foot"); var b = el("a", "lp-btn", "← All paths"); b.href = "level.html?l=l6"; back.appendChild(b); main.appendChild(back);
+    var back = el("div", "lp-foot"); var b = el("a", "lp-btn", "← All paths"); b.href = "level.html?l=l6"; back.appendChild(b);
+    if (p.name === "Cybersecurity") { var c7 = el("a", "lp-btn", "Continue: Level 7 Career Skills →"); c7.href = "level.html?l=l7"; c7.style.setProperty("--c", LEVEL7.color); back.appendChild(c7); }
+    main.appendChild(back);
     return;
   }
 
