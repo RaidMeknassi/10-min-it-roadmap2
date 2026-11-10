@@ -22,6 +22,15 @@
   }
   function link() { return el("div", "sp-link"); }
 
+  function certStage() {
+    var row = PATH_CERTS.filter(function (r) { return r[0] === P.name; })[0];
+    if (!row) return;
+    tree.appendChild(link());
+    var st = stage("Recommended Certifications", "Optional exams you can aim for in this specialization.");
+    var ul = el("ul", "sp-certs"); row[2].forEach(function (t) { ul.appendChild(el("li", "", t)); }); st.appendChild(ul);
+    tree.appendChild(st);
+  }
+
   if (i === 0) {
     document.getElementById("sp-title").textContent = "Cyber Security Learning Roadmap";
     document.getElementById("sp-sub").textContent = "From fundamental principles to advanced techniques, this roadmap provides clear steps and essential resources to help you build a robust skill set.";
@@ -46,12 +55,16 @@
     });
     tree.appendChild(grid);
     tree.appendChild(link());
+    certStage();
+    tree.appendChild(link());
     tree.appendChild(stage("What's next?", "More labs, rooms and challenges will be added over time."));
   } else {
     document.getElementById("sp-title").textContent = P.name + " Learning Roadmap";
     document.getElementById("sp-sub").textContent = "This specialization is coming soon. Here is the path we are planning, step by step.";
     tree.appendChild(stage("Start here", "Finish Levels 0 to 5 on the main road map first, then follow this path."));
     P.items.forEach(function (t) { tree.appendChild(link()); tree.appendChild(pathCard(t)); });
+    tree.appendChild(link());
+    certStage();
     tree.appendChild(link());
     tree.appendChild(stage("What's next?", "Lessons for this path will appear here as they are published."));
   }

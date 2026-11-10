@@ -348,22 +348,6 @@
       grid.appendChild(card);
     });
 
-    var wrap = document.getElementById("cert-paths");
-    var h = document.createElement("h3");
-    h.textContent = "Level 6 \u00B7 Certifications by specialization";
-    wrap.appendChild(h);
-    var rows = document.createElement("div");
-    rows.className = "cert-rows";
-    PATH_CERTS.forEach(function (r) {
-      var row = document.createElement("div");
-      row.className = "cert-row";
-      row.style.setProperty("--c", r[1]);
-      row.innerHTML = '<b></b><span></span>';
-      row.querySelector("b").textContent = r[0];
-      row.querySelector("span").textContent = r[2].join("  \u00B7  ");
-      rows.appendChild(row);
-    });
-    wrap.appendChild(rows);
   })();
 
   var sb = document.getElementById("subscribe-btn"); if (sb) sb.addEventListener("click", function (e) { e.preventDefault(); });
