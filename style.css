@@ -597,3 +597,20 @@ a.sp-path:hover { transform: translateY(-2px); box-shadow: 0 0 22px -6px var(--p
 .pl-btn-main { background: linear-gradient(90deg, #7dd3fc, #c084fc, #f472b6); color: #fff; box-shadow: 0 8px 28px -8px #c084fc; cursor: default; }
 .pl-ribbon { position: absolute; top: -12px; left: 50%; transform: translateX(-50%); padding: 4px 14px; border-radius: 999px; font-size: 11px; font-weight: 800; letter-spacing: .08em; color: #fff; background: linear-gradient(90deg, #60a5fa, #e879f9); white-space: nowrap; }
 @media (max-width: 720px) { .pl-grid { grid-template-columns: 1fr; gap: 26px; } .pl-free { margin-right: 0; } }
+
+/* ---- glossy gradient level cards (each level uses its own colour) ---- */
+.lv-card {
+  position: relative; overflow: hidden; border: 1px solid rgba(255,255,255,.22); border-top: 1px solid rgba(255,255,255,.35); border-radius: 18px;
+  background:
+    radial-gradient(120% 95% at 100% 0%, color-mix(in srgb, var(--c) 60%, #fff) 0%, transparent 58%),
+    linear-gradient(150deg, color-mix(in srgb, var(--c) 82%, #000) 0%, color-mix(in srgb, var(--c) 42%, #0a0c18) 100%);
+  box-shadow: 0 14px 34px -16px color-mix(in srgb, var(--c) 80%, #000), inset 0 1px 0 rgba(255,255,255,.28);
+}
+.lv-card::before { content: ""; position: absolute; width: 190px; height: 190px; left: -70px; bottom: -110px; border-radius: 50%; background: radial-gradient(circle, rgba(255,255,255,.22), transparent 68%); pointer-events: none; }
+.lv-card > * { position: relative; }
+.lv-card .badge { background: rgba(255,255,255,.22); color: #fff; border: 1px solid rgba(255,255,255,.35); backdrop-filter: blur(4px); }
+.lv-card h2 { color: #fff; text-shadow: 0 1px 8px rgba(0,0,0,.25); }
+.lv-card .lv-meta { color: rgba(255,255,255,.82); }
+.lv-card .lv-bar { background: rgba(0,0,0,.28); border-color: rgba(255,255,255,.18); }
+.lv-card .lv-bar i { background: #fff; }
+.lv:hover .lv-card, .lv.open .lv-card, .lv-card:focus-visible { box-shadow: 0 0 34px -4px var(--c), inset 0 1px 0 rgba(255,255,255,.35); }
