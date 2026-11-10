@@ -111,6 +111,7 @@ const VIDEOS = {
 const LESSON_PAGES = {
   "0.2": "lessons/whatisit/index.html",
   "0.3": "lessons/itcareers/index.html",
+  "0.4": "lessons/howtolearn/index.html",
   "1": "lessons/whatisacomputer/index.html",
   "2": "lessons/whatishardware/index.html",
   "3": "lessons/whatissoftware/index.html",
