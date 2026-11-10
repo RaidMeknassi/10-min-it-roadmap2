@@ -528,3 +528,34 @@ html { scrollbar-width: thin; scrollbar-color: rgba(120,140,255,.45) transparent
 
 /* Levels 3 and 4 side by side, Level 5 centered under them */
 @media (min-width: 721px) { .branches { grid-template-columns: repeat(2, minmax(0, 290px)); justify-content: center; gap: 70px; } }
+
+/* ---- specialization page (own colour background per specialty) ---- */
+body[data-page="spec"] {
+  background:
+    radial-gradient(ellipse 80% 55% at 50% -8%, color-mix(in srgb, var(--c) 42%, transparent), transparent 70%),
+    radial-gradient(ellipse 60% 45% at 100% 55%, color-mix(in srgb, var(--c) 22%, transparent), transparent 70%),
+    radial-gradient(ellipse 60% 45% at 0% 85%, color-mix(in srgb, var(--c) 26%, transparent), transparent 70%),
+    #07070d;
+  background-attachment: fixed;
+}
+.specpage { max-width: 1240px; margin: 0 auto; padding: 22px 16px 70px; text-align: center; }
+.sp-hero h1 { font-size: clamp(26px, 4.5vw, 40px); margin: 14px 0 10px; }
+.sp-sub { max-width: 780px; margin: 0 auto 28px; color: #cbd5e1; font-size: 15px; line-height: 1.6; }
+.sp-tree { display: flex; flex-direction: column; align-items: center; }
+.sp-stage { width: min(560px, 100%); background: linear-gradient(180deg, #2a3140, #232a38); border: 1px solid rgba(255,255,255,.1); border-top: 4px solid var(--c); border-radius: 14px; padding: 16px 20px; }
+.sp-stage h2 { margin: 0 0 6px; font-size: 19px; }
+.sp-stage p { margin: 0; font-size: 14px; line-height: 1.5; color: #cbd5e1; }
+.sp-link { width: 3px; height: 34px; background: var(--c); opacity: .75; border-radius: 3px; }
+.sp-path { display: block; width: min(300px, 100%); text-align: left; text-decoration: none; color: inherit; background: rgba(12,14,24,.85); border: 1px solid rgba(255,255,255,.12); border-left: 5px solid var(--pc, var(--c)); border-radius: 12px; padding: 12px 14px; transition: transform .15s, box-shadow .2s; }
+a.sp-path:hover { transform: translateY(-2px); box-shadow: 0 0 22px -6px var(--pc, var(--c)); }
+.sp-path b { display: block; font-size: 15px; }
+.sp-state { display: block; font-size: 12.5px; color: #94a3b8; margin-top: 3px; }
+.sp-bar { height: 5px; border-radius: 99px; background: rgba(255,255,255,.08); margin-top: 9px; overflow: hidden; }
+.sp-bar i { display: block; width: 0%; height: 100%; background: var(--pc, var(--c)); }
+.sp-groups { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; width: 100%; align-items: start; }
+.sp-group { display: flex; flex-direction: column; align-items: center; background: rgba(12,14,24,.55); border: 1px solid rgba(255,255,255,.1); border-top: 4px solid var(--pc); border-radius: 14px; padding: 16px 12px 18px; }
+.sp-group h3 { margin: 0 0 6px; font-size: 17px; }
+.sp-group > p { margin: 0 0 4px; font-size: 13px; line-height: 1.45; color: #cbd5e1; }
+.sp-group .sp-link { background: var(--pc); }
+@media (max-width: 1000px) { .sp-groups { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+@media (max-width: 620px) { .sp-groups { grid-template-columns: 1fr; } .sp-path { width: 100%; } }

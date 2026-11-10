@@ -35,7 +35,7 @@
   } else if (isPaths) {
     $("lv-bar").style.display = "none"; $("lv-meta").textContent = PATHS.length + " paths · choose one";
     PATHS.forEach(function (p, i) {
-      var a = el("a", "lc"); a.href = "lesson.html?p=" + i; a.style.setProperty("--c", p.color);
+      var a = el("a", "lc"); a.href = "spec.html?s=" + i; a.style.setProperty("--c", p.color);
       a.innerHTML = '<span class="lc-dot"></span><span class="lc-body"><b></b><small></small></span>';
       a.querySelector("b").textContent = p.name; a.querySelector("small").textContent = p.items.length + " topics";
       list.appendChild(a);

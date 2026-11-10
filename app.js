@@ -103,7 +103,7 @@
       b.style.setProperty("--c", p.color);
       b.innerHTML = '<span class="fl-dot"></span><span class="fl-title"></span>';
       b.querySelector(".fl-title").textContent = p.name;
-      b.addEventListener("click", function (e) { e.stopPropagation(); location.href = "lesson.html?p=" + PATHS.indexOf(p); });
+      b.addEventListener("click", function (e) { e.stopPropagation(); location.href = "spec.html?s=" + PATHS.indexOf(p); });
       list.appendChild(b);
     });
   })();
@@ -111,14 +111,14 @@
   // Level 6 splits into one separate card per specialization. Cybersecurity continues down into Levels 7 and 8.
   if (!LEVEL_MODE) (function () {
     function spec(p, i, flip) {
-      var info = { id: "s" + i, desc: (i === 0 ? "Blue team, red team and security operations." : "Optional path: " + p.items.slice(0, 2).join(", ") + " and more."), name: "Specialization", title: p.name, color: p.color, href: "lesson.html?p=" + i };
+      var info = { id: "s" + i, desc: (i === 0 ? "Blue team, red team and security operations." : "Optional path: " + p.items.slice(0, 2).join(", ") + " and more."), name: "Specialization", title: p.name, color: p.color, href: "spec.html?s=" + i };
       var en = makeLevel(info, trackEl, flip), list = en.lv.querySelector(".fl-list");
       en.barWrap.style.display = "none";
       en.lv.classList.add("spec");
       p.items.forEach(function (t) {
         var b = document.createElement("button"); b.type = "button"; b.className = "fl-item"; b.style.setProperty("--c", p.color);
         b.innerHTML = '<span class="fl-dot"></span><span class="fl-title"></span>'; b.querySelector(".fl-title").textContent = t;
-        b.addEventListener("click", function (e) { e.stopPropagation(); location.href = "lesson.html?p=" + i; });
+        b.addEventListener("click", function (e) { e.stopPropagation(); location.href = "spec.html?s=" + i; });
         list.appendChild(b);
       });
       en.metaEl.textContent = p.items.length + " topics \u00B7 coming soon";
