@@ -30,9 +30,10 @@
   // ----- containers: trunk (Levels 0-2), three branches (Levels 3-5), final (Level 6) -----
   var trunk = document.createElement("div");   trunk.className = "trunk";
   var branches = document.createElement("div"); branches.className = "branches";
+  var l5El = document.createElement("div");  l5El.className = "final l5";
   var finalEl = document.createElement("div");  finalEl.className = "final";
   var trackEl = document.createElement("div");  trackEl.className = "final track";
-  if (levelsEl) { levelsEl.appendChild(trunk); levelsEl.appendChild(branches); levelsEl.appendChild(finalEl); levelsEl.appendChild(trackEl); }
+  if (levelsEl) { levelsEl.appendChild(trunk); levelsEl.appendChild(branches); levelsEl.appendChild(l5El); levelsEl.appendChild(finalEl); levelsEl.appendChild(trackEl); }
 
   function closeAll(except) {
     entries.forEach(function (en) { if (en.lv !== except) en.lv.classList.remove("open"); });
@@ -69,7 +70,7 @@
 
   // Levels 0-5: lessons
   if (!LEVEL_MODE) LEVELS.forEach(function (lv, li) {
-    var en = makeLevel(lv, li < 3 ? trunk : branches, li === 5);
+    var en = makeLevel(lv, li < 3 ? trunk : (li < 5 ? branches : l5El), li === 4);
     var list = en.lv.querySelector(".fl-list");
     if (lv.jobReady) { var fl = document.createElement("div"); fl.className = "job-flag"; fl.innerHTML = '<span class="jf-text"></span><span class="jf-arrow" aria-hidden="true">\u2192</span>'; fl.querySelector(".jf-text").textContent = lv.jobReady; en.lv.appendChild(fl); }
     lv.lessons.forEach(function (row) {
@@ -125,7 +126,7 @@
     }
     function track(lvInfo, row) {
       var groups = TRACKS[lvInfo.id], en = makeLevel(lvInfo, trackEl, false), list = en.lv.querySelector(".fl-list"), count = 0;
-      en.barWrap.style.display = "none"; en.lv.style.gridColumn = "1"; en.lv.style.gridRow = String(row);
+      en.barWrap.style.display = "none"; en.lv.style.setProperty("--c8", "1"); en.lv.style.setProperty("--r8", String(row)); en.lv.style.setProperty("--c4", "1"); en.lv.style.setProperty("--r4", String(row)); en.lv.classList.add("gp");
       groups.forEach(function (g, gi) {
         var h = document.createElement("div"); h.className = "fl-group"; h.style.setProperty("--c", g.color); h.textContent = g.name; list.appendChild(h);
         g.paths.forEach(function (pt, pi) {
@@ -139,12 +140,12 @@
       en.metaEl.textContent = groups.length + " groups \u00B7 " + count + " paths";
     }
     // entries: 7 = Cybersecurity, 8 = Level 7, 9 = Level 8, 10..16 = the other specializations
-    var cy = spec(PATHS[0], 0, false); cy.lv.style.gridColumn = "1"; cy.lv.style.gridRow = "1";
+    var cy = spec(PATHS[0], 0, false); ["--c8","--c4","--r8","--r4"].forEach(function (v) { cy.lv.style.setProperty(v, "1"); }); cy.lv.classList.add("gp");
     cy.metaEl.textContent = "Continues with Levels 7 and 8 \u2193";
     track(LEVEL7, 2); track(LEVEL8, 3);
     PATHS.slice(1).forEach(function (p, k) {
       var en = spec(p, k + 1, k % 3 !== 0 || false);
-      en.lv.style.gridColumn = String(2 + (k % 3)); en.lv.style.gridRow = String(1 + Math.floor(k / 3));
+      en.lv.style.setProperty("--c8", String(2 + k)); en.lv.style.setProperty("--r8", "1"); en.lv.style.setProperty("--c4", String(2 + (k % 3))); en.lv.style.setProperty("--r4", String(1 + Math.floor(k / 3))); en.lv.classList.add("gp"); if (k >= 3) en.lv.classList.add("flip8");
       if (k % 3 === 0) en.lv.classList.remove("flip");
       if (k % 3 === 2) en.lv.classList.add("flip");
     });
@@ -177,11 +178,11 @@
       link(2, 3, 3); link(3, 4, 4); link(4, 5, 5); link(5, 6, 6);
       for (var q = 6; q < 16; q++) link(q, q + 1, q + 1);
     } else {
-      link(2, 3, 3); link(2, 4, 4); link(2, 5, 5);
-      link(3, 6, 3); link(4, 6, 4); link(5, 6, 5);
+      link(2, 3, 3); link(2, 4, 4);
+      link(3, 5, 3); link(4, 5, 4); link(5, 6, 5);
       link(6, 7, 7); link(7, 8, 8); link(8, 9, 9);
       for (var q = 10; q < 13; q++) link(6, q, q);
-      for (var q2 = 13; q2 < 17; q2++) link(q2 - 3, q2, q2);
+      if (window.innerWidth >= 1100) { for (var q3 = 13; q3 < 17; q3++) link(6, q3, q3); } else { for (var q2 = 13; q2 < 17; q2++) link(q2 - 3, q2, q2); }
     }
     svg.innerHTML = out;
   }
