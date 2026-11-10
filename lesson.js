@@ -66,14 +66,14 @@
   flat.forEach(function (l, i) { if (l.n === n) ix = i; });
   if (ix < 0) { location.replace("index.html"); return; }
   var item = flat[ix], level = item.level;
-  document.title = "Lesson " + item.n + " · " + item.title + " · 10-Minute IT Roadmap";
+  document.title = "Lesson " + (LBL[item.n] || item.n) + " · " + item.title + " · 10-Minute IT Roadmap";
   main.style.setProperty("--c", level.color);
-  main.appendChild(crumbs([["Road map", "index.html#map"], [level.name + " · " + level.title, "level.html?l=" + level.id], ["Lesson " + item.n]]));
+  main.appendChild(crumbs([["Road map", "index.html#map"], [level.name + " · " + level.title, "level.html?l=" + level.id], ["Lesson " + (LBL[item.n] || item.n)]]));
 
   var head = el("div", "lp-head");
   head.innerHTML = '<span class="ico"></span><div class="lp-title"><p class="lp-track"></p><h1></h1></div><button type="button" class="lp-done"></button>';
   head.querySelector(".ico").innerHTML = iconSVG(item.n, level.color);
-  head.querySelector(".lp-track").textContent = level.name + " · Lesson " + item.n + " · 10 min";
+  head.querySelector(".lp-track").textContent = level.name + " · Lesson " + (LBL[item.n] || item.n) + " · 10 min";
   head.querySelector("h1").textContent = item.title;
   var db = head.querySelector(".lp-done");
   function dl() { db.textContent = done[item.n] ? "✓ Done" : "Mark as done"; db.classList.toggle("on", !!done[item.n]); }

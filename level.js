@@ -47,7 +47,7 @@
       if (done[n]) c++;
       a.innerHTML = '<span class="ico"></span><span class="lc-body"><b></b><small></small></span><span class="lc-tags"></span><span class="lc-check">✓</span>';
       a.querySelector(".ico").innerHTML = iconSVG(n, lv.color);
-      a.querySelector("b").textContent = row[1]; a.querySelector("small").textContent = "Lesson " + n + " · 10 min";
+      a.querySelector("b").textContent = row[1]; a.querySelector("small").textContent = "Lesson " + (LBL[n] || n) + " · 10 min";
       var tg = a.querySelector(".lc-tags"), has = LESSON_PAGES[n];
       if (has) tg.appendChild(tag("Lesson", "t-les"));
       if (QUIZZES[n]) tg.appendChild(tag("Quiz", "t-quiz"));

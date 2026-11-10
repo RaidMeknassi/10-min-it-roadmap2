@@ -15,7 +15,7 @@
   var entries = [];   // 0..5 = Levels 0-5, 6 = Level 6 (paths)
   var total = 0;
 
-  var LEVEL6 = { id: "l6", desc: "Choose the specialization you want to grow into.", name: "Level 6", title: "Advanced IT Specializations", color: "#f472b6" };
+  var LEVEL6 = { id: "l6", desc: "Choose a professional career path and develop deeper technical skills.", name: "Level 6", title: "Advanced IT Specializations", color: "#f472b6" };
 
   // ----- level chips (jump links) -----
   var chips = document.getElementById("chips");
@@ -69,7 +69,7 @@
 
   // Levels 0-5: lessons
   if (!LEVEL_MODE) LEVELS.forEach(function (lv, li) {
-    var en = makeLevel(lv, li < 4 ? trunk : branches, li === 6);
+    var en = makeLevel(lv, li < 3 ? trunk : branches, li === 5);
     var list = en.lv.querySelector(".fl-list");
     if (lv.jobReady) { var fl = document.createElement("div"); fl.className = "job-flag"; fl.innerHTML = '<span class="jf-text"></span><span class="jf-arrow" aria-hidden="true">\u2192</span>'; fl.querySelector(".jf-text").textContent = lv.jobReady; en.lv.appendChild(fl); }
     lv.lessons.forEach(function (row) {
@@ -79,7 +79,7 @@
       b.type = "button";
       b.className = "fl-item";
       b.innerHTML = '<span class="ico"></span><span class="fl-num"></span><span class="fl-title"></span>' + (lesson.lab ? '<span class="fl-lock" title="Has a lab">🔒</span>' : "");
-      b.querySelector(".fl-num").textContent = lesson.n;
+      b.querySelector(".fl-num").textContent = LBL[lesson.n] || lesson.n;
       var ic = b.querySelector(".ico"); ic.style.setProperty("--c", lv.color);
       ic.innerHTML = iconSVG(lesson.n, lv.color);
       b.querySelector(".fl-title").textContent = lesson.title;
@@ -152,7 +152,7 @@
 
   // ----- connecting lines between the level nodes -----
   function drawRoad() {
-    if (!svg || !road || entries.length < 18) return;
+    if (!svg || !road || entries.length < 17) return;
     var base = road.getBoundingClientRect();
     svg.setAttribute("viewBox", "0 0 " + base.width + " " + base.height);
     var stacked = window.innerWidth <= 720;
@@ -173,16 +173,15 @@
 
     link(0, 1, 1);
     link(1, 2, 2);
-    link(2, 3, 3);
     if (stacked) {
-      link(3, 4, 4); link(4, 5, 5); link(5, 6, 6); link(6, 7, 7);
-      for (var q = 7; q < 17; q++) link(q, q + 1, q + 1);
+      link(2, 3, 3); link(3, 4, 4); link(4, 5, 5); link(5, 6, 6);
+      for (var q = 6; q < 16; q++) link(q, q + 1, q + 1);
     } else {
-      link(3, 4, 4); link(3, 5, 5); link(3, 6, 6);
-      link(4, 7, 4); link(5, 7, 5); link(6, 7, 6);
-      link(7, 8, 8); link(8, 9, 9); link(9, 10, 10);
-      for (var q = 11; q < 14; q++) link(7, q, q);
-      for (var q2 = 14; q2 < 18; q2++) link(q2 - 3, q2, q2);
+      link(2, 3, 3); link(2, 4, 4); link(2, 5, 5);
+      link(3, 6, 3); link(4, 6, 4); link(5, 6, 5);
+      link(6, 7, 7); link(7, 8, 8); link(8, 9, 9);
+      for (var q = 10; q < 13; q++) link(6, q, q);
+      for (var q2 = 13; q2 < 17; q2++) link(q2 - 3, q2, q2);
     }
     svg.innerHTML = out;
   }
@@ -191,7 +190,7 @@
   function refresh() {
     var n = 0;
     entries.forEach(function (en, i) {
-      if (i > 6 || !en.items.length) return;
+      if (i > 5 || !en.items.length) return;
       var c = 0;
       en.items.forEach(function (it) {
         var d = !!done[it.lesson.n];
@@ -220,7 +219,7 @@
     current = l;
     closeAll();
     var tr = document.getElementById("p-track");
-    tr.textContent = l.level.name + " · Lesson " + l.n + " · 10 min";
+    tr.textContent = l.level.name + " · Lesson " + (LBL[l.n] || l.n) + " · 10 min";
     tr.style.color = l.level.color;
     var pt = document.getElementById("p-title");
     pt.innerHTML = '<span class="ico ico-big"></span><span class="pt-text"></span>';

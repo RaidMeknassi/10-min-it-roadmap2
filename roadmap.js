@@ -27,89 +27,54 @@ const LEVELS = [
     ["5", "How Computers Represent Information", 1]
   ]},
 
-  { id: "l2", desc: "Learn how Windows, Linux, macOS and mobile systems work.", name: "Level 2", title: "Operating Systems", color: "#fb923c", lessons: [
+  { id: "l2", desc: "Learn how Windows, Linux and mobile systems work.", name: "Level 2", title: "Operating Systems", color: "#fb923c", lessons: [
     ["6", "Understanding Operating Systems", 0],
-    ["7", "Types of Operating Systems", 0],
-    ["8", "How an Operating System Works", 0],
-    ["9", "How Computers Start: BIOS, UEFI and Boot Process", 0],
-    ["10", "Windows: Understanding the Operating System", 1],
-    ["11", "Linux: Understanding the Operating System", 1],
-    ["12", "macOS: Understanding Apple's Operating System", 0],
-    ["13", "Android and iOS: Mobile Operating Systems", 0],
-    ["14", "Comparing Operating Systems", 0]
+    ["10", "Windows", 1],
+    ["11", "Linux", 1],
+    ["13", "Mobile and Other Operating Systems", 0]
   ]},
 
-  { id: "l25", desc: "How real IT teams work: tickets, ITIL and support scenarios.", name: "Level 2.5", title: "Optional Level: IT in the Workplace", color: "#fbbf24", jobReady: "Ready to start applying for L1 Help Desk / IT Support", lessons: [
-    ["2.5.1", "Introduction to Corporate IT Environments", 0],
-    ["2.5.2", "How IT Departments Are Structured", 0],
-    ["2.5.3", "IT Service Management (ITSM) and ITIL Basics", 0],
-    ["2.5.4", "Understanding Ticketing Systems", 0],
-    ["2.5.5", "Incident Management", 0],
-    ["2.5.6", "Service Requests and Request Fulfilment", 0],
-    ["2.5.7", "Problem Management and Root Cause Analysis", 0],
-    ["2.5.8", "Change Management", 0],
-    ["2.5.9", "Service Level Agreements (SLA) and Priorities", 0],
-    ["2.5.10", "Documentation and Knowledge Bases", 0],
-    ["2.5.11", "Communication with Users and Customers", 0],
-    ["2.5.12", "Working with Real IT Support Scenarios", 0]
-  ]},
-
-  { id: "l3", desc: "Learn how devices talk: IP, DNS, DHCP, ports and Wi-Fi.", name: "Level 3", title: "Networking Fundamentals", color: "#60a5fa", lessons: [
+  { id: "l3", desc: "Learn how devices talk: OSI, IP, DNS, DHCP, TCP and UDP.", name: "Level 3", title: "Networking Fundamentals", color: "#60a5fa", lessons: [
     ["15", "What Is a Network?", 0],
-    ["16", "Network Devices and Components", 0],
+    ["51", "The OSI Model", 0],
+    ["16", "Network Devices and Their Functions", 0],
     ["17", "IP Addressing", 1],
     ["18", "Subnetting Basics", 1],
     ["19", "MAC Addresses", 1],
     ["20", "DNS", 1],
     ["21", "DHCP", 1],
-    ["22", "TCP and UDP", 1],
-    ["23", "Common Network Ports and Protocols", 1],
-    ["24", "Routers, Switches and Access Points", 1],
-    ["25", "Wireless Networks and Wi-Fi", 0],
-    ["26", "Network Troubleshooting", 1]
+    ["22", "TCP and UDP", 1]
   ]},
 
-  { id: "l4", desc: "Threats, attacks and the basics of protecting systems and data.", name: "Level 4", title: "Cybersecurity Fundamentals", color: "#f472b6", lessons: [
+  { id: "l4", desc: "Threats, attacks, passwords and the basics of staying safe.", name: "Level 4", title: "Cybersecurity Fundamentals", color: "#f472b6", lessons: [
     ["27", "What Is Cybersecurity?", 0],
     ["28", "Common Cyber Threats and Attacks", 0],
-    ["29", "Malware and Ransomware", 0],
-    ["30", "Phishing and Social Engineering", 1],
     ["31", "Password Security and MFA", 1],
-    ["32", "Authentication and Authorization", 0],
-    ["33", "Security Principles: CIA Triad", 0],
-    ["34", "Firewalls and Network Security", 1],
-    ["35", "Encryption Basics", 1],
-    ["36", "Vulnerabilities and Risk Management", 0],
-    ["37", "Security Monitoring and Incident Response", 1]
+    ["52", "Cybersecurity Best Practices", 0]
   ]},
 
-  { id: "l5", desc: "Run servers, users, backups and monitoring in a company.", name: "Level 5", title: "IT Administration and Operations", color: "#4ade80", lessons: [
-    ["38", "Introduction to IT Administration", 0],
-    ["39", "Managing Users and Groups", 1],
-    ["40", "Permissions and Access Control", 1],
-    ["41", "Active Directory Fundamentals", 1],
-    ["42", "Managing Windows Systems", 1],
-    ["43", "Linux System Administration", 1],
-    ["44", "Services, Processes and Logs", 1],
-    ["45", "Software Installation and Updates", 1],
-    ["46", "Command Line Fundamentals", 1],
-    ["47", "Scripting and Automation Basics", 1],
-    ["48", "System Monitoring and Performance", 1],
-    ["49", "Backup and Recovery", 1],
-    ["50", "Virtualization Fundamentals", 1]
+  { id: "l5", desc: "Corporate IT, ticketing and getting your first IT job.", name: "Level 5", title: "IT Workplace and Career Preparation", color: "#4ade80", jobReady: "Ready to start applying for L1 Help Desk / IT Support", lessons: [
+    ["53", "Understanding the IT Workplace", 0],
+    ["54", "IT Operations Basics", 0],
+    ["55", "Job Hunting and Applications", 0],
+    ["56", "Interviews and Starting Your Career", 1]
   ]}
 ];
+
+/* Display labels: Level 0 keeps 0.1 ... ; other levels show level.position (1.1, 2.3 ...). Keys stay the same so progress is kept. */
+const LBL = {};
+LEVELS.forEach(function (lv, li) { lv.lessons.forEach(function (r, k) { LBL[r[0]] = li === 0 ? r[0] : li + "." + (k + 1); }); });
 
 /* Level 6 - choose a specialization path */
 const PATHS = [
   { name: "Cybersecurity", color: "#f472b6", items: ["SOC Analyst", "Blue Team", "Penetration Testing", "Digital Forensics", "Threat Hunting", "Incident Response"] },
-  { name: "Networking", color: "#60a5fa", items: ["Network Engineering", "Network Security", "Wireless Networking", "Advanced Routing and Switching"] },
+  { name: "Network Engineering", color: "#60a5fa", items: ["Network Engineering", "Network Security", "Wireless Networking", "Advanced Routing and Switching"] },
+  { name: "Systems Engineering", color: "#fb923c", items: ["Windows Server", "Linux Server", "Active Directory", "Virtualization", "Enterprise Infrastructure"] },
   { name: "Cloud Computing", color: "#22d3ee", items: ["Microsoft Azure", "Amazon AWS", "Google Cloud", "Cloud Security", "Cloud Administration"] },
   { name: "DevOps and Automation", color: "#a78bfa", items: ["Git and GitHub", "CI/CD", "Docker and Containers", "Kubernetes", "Infrastructure as Code"] },
-  { name: "System Engineering", color: "#fb923c", items: ["Windows Server", "Linux Server", "Active Directory", "Virtualization", "Enterprise Infrastructure"] },
   { name: "Software Development", color: "#4ade80", items: ["Programming", "Web Development", "Backend Development", "APIs", "Application Development"] },
-  { name: "Data and AI", color: "#fbbf24", items: ["Databases and SQL", "Data Analysis", "Data Engineering", "Machine Learning", "Artificial Intelligence"] },
-  { name: "IT Support", color: "#2dd4bf", items: ["Help Desk", "Desktop Support", "Hardware Troubleshooting", "Technical Support"] }
+  { name: "Data and Artificial Intelligence", color: "#fbbf24", items: ["Databases and SQL", "Data Analysis", "Data Engineering", "Machine Learning", "Artificial Intelligence"] },
+  { name: "IT Support Engineering", color: "#2dd4bf", items: ["Help Desk", "Desktop Support", "Hardware Troubleshooting", "Technical Support"] }
 ];
 
 /* Certifications to aim for (edit freely). Shown in the Certifications section. */
@@ -120,20 +85,20 @@ const CERTS = [
     items: ["CompTIA Network+", "Cisco CCNA"] },
   { stage: "Level 4", title: "Cybersecurity", color: "#f472b6",
     items: ["CompTIA Security+", "ISC2 Certified in Cybersecurity (CC)", "Microsoft SC-900"] },
-  { stage: "Level 5", title: "IT Administration", color: "#4ade80",
-    items: ["CompTIA Linux+", "Red Hat RHCSA", "Microsoft Endpoint Administrator (MD-102)"] }
+  { stage: "Level 5", title: "IT Workplace", color: "#4ade80",
+    items: ["ITIL 4 Foundation", "CompTIA A+"] }
 ];
 
 /* Level 6: certifications for each specialization path */
 const PATH_CERTS = [
   ["Cybersecurity", "#f472b6", ["Microsoft SC-200", "CompTIA CySA+", "CompTIA PenTest+", "OffSec OSCP"]],
-  ["Networking", "#60a5fa", ["Cisco CCNP Enterprise", "Cisco CCNP Security"]],
+  ["Network Engineering", "#60a5fa", ["Cisco CCNP Enterprise", "Cisco CCNP Security"]],
   ["Cloud Computing", "#22d3ee", ["Microsoft AZ-900 / AZ-104", "AWS Cloud Practitioner / Solutions Architect Associate", "Google Associate Cloud Engineer"]],
   ["DevOps and Automation", "#a78bfa", ["Certified Kubernetes Administrator (CKA)", "HashiCorp Terraform Associate", "GitHub Foundations"]],
-  ["System Engineering", "#fb923c", ["Microsoft Windows Server Hybrid Administrator (AZ-800)", "Red Hat RHCSA", "VMware VCP"]],
+  ["Systems Engineering", "#fb923c", ["Microsoft Windows Server Hybrid Administrator (AZ-800)", "Red Hat RHCSA", "VMware VCP"]],
   ["Software Development", "#4ade80", ["Python Institute PCEP / PCAP", "Microsoft Azure Developer (AZ-204)"]],
-  ["Data and AI", "#fbbf24", ["Microsoft DP-900 / AI-900", "Google Data Analytics Certificate"]],
-  ["IT Support", "#2dd4bf", ["CompTIA A+", "ITIL 4 Foundation", "Microsoft Endpoint Administrator (MD-102)"]]
+  ["Data and Artificial Intelligence", "#fbbf24", ["Microsoft DP-900 / AI-900", "Google Data Analytics Certificate"]],
+  ["IT Support Engineering", "#2dd4bf", ["CompTIA A+", "ITIL 4 Foundation", "Microsoft Endpoint Administrator (MD-102)"]]
 ];
 
 /* YouTube video IDs, by lesson number. Leave empty until the video is ready. */
@@ -196,6 +161,7 @@ const QUIZZES = {
 
 /* LABS - hands-on lab description per lesson (labs are for subscribers later) */
 const LABS = {
+  "56": { title: "Real-World IT Scenarios", text: "Practical support cases and workplace situations: handle tickets, talk to users and decide priorities like a real IT team." },
   "1": { title: "Input, Process, Output", text: "Type any number into the input box, watch the processor work, and see which emoji comes out. Then find the secret rule." },
   "2": { title: "3D hardware teardown", text: "Click a part (CPU, RAM, CPU cooler) and see it float in 3D. Turn it around and learn what it does." },
   "3": { title: "Build the software stack", text: "Drag the layers into place: hardware, BIOS/UEFI, drivers, operating system, applications. Then press Power On and watch the layers work together." },
