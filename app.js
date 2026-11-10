@@ -72,7 +72,7 @@
   if (!LEVEL_MODE) LEVELS.forEach(function (lv, li) {
     var en = makeLevel(lv, li < 3 ? trunk : (li < 5 ? branches : l5El), li === 4);
     var list = en.lv.querySelector(".fl-list");
-    if (lv.jobReady) { var fl = document.createElement("div"); fl.className = "job-flag"; fl.innerHTML = '<span class="jf-text"></span><span class="jf-arrow" aria-hidden="true">\u2192</span>'; fl.querySelector(".jf-text").textContent = lv.jobReady; en.lv.appendChild(fl); }
+    if (lv.jobReady) { var fl = document.createElement("span"); fl.className = "job-tag"; fl.textContent = "\u2714 " + lv.jobReady; en.card.appendChild(fl); }
     lv.lessons.forEach(function (row) {
       var lesson = { n: row[0], title: row[1], lab: !!row[2], level: lv };
       total++;
