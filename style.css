@@ -627,3 +627,5 @@ a.sp-path:hover { transform: translateY(-2px); box-shadow: 0 0 22px -6px var(--p
 @media (max-width: 720px) { .stages { grid-template-columns: 1fr; } }
 .sp-path:not(a) b + .sp-state { color: #cbd5e1; }
 .sp-go { display: inline-block; margin-top: 18px; padding: 12px 22px; border-radius: 999px; text-decoration: none; font-weight: 800; color: #fff; background: linear-gradient(90deg, #38bdf8, #f472b6); }
+
+@media (max-width: 720px) { .top-nav a { padding: 4px 4px; font-size: 11px; } .top-nav a svg { width: 20px; height: 20px; } }
