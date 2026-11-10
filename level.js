@@ -1,11 +1,12 @@
 /* Level page: every lesson of the level as a card. A card opens that lesson on its own page. */
 (function () {
   var $ = function (i) { return document.getElementById(i); };
-  var ALL = LEVELS.concat([{ id: "l6", name: "Level 6", title: "Advanced IT Specializations", color: "#f472b6" }]);
+  var ALL = LEVELS.concat([{ id: "l6m", name: INTERMEDIATE.name, title: INTERMEDIATE.title, color: INTERMEDIATE.color }, { id: "l6", name: "Level 7", title: "Advanced Specializations", color: "#f472b6" }]);
   var done = {}; try { done = JSON.parse(localStorage.getItem("itroadmap-v2-done") || "{}"); } catch (e) { done = {}; }
   var idx = -1, id = new URLSearchParams(location.search).get("l");
   ALL.forEach(function (x, i) { if (x.id === id) idx = i; });
   if (idx < 0) { location.replace("index.html"); return; }
+  if (ALL[idx].id === "l6m") { location.replace("spec.html?m=1"); return; }
   var lv = ALL[idx], isPaths = lv.id === "l6";
   document.title = lv.name + " · " + lv.title + " · 10-Minute IT Roadmap";
   document.body.style.setProperty("--c", lv.color);

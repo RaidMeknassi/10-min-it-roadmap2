@@ -65,7 +65,21 @@ const LEVELS = [
 const LBL = {};
 LEVELS.forEach(function (lv, li) { lv.lessons.forEach(function (r, k) { LBL[r[0]] = li === 0 ? r[0] : li + "." + (k + 1); }); });
 
-/* Level 6 - choose a specialization path */
+/* Level 6 - Intermediate (a path tree on its own page) */
+const INTERMEDIATE = { id: "l6m", desc: "Learn how to work with IT technologies.", name: "Level 6", title: "Intermediate", color: "#38bdf8", items: [
+  ["Windows Administration", "Manage Windows systems, users and settings."],
+  ["Linux Administration", "Manage Linux servers, users, services and permissions."],
+  ["Networking and Configuration", "Configure and troubleshoot real networks."],
+  ["Active Directory Fundamentals", "Domains, users, groups and policies."],
+  ["Scripting and Programming Basics", "PowerShell, Bash and Python."],
+  ["Database Fundamentals", "SQL, databases and data management."],
+  ["Web Fundamentals", "HTML, CSS, JavaScript, HTTP and APIs."],
+  ["Cybersecurity Practices", "Security tools, vulnerability assessment and monitoring."],
+  ["Cloud Computing Fundamentals", "Azure, AWS and cloud services."],
+  ["Virtualization and Containers", "Virtual machines and Docker basics."]
+]};
+
+/* Level 7 (id l6) - choose a specialization path */
 const PATHS = [
   { name: "Cybersecurity", color: "#f472b6", items: ["SOC Analyst", "Blue Team", "Penetration Testing", "Digital Forensics", "Threat Hunting", "Incident Response"] },
   { name: "Network Engineering", color: "#60a5fa", items: ["Network Engineering", "Network Security", "Wireless Networking", "Advanced Routing and Switching"] },

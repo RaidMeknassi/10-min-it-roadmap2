@@ -1,8 +1,9 @@
 /* Specialization page: its own progress tree, with its own background colour. */
 (function () {
-  var i = parseInt(new URLSearchParams(location.search).get("s"), 10);
-  if (isNaN(i) || !PATHS[i]) { location.replace("index.html"); return; }
-  var P = PATHS[i];
+  var qs = new URLSearchParams(location.search), MID = qs.get("m") === "1";
+  var i = parseInt(qs.get("s"), 10);
+  if (!MID && (isNaN(i) || !PATHS[i])) { location.replace("index.html"); return; }
+  var P = MID ? { name: INTERMEDIATE.title, color: INTERMEDIATE.color } : PATHS[i];
   function el(tag, cls, txt) { var e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; }
   document.body.style.setProperty("--c", P.color);
   document.title = P.name + " · 10-Minute IT Roadmap";
@@ -31,7 +32,20 @@
     tree.appendChild(st);
   }
 
-  if (i === 0) {
+  if (MID) {
+    document.title = "Intermediate · 10-Minute IT Roadmap";
+    document.getElementById("sp-title").textContent = "Intermediate Learning Roadmap";
+    document.getElementById("sp-sub").textContent = INTERMEDIATE.desc + " Work through these topics in order. Lessons are coming soon.";
+    tree.appendChild(stage("Level 6 \u00B7 Intermediate", "You finished the beginner levels. Now learn how real IT technologies work."));
+    INTERMEDIATE.items.forEach(function (it) {
+      tree.appendChild(link());
+      var c = pathCard(it[0], null, INTERMEDIATE.color, it[1]);
+      tree.appendChild(c);
+    });
+    tree.appendChild(link());
+    tree.appendChild(stage("What's next?", "Continue to Level 7 and choose your Advanced Specialization."));
+    var go = el("a", "sp-go", "Level 7 \u00B7 Advanced Specializations \u2192"); go.href = "level.html?l=l6"; tree.appendChild(go);
+  } else if (i === 0) {
     document.getElementById("sp-title").textContent = "Cyber Security Learning Roadmap";
     document.getElementById("sp-sub").textContent = "From fundamental principles to advanced techniques, this roadmap provides clear steps and essential resources to help you build a robust skill set.";
     tree.appendChild(stage("Computer Science Basics", "Acquire the basic computer science skills required to get started in cyber security."));

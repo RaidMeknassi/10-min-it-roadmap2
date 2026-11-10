@@ -15,11 +15,11 @@
   var entries = [];   // 0..5 = Levels 0-5, 6 = Level 6 (paths)
   var total = 0;
 
-  var LEVEL6 = { id: "l6", desc: "Choose a professional career path and develop deeper technical skills.", name: "Level 6", title: "Advanced IT Specializations", color: "#f472b6" };
+  var LEVEL6 = { id: "l6", desc: "Choose a professional career path and develop deeper technical skills.", name: "Level 7", title: "Advanced Specializations", color: "#f472b6" };
 
   // ----- level chips (jump links) -----
   var chips = document.getElementById("chips");
-  if (chips) LEVELS.concat([LEVEL6]).forEach(function (lv) {
+  if (chips) LEVELS.concat([INTERMEDIATE, LEVEL6]).forEach(function (lv) {
     var a = document.createElement("a");
     a.href = "#" + lv.id;
     a.style.setProperty("--c", lv.color);
@@ -31,9 +31,10 @@
   var trunk = document.createElement("div");   trunk.className = "trunk";
   var branches = document.createElement("div"); branches.className = "branches";
   var l5El = document.createElement("div");  l5El.className = "final l5";
+  var midEl = document.createElement("div");  midEl.className = "final l6m";
   var finalEl = document.createElement("div");  finalEl.className = "final";
   var trackEl = document.createElement("div");  trackEl.className = "final track";
-  if (levelsEl) { levelsEl.appendChild(trunk); levelsEl.appendChild(branches); levelsEl.appendChild(l5El); levelsEl.appendChild(finalEl); levelsEl.appendChild(trackEl); }
+  if (levelsEl) { levelsEl.appendChild(trunk); levelsEl.appendChild(branches); levelsEl.appendChild(l5El); levelsEl.appendChild(midEl); levelsEl.appendChild(finalEl); levelsEl.appendChild(trackEl); }
 
   function closeAll(except) {
     entries.forEach(function (en) { if (en.lv !== except) en.lv.classList.remove("open"); });
@@ -90,7 +91,21 @@
     });
   });
 
-  // Level 6: specialization paths
+  // Level 6: Intermediate (opens its own path-tree page)
+  if (!LEVEL_MODE) (function () {
+    var info = { id: INTERMEDIATE.id, desc: INTERMEDIATE.desc, name: INTERMEDIATE.name, title: INTERMEDIATE.title, color: INTERMEDIATE.color, href: "spec.html?m=1" };
+    var en = makeLevel(info, midEl, false), list = en.lv.querySelector(".fl-list");
+    en.barWrap.style.display = "none";
+    INTERMEDIATE.items.forEach(function (it) {
+      var b = document.createElement("button"); b.type = "button"; b.className = "fl-item"; b.style.setProperty("--c", info.color);
+      b.innerHTML = '<span class="fl-dot"></span><span class="fl-title"></span>'; b.querySelector(".fl-title").textContent = it[0];
+      b.addEventListener("click", function (e) { e.stopPropagation(); location.href = "spec.html?m=1"; });
+      list.appendChild(b);
+    });
+    en.metaEl.textContent = INTERMEDIATE.items.length + " topics \u00B7 coming soon";
+  })();
+
+  // Level 7: specialization paths
   if (!LEVEL_MODE) (function () {
     var en = makeLevel(LEVEL6, finalEl, false);
     var list = en.lv.querySelector(".fl-list");
@@ -150,7 +165,7 @@
 
   // ----- connecting lines between the level nodes -----
   function drawRoad() {
-    if (!svg || !road || entries.length < 7) return;
+    if (!svg || !road || entries.length < 8) return;
     var base = road.getBoundingClientRect();
     svg.setAttribute("viewBox", "0 0 " + base.width + " " + base.height);
     var stacked = window.innerWidth <= 720;
@@ -172,11 +187,11 @@
     link(0, 1, 1);
     link(1, 2, 2);
     if (stacked) {
-      link(2, 3, 3); link(3, 4, 4); link(4, 5, 5); link(5, 6, 6);
+      link(2, 3, 3); link(3, 4, 4); link(4, 5, 5); link(5, 6, 6); link(6, 7, 7);
       
     } else {
       link(2, 3, 3); link(2, 4, 4);
-      link(3, 5, 3); link(4, 5, 4); link(5, 6, 5);
+      link(3, 5, 3); link(4, 5, 4); link(5, 6, 6); link(6, 7, 7);
     }
     svg.innerHTML = out;
   }
@@ -299,7 +314,7 @@
     current = null;
     closeAll();
     var tr = document.getElementById("p-track");
-    tr.textContent = "Level 6 · Specialization path";
+    tr.textContent = "Level 7 · Specialization path";
     tr.style.color = p.color;
     document.querySelector(".panel").classList.remove("wide");
     var oa = document.querySelector(".open-full"); if (oa) oa.remove();

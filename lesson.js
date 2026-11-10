@@ -1,7 +1,7 @@
 /* Lesson page: one lesson (or Level 6 path) on a whole page of its own. */
 (function () {
   var $ = function (i) { return document.getElementById(i); };
-  var LEVEL6 = { id: "l6", name: "Level 6", title: "Advanced IT Specializations", color: "#f472b6" };
+  var LEVEL6 = { id: "l6", name: "Level 7", title: "Advanced Specializations", color: "#f472b6" };
   var KEY = "itroadmap-v2-done", done = {};
   try { done = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) { done = {}; }
   function save() { try { localStorage.setItem(KEY, JSON.stringify(done)); } catch (e) {} }
@@ -51,8 +51,8 @@
     var p = PATHS[parseInt(qs.get("p"), 10)];
     if (!p) { location.replace("index.html"); return; }
     document.title = p.name + " · 10-Minute IT Roadmap"; main.style.setProperty("--c", p.color);
-    main.appendChild(crumbs([["Road map", "index.html#map"], ["Level 6 · " + LEVEL6.title, "level.html?l=l6"], [p.name]]));
-    var h = el("div", "lp-head"); h.innerHTML = '<div class="lp-title"><p class="lp-track">Level 6 · Specialization path</p><h1></h1></div>'; h.querySelector("h1").textContent = p.name; main.appendChild(h);
+    main.appendChild(crumbs([["Road map", "index.html#map"], ["Level 7 · " + LEVEL6.title, "level.html?l=l6"], [p.name]]));
+    var h = el("div", "lp-head"); h.innerHTML = '<div class="lp-title"><p class="lp-track">Level 7 · Specialization path</p><h1></h1></div>'; h.querySelector("h1").textContent = p.name; main.appendChild(h);
     var card = el("div", "lp-stage t-card"); card.innerHTML = "<div class='lp-card'><h3>Topics in this path</h3><ul class='lp-topics'></ul><p>Detailed lessons for this path are <b>coming soon</b>.</p></div>";
     p.items.forEach(function (t) { card.querySelector("ul").appendChild(el("li", "", t)); }); main.appendChild(card);
     var back = el("div", "lp-foot"); var b = el("a", "lp-btn", "← All paths"); b.href = "level.html?l=l6"; back.appendChild(b);
