@@ -109,7 +109,7 @@
   })();
 
   // Level 6 splits into one separate card per specialization. Cybersecurity continues down into Levels 7 and 8.
-  if (!LEVEL_MODE) (function () {
+  if (false) (function () {
     function spec(p, i, flip) {
       var info = { id: "s" + i, desc: (i === 0 ? "Blue team, red team and security operations." : "Optional path: " + p.items.slice(0, 2).join(", ") + " and more."), name: "Specialization", title: p.name, color: p.color, href: "spec.html?s=" + i };
       var en = makeLevel(info, trackEl, flip), list = en.lv.querySelector(".fl-list");
@@ -150,7 +150,7 @@
 
   // ----- connecting lines between the level nodes -----
   function drawRoad() {
-    if (!svg || !road || entries.length < 15) return;
+    if (!svg || !road || entries.length < 7) return;
     var base = road.getBoundingClientRect();
     svg.setAttribute("viewBox", "0 0 " + base.width + " " + base.height);
     var stacked = window.innerWidth <= 720;
@@ -173,12 +173,10 @@
     link(1, 2, 2);
     if (stacked) {
       link(2, 3, 3); link(3, 4, 4); link(4, 5, 5); link(5, 6, 6);
-      for (var q = 6; q < 14; q++) link(q, q + 1, q + 1);
+      
     } else {
       link(2, 3, 3); link(2, 4, 4);
       link(3, 5, 3); link(4, 5, 4); link(5, 6, 5);
-      if (window.innerWidth >= 1100) { for (var q3 = 7; q3 < 15; q3++) link(6, q3, q3); }
-      else { for (var q4 = 7; q4 < 11; q4++) link(6, q4, q4); for (var q5 = 11; q5 < 15; q5++) link(q5 - 4, q5, q5); }
     }
     svg.innerHTML = out;
   }
