@@ -1,6 +1,7 @@
 /* Certifications page: search + filters by level and by specialization. */
 (function () {
-  var LEVELS_F = [["l02", "Levels 0-2"], ["l3", "Level 3"], ["l4", "Level 4"], ["l5", "Level 5"], ["l6", "Level 6 Intermediate"], ["l7", "Level 7 Advanced"]];
+  var LEVELS_F = [["b", "Beginner"], ["i", "Intermediate"], ["a", "Advanced"]];
+  var STAGE = { l02: "b", l3: "b", l4: "b", l5: "b", l6: "i", l7: "a" };
   var SPECS_F = ["Cybersecurity", "Network Engineering", "Systems Engineering", "Cloud Computing", "DevOps and Automation", "Software Development", "Data and Artificial Intelligence", "IT Support Engineering"];
   var V = { CompTIA: "#ef4444", Cisco: "#0ea5e9", Microsoft: "#38bdf8", Google: "#34a853", AWS: "#f59e0b", "Red Hat": "#f43f5e", ISC2: "#84cc16", PeopleCert: "#a855f7", HashiCorp: "#8b5cf6", GitHub: "#94a3b8", VMware: "#2dd4bf", "Python Institute": "#facc15", CNCF: "#3b82f6", OffSec: "#fb923c" };
   /* [name, vendor, badge text, levels, specializations] */
@@ -40,6 +41,7 @@
     ["Microsoft AI-900 Azure AI Fundamentals", "Microsoft", "AI-900", ["l7"], ["Data and Artificial Intelligence"]],
     ["Google Data Analytics Certificate", "Google", "DATA", ["l7"], ["Data and Artificial Intelligence"]]
   ];
+  C.forEach(function (c) { var o = []; c[3].forEach(function (l) { var t = STAGE[l]; if (o.indexOf(t) < 0) o.push(t); }); c[3] = o; });
   var $ = function (i) { return document.getElementById(i); };
   var selL = "", selS = "", q = "";
   var lname = {}; LEVELS_F.forEach(function (l) { lname[l[0]] = l[1]; });
