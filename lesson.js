@@ -56,7 +56,6 @@
     var card = el("div", "lp-stage t-card"); card.innerHTML = "<div class='lp-card'><h3>Topics in this path</h3><ul class='lp-topics'></ul><p>Detailed lessons for this path are <b>coming soon</b>.</p></div>";
     p.items.forEach(function (t) { card.querySelector("ul").appendChild(el("li", "", t)); }); main.appendChild(card);
     var back = el("div", "lp-foot"); var b = el("a", "lp-btn", "← All paths"); b.href = "level.html?l=l6"; back.appendChild(b);
-    if (p.name === "Cybersecurity") { var c7 = el("a", "lp-btn", "Continue: Level 7 Career Skills →"); c7.href = "level.html?l=l7"; c7.style.setProperty("--c", LEVEL7.color); back.appendChild(c7); }
     main.appendChild(back);
     return;
   }

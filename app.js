@@ -19,7 +19,7 @@
 
   // ----- level chips (jump links) -----
   var chips = document.getElementById("chips");
-  if (chips) LEVELS.concat([LEVEL6, LEVEL7, LEVEL8]).forEach(function (lv) {
+  if (chips) LEVELS.concat([LEVEL6]).forEach(function (lv) {
     var a = document.createElement("a");
     a.href = "#" + lv.id;
     a.style.setProperty("--c", lv.color);
@@ -139,21 +139,18 @@
       });
       en.metaEl.textContent = groups.length + " groups \u00B7 " + count + " paths";
     }
-    // entries: 7 = Cybersecurity, 8 = Level 7, 9 = Level 8, 10..16 = the other specializations
-    var cy = spec(PATHS[0], 0, false); ["--c8","--c4","--r8","--r4"].forEach(function (v) { cy.lv.style.setProperty(v, "1"); }); cy.lv.classList.add("gp");
-    cy.metaEl.textContent = "Continues with Levels 7 and 8 \u2193";
-    track(LEVEL7, 2); track(LEVEL8, 3);
-    PATHS.slice(1).forEach(function (p, k) {
-      var en = spec(p, k + 1, k % 3 !== 0 || false);
-      en.lv.style.setProperty("--c8", String(2 + k)); en.lv.style.setProperty("--r8", "1"); en.lv.style.setProperty("--c4", String(2 + (k % 3))); en.lv.style.setProperty("--r4", String(1 + Math.floor(k / 3))); en.lv.classList.add("gp"); if (k >= 3) en.lv.classList.add("flip8");
-      if (k % 3 === 0) en.lv.classList.remove("flip");
-      if (k % 3 === 2) en.lv.classList.add("flip");
+    // entries: 7..14 = the 8 specializations (one row on wide screens, 4 per row on medium screens)
+    PATHS.forEach(function (p, j) {
+      var en = spec(p, j, (j % 4) >= 2);
+      en.lv.style.setProperty("--c8", String(1 + j)); en.lv.style.setProperty("--r8", "1");
+      en.lv.style.setProperty("--c4", String(1 + (j % 4))); en.lv.style.setProperty("--r4", String(1 + Math.floor(j / 4)));
+      en.lv.classList.add("gp"); if (j >= 4) en.lv.classList.add("flip8");
     });
   })();
 
   // ----- connecting lines between the level nodes -----
   function drawRoad() {
-    if (!svg || !road || entries.length < 17) return;
+    if (!svg || !road || entries.length < 15) return;
     var base = road.getBoundingClientRect();
     svg.setAttribute("viewBox", "0 0 " + base.width + " " + base.height);
     var stacked = window.innerWidth <= 720;
@@ -176,13 +173,12 @@
     link(1, 2, 2);
     if (stacked) {
       link(2, 3, 3); link(3, 4, 4); link(4, 5, 5); link(5, 6, 6);
-      for (var q = 6; q < 16; q++) link(q, q + 1, q + 1);
+      for (var q = 6; q < 14; q++) link(q, q + 1, q + 1);
     } else {
       link(2, 3, 3); link(2, 4, 4);
       link(3, 5, 3); link(4, 5, 4); link(5, 6, 5);
-      link(6, 7, 7); link(7, 8, 8); link(8, 9, 9);
-      for (var q = 10; q < 13; q++) link(6, q, q);
-      if (window.innerWidth >= 1100) { for (var q3 = 13; q3 < 17; q3++) link(6, q3, q3); } else { for (var q2 = 13; q2 < 17; q2++) link(q2 - 3, q2, q2); }
+      if (window.innerWidth >= 1100) { for (var q3 = 7; q3 < 15; q3++) link(6, q3, q3); }
+      else { for (var q4 = 7; q4 < 11; q4++) link(6, q4, q4); for (var q5 = 11; q5 < 15; q5++) link(q5 - 4, q5, q5); }
     }
     svg.innerHTML = out;
   }

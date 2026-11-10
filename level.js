@@ -1,7 +1,7 @@
 /* Level page: every lesson of the level as a card. A card opens that lesson on its own page. */
 (function () {
   var $ = function (i) { return document.getElementById(i); };
-  var ALL = LEVELS.concat([{ id: "l6", name: "Level 6", title: "Advanced IT Specializations", color: "#f472b6" }, LEVEL7, LEVEL8]);
+  var ALL = LEVELS.concat([{ id: "l6", name: "Level 6", title: "Advanced IT Specializations", color: "#f472b6" }]);
   var done = {}; try { done = JSON.parse(localStorage.getItem("itroadmap-v2-done") || "{}"); } catch (e) { done = {}; }
   var idx = -1, id = new URLSearchParams(location.search).get("l");
   ALL.forEach(function (x, i) { if (x.id === id) idx = i; });
