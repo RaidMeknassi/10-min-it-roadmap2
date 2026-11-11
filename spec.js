@@ -40,6 +40,7 @@
     INTERMEDIATE.items.forEach(function (it) {
       tree.appendChild(link());
       var c = pathCard(it[0], null, INTERMEDIATE.color, it[1]);
+      if (it[2]) { var ul = el("ul", "sp-subs"); it[2].forEach(function (t) { ul.appendChild(el("li", "", t)); }); c.insertBefore(ul, c.querySelector(".sp-bar")); }
       tree.appendChild(c);
     });
     tree.appendChild(link());

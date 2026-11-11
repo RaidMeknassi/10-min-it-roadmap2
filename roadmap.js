@@ -34,16 +34,12 @@ const LEVELS = [
     ["13", "Mobile and Other Operating Systems", 0]
   ]},
 
-  { id: "l3", desc: "Learn how devices talk: OSI, IP, DNS, DHCP, TCP and UDP.", name: "Level 3", title: "Networking Fundamentals", color: "#60a5fa", lessons: [
+  { id: "l3", desc: "Learn how devices talk: the OSI model, devices, IP and MAC addresses.", name: "Level 3", title: "Networking Fundamentals", color: "#60a5fa", lessons: [
     ["15", "What Is a Network?", 0],
     ["51", "The OSI Model", 0],
     ["16", "Network Devices and Their Functions", 0],
     ["17", "IP Addressing", 1],
-    ["18", "Subnetting Basics", 1],
-    ["19", "MAC Addresses", 1],
-    ["20", "DNS", 1],
-    ["21", "DHCP", 1],
-    ["22", "TCP and UDP", 1]
+    ["19", "MAC Addresses", 1]
   ]},
 
   { id: "l4", desc: "Threats, attacks, passwords and the basics of staying safe.", name: "Level 4", title: "Cybersecurity Fundamentals", color: "#f472b6", lessons: [
@@ -69,7 +65,7 @@ LEVELS.forEach(function (lv, li) { lv.lessons.forEach(function (r, k) { LBL[r[0]
 const INTERMEDIATE = { id: "l6m", desc: "Learn how to work with IT technologies.", name: "Level 6", title: "Intermediate", color: "#38bdf8", items: [
   ["Windows Administration", "Manage Windows systems, users and settings."],
   ["Linux Administration", "Manage Linux servers, users, services and permissions."],
-  ["Networking and Configuration", "Configure and troubleshoot real networks."],
+  ["Intermediate Networking", "Configure and troubleshoot real networks.", ["Subnetting", "DNS", "DHCP", "TCP and UDP"]],
   ["Active Directory Fundamentals", "Domains, users, groups and policies."],
   ["Scripting and Programming Basics", "PowerShell, Bash and Python."],
   ["Database Fundamentals", "SQL, databases and data management."],

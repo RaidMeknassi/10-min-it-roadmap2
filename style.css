@@ -652,3 +652,6 @@ a.sp-path:hover { transform: translateY(-2px); box-shadow: 0 0 22px -6px var(--p
 .cx-tag { font-size: 11px; padding: 3px 8px; border-radius: 999px; background: rgba(163,230,53,.14); color: #d9f99d; }
 .cx-tag-s { background: rgba(167,139,250,.16); color: #ddd6fe; }
 @media (max-width: 620px) { .cx-filter { flex-direction: column; gap: 4px; } .cx-filter > span { flex: none; padding-top: 0; } .cx-grid { grid-template-columns: repeat(2, 1fr); gap: 12px; } }
+
+.sp-subs { list-style: none; margin: 10px 0 12px; padding: 0; display: flex; flex-wrap: wrap; gap: 6px; }
+.sp-subs li { font-size: 12px; padding: 3px 10px; border-radius: 999px; background: rgba(56,189,248,.16); border: 1px solid rgba(56,189,248,.4); color: #e0f2fe; }
