@@ -118,7 +118,14 @@ const PATH_CERTS = [
 
 /* YouTube video IDs, by lesson number. Leave empty until the video is ready. */
 const VIDEOS = {
-  "10": "6qBUwYLLe_U", // Windows
+  "0.2": "oOPpmy0bbOg", // What Is IT?
+  "0.3": "fwtvIdJAo8w", // Careers in IT
+  "1":   "vAC-H0WmxtM", // What Is a Computer?
+  "2":   "INuCWyL0C40", // What Is Hardware?
+  "3":   "r6trL01su2w", // What Is Software?
+  "4":   "_jvHKsBNcRY", // How Does a Computer Work?
+  "5":   "lE3M-oPZUTQ", // How Computers Represent Information
+  "10":  "6qBUwYLLe_U", // Windows
 };
 
 /* Web-version lessons (HTML pages inside the "lessons" folder), by lesson number.
