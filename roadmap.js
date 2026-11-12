@@ -29,6 +29,7 @@ const LEVELS = [
 
   { id: "l2", desc: "Learn how Windows, Linux and mobile systems work.", name: "Level 2", title: "Operating Systems", color: "#fb923c", lessons: [
     ["6", "Understanding Operating Systems", 0],
+    ["57", "The Kernel", 0],
     ["10", "Windows", 1],
     ["11", "Linux", 1],
     ["13", "Mobile and Other Operating Systems", 0]
