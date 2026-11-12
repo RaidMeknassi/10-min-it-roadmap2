@@ -61,6 +61,8 @@ const LEVELS = [
 /* Display labels: Level 0 keeps 0.1 ... ; other levels show level.position (1.1, 2.3 ...). Keys stay the same so progress is kept. */
 const LBL = {};
 LEVELS.forEach(function (lv, li) { lv.lessons.forEach(function (r, k) { LBL[r[0]] = li === 0 ? r[0] : li + "." + (k + 1); }); });
+// Level 1 custom labels
+LBL["1"] = "1"; LBL["2"] = "2"; LBL["3"] = "3"; LBL["4"] = "4"; LBL["5"] = "5";
 // Level 2 custom labels
 LBL["6"] = "6"; LBL["57"] = "6.5"; LBL["10"] = "7"; LBL["11"] = "8"; LBL["13"] = "9";
 
