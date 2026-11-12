@@ -118,7 +118,7 @@ const PATH_CERTS = [
 
 /* YouTube video IDs, by lesson number. Leave empty until the video is ready. */
 const VIDEOS = {
-  // "3": "AbCdEf12345",
+  "10": "6qBUwYLLe_U", // Windows
 };
 
 /* Web-version lessons (HTML pages inside the "lessons" folder), by lesson number.
