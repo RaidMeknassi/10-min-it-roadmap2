@@ -18,13 +18,20 @@ h1{margin:0 0 2px;font-size:clamp(18px,3vw,26px)}
 #hint{text-align:center;color:#9a9ab0;font-size:13px;padding:2px 0 4px}
 #progress{text-align:center;color:#fbbf24;font-size:13px;font-weight:700;padding-bottom:12px}
 #info{position:absolute;right:12px;bottom:12px;width:min(340px,calc(100% - 24px));padding:14px 16px;border:2px solid var(--c,#2dd4bf);border-radius:14px;background:rgba(10,10,22,.88);backdrop-filter:blur(6px);opacity:0;transform:translateY(10px);pointer-events:none;transition:.3s}
-#info.show{opacity:1;transform:none}
+#info.show{opacity:1;transform:none;pointer-events:auto}
 #info h2{margin:0;color:var(--c);font-size:20px}
 #info .what{margin:2px 0 8px;font-weight:700}
 #info ul{margin:0;padding-left:18px;font-size:13px;line-height:1.5;color:#d4d4e6}
 #back{position:absolute;left:12px;top:12px;font:700 13px system-ui;padding:8px 14px;border-radius:999px;border:0;background:#fff;color:#07070d;cursor:pointer;display:none}
 #back.show{display:block}
-@media(max-width:640px){#info{position:static;width:auto;margin:8px 12px 0;transform:none;display:none}#info.show{display:block}#stageBox{min-height:320px;flex:none;height:55vh}}
+@media(max-width:640px){
+  #stageBox{height:45vh;min-height:220px;flex:none}
+  #info{position:static !important;width:auto !important;right:auto;bottom:auto;transform:none !important;opacity:0;display:block;pointer-events:none;max-height:0;overflow:hidden;padding:0 12px;border-left:none;border-right:none;border-radius:0;border-top:none;margin:0;transition:max-height .3s,opacity .3s,padding .3s}
+  #info.show{opacity:1;max-height:400px;pointer-events:auto;padding:10px 12px}
+  #info h2{font-size:14px}
+  #info .what{font-size:12px;margin:2px 0 5px}
+  #info ul{font-size:12px;line-height:1.4}
+}
 </style></head><body>
 <header><h1>Lab 2: 3D Hardware Teardown</h1><p class="sub">Click a part. It floats up so you can turn it around and learn what it does.</p></header>
 <div id="stageBox"><div id="stage"></div><div id="loading">Loading 3D models...</div><button id="back" type="button">← Back to all parts</button><div id="info"></div></div>
