@@ -24,7 +24,8 @@ const LEVELS = [
     ["2", "What Is Hardware?", 1],
     ["3", "What Is Software?", 1],
     ["4", "How Does a Computer Work?", 1],
-    ["5", "How Computers Represent Information", 1]
+    ["5", "How Computers Represent Information", 1],
+    ["58", "Binary Calculation", 0]
   ]},
 
   { id: "l2", desc: "Learn how Windows, Linux and mobile systems work.", name: "Level 2", title: "Operating Systems", color: "#fb923c", lessons: [
@@ -60,7 +61,7 @@ const LEVELS = [
 const LBL = {};
 LEVELS.forEach(function (lv, li) { lv.lessons.forEach(function (r, k) { LBL[r[0]] = li === 0 ? r[0] : li + "." + (k + 1); }); });
 // Level 1 custom labels
-LBL["1"] = "1"; LBL["2"] = "2"; LBL["3"] = "3"; LBL["4"] = "4"; LBL["5"] = "5";
+LBL["1"] = "1"; LBL["2"] = "2"; LBL["3"] = "3"; LBL["4"] = "4"; LBL["5"] = "5"; LBL["58"] = "5.1";
 // Level 2 custom labels (6, 7, 8, 9)
 LBL["6"] = "6"; LBL["10"] = "7"; LBL["11"] = "8"; LBL["13"] = "9";
 // Level 3 custom labels (3.1–3.4)
