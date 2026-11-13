@@ -24,13 +24,15 @@ h1{margin:0 0 2px;font-size:clamp(18px,3vw,26px)}
 #info ul{margin:0;padding-left:18px;font-size:13px;line-height:1.5;color:#d4d4e6}
 #back{position:absolute;left:12px;top:12px;font:700 13px system-ui;padding:8px 14px;border-radius:999px;border:0;background:#fff;color:#07070d;cursor:pointer;display:none}
 #back.show{display:block}
+#infoMobile{display:none}
 @media(max-width:640px){
-  #stageBox{height:45vh;min-height:220px;flex:none}
-  #info{position:static !important;width:auto !important;right:auto;bottom:auto;transform:none !important;opacity:0;display:block;pointer-events:none;max-height:0;overflow:hidden;padding:0 12px;border-left:none;border-right:none;border-radius:0;border-top:none;margin:0;transition:max-height .3s,opacity .3s,padding .3s}
-  #info.show{opacity:1;max-height:400px;pointer-events:auto;padding:10px 12px}
-  #info h2{font-size:14px}
-  #info .what{font-size:12px;margin:2px 0 5px}
-  #info ul{font-size:12px;line-height:1.4}
+  #stageBox{height:40vh;min-height:200px;flex:none}
+  #info{display:none !important}
+  #infoMobile{display:block;margin:0 12px;padding:10px 14px;border:2px solid var(--c,#2dd4bf);border-radius:14px;background:rgba(10,10,22,.88);opacity:0;max-height:0;overflow:hidden;pointer-events:none;transition:max-height .35s,opacity .3s}
+  #infoMobile.show{opacity:1;max-height:400px;pointer-events:auto}
+  #infoMobile h2{margin:0;color:var(--c);font-size:14px}
+  #infoMobile .what{margin:2px 0 5px;font-weight:700;font-size:12px}
+  #infoMobile ul{margin:0;padding-left:16px;font-size:12px;line-height:1.4;color:#d4d4e6}
 }
 </style></head><body>
 <header><h1>Lab 2: 3D Hardware Teardown</h1><p class="sub">Click a part. It floats up so you can turn it around and learn what it does.</p></header>
@@ -38,5 +40,19 @@ h1{margin:0 0 2px;font-size:clamp(18px,3vw,26px)}
 <div id="tabs"></div>
 <div id="hint">Click a part to look closer.</div>
 <div id="progress">Explored 0 of 3</div>
+<div id="infoMobile"></div>
 <script src="lab2.js"></script>
+<script>
+// Mirror #info content to #infoMobile for mobile layout
+(function(){
+  var src=document.getElementById('info'), dst=document.getElementById('infoMobile');
+  if(!src||!dst) return;
+  var obs=new MutationObserver(function(){
+    dst.innerHTML=src.innerHTML;
+    dst.className=src.className;
+    dst.style.setProperty('--c', src.style.getPropertyValue('--c'));
+  });
+  obs.observe(src,{childList:true,subtree:true,attributes:true,attributeFilter:['class','style']});
+})();
+</script>
 </body></html>
