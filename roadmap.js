@@ -138,14 +138,6 @@ const VIDEOS = {
 /* Web-version lessons (HTML pages inside the "lessons" folder), by lesson number.
    To add a lesson: put its folder in lessons/ and add a line here. */
 const LESSON_PAGES = {
-  "0.2": "lessons/whatisit/index.html",
-  "0.3": "lessons/itcareers/index.html",
-  "0.4": "lessons/howtolearn/index.html",
-  "1": "lessons/whatisacomputer/index.html",
-  "2": "lessons/whatishardware/index.html",
-  "3": "lessons/whatissoftware/index.html",
-  "4": "lessons/howcomputerworks/index.html",
-  "5": "lessons/howrepresent/index.html"
 };
 
 /* QUIZZES - one per lesson, each with its own style (type):
