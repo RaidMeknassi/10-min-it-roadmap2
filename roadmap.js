@@ -125,7 +125,13 @@ const VIDEOS = {
   "3":   "r6trL01su2w", // What Is Software?
   "4":   "_jvHKsBNcRY", // How Does a Computer Work?
   "5":   "lE3M-oPZUTQ", // How Computers Represent Information
+  "6":   "OYSLIOZQ1hw", // Understanding Operating Systems
+  "57":  "0VVAza-8CUY", // The Kernel
   "10":  "6qBUwYLLe_U", // Windows
+  "11":  "xM5UZDypWmA", // Linux
+  "13":  "XID0Vgtylt8", // Mobile and Other Operating Systems
+  "15":  "CRYJtPPXak0", // What Is a Network?
+  "16":  "WETARwhb1RM", // Network Devices and Their Functions
 };
 
 /* Web-version lessons (HTML pages inside the "lessons" folder), by lesson number.
