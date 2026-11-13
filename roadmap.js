@@ -29,7 +29,6 @@ const LEVELS = [
 
   { id: "l2", desc: "Learn how Windows, Linux and mobile systems work.", name: "Level 2", title: "Operating Systems", color: "#fb923c", lessons: [
     ["6", "Understanding Operating Systems", 0],
-    ["57", "The Kernel", 0],
     ["10", "Windows", 1],
     ["11", "Linux", 1],
     ["13", "Mobile and Other Operating Systems", 0]
@@ -37,10 +36,9 @@ const LEVELS = [
 
   { id: "l3", desc: "Learn how devices talk: the OSI model, devices, IP and MAC addresses.", name: "Level 3", title: "Networking Fundamentals", color: "#60a5fa", lessons: [
     ["15", "What Is a Network?", 0],
-    ["51", "The OSI Model", 0],
     ["16", "Network Devices and Their Functions", 0],
-    ["17", "IP Addressing", 1],
-    ["19", "MAC Addresses", 1]
+    ["51", "The OSI Model", 0],
+    ["17", "IP Addresses and MAC Addresses", 1]
   ]},
 
   { id: "l4", desc: "Threats, attacks, passwords and the basics of staying safe.", name: "Level 4", title: "Cybersecurity Fundamentals", color: "#f472b6", lessons: [
@@ -63,11 +61,14 @@ const LBL = {};
 LEVELS.forEach(function (lv, li) { lv.lessons.forEach(function (r, k) { LBL[r[0]] = li === 0 ? r[0] : li + "." + (k + 1); }); });
 // Level 1 custom labels
 LBL["1"] = "1"; LBL["2"] = "2"; LBL["3"] = "3"; LBL["4"] = "4"; LBL["5"] = "5";
-// Level 2 custom labels
-LBL["6"] = "6"; LBL["57"] = "6.5"; LBL["10"] = "7"; LBL["11"] = "8"; LBL["13"] = "9";
+// Level 2 custom labels (6, 7, 8, 9)
+LBL["6"] = "6"; LBL["10"] = "7"; LBL["11"] = "8"; LBL["13"] = "9";
+// Level 3 custom labels (3.1–3.4)
+LBL["15"] = "3.1"; LBL["16"] = "3.2"; LBL["51"] = "3.3"; LBL["17"] = "3.4";
 
 /* Level 6 - Intermediate (a path tree on its own page) */
 const INTERMEDIATE = { id: "l6m", desc: "Learn how to work with IT technologies.", name: "Level 6", title: "Intermediate", color: "#38bdf8", items: [
+  ["Operating Systems", "Deep dive into how operating systems work.", ["The Kernel", "Understanding Processes", "CPU Scheduling"]],
   ["Windows Administration", "Manage Windows systems, users and settings."],
   ["Linux Administration", "Manage Linux servers, users, services and permissions."],
   ["Intermediate Networking", "Configure and troubleshoot real networks.", ["Subnetting", "DNS", "DHCP", "TCP and UDP"]],
@@ -126,7 +127,6 @@ const VIDEOS = {
   "4":   "_jvHKsBNcRY", // How Does a Computer Work?
   "5":   "lE3M-oPZUTQ", // How Computers Represent Information
   "6":   "OYSLIOZQ1hw", // Understanding Operating Systems
-  "57":  "0VVAza-8CUY", // The Kernel
   "10":  "6qBUwYLLe_U", // Windows
   "11":  "xM5UZDypWmA", // Linux
   "13":  "XID0Vgtylt8", // Mobile and Other Operating Systems
