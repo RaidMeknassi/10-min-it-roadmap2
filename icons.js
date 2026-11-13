@@ -129,7 +129,13 @@
     "47": function () { return ln(50, 20, 50, 8, 3, "gray") + ci(50, 8, 4, "red") + rr(20, 20, 60, 50, 13, "gray") + ci(36, 42, 9, "dark") + ci(64, 42, 9, "dark") + ci(36, 42, 4, "sky") + ci(64, 42, 4, "sky") + rr(36, 58, 28, 5, 2.5, "dark", true) + rr(12, 36, 8, 16, 3, "blue") + rr(80, 36, 8, 16, 3, "blue") + rr(34, 72, 32, 12, 4, "blue"); },
     "48": function () { return rr(12, 16, 76, 66, 9, "dark") + rr(22, 54, 10, 20, 2, "green", true) + rr(38, 42, 10, 32, 2, "teal", true) + rr(54, 32, 10, 42, 2, "blue", true) + rr(70, 24, 10, 50, 2, "purple", true) + pa("M22 46 L40 34 L56 40 L78 20", "yellow", 3.5); },
     "49": function () { return rr(22, 20, 56, 14, 7, "gray") + rr(22, 38, 56, 14, 7, "gray") + rr(22, 56, 56, 14, 7, "gray") + ci(32, 27, 2.5, "green") + ci(32, 45, 2.5, "green") + ci(32, 63, 2.5, "green") + pa("M64 82 A18 18 0 1 0 50 76", "teal", 6) + pg("42,70 56,72 50,84", "teal"); },
-    "50": function () { return cube("sky", "blue", "teal", 50, 52, 38) + cube("white", "gray", "white", 50, 52, 17); }
+    "50": function () { return cube("sky", "blue", "teal", 50, 52, 38) + cube("white", "gray", "white", 50, 52, 17); },
+    "51": function () {
+      var cols = ["blue","sky","teal","green","yellow","orange","red"], y = 16, h = 10, gap = 2, body = "";
+      cols.forEach(function(c,i){ body += rr(10, y + i*(h+gap), 80, h, 3, c, true); });
+      return body;
+    },
+    "58": function () { return rr(10, 14, 80, 72, 10, "dark") + tx(50, 44, "1011", 22, "#4ade80") + ln(14, 50, 86, 50, 2, "gray") + tx(14, 65, "+", 18, "#fb923c") + tx(50, 68, "0101", 22, "#60a5fa") + ln(14, 72, 86, 72, 2, "gray") + tx(50, 85, "=", 15, "#a78bfa"); }
   };
 
   var FILES = {};
