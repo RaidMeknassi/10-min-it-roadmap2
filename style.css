@@ -457,6 +457,14 @@ h1 span { background: var(--grad); -webkit-background-clip: text; background-cli
 .lc.done { border-color: #4ade80; }
 .lc.done .lc-check { display: grid; }
 .lc-dot { flex: none; width: 14px; height: 14px; border-radius: 50%; background: var(--c); margin: 0 4px 0 6px; box-shadow: 0 0 12px var(--c); }
+.cert-rec { margin: 24px 0 0; }
+.cert-rec-title { margin: 0 0 12px; font-size: 15px; color: #d4d4e6; letter-spacing: .03em; }
+.cert-rec-card { display: flex; align-items: center; gap: 18px; padding: 16px 18px; border: 2px solid #4ade80; border-radius: 16px; background: rgba(74,222,128,.06); }
+.cert-rec-info { flex: 1; }
+.cert-rec-info b { font-size: 15px; color: #fff; }
+.cert-rec-info p { margin: 4px 0 10px; font-size: 13px; color: #9a9ab0; line-height: 1.5; }
+.cert-rec-link { font-size: 13px; font-weight: 700; color: #4ade80; text-decoration: none; }
+.cert-rec-link:hover { text-decoration: underline; }
 .lv-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 30px; flex-wrap: wrap; }
 .lv-nl { color: var(--text); text-decoration: none; padding: 10px 16px; border: 1px solid var(--c); border-radius: 999px; font-size: 14px; }
 .lv-nl:hover { background: var(--c); color: #07070d; }

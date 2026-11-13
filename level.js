@@ -58,6 +58,19 @@
     });
     $("lv-meta").textContent = lv.lessons.length + " lessons · " + c + " / " + lv.lessons.length + " done";
     document.querySelector("#lv-bar i").style.width = (c / lv.lessons.length * 100) + "%";
+
+    if (lv.id === "l5") {
+      var rec = el("div", "cert-rec");
+      rec.innerHTML = '<h3 class="cert-rec-title">🎓 Recommended Certification</h3>'
+        + '<div class="cert-rec-card">'
+        + '<div class="cx-badge" style="--vc:#4ade80"><small>PeopleCert</small><b>ITIL 4</b></div>'
+        + '<div class="cert-rec-info">'
+        + '<b>ITIL 4 Foundation</b>'
+        + '<p>The globally recognised entry-level certification for IT service management. After completing Level 5 you have everything you need to pass it.</p>'
+        + '<a class="cert-rec-link" href="certs.html" >View in Certifications →</a>'
+        + '</div></div>';
+      list.parentNode.insertBefore(rec, list.nextSibling);
+    }
   }
   var nav = $("lv-nav"), prev = ALL[idx - 1], next = ALL[idx + 1];
   function nl(x, txt, cls) { var a = el("a", "lv-nl " + cls, txt); a.href = "level.html?l=" + x.id; a.style.setProperty("--c", x.color); nav.appendChild(a); }
