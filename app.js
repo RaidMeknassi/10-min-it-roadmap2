@@ -31,10 +31,12 @@
   var trunk = document.createElement("div");   trunk.className = "trunk";
   var branches = document.createElement("div"); branches.className = "branches";
   var l5El = document.createElement("div");  l5El.className = "final l5";
+  var certEl = document.createElement("div"); certEl.className = "final cert-rec-node";
+  certEl.innerHTML = '<div class="cert-node-card"><div class="cx-badge" style="--vc:#4ade80"><small>PeopleCert</small><b>ITIL 4</b></div><div class="cert-node-text"><b>ITIL 4 Foundation</b><span>Recommended Certification</span></div></div>';
   var midEl = document.createElement("div");  midEl.className = "final l6m";
   var finalEl = document.createElement("div");  finalEl.className = "final";
   var trackEl = document.createElement("div");  trackEl.className = "final track";
-  if (levelsEl) { levelsEl.appendChild(trunk); levelsEl.appendChild(branches); levelsEl.appendChild(l5El); levelsEl.appendChild(midEl); levelsEl.appendChild(finalEl); levelsEl.appendChild(trackEl); }
+  if (levelsEl) { levelsEl.appendChild(trunk); levelsEl.appendChild(branches); levelsEl.appendChild(l5El); levelsEl.appendChild(certEl); levelsEl.appendChild(midEl); levelsEl.appendChild(finalEl); levelsEl.appendChild(trackEl); }
 
   function closeAll(except) {
     entries.forEach(function (en) { if (en.lv !== except) en.lv.classList.remove("open"); });
@@ -184,14 +186,32 @@
       out += '<path class="' + cls + '" stroke="' + entries[colorIdx].info.color + '" d="' + d + '"/>';
     }
 
+    function linkDashed(fromRect, toRect, color) {
+      var x1 = fromRect.left + fromRect.width / 2 - base.left, y1 = fromRect.bottom - base.top;
+      var x2 = toRect.left + toRect.width / 2 - base.left, y2 = toRect.top - base.top;
+      var my = (y1 + y2) / 2;
+      var d = Math.abs(x1 - x2) < 1
+        ? "M" + x1 + " " + y1 + " L" + x2 + " " + y2
+        : "M" + x1 + " " + y1 + " C" + x1 + " " + my + "," + x2 + " " + my + "," + x2 + " " + y2;
+      out += '<path stroke="' + color + '" stroke-dasharray="6 5" opacity="0.7" d="' + d + '"/>';
+    }
+
     link(0, 1, 1);
     link(1, 2, 2);
+    var certRect = certEl.getBoundingClientRect();
+    var l5Rect = entries[5].card.getBoundingClientRect();
+    var l6mRect = entries[6].card.getBoundingClientRect();
     if (stacked) {
-      link(2, 3, 3); link(3, 4, 4); link(4, 5, 5); link(5, 6, 6); link(6, 7, 7);
-      
+      link(2, 3, 3); link(3, 4, 4); link(4, 5, 5);
+      linkDashed(l5Rect, certRect, "#4ade80");
+      linkDashed(certRect, l6mRect, "#4ade80");
+      link(6, 7, 7);
     } else {
       link(2, 3, 3); link(2, 4, 4);
-      link(3, 5, 3); link(4, 5, 4); link(5, 6, 6); link(6, 7, 7);
+      link(3, 5, 3); link(4, 5, 4);
+      linkDashed(l5Rect, certRect, "#4ade80");
+      linkDashed(certRect, l6mRect, "#4ade80");
+      link(6, 7, 7);
     }
     svg.innerHTML = out;
   }
