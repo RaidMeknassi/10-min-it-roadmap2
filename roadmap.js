@@ -105,7 +105,8 @@ const INTERMEDIATE_LEVELS = [
       ["im4.5","DNS and DNS Resolution"],["im4.6","DHCP and the DORA Process"],
       ["im4.7","TCP and UDP"],["im4.8","Ports and Network Services"],
       ["im4.9","Routing Fundamentals"],["im4.10","NAT and VLAN Fundamentals"],
-      ["im4.11","Network Troubleshooting"]
+      ["im4.11","Network Troubleshooting"],
+      ["im4.12","The OSI Model — A Deeper Look at the 7 Layers"],["im4.13","IP Addressing"]
     ]},
   { id: "im5", name: "Module 5", title: "Active Directory Fundamentals", color: "#818cf8",
     desc: "Understand centralized identity and Windows domain management.",
@@ -236,6 +237,9 @@ const VIDEOS = {
   "13":  "XID0Vgtylt8", // Mobile and Other Operating Systems
   "15":  "CRYJtPPXak0", // What Is a Network?
   "16":  "WETARwhb1RM", // Network Devices and Their Functions
+  "im1.1": "0VVAza-8CUY", // Understanding the Kernel
+  "im4.12": "qOhK8otyr2Q", // The OSI Model — A Deeper Look at the 7 Layers
+  "im4.13": "HXJjk7_T0qk", // IP Addressing
 };
 
 /* Web-version lessons (HTML pages inside the "lessons" folder), by lesson number.
