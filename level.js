@@ -48,7 +48,8 @@
       var n = row[0], a = el("a", "lc" + (done[n] ? " done" : "")); a.href = "lesson.html?n=" + encodeURIComponent(n);
       if (done[n]) c++;
       a.innerHTML = '<span class="ico"></span><span class="lc-body"><b></b><small></small></span><span class="lc-tags"></span><span class="lc-check">✓</span>';
-      a.querySelector(".ico").innerHTML = iconSVG(n, lv.color);
+      var iconSrc = /^im\d+\./.test(n) ? "assets/lesson-icons/" + n + ".png" : "assets/lesson-icons/" + n + ".png";
+      a.querySelector(".ico").innerHTML = '<img src="' + iconSrc + '" alt="" width="28" height="28" style="border-radius:8px;vertical-align:middle;">';
       a.querySelector("b").textContent = row[1]; a.querySelector("small").textContent = "Lesson " + (LBL[n] || n) + " · 10 min";
       var tg = a.querySelector(".lc-tags"), has = LESSON_PAGES[n];
       if (has) tg.appendChild(tag("Lesson", "t-les"));

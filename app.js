@@ -49,7 +49,9 @@
     lv.style.setProperty("--c", info.color);
     lv.innerHTML =
       '<button type="button" class="lv-card" aria-haspopup="true">' +
-        '<span class="badge"></span><h2></h2><p class="lv-desc"></p><div class="lv-meta"></div>' +
+        '<span class="badge"></span>' +
+        '<img class="im-icon" src="assets/beg-icons/' + info.id + '.png" alt="" aria-hidden="true" width="72" height="72">' +
+        '<h2></h2><p class="lv-desc"></p><div class="lv-meta"></div>' +
         '<div class="lv-bar"><i></i></div>' +
       '</button>' +
       '<div class="flyout"><div class="flyout-card"><div class="fl-head"></div><div class="fl-list"></div></div></div>';
@@ -85,7 +87,7 @@
       b.innerHTML = '<span class="ico"></span><span class="fl-num"></span><span class="fl-title"></span>' + (lesson.lab ? '<span class="fl-lock" title="Has a lab">🔒</span>' : "");
       b.querySelector(".fl-num").textContent = LBL[lesson.n] || lesson.n;
       var ic = b.querySelector(".ico"); ic.style.setProperty("--c", lv.color);
-      ic.innerHTML = iconSVG(lesson.n, lv.color);
+      ic.innerHTML = '<img src="assets/lesson-icons/' + lesson.n + '.png" alt="" width="28" height="28" style="border-radius:8px;vertical-align:middle;">';
       b.querySelector(".fl-title").textContent = lesson.title;
       b.addEventListener("click", function (e) { e.stopPropagation(); location.href = "lesson.html?n=" + encodeURIComponent(lesson.n); });
       list.appendChild(b);
