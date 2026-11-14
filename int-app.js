@@ -53,7 +53,9 @@
     lv.style.setProperty("--c", info.color);
     lv.innerHTML =
       '<button type="button" class="lv-card" aria-haspopup="true">' +
-        '<span class="badge"></span><h2></h2><p class="lv-desc"></p><div class="lv-meta"></div>' +
+        '<span class="badge"></span>' +
+        '<img class="im-icon" src="assets/int-icons/' + info.id + '.png" alt="" aria-hidden="true" width="72" height="72">' +
+        '<h2></h2><p class="lv-desc"></p><div class="lv-meta"></div>' +
         '<div class="lv-bar"><i></i></div>' +
       '</button>' +
       '<div class="flyout"><div class="flyout-card"><div class="fl-head"></div><div class="fl-list"></div></div></div>';

@@ -465,6 +465,8 @@ h1 span { background: var(--grad); -webkit-background-clip: text; background-cli
 .cert-rec-info p { margin: 4px 0 10px; font-size: 13px; color: #9a9ab0; line-height: 1.5; }
 .cert-rec-link { font-size: 13px; font-weight: 700; color: #4ade80; text-decoration: none; }
 .cert-rec-link:hover { text-decoration: underline; }
+/* Intermediate module card icon */
+.im-icon { display: block; width: 72px; height: 72px; object-fit: contain; margin: 6px auto 4px; border-radius: 18px; pointer-events: none; }
 /* Cert node on main roadmap map */
 .cert-rec-node { display: flex; justify-content: center; align-items: center; padding: 10px 0; }
 .cert-node-card { display: flex; align-items: center; gap: 14px; padding: 12px 20px; border: 2px dashed #4ade80; border-radius: 16px; background: rgba(74,222,128,.06); cursor: default; max-width: 340px; }
