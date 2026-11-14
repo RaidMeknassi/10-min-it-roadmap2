@@ -6,7 +6,8 @@
   try { done = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) { done = {}; }
   function save() { try { localStorage.setItem(KEY, JSON.stringify(done)); } catch (e) {} }
   var flat = [];
-  LEVELS.forEach(function (lv) { lv.lessons.forEach(function (r) { flat.push({ n: r[0], title: r[1], lab: !!r[2], level: lv }); }); });
+  var allLevels = LEVELS.concat((typeof INTERMEDIATE_LEVELS !== "undefined") ? INTERMEDIATE_LEVELS : []);
+  allLevels.forEach(function (lv) { lv.lessons.forEach(function (r) { flat.push({ n: r[0], title: r[1], lab: !!r[2], level: lv }); }); });
   var qs = new URLSearchParams(location.search), main = $("lp"), tab = "lesson";
   function el(tag, cls, txt) { var e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; }
   var small = function () { return window.innerWidth <= 720; };
