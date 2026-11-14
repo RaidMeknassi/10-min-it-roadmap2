@@ -67,6 +67,109 @@ LBL["6"] = "6"; LBL["10"] = "7"; LBL["11"] = "8"; LBL["13"] = "9";
 // Level 3 custom labels (3.1–3.4)
 LBL["15"] = "3.1"; LBL["16"] = "3.2"; LBL["51"] = "3.3"; LBL["17"] = "3.4";
 
+/* Intermediate Modules — full lesson data for the intermediate roadmap tree */
+const INTERMEDIATE_LEVELS = [
+  { id: "im1", name: "Module 1", title: "Operating Systems — Deep Dive", color: "#60a5fa",
+    desc: "Understand how operating systems work internally.",
+    lessons: [
+      ["im1.1","Understanding the Kernel"],["im1.2","Understanding Processes"],
+      ["im1.3","Understanding Threads"],["im1.4","Memory Management"],
+      ["im1.5","CPU Scheduling"],["im1.6","File Systems and Storage Management"],
+      ["im1.7","System Calls"],["im1.8","User Mode vs Kernel Mode"]
+    ]},
+  { id: "im2", name: "Module 2", title: "Windows Administration", color: "#38bdf8",
+    desc: "Manage, configure and automate Windows systems.",
+    lessons: [
+      ["im2.1","Windows System Administration"],["im2.2","Managing Users and Groups"],
+      ["im2.3","NTFS Permissions and File Sharing"],["im2.4","Windows Services and Processes"],
+      ["im2.5","Windows Registry and System Configuration"],["im2.6","Windows Event Logs"],
+      ["im2.7","Windows Updates and Troubleshooting"],["im2.8","Command Prompt (CMD) Fundamentals"],
+      ["im2.9","CMD Commands and Batch Scripting"],["im2.10","PowerShell Fundamentals"],
+      ["im2.11","PowerShell Commands and Cmdlets"],["im2.12","PowerShell Scripting and Automation"]
+    ]},
+  { id: "im3", name: "Module 3", title: "Linux Administration", color: "#34d399",
+    desc: "Manage Linux systems, servers, users and services.",
+    lessons: [
+      ["im3.1","Linux File System Structure"],["im3.2","Linux Users and Groups"],
+      ["im3.3","Linux Permissions and Ownership"],["im3.4","Linux Processes and Services"],
+      ["im3.5","Package Management"],["im3.6","Linux Networking Configuration"],
+      ["im3.7","Linux Logs and Troubleshooting"],["im3.8","Remote Administration with SSH"],
+      ["im3.9","Bash Fundamentals"],["im3.10","Bash Commands and Shell Scripting"],
+      ["im3.11","Bash Automation and Practical Scripts"]
+    ]},
+  { id: "im4", name: "Module 4", title: "Intermediate Networking", color: "#a78bfa",
+    desc: "Configure and troubleshoot real networks.",
+    lessons: [
+      ["im4.1","IPv4 Address Structure"],["im4.2","Subnet Masks and CIDR"],
+      ["im4.3","Subnetting"],["im4.4","ARP and Default Gateway"],
+      ["im4.5","DNS and DNS Resolution"],["im4.6","DHCP and the DORA Process"],
+      ["im4.7","TCP and UDP"],["im4.8","Ports and Network Services"],
+      ["im4.9","Routing Fundamentals"],["im4.10","NAT and VLAN Fundamentals"],
+      ["im4.11","Network Troubleshooting"]
+    ]},
+  { id: "im5", name: "Module 5", title: "Active Directory Fundamentals", color: "#818cf8",
+    desc: "Understand centralized identity and Windows domain management.",
+    lessons: [
+      ["im5.1","Understanding Active Directory"],["im5.2","Domains, Forests and Domain Controllers"],
+      ["im5.3","Users, Groups and Organizational Units"],["im5.4","Group Policy Objects (GPO)"],
+      ["im5.5","Authentication and Kerberos"],["im5.6","LDAP and Directory Services"],
+      ["im5.7","Active Directory Administration"]
+    ]},
+  { id: "im6", name: "Module 6", title: "Programming Fundamentals — Python", color: "#fbbf24",
+    desc: "Learn general-purpose programming and automation.",
+    lessons: [
+      ["im6.1","Introduction to Programming"],["im6.2","Variables, Data Types and Operators"],
+      ["im6.3","Conditions and Loops"],["im6.4","Functions and Modules"],
+      ["im6.5","Lists, Dictionaries and Data Structures"],["im6.6","Working with Files"],
+      ["im6.7","Python Fundamentals"],["im6.8","Error Handling"],
+      ["im6.9","Python Automation and Practical Scripts"]
+    ]},
+  { id: "im7", name: "Module 7", title: "Database Fundamentals", color: "#fb923c",
+    desc: "Understand how applications store and manage data.",
+    lessons: [
+      ["im7.1","Understanding Databases"],["im7.2","Relational vs Non-Relational Databases"],
+      ["im7.3","Tables, Rows and Columns"],["im7.4","SQL Fundamentals"],
+      ["im7.5","SQL Queries and Filtering"],["im7.6","Primary Keys and Foreign Keys"],
+      ["im7.7","Database Relationships"],["im7.8","Database Backup and Recovery"]
+    ]},
+  { id: "im8", name: "Module 8", title: "Web Fundamentals", color: "#f472b6",
+    desc: "Understand how websites and web applications work.",
+    lessons: [
+      ["im8.1","How the Web Works"],["im8.2","HTML Fundamentals"],
+      ["im8.3","CSS Fundamentals"],["im8.4","JavaScript Fundamentals"],
+      ["im8.5","HTTP and HTTPS"],["im8.6","Understanding Web Servers"],
+      ["im8.7","APIs and REST Fundamentals"],["im8.8","How Web Applications Communicate with Databases"]
+    ]},
+  { id: "im9", name: "Module 9", title: "Cybersecurity Practices", color: "#f87171",
+    desc: "Apply security concepts and understand defensive tools.",
+    lessons: [
+      ["im9.1","Security Principles and CIA Triad"],["im9.2","Authentication and Access Control"],
+      ["im9.3","Encryption and Hashing"],["im9.4","Firewalls and Endpoint Security"],
+      ["im9.5","Vulnerabilities and Vulnerability Assessment"],["im9.6","Security Monitoring and Logging"],
+      ["im9.7","Introduction to SIEM Tools"],["im9.8","Incident Detection and Response Fundamentals"]
+    ]},
+  { id: "im10", name: "Module 10", title: "Virtualization and Containers", color: "#4ade80",
+    desc: "Create and manage virtual environments.",
+    lessons: [
+      ["im10.1","Understanding Virtualization"],["im10.2","Virtual Machines and Hypervisors"],
+      ["im10.3","VirtualBox, VMware and Hyper-V"],["im10.4","Virtual Networks and Virtual Storage"],
+      ["im10.5","Understanding Containers"],["im10.6","Docker Fundamentals"],
+      ["im10.7","Containers vs Virtual Machines"]
+    ]},
+  { id: "im11", name: "Module 11", title: "Cloud Computing Fundamentals", color: "#22d3ee",
+    desc: "Understand cloud infrastructure and services.",
+    lessons: [
+      ["im11.1","Understanding Cloud Computing"],["im11.2","IaaS, PaaS and SaaS"],
+      ["im11.3","Public, Private and Hybrid Cloud"],["im11.4","Cloud Infrastructure and Virtual Networks"],
+      ["im11.5","Cloud Storage and Compute"],["im11.6","Microsoft Azure Fundamentals"],
+      ["im11.7","AWS Fundamentals"],["im11.8","Cloud Security and Identity Basics"]
+    ]}
+];
+/* Build lesson labels for intermediate modules: M1.1, M1.2, … */
+INTERMEDIATE_LEVELS.forEach(function(lv, mi) {
+  lv.lessons.forEach(function(r, k) { LBL[r[0]] = "M" + (mi + 1) + "." + (k + 1); });
+});
+
 /* Level 6 - Intermediate (a path tree on its own page) */
 const INTERMEDIATE = { id: "l6m", desc: "Learn how to work with IT technologies.", name: "Level 6", title: "Intermediate", color: "#38bdf8", items: [
   ["Operating Systems", "Deep dive into how operating systems work.", ["The Kernel", "Understanding Processes", "CPU Scheduling"]],

@@ -95,13 +95,13 @@
 
   // Level 6: Intermediate (opens its own path-tree page)
   if (!LEVEL_MODE) (function () {
-    var info = { id: INTERMEDIATE.id, desc: INTERMEDIATE.desc, name: INTERMEDIATE.name, title: INTERMEDIATE.title, color: INTERMEDIATE.color, href: "spec.html?m=1" };
+    var info = { id: INTERMEDIATE.id, desc: INTERMEDIATE.desc, name: INTERMEDIATE.name, title: INTERMEDIATE.title, color: INTERMEDIATE.color, href: "intermediate.html" };
     var en = makeLevel(info, midEl, false), list = en.lv.querySelector(".fl-list");
     en.barWrap.style.display = "none";
     INTERMEDIATE.items.forEach(function (it) {
       var b = document.createElement("button"); b.type = "button"; b.className = "fl-item"; b.style.setProperty("--c", info.color);
       b.innerHTML = '<span class="fl-dot"></span><span class="fl-title"></span>'; b.querySelector(".fl-title").textContent = it[0];
-      b.addEventListener("click", function (e) { e.stopPropagation(); location.href = "spec.html?m=1"; });
+      b.addEventListener("click", function (e) { e.stopPropagation(); location.href = "intermediate.html"; });
       list.appendChild(b);
     });
     en.metaEl.textContent = INTERMEDIATE.items.length + " topics \u00B7 coming soon";
