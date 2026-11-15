@@ -473,6 +473,18 @@ h1 span { background: var(--grad); -webkit-background-clip: text; background-cli
 .cert-node-text { display: flex; flex-direction: column; }
 .cert-node-text b { font-size: 14px; color: #fff; }
 .cert-node-text span { font-size: 12px; color: #4ade80; margin-top: 2px; }
+
+/* Tools recommendation node */
+.tools-rec-node { display: flex; justify-content: center; align-items: center; padding: 10px 0; }
+.tools-node-card { border: 2px dashed #38bdf8; border-radius: 18px; background: rgba(56,189,248,.06); padding: 16px 20px; max-width: 480px; width: 100%; cursor: default; }
+.tools-node-header { display: flex; align-items: center; gap: 12px; margin-bottom: 14px; }
+.tools-node-icon { font-size: 24px; flex: none; }
+.tools-node-header b { font-size: 14px; color: #fff; display: block; }
+.tools-node-header span { font-size: 12px; color: #38bdf8; margin-top: 2px; display: block; }
+.tools-node-groups { display: flex; flex-direction: column; gap: 10px; }
+.tools-group-title { font-size: 12px; font-weight: 600; color: #9a9ab0; margin-bottom: 6px; }
+.tools-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.tool-chip { font-size: 12px; padding: 4px 10px; border-radius: 999px; background: rgba(56,189,248,.12); border: 1px solid rgba(56,189,248,.3); color: #cbd5f1; white-space: nowrap; }
 .lv-nav { display: flex; justify-content: space-between; gap: 12px; margin-top: 30px; flex-wrap: wrap; }
 .lv-nl { color: var(--text); text-decoration: none; padding: 10px 16px; border: 1px solid var(--c); border-radius: 999px; font-size: 14px; }
 .lv-nl:hover { background: var(--c); color: #07070d; }

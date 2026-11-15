@@ -33,10 +33,48 @@
   var l5El = document.createElement("div");  l5El.className = "final l5";
   var certEl = document.createElement("div"); certEl.className = "final cert-rec-node";
   certEl.innerHTML = '<div class="cert-node-card"><div class="cx-badge" style="--vc:#4ade80"><small>PeopleCert</small><b>ITIL 4</b></div><div class="cert-node-text"><b>ITIL 4 Foundation</b><span>Recommended Certification</span></div></div>';
+
+  var toolsEl = document.createElement("div"); toolsEl.className = "final tools-rec-node";
+  toolsEl.innerHTML =
+    '<div class="tools-node-card">' +
+      '<div class="tools-node-header">' +
+        '<span class="tools-node-icon">🧰</span>' +
+        '<div><b>Essential Tools for 1st Line IT Support</b><span>Recommended</span></div>' +
+      '</div>' +
+      '<div class="tools-node-groups">' +
+        '<div class="tools-group">' +
+          '<div class="tools-group-title">🎫 Ticketing Systems</div>' +
+          '<div class="tools-chips">' +
+            '<span class="tool-chip">ServiceNow</span>' +
+            '<span class="tool-chip">Jira Service Management</span>' +
+            '<span class="tool-chip">ManageEngine ServiceDesk Plus</span>' +
+          '</div>' +
+        '</div>' +
+        '<div class="tools-group">' +
+          '<div class="tools-group-title">🖥️ Remote Support Tools</div>' +
+          '<div class="tools-chips">' +
+            '<span class="tool-chip">Microsoft Quick Assist</span>' +
+            '<span class="tool-chip">TeamViewer</span>' +
+            '<span class="tool-chip">AnyDesk</span>' +
+            '<span class="tool-chip">Remote Desktop (RDP)</span>' +
+          '</div>' +
+        '</div>' +
+        '<div class="tools-group">' +
+          '<div class="tools-group-title">💬 Communication &amp; Productivity</div>' +
+          '<div class="tools-chips">' +
+            '<span class="tool-chip">Microsoft Outlook</span>' +
+            '<span class="tool-chip">Microsoft Teams</span>' +
+            '<span class="tool-chip">OneDrive</span>' +
+            '<span class="tool-chip">SharePoint</span>' +
+          '</div>' +
+        '</div>' +
+      '</div>' +
+    '</div>';
+
   var midEl = document.createElement("div");  midEl.className = "final l6m";
   var finalEl = document.createElement("div");  finalEl.className = "final";
   var trackEl = document.createElement("div");  trackEl.className = "final track";
-  if (levelsEl) { levelsEl.appendChild(trunk); levelsEl.appendChild(branches); levelsEl.appendChild(l5El); levelsEl.appendChild(certEl); levelsEl.appendChild(midEl); levelsEl.appendChild(finalEl); levelsEl.appendChild(trackEl); }
+  if (levelsEl) { levelsEl.appendChild(trunk); levelsEl.appendChild(branches); levelsEl.appendChild(l5El); levelsEl.appendChild(certEl); levelsEl.appendChild(toolsEl); levelsEl.appendChild(midEl); levelsEl.appendChild(finalEl); levelsEl.appendChild(trackEl); }
 
   function closeAll(except) {
     entries.forEach(function (en) { if (en.lv !== except) en.lv.classList.remove("open"); });
@@ -200,19 +238,22 @@
 
     link(0, 1, 1);
     link(1, 2, 2);
-    var certRect = certEl.getBoundingClientRect();
-    var l5Rect = entries[5].card.getBoundingClientRect();
-    var l6mRect = entries[6].card.getBoundingClientRect();
+    var certRect  = certEl.getBoundingClientRect();
+    var toolsRect = toolsEl.getBoundingClientRect();
+    var l5Rect    = entries[5].card.getBoundingClientRect();
+    var l6mRect   = entries[6].card.getBoundingClientRect();
     if (stacked) {
       link(2, 3, 3); link(3, 4, 4); link(4, 5, 5);
       linkDashed(l5Rect, certRect, "#4ade80");
-      linkDashed(certRect, l6mRect, "#4ade80");
+      linkDashed(certRect, toolsRect, "#38bdf8");
+      linkDashed(toolsRect, l6mRect, "#38bdf8");
       link(6, 7, 7);
     } else {
       link(2, 3, 3); link(2, 4, 4);
       link(3, 5, 3); link(4, 5, 4);
       linkDashed(l5Rect, certRect, "#4ade80");
-      linkDashed(certRect, l6mRect, "#4ade80");
+      linkDashed(certRect, toolsRect, "#38bdf8");
+      linkDashed(toolsRect, l6mRect, "#38bdf8");
       link(6, 7, 7);
     }
     svg.innerHTML = out;
