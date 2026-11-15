@@ -1,0 +1,341 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>IT Tools · 10-Minute IT Roadmap</title>
+  <link rel="stylesheet" href="style.css?v=58">
+  <style>
+    /* ── Tools page styles ───────────────────────────────────── */
+    .tools-hero {
+      text-align: center;
+      padding: 48px 20px 32px;
+    }
+    .tools-hero h1 {
+      font-size: clamp(1.6rem, 4vw, 2.4rem);
+      font-weight: 800;
+      color: #fff;
+      margin: 0 0 10px;
+    }
+    .tools-hero p {
+      color: #9a9ab0;
+      font-size: 15px;
+      margin: 0 auto;
+      max-width: 500px;
+    }
+
+    /* search */
+    .tools-search-wrap {
+      display: flex;
+      justify-content: center;
+      padding: 0 20px 28px;
+    }
+    .tools-search {
+      width: 100%;
+      max-width: 480px;
+      padding: 11px 18px 11px 44px;
+      border-radius: 999px;
+      border: 1.5px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.06);
+      color: #fff;
+      font-size: 15px;
+      outline: none;
+      transition: border-color .15s;
+      background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='18' height='18' viewBox='0 0 24 24' fill='none' stroke='%239a9ab0' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3E%3Ccircle cx='11' cy='11' r='8'/%3E%3Cpath d='m21 21-4.35-4.35'/%3E%3C/svg%3E");
+      background-repeat: no-repeat;
+      background-position: 14px center;
+    }
+    .tools-search:focus { border-color: rgba(255,255,255,.3); }
+    .tools-search::placeholder { color: #6b6b88; }
+
+    /* category filter chips */
+    .tools-cats {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      justify-content: center;
+      padding: 0 20px 32px;
+    }
+    .cat-chip {
+      padding: 6px 16px;
+      border-radius: 999px;
+      border: 1.5px solid rgba(255,255,255,.12);
+      background: rgba(255,255,255,.04);
+      color: #9a9ab0;
+      font-size: 13px;
+      font-weight: 500;
+      cursor: pointer;
+      transition: background .15s, border-color .15s, color .15s;
+      user-select: none;
+    }
+    .cat-chip:hover { border-color: rgba(255,255,255,.25); color: #fff; }
+    .cat-chip.on {
+      background: rgba(99,102,241,.18);
+      border-color: rgba(99,102,241,.55);
+      color: #a5b4fc;
+    }
+
+    /* grid */
+    .tools-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 16px;
+      padding: 0 20px 60px;
+      max-width: 980px;
+      margin: 0 auto;
+    }
+    .tool-card {
+      background: rgba(255,255,255,.04);
+      border: 1.5px solid rgba(255,255,255,.08);
+      border-radius: 16px;
+      padding: 20px 16px 16px;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+      gap: 10px;
+      transition: background .15s, border-color .15s, transform .15s;
+      cursor: default;
+    }
+    .tool-card:hover {
+      background: rgba(255,255,255,.07);
+      border-color: rgba(255,255,255,.18);
+      transform: translateY(-2px);
+    }
+    .tool-card img {
+      width: 64px;
+      height: 64px;
+      border-radius: 14px;
+      display: block;
+    }
+    .tool-card-name {
+      font-size: 14px;
+      font-weight: 700;
+      color: #fff;
+    }
+    .tool-card-cat {
+      font-size: 11px;
+      font-weight: 500;
+      color: #6b6b88;
+      text-transform: uppercase;
+      letter-spacing: .05em;
+    }
+    .tool-card-desc {
+      font-size: 12px;
+      color: #9a9ab0;
+      line-height: 1.5;
+    }
+    .tool-card-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 5px;
+      justify-content: center;
+    }
+    .tool-tag {
+      font-size: 11px;
+      padding: 2px 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(255,255,255,.1);
+      color: #9a9ab0;
+    }
+
+    .tools-empty {
+      text-align: center;
+      color: #6b6b88;
+      padding: 60px 20px;
+      font-size: 15px;
+      grid-column: 1 / -1;
+    }
+
+    @media (max-width: 480px) {
+      .tools-grid { grid-template-columns: repeat(auto-fill, minmax(150px, 1fr)); gap: 12px; }
+    }
+  </style>
+</head>
+<body>
+  <header class="site-header" role="banner">
+    <a class="logo" href="index.html">
+      <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M12 2L2 7l10 5 10-5-10-5z"/><path d="M2 17l10 5 10-5"/><path d="M2 12l10 5 10-5"/></svg>
+      <span>10-Minute IT Roadmap</span>
+    </a>
+    <nav class="top-nav" aria-label="Main">
+      <a href="index.html" data-nav="b"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M3 6.5 9 4l6 2.5L21 4v13.5L15 20l-6-2.5L3 20z"/><path d="M9 4v13.5M15 6.5V20"/></svg><span>Beginner</span></a>
+      <a href="intermediate.html" data-nav="i"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="m12 3 9 5-9 5-9-5z"/><path d="m3 13 9 5 9-5"/></svg><span>Intermediate</span></a>
+      <a href="level.html?l=l6" data-nav="s"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="6" cy="5" r="2.2"/><circle cx="6" cy="19" r="2.2"/><circle cx="18" cy="9" r="2.2"/><path d="M6 7.2v9.6M18 11.2c0 4-6 3-12 6"/></svg><span>Specializations</span></a>
+      <a href="certs.html" data-nav="c"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><circle cx="12" cy="9" r="5.5"/><path d="m8.8 13.6-1.3 7 4.5-2.4 4.5 2.4-1.3-7"/></svg><span>Certs</span></a>
+      <a href="plans.html" data-nav="p"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M4 8h13v6a5 5 0 0 1-5 5H9a5 5 0 0 1-5-5z"/><path d="M17 10h1.5a2.5 2.5 0 0 1 0 5H17"/><path d="M8 3v2M12 3v2"/></svg><span>Pricing</span></a>
+      <a href="tools.html" data-nav="t"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M14.7 6.3a1 1 0 0 0 0 1.4l1.6 1.6a1 1 0 0 0 1.4 0l3.77-3.77a6 6 0 0 1-7.94 7.94l-6.91 6.91a2.12 2.12 0 0 1-3-3l6.91-6.91a6 6 0 0 1 7.94-7.94l-3.76 3.76z"/></svg><span>Tools</span></a>
+    </nav>
+  </header>
+
+  <main>
+    <div class="tools-hero">
+      <h1>🛠 IT Tools Reference</h1>
+      <p>All the tools you'll use in a 1st-line IT support role — from ticketing to remote support and communication.</p>
+    </div>
+
+    <div class="tools-search-wrap">
+      <input class="tools-search" type="search" id="toolSearch" placeholder="Search tools…" autocomplete="off">
+    </div>
+
+    <div class="tools-cats" id="toolCats">
+      <span class="cat-chip on" data-cat="all">All</span>
+      <span class="cat-chip" data-cat="ticketing">🎫 Ticketing</span>
+      <span class="cat-chip" data-cat="remote">🖥 Remote Support</span>
+      <span class="cat-chip" data-cat="communication">💬 Communication</span>
+    </div>
+
+    <div class="tools-grid" id="toolsGrid"></div>
+  </main>
+
+  <footer class="site-footer">
+    <p>© <span id="year"></span> 10-Minute IT Roadmap · <a href="index.html">Home</a></p>
+  </footer>
+
+  <script>
+    var TOOLS = [
+      {
+        id: "servicenow",
+        name: "ServiceNow",
+        cat: "ticketing",
+        icon: "assets/tool-icons/servicenow.png",
+        desc: "Enterprise ITSM platform for incident, change and service request management.",
+        tags: ["ITSM", "Incidents", "ITIL"]
+      },
+      {
+        id: "jira",
+        name: "Jira Service Management",
+        cat: "ticketing",
+        icon: "assets/tool-icons/jira.png",
+        desc: "Atlassian's help-desk and ticketing tool, used widely in tech companies.",
+        tags: ["Helpdesk", "Tickets", "Atlassian"]
+      },
+      {
+        id: "manageengine",
+        name: "ManageEngine",
+        cat: "ticketing",
+        icon: "assets/tool-icons/manageengine.png",
+        desc: "IT management suite with ServiceDesk Plus for ITSM workflows and asset tracking.",
+        tags: ["ITSM", "Assets", "SMB"]
+      },
+      {
+        id: "quickassist",
+        name: "Quick Assist",
+        cat: "remote",
+        icon: "assets/tool-icons/quickassist.png",
+        desc: "Built into Windows 10/11 — zero install needed to remotely view or control a user's PC.",
+        tags: ["Windows", "Built-in", "Free"]
+      },
+      {
+        id: "teamviewer",
+        name: "TeamViewer",
+        cat: "remote",
+        icon: "assets/tool-icons/teamviewer.png",
+        desc: "Cross-platform remote access and support. Works on Windows, Mac, Linux, iOS and Android.",
+        tags: ["Cross-platform", "Enterprise"]
+      },
+      {
+        id: "anydesk",
+        name: "AnyDesk",
+        cat: "remote",
+        icon: "assets/tool-icons/anydesk.png",
+        desc: "Lightweight remote desktop with low latency. Free for personal use; popular in SMBs.",
+        tags: ["Lightweight", "Fast", "SMB"]
+      },
+      {
+        id: "rdp",
+        name: "RDP",
+        cat: "remote",
+        icon: "assets/tool-icons/rdp.png",
+        desc: "Remote Desktop Protocol — Microsoft's built-in protocol for connecting to Windows servers and PCs.",
+        tags: ["Windows", "Built-in", "Protocol"]
+      },
+      {
+        id: "outlook",
+        name: "Microsoft Outlook",
+        cat: "communication",
+        icon: "assets/tool-icons/outlook.png",
+        desc: "The standard corporate email client, with calendar, tasks and contacts built in.",
+        tags: ["Email", "Calendar", "M365"]
+      },
+      {
+        id: "teams",
+        name: "Microsoft Teams",
+        cat: "communication",
+        icon: "assets/tool-icons/teams.png",
+        desc: "Chat, meetings and calls in one app. The hub for collaboration in Microsoft 365 workplaces.",
+        tags: ["Chat", "Meetings", "M365"]
+      },
+      {
+        id: "onedrive",
+        name: "OneDrive",
+        cat: "communication",
+        icon: "assets/tool-icons/onedrive.png",
+        desc: "Microsoft's cloud storage — syncs files across devices and integrates with Teams and Outlook.",
+        tags: ["Cloud Storage", "File Sync", "M365"]
+      },
+      {
+        id: "sharepoint",
+        name: "SharePoint",
+        cat: "communication",
+        icon: "assets/tool-icons/sharepoint.png",
+        desc: "Intranet and document management platform used to share knowledge bases and company files.",
+        tags: ["Intranet", "Docs", "M365"]
+      }
+    ];
+
+    var activeCat = "all";
+    var searchVal = "";
+
+    function render() {
+      var grid = document.getElementById("toolsGrid");
+      var filtered = TOOLS.filter(function(t) {
+        var matchCat = activeCat === "all" || t.cat === activeCat;
+        var q = searchVal.toLowerCase();
+        var matchSearch = !q ||
+          t.name.toLowerCase().includes(q) ||
+          t.desc.toLowerCase().includes(q) ||
+          t.tags.some(function(tag){ return tag.toLowerCase().includes(q); });
+        return matchCat && matchSearch;
+      });
+
+      if (!filtered.length) {
+        grid.innerHTML = '<div class="tools-empty">No tools match your search.</div>';
+        return;
+      }
+
+      grid.innerHTML = filtered.map(function(t) {
+        var tagsHtml = t.tags.map(function(tag) {
+          return '<span class="tool-tag">' + tag + '</span>';
+        }).join("");
+        return '<div class="tool-card">'
+          + '<img src="' + t.icon + '" alt="' + t.name + ' icon" width="64" height="64">'
+          + '<div class="tool-card-name">' + t.name + '</div>'
+          + '<div class="tool-card-desc">' + t.desc + '</div>'
+          + '<div class="tool-card-tags">' + tagsHtml + '</div>'
+          + '</div>';
+      }).join("");
+    }
+
+    // category chips
+    document.getElementById("toolCats").addEventListener("click", function(e) {
+      var chip = e.target.closest(".cat-chip");
+      if (!chip) return;
+      document.querySelectorAll(".cat-chip").forEach(function(c){ c.classList.remove("on"); });
+      chip.classList.add("on");
+      activeCat = chip.dataset.cat;
+      render();
+    });
+
+    // search
+    document.getElementById("toolSearch").addEventListener("input", function(e) {
+      searchVal = e.target.value;
+      render();
+    });
+
+    render();
+    document.getElementById("year").textContent = new Date().getFullYear();
+  </script>
+  <script src="nav.js?v=58"></script>
+</body>
+</html>
