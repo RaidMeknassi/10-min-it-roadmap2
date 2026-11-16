@@ -6,7 +6,7 @@
   try { done = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) { done = {}; }
   function save() { try { localStorage.setItem(KEY, JSON.stringify(done)); } catch (e) {} }
   var flat = [];
-  var allLevels = LEVELS.concat((typeof INTERMEDIATE_LEVELS !== "undefined") ? INTERMEDIATE_LEVELS : []);
+  var allLevels = LEVELS.concat((typeof INTERMEDIATE_LEVELS !== "undefined") ? INTERMEDIATE_LEVELS : []).concat((typeof COURSE_LEVELS !== "undefined") ? COURSE_LEVELS : []);
   allLevels.forEach(function (lv) { lv.lessons.forEach(function (r) { flat.push({ n: r[0], title: r[1], lab: !!r[2], level: lv }); }); });
   var qs = new URLSearchParams(location.search), main = $("lp"), tab = "lesson";
   function el(tag, cls, txt) { var e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; }
@@ -65,14 +65,16 @@
   var n = qs.get("n"), ix = -1;
   flat.forEach(function (l, i) { if (l.n === n) ix = i; });
   if (ix < 0) { location.replace("index.html"); return; }
-  var item = flat[ix], level = item.level;
+  var item = flat[ix], level = item.level, lvHref = level.href || ("level.html?l=" + level.id);
+  // previous / next only move inside the same course (main road map, ITIL, or one tool)
+  var grp = level.group || "", sib = flat.filter(function (l) { return (l.level.group || "") === grp; }), si = sib.indexOf(item);
   document.title = "Lesson " + (LBL[item.n] || item.n) + " · " + item.title + " · 10-Minute IT Roadmap";
   main.style.setProperty("--c", level.color);
-  main.appendChild(crumbs([["Road map", "index.html#map"], [level.name + " · " + level.title, "level.html?l=" + level.id], ["Lesson " + (LBL[item.n] || item.n)]]));
+  main.appendChild(crumbs((level.crumbs || [["Road map", "index.html#map"]]).concat([[level.name + " · " + level.title, lvHref], ["Lesson " + (LBL[item.n] || item.n)]])));
 
   var head = el("div", "lp-head");
   head.innerHTML = '<span class="ico"></span><div class="lp-title"><p class="lp-track"></p><h1></h1></div><button type="button" class="lp-done"></button>';
-  head.querySelector(".ico").innerHTML = iconSVG(item.n, level.color);
+  head.querySelector(".ico").innerHTML = level.group ? '<span class="cl-ico" style="--c:' + level.color + '">' + (LBL[item.n] || "") + '</span>' : iconSVG(item.n, level.color);
   head.querySelector(".lp-track").textContent = level.name + " · Lesson " + (LBL[item.n] || item.n) + " · 10 min";
   head.querySelector("h1").textContent = item.title;
   var db = head.querySelector(".lp-done");
@@ -117,9 +119,9 @@
 
   var foot = el("div", "lp-foot");
   function nb(l, txt) { var a = el("a", "lp-btn", txt); a.href = "lesson.html?n=" + encodeURIComponent(l.n); a.style.setProperty("--c", l.level.color); return a; }
-  foot.appendChild(ix > 0 ? nb(flat[ix - 1], "← " + flat[ix - 1].title) : el("span"));
-  var mid = el("a", "lp-btn lp-mid", "All " + level.name + " lessons"); mid.href = "level.html?l=" + level.id; foot.appendChild(mid);
-  foot.appendChild(ix < flat.length - 1 ? nb(flat[ix + 1], flat[ix + 1].title + " →") : el("span"));
+  foot.appendChild(si > 0 ? nb(sib[si - 1], "← " + sib[si - 1].title) : el("span"));
+  var mid = el("a", "lp-btn lp-mid", "All " + level.name + " lessons"); mid.href = lvHref; foot.appendChild(mid);
+  foot.appendChild(si < sib.length - 1 ? nb(sib[si + 1], sib[si + 1].title + " →") : el("span"));
   main.appendChild(foot);
   var y = $("year"); if (y) y.textContent = new Date().getFullYear();
 })();

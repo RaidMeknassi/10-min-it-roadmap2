@@ -31,45 +31,43 @@
   var trunk = document.createElement("div");   trunk.className = "trunk";
   var branches = document.createElement("div"); branches.className = "branches";
   var l5El = document.createElement("div");  l5El.className = "final l5";
+  // ITIL 4 Foundation: clickable node, hover shows its course levels and lessons
   var certEl = document.createElement("div"); certEl.className = "final cert-rec-node";
-  certEl.innerHTML = '<div class="cert-node-card"><div class="cx-badge" style="--vc:#4ade80"><small>PeopleCert</small><b>ITIL 4</b></div><div class="cert-node-text"><b>ITIL 4 Foundation</b><span>Recommended Certification</span></div></div>';
+  var certLv = document.createElement("div"); certLv.className = "lv cert-lv"; certLv.style.setProperty("--c", ITIL_COURSE.color);
+  certLv.innerHTML = '<a class="cert-node-card" href="course.html?c=itil"><div class="cx-badge" style="--vc:#4ade80"><small>PeopleCert</small><b>ITIL 4</b></div><div class="cert-node-text"><b>ITIL 4 Foundation</b><span>Recommended Certification · ' + ITIL_COURSE.levels.length + ' levels</span></div></a>' +
+    '<div class="flyout"><div class="flyout-card"><div class="fl-head">ITIL 4 Foundation · Course</div><div class="fl-list"></div></div></div>';
+  (function () {
+    var list = certLv.querySelector(".fl-list");
+    ITIL_COURSE.levels.forEach(function (lv, i) {
+      var h = document.createElement("a"); h.className = "fl-group fl-group-link"; h.href = "course.html?c=itil#lv" + i; h.textContent = "Level " + i + " · " + lv.title; list.appendChild(h);
+      lv.lessons.forEach(function (r) {
+        var b = document.createElement("a"); b.className = "fl-item fl-sub"; b.href = "lesson.html?n=" + encodeURIComponent(r[0]);
+        b.innerHTML = '<span class="fl-dot"></span><span class="fl-title"></span>'; b.querySelector(".fl-title").textContent = r[1]; list.appendChild(b);
+      });
+    });
+  })();
+  certEl.appendChild(certLv);
+  var certCard = certLv.querySelector(".cert-node-card");
 
+  // Essential tools: every tool opens its own page
   var toolsEl = document.createElement("div"); toolsEl.className = "final tools-rec-node";
-  toolsEl.innerHTML =
-    '<div class="tools-node-card">' +
-      '<div class="tools-node-header">' +
-        '<span class="tools-node-icon">🧰</span>' +
-        '<div><b>Essential Tools for 1st Line IT Support</b><span>Recommended</span></div>' +
-      '</div>' +
-      '<div class="tools-node-groups">' +
-        '<div class="tools-group">' +
-          '<div class="tools-group-title">🎫 Ticketing Systems</div>' +
-          '<div class="tools-chips">' +
-            '<span class="tool-chip">ServiceNow</span>' +
-            '<span class="tool-chip">Jira Service Management</span>' +
-            '<span class="tool-chip">ManageEngine ServiceDesk Plus</span>' +
-          '</div>' +
-        '</div>' +
-        '<div class="tools-group">' +
-          '<div class="tools-group-title">🖥️ Remote Support Tools</div>' +
-          '<div class="tools-chips">' +
-            '<span class="tool-chip">Microsoft Quick Assist</span>' +
-            '<span class="tool-chip">TeamViewer</span>' +
-            '<span class="tool-chip">AnyDesk</span>' +
-            '<span class="tool-chip">Remote Desktop (RDP)</span>' +
-          '</div>' +
-        '</div>' +
-        '<div class="tools-group">' +
-          '<div class="tools-group-title">💬 Communication &amp; Productivity</div>' +
-          '<div class="tools-chips">' +
-            '<span class="tool-chip">Microsoft Outlook</span>' +
-            '<span class="tool-chip">Microsoft Teams</span>' +
-            '<span class="tool-chip">OneDrive</span>' +
-            '<span class="tool-chip">SharePoint</span>' +
-          '</div>' +
-        '</div>' +
-      '</div>' +
-    '</div>';
+  toolsEl.innerHTML = '<div class="tools-node-card"><a class="tools-node-header" href="tools.html"><span class="tools-node-icon">🧰</span><div><b>Essential Tools for 1st Line IT Support</b><span>Recommended · click a tool to learn it</span></div></a><div class="tools-node-groups"></div></div>';
+  (function () {
+    var box = toolsEl.querySelector(".tools-node-groups");
+    TOOL_GROUPS.forEach(function (g) {
+      var grp = document.createElement("div"); grp.className = "tools-group";
+      grp.innerHTML = '<div class="tools-group-title"></div><div class="tools-chips"></div>';
+      grp.querySelector(".tools-group-title").textContent = g.emoji + " " + g.name;
+      TOOLS.forEach(function (t) {
+        if (t.group !== g.id) return;
+        var a = document.createElement("a"); a.className = "tool-chip"; a.href = "tool.html?t=" + t.id; a.style.setProperty("--tc", t.color);
+        a.innerHTML = '<img src="assets/tool-icons/' + t.id + '.png" alt="" width="18" height="18"><span></span>'; a.querySelector("span").textContent = t.name;
+        grp.querySelector(".tools-chips").appendChild(a);
+      });
+      box.appendChild(grp);
+    });
+  })();
+  var toolsCard = toolsEl.querySelector(".tools-node-card");
 
   var midEl = document.createElement("div");  midEl.className = "final l6m";
   var finalEl = document.createElement("div");  finalEl.className = "final";
@@ -88,7 +86,7 @@
     lv.innerHTML =
       '<button type="button" class="lv-card" aria-haspopup="true">' +
         '<span class="badge"></span>' +
-        '<img class="im-icon" src="assets/beg-icons/' + info.id + '.png" alt="" aria-hidden="true" width="72" height="72">' +
+        '<img class="im-icon" src="assets/beg-icons/' + info.id + '.png" alt="" aria-hidden="true" width="72" height="72" onerror="this.remove()">' +
         '<h2></h2><p class="lv-desc"></p><div class="lv-meta"></div>' +
         '<div class="lv-bar"><i></i></div>' +
       '</button>' +
@@ -238,8 +236,8 @@
 
     link(0, 1, 1);
     link(1, 2, 2);
-    var certRect  = certEl.getBoundingClientRect();
-    var toolsRect = toolsEl.getBoundingClientRect();
+    var certRect  = certCard.getBoundingClientRect();
+    var toolsRect = toolsCard.getBoundingClientRect();
     var l5Rect    = entries[5].card.getBoundingClientRect();
     var l6mRect   = entries[6].card.getBoundingClientRect();
     if (stacked) {

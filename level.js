@@ -68,8 +68,8 @@
         + '<div class="cx-badge" style="--vc:#4ade80"><small>PeopleCert</small><b>ITIL 4</b></div>'
         + '<div class="cert-rec-info">'
         + '<b>ITIL 4 Foundation</b>'
-        + '<p>The globally recognised entry-level certification for IT service management. After completing Level 5 you have everything you need to pass it.</p>'
-        + '<a class="cert-rec-link" href="certs.html" >View in Certifications →</a>'
+        + '<p>The globally recognised entry-level certification for IT service management. Lesson 5.3 introduces it; the full course takes you level by level to the exam.</p>'
+        + '<a class="cert-rec-link" href="course.html?c=itil">Start the ITIL 4 course →</a>'
         + '</div></div>';
       list.parentNode.insertBefore(rec, list.nextSibling);
     }
