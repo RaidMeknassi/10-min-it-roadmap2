@@ -41,6 +41,10 @@
     ["Google Data Analytics Certificate", "Google", "DATA", ["l7"], ["Data and Artificial Intelligence"]]
   ];
   /* certifications from the tool pages (courses.js): each one links to its level on the tool page */
+  if (typeof ITIL_COURSE !== "undefined") ITIL_COURSE.path.forEach(function (t, i) {
+    if (t.foundation) return;
+    C.push([t.title, "PeopleCert", t.code, [i === ITIL_COURSE.path.length - 1 ? "a" : (i === 1 ? "i" : "a")], ["IT Support Engineering"], "course.html?c=itil&l=" + i]);
+  });
   if (typeof TOOLS !== "undefined") TOOLS.forEach(function (t) {
     var withCert = t.levels.map(function (l, i) { return [l, i]; }).filter(function (x) { return x[0].cert; });
     withCert.forEach(function (x, k) {
