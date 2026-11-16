@@ -402,7 +402,7 @@
   document.getElementById("p-done").addEventListener("click", function () {
     if (!current) return;
     if (done[current.n]) delete done[current.n]; else done[current.n] = true;
-    save(); refresh(); closePanel();
+    save(); if (window.__progressSaved) window.__progressSaved(); refresh(); closePanel();
   });
 
   // ----- certifications -----

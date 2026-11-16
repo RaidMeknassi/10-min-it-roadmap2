@@ -12,3 +12,17 @@
   if (/plans\.html$/.test(p)) k = "p";
   var a = document.querySelector('.top-nav a[data-nav="' + k + '"]'); if (a) a.classList.add("on");
 })();
+
+/* keep progress in sync: when you come back to a page (Back button, another tab),
+   reload it if lessons were marked done or not done in the meantime */
+(function () {
+  var KEY = "itroadmap-v2-done", seen;
+  function get() { try { return localStorage.getItem(KEY) || ""; } catch (e) { return ""; } }
+  seen = get();
+  function check() { var now = get(); if (now !== seen) { seen = now; location.reload(); } }
+  window.__progressSaved = function () { seen = get(); };   // a page that just saved its own change
+  window.addEventListener("pageshow", function (e) { if (e.persisted) check(); });
+  window.addEventListener("storage", function (e) { if (e.key === KEY) check(); });
+  document.addEventListener("visibilitychange", function () { if (document.visibilityState === "visible") check(); });
+})();
+

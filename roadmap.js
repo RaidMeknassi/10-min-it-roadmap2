@@ -238,6 +238,7 @@ const VIDEOS = {
   "16":  "WETARwhb1RM", // Network Devices and Their Functions
   "17":  "-6vIzRJt2vk", // MAC Address and IP Address Explained
   "27":  "JSanFqS5_nM", // What Is Cybersecurity?
+  "28":  "-S4RcR5zM6s", // Common Cyber Threats and Attacks
   "31":  "V0yEzSyIsiQ", // Password Security and MFA Explained
   "51":  "KvRj8-frEHU", // What Is the OSI Model?
   "52":  "0bVW9aI1exE", // Cybersecurity Best Practices

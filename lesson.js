@@ -79,7 +79,7 @@
   head.querySelector("h1").textContent = item.title;
   var db = head.querySelector(".lp-done");
   function dl() { db.textContent = done[item.n] ? "✓ Done" : "Mark as done"; db.classList.toggle("on", !!done[item.n]); }
-  dl(); db.onclick = function () { if (done[item.n]) delete done[item.n]; else { done[item.n] = true; if (window.celebrate) celebrate(); } save(); dl(); };
+  dl(); db.onclick = function () { if (done[item.n]) delete done[item.n]; else { done[item.n] = true; if (window.celebrate) celebrate(); } save(); if (window.__progressSaved) window.__progressSaved(); dl(); };
   main.appendChild(head);
 
   var tabs = el("div", "lp-tabs");
