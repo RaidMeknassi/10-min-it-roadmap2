@@ -774,3 +774,11 @@ a.cx-card:hover { border-color: var(--vc); transform: translateY(-2px); }
 /* page tint follows the selected certificate colour */
 .toolpage::before, .coursepage::before { content: ""; position: fixed; inset: 0; pointer-events: none; z-index: -1;
   background: radial-gradient(1100px 620px at 50% -5%, color-mix(in srgb, var(--c) 26%, transparent), transparent 70%); transition: background .4s; }
+/* exam preparation section (tool levels with a certification, ITIL exam level) */
+.exam-sec { margin-top: 22px; padding: 16px; border-radius: 16px; border: 2px dashed color-mix(in srgb, var(--c) 70%, #fff); background: color-mix(in srgb, var(--c) 8%, transparent); }
+.exam-head { display: flex; gap: 12px; align-items: flex-start; margin-bottom: 12px; }
+.exam-ico { font-size: 26px; line-height: 1; }
+.exam-head h3 { margin: 0 0 4px; font-size: 18px; }
+.exam-head p { margin: 0; color: var(--muted); font-size: 14px; }
+.exam-sec .cl-ico { font-size: 13px; }
+.grp-head.exam-grp { padding: 10px 12px; border: 2px dashed var(--c); border-left-width: 4px; border-radius: 12px; background: color-mix(in srgb, var(--c) 8%, transparent); }

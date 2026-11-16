@@ -51,7 +51,7 @@
       var iconSrc = /^im\d+\./.test(n) ? "assets/lesson-icons/" + n + ".png" : "assets/lesson-icons/" + n + ".png";
       a.querySelector(".ico").innerHTML = '<img src="' + iconSrc + '" alt="" width="28" height="28" style="border-radius:8px;vertical-align:middle;">';
       a.querySelector("b").textContent = row[1]; a.querySelector("small").textContent = "Lesson " + (LBL[n] || n) + " · 10 min";
-      var tg = a.querySelector(".lc-tags"), has = LESSON_PAGES[n];
+      var tg = a.querySelector(".lc-tags"), has = LESSON_PAGES[n] || VIDEOS[n];
       if (has) tg.appendChild(tag("Lesson", "t-les"));
       if (QUIZZES[n]) tg.appendChild(tag("Quiz", "t-quiz"));
       if (LAB_PAGES[n]) tg.appendChild(tag("Lab", "t-lab")); else if (row[2]) tg.appendChild(tag("🔒 Lab", "t-lock"));

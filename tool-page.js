@@ -66,19 +66,27 @@
     else info.querySelector(".tp-cert").textContent = "No exam at this level: just the skills you need on the job.";
     if (!lv.cert) head.querySelector(".tp-lvnum").textContent = "L" + i;
     head.appendChild(info); panel.appendChild(head);
-    var list = el("div", "lvlist");
-    lv.lessons.forEach(function (r, k) {
+    function lessonCard(r) {
       var a = el("a", "lc" + (done[r[0]] ? " done" : "")); a.href = "lesson.html?n=" + encodeURIComponent(r[0]);
-      if (done[r[0]]) c++;
       a.innerHTML = '<span class="cl-ico"></span><span class="lc-body"><b></b><small></small></span><span class="lc-tags"></span><span class="lc-check">✓</span>';
       a.querySelector(".cl-ico").textContent = LBL[r[0]];
       a.querySelector("b").textContent = r[1];
       a.querySelector("small").textContent = "Lesson " + LBL[r[0]] + " · 10 min";
       a.querySelector(".lc-tags").appendChild(el("span", "tg " + (VIDEOS[r[0]] ? "t-les" : "t-soon"), VIDEOS[r[0]] ? "Lesson" : "Coming soon"));
-      list.appendChild(a);
-    });
-    panel.appendChild(el("p", "lv-meta", lv.lessons.length + " lessons · " + c + " / " + lv.lessons.length + " done"));
-    panel.appendChild(list);
+      return a;
+    }
+    var all = lv.lessons.concat(lv.exam || []);
+    all.forEach(function (r) { if (done[r[0]]) c++; });
+    panel.appendChild(el("p", "lv-meta", all.length + " lessons · " + c + " / " + all.length + " done"));
+    var list = el("div", "lvlist"); lv.lessons.forEach(function (r) { list.appendChild(lessonCard(r)); }); panel.appendChild(list);
+    if (lv.exam && lv.exam.length) {
+      var ex = el("div", "exam-sec");
+      ex.innerHTML = '<div class="exam-head"><span class="exam-ico">📝</span><div><h3></h3><p></p></div></div>';
+      ex.querySelector("h3").textContent = "Exam Preparation · " + lv.cert[0];
+      ex.querySelector("p").textContent = "Get ready for the " + lv.cert[1] + " exam (" + lv.cert[2] + "): know the format, check every objective, practise, then take a full mock exam.";
+      var el2 = el("div", "lvlist"); lv.exam.forEach(function (r) { el2.appendChild(lessonCard(r)); }); ex.appendChild(el2);
+      panel.appendChild(ex);
+    }
     var nav = el("nav", "lv-nav");
     function nb(j, txt) { var a = el("a", "lv-nl", txt); a.href = "tool.html?t=" + tool.id + "&l=" + j; a.style.setProperty("--c", tool.levels[j].color); a.addEventListener("click", function (e) { e.preventDefault(); pick(j, true); panel.scrollIntoView({ behavior: "smooth", block: "start" }); }); return a; }
     nav.appendChild(i > 0 ? nb(i - 1, "← Level " + (i - 1)) : el("span"));

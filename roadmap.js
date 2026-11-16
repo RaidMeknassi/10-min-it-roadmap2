@@ -105,7 +105,7 @@ const INTERMEDIATE_LEVELS = [
       ["im4.7","TCP and UDP"],["im4.8","Ports and Network Services"],
       ["im4.9","Routing Fundamentals"],["im4.10","NAT and VLAN Fundamentals"],
       ["im4.11","Network Troubleshooting"],
-      ["im4.12","The OSI Model — A Deeper Look at the 7 Layers"],["im4.13","IP Addressing"]
+      ["im4.12","The OSI Model — A Deeper Look at the 7 Layers"],["im4.13","IP Addressing"],["im4.14","MAC Addresses — How Devices Find Each Other"]
     ]},
   { id: "im5", name: "Module 5", title: "Active Directory Fundamentals", color: "#818cf8",
     desc: "Understand centralized identity and Windows domain management.",
@@ -236,14 +236,14 @@ const VIDEOS = {
   "13":  "XID0Vgtylt8", // Mobile and Other Operating Systems
   "15":  "CRYJtPPXak0", // What Is a Network?
   "16":  "WETARwhb1RM", // Network Devices and Their Functions
-  /* Waiting for the YouTube link (paste the ID between the quotes):
-  "17":  "", // MAC Addresses Explained
-  "27":  "", // What Is Cybersecurity?
-  "31":  "", // Password Security and MFA Explained
-  "51":  "", // What Is the OSI Model?
-  "52":  "", // Cybersecurity Best Practices
-  "54":  "", // Finding Your First IT Job
-  */
+  "17":  "-6vIzRJt2vk", // MAC Address and IP Address Explained
+  "27":  "JSanFqS5_nM", // What Is Cybersecurity?
+  "31":  "V0yEzSyIsiQ", // Password Security and MFA Explained
+  "51":  "KvRj8-frEHU", // What Is the OSI Model?
+  "52":  "0bVW9aI1exE", // Cybersecurity Best Practices
+  "54":  "VlwUAFHQPfo", // Finding Your First IT Job
+  "58":  "3kp40W0oT0Q", // How to Calculate in Binary
+  "im4.14": "hy5FD9k1Hd8", // MAC Addresses Explained
   "im1.1": "0VVAza-8CUY", // Understanding the Kernel
   "im4.12": "qOhK8otyr2Q", // The OSI Model — A Deeper Look at the 7 Layers
   "im4.13": "HXJjk7_T0qk", // IP Addressing

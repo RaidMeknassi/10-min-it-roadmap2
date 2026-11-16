@@ -15,7 +15,7 @@
   function card(t) {
     var a = el("a", "tl-card"); a.href = "tool.html?t=" + t.id; a.style.setProperty("--c", t.color);
     var certs = t.levels.filter(function (l) { return l.cert; }), lessons = 0;
-    t.levels.forEach(function (l) { lessons += l.lessons.length; });
+    t.levels.forEach(function (l) { lessons += l.lessons.length + (l.exam ? l.exam.length : 0); });
     a.innerHTML = '<img src="assets/tool-icons/' + t.id + '.png" alt="" width="56" height="56"><div class="tl-body"><b></b><p></p><small></small></div><div class="tl-certs"></div>';
     a.querySelector("b").textContent = t.name;
     a.querySelector("p").textContent = t.desc;

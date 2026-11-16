@@ -19,7 +19,7 @@ const ITIL_COURSE = {
     { title: "The Service Value System", lessons: ["The ITIL Service Value System", "Opportunity, Demand and Value", "Governance", "The Continual Improvement Model"] },
     { title: "The Service Value Chain", lessons: ["What Is the Service Value Chain?", "Plan and Improve", "Engage", "Design and Transition", "Obtain/Build", "Deliver and Support", "Value Streams in Action"] },
     { title: "Key ITIL Practices", lessons: ["Incident Management", "Problem Management", "Service Request Management", "Service Desk", "Change Enablement", "Service Level Management", "Continual Improvement", "Relationship Management", "IT Asset Management", "Monitoring and Event Management", "Release Management", "Service Configuration Management", "Deployment Management", "Information Security Management", "Supplier Management"] },
-    { title: "Exam Preparation", lessons: ["How the ITIL 4 Foundation Exam Works", "Key Terms to Remember", "Practice Exam and Review"] }
+    { title: "Exam Preparation", exam: true, lessons: ["How the ITIL 4 Foundation Exam Works", "Exam Objectives Checklist", "Key Terms to Remember", "Practice Questions", "Full Mock Exam and Review", "Booking the Exam and Exam Day Tips"] }
   ]
 };
 
@@ -165,11 +165,18 @@ const COURSE_LEVELS = [];
     COURSE_LEVELS.push({ id: "itil-" + i, name: "ITIL Level " + i, title: lv.title, color: ITIL_COURSE.color, lessons: lv.lessons,
       href: "course.html?c=itil#lv" + i, group: "itil", crumbs: [["Road map", "index.html#map"], ["ITIL 4 Foundation", "course.html?c=itil"]] });
   });
+  /* every level with a certification gets an Exam Preparation section (lessons x1, x2 ...) */
+  function examPrep(code) {
+    return ["How the " + code + " Exam Works", code + " Exam Objectives Checklist", code + " Practice Questions", code + " Full Mock Exam and Review", "Booking the Exam and Exam Day Tips"];
+  }
   TOOLS.forEach(function (tool) {
     tool.levels.forEach(function (lv, i) {
-      lv.lessons = lv.lessons.map(function (t, k) { return Array.isArray(t) ? t : [tool.id + "." + i + "." + (k + 1), t]; });
+      lv.lessons = lv.lessons.filter(function (t) { return Array.isArray(t) || !/Exam Preparation$/.test(t); })
+        .map(function (t, k) { return Array.isArray(t) ? t : [tool.id + "." + i + "." + (k + 1), t]; });
       lv.lessons.forEach(function (r, k) { LBL[r[0]] = i + "." + (k + 1); });
-      COURSE_LEVELS.push({ id: tool.id + "-" + i, name: tool.name + " · Level " + i, title: lv.cert ? lv.cert[0] + " · " + lv.title : lv.title, color: lv.color, lessons: lv.lessons,
+      lv.exam = !lv.cert ? [] : (lv.exam || examPrep(lv.cert[0].split(" ")[0])).map(function (t, k) { return Array.isArray(t) ? t : [tool.id + "." + i + ".x" + (k + 1), t]; });
+      lv.exam.forEach(function (r, k) { LBL[r[0]] = i + ".E" + (k + 1); });
+      COURSE_LEVELS.push({ id: tool.id + "-" + i, name: tool.name + " · Level " + i, title: lv.cert ? lv.cert[0] + " · " + lv.title : lv.title, color: lv.color, lessons: lv.lessons.concat(lv.exam),
         href: "tool.html?t=" + tool.id + "&l=" + i, group: "tool-" + tool.id, crumbs: [["Tools", "tools.html"], [tool.name, "tool.html?t=" + tool.id]] });
     });
   });

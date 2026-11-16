@@ -29,8 +29,8 @@
 
   var list = el("section", "lvlist groups");
   C.levels.forEach(function (lv, i) {
-    var h = el("div", "grp-head"); h.id = "lv" + i;
-    h.innerHTML = "<h2></h2><p></p>"; h.querySelector("h2").textContent = "Level " + i + " · " + lv.title;
+    var h = el("div", "grp-head" + (lv.exam ? " exam-grp" : "")); h.id = "lv" + i;
+    h.innerHTML = "<h2></h2><p></p>"; h.querySelector("h2").textContent = (lv.exam ? "📝 " : "") + "Level " + i + " · " + lv.title;
     var d = 0; lv.lessons.forEach(function (r) { if (done[r[0]]) d++; });
     h.querySelector("p").textContent = lv.lessons.length + " lessons · " + d + " / " + lv.lessons.length + " done";
     list.appendChild(h);
