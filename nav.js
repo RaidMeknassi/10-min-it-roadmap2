@@ -26,3 +26,6 @@
   document.addEventListener("visibilitychange", function () { if (document.visibilityState === "visible") check(); });
 })();
 
+
+/* installable phone app: register the service worker */
+if ("serviceWorker" in navigator) window.addEventListener("load", function () { navigator.serviceWorker.register("sw.js").catch(function () {}); });
