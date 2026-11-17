@@ -18,7 +18,8 @@
       '<article class="pl-card pl-pro">' +
         '<span class="pl-ribbon">SUPPORT THE PROJECT</span>' +
         '<h3>STARBUCKS COFFEE ☕</h3><div class="pl-line"></div>' +
-        '<div class="pl-price"><b>\u20AC29.99</b><span> / Year</span></div>' +
+        '<div style="font-size:12px;color:#888;margin-top:3px;">€2.50 / month</div>' +
+        '<p class="pl-title">2.4</p>' +
         '<p class="pl-title">Buy me a Starbucks coffee</p>' +
         '<p class="pl-sub">Your support unlocks:</p>' +
         '<ul>' + li("Hands-on labs") + li("Interactive quizzes") + li("Practical challenges") + li("Certification preparation") + '</ul>' +
