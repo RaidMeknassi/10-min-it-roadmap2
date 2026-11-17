@@ -67,24 +67,23 @@ const TOOLS = [
   { id: "linkedin", name: "LinkedIn", group: "jobs", color: "#0a66c2", tags: ["Jobs", "Networking", "Profile"],
     desc: "The biggest professional network. Recruiters search it every day for IT support people.",
     note: "There is no official exam. Your profile and your network are your certificate.",
+    single: true,
     levels: [
-      { title: "LinkedIn Basics", role: "Account ready", color: "#7fb3e6", lessons: ["What LinkedIn Is and Why Recruiters Use It", "Creating Your Account", "Profile Photo and Banner", "Writing a Strong Headline"] },
-      { title: "A Profile That Gets Found", role: "Visible to recruiters", color: "#3d8ad6", lessons: ["Writing Your About Section", "Experience, Projects and Labs", "Skills and Keywords for IT Support", "Adding Certifications and Badges", "Open to Work Settings"] },
-      { title: "Job Hunting on LinkedIn", role: "Applying smart", color: "#0a66c2", lessons: ["Searching and Filtering Jobs", "Job Alerts and Easy Apply", "Messaging Recruiters", "Growing Your Network", "Posting About What You Learn"] }
+      { title: "LinkedIn for IT Jobs", role: "One lesson", color: "#0a66c2", lessons: ["LinkedIn for IT Jobs: Build Your Profile & Find Entry-Level IT Work"] }
     ]},
   { id: "glassdoor", name: "Glassdoor", group: "jobs", color: "#0caa41", tags: ["Jobs", "Salaries", "Reviews"],
     desc: "Job listings plus company reviews, salaries and real interview questions.",
     note: "There is no official exam. Use it to research companies before you apply.",
+    single: true,
     levels: [
-      { title: "Glassdoor Basics", role: "Account ready", color: "#7ad69a", lessons: ["What Glassdoor Is", "Creating Your Account", "Searching IT Support Jobs"] },
-      { title: "Research Like a Pro", role: "Ready for interviews", color: "#0caa41", lessons: ["Reading Company Reviews", "Checking Salaries for Your Role", "Finding Real Interview Questions", "Comparing Companies Before You Apply"] }
+      { title: "Glassdoor for Beginners", role: "One lesson", color: "#0caa41", lessons: ["Glassdoor for Beginners: Research Companies Before You Apply"] }
     ]},
   { id: "indeed", name: "Indeed", group: "jobs", color: "#2557a7", tags: ["Jobs", "CV", "Applications"],
     desc: "One of the largest job boards. Great for entry-level help desk and IT support roles.",
     note: "There is no official exam. Indeed offers optional skill tests you can show on your profile.",
+    single: true,
     levels: [
-      { title: "Indeed Basics", role: "Account ready", color: "#8aa9db", lessons: ["What Indeed Is", "Creating Your Account", "Uploading Your CV"] },
-      { title: "Applying the Smart Way", role: "Applying smart", color: "#2557a7", lessons: ["Searching and Filtering Jobs", "Job Alerts", "Indeed Skill Assessments", "Tracking Your Applications"] }
+      { title: "Indeed for IT Jobs", role: "One lesson", color: "#2557a7", lessons: ["How to Use Indeed to Find Your First IT Job (Search, Filter & Apply)"] }
     ]},
 
   { id: "servicenow", name: "ServiceNow", group: "ticketing", color: "#62d84e", tags: ["ITSM", "Tickets", "ITIL"],
@@ -192,7 +191,7 @@ const COURSE_LEVELS = [];
 (function () {
   ITIL_COURSE.levels.forEach(function (lv, i) {
     lv.lessons = lv.lessons.map(function (t, k) { return Array.isArray(t) ? t : ["itil." + i + "." + (k + 1), t]; });
-    lv.lessons.forEach(function (r, k) { LBL[r[0]] = i + "." + (k + 1); });
+    lv.lessons.forEach(function (r, k) { LBL[r[0]] = tool.single ? String(k + 1) : i + "." + (k + 1); });
     COURSE_LEVELS.push({ id: "itil-" + i, name: "ITIL Level " + i, title: lv.title, color: ITIL_COURSE.color, lessons: lv.lessons,
       href: "course.html?c=itil#lv" + i, group: "itil", crumbs: [["Road map", "index.html#map"], ["ITIL Foundation", "course.html?c=itil"]] });
   });
@@ -215,10 +214,10 @@ const COURSE_LEVELS = [];
     tool.levels.forEach(function (lv, i) {
       lv.lessons = lv.lessons.filter(function (t) { return Array.isArray(t) || !/Exam Preparation$/.test(t); })
         .map(function (t, k) { return Array.isArray(t) ? t : [tool.id + "." + i + "." + (k + 1), t]; });
-      lv.lessons.forEach(function (r, k) { LBL[r[0]] = i + "." + (k + 1); });
+      lv.lessons.forEach(function (r, k) { LBL[r[0]] = tool.single ? String(k + 1) : i + "." + (k + 1); });
       lv.exam = !lv.cert ? [] : (lv.exam || examPrep(lv.cert[0].split(" ")[0])).map(function (t, k) { return Array.isArray(t) ? t : [tool.id + "." + i + ".x" + (k + 1), t]; });
       lv.exam.forEach(function (r, k) { LBL[r[0]] = i + ".E" + (k + 1); });
-      COURSE_LEVELS.push({ id: tool.id + "-" + i, name: tool.name + " · Level " + i, title: lv.cert ? lv.cert[0] + " · " + lv.title : lv.title, color: lv.color, lessons: lv.lessons.concat(lv.exam),
+      COURSE_LEVELS.push({ id: tool.id + "-" + i, name: tool.single ? tool.name : tool.name + " · Level " + i, title: lv.cert ? lv.cert[0] + " · " + lv.title : lv.title, color: lv.color, lessons: lv.lessons.concat(lv.exam),
         href: "tool.html?t=" + tool.id + "&l=" + i, group: "tool-" + tool.id, crumbs: [["Tools", "tools.html"], [tool.name, "tool.html?t=" + tool.id]] });
     });
   });

@@ -260,8 +260,8 @@ const VIDEOS = {
   "5.5.3": "w6V56fsX7Qk", // Remote Support Tools
   "5.5.4": "SSTCBHDDtp8", // Professional IT Support Practices
   "linkedin.0.1": "1haDfgG7waE", // LinkedIn for IT Jobs
-  "glassdoor.1.1": "MeM2IGOA6yM", // Glassdoor: research companies
-  "indeed.1.1": "MI-nP0w4Wh8", // Indeed: search, filter and apply
+  "glassdoor.0.1": "MeM2IGOA6yM", // Glassdoor: research companies
+  "indeed.0.1": "MI-nP0w4Wh8", // Indeed: search, filter and apply
   "58":  "3kp40W0oT0Q", // How to Calculate in Binary
   "im4.14": "hy5FD9k1Hd8", // MAC Addresses Explained
   "im1.1": "0VVAza-8CUY", // Understanding the Kernel

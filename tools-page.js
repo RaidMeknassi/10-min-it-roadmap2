@@ -19,7 +19,7 @@
     a.innerHTML = '<img src="assets/tool-icons/' + t.id + '.png" alt="" width="56" height="56"><div class="tl-body"><b></b><p></p><small></small></div><div class="tl-certs"></div>';
     a.querySelector("b").textContent = t.name;
     a.querySelector("p").textContent = t.desc;
-    a.querySelector("small").textContent = t.levels.length + " levels · " + lessons + " lessons · " + (certs.length ? certs.length + " certification" + (certs.length > 1 ? "s" : "") : "no official exam");
+    a.querySelector("small").textContent = (t.single ? "1 lesson" : t.levels.length + " levels · " + lessons + " lessons") + " · " + (certs.length ? certs.length + " certification" + (certs.length > 1 ? "s" : "") : "no official exam");
     var cb = a.querySelector(".tl-certs");
     certs.forEach(function (l) { var s = el("span", "tl-cert", l.cert[0]); s.style.setProperty("--c", l.color); cb.appendChild(s); });
     return a;

@@ -25,7 +25,7 @@
 
   // pyramid
   var pyr = el("section", "pyr"); pyr.setAttribute("aria-label", tool.name + " levels");
-  main.appendChild(el("p", "pyr-hint", "Click a level to see its lessons. Level 0 is the base; the top is expert."));
+  if (!tool.single) main.appendChild(el("p", "pyr-hint", "Click a level to see its lessons. Level 0 is the base; the top is expert."));
   for (var j = 0; j < N; j++) {
     var i = N - 1 - j, lv = tool.levels[i];
     var top = j / N, bot = (j + 1) / N;
@@ -38,7 +38,7 @@
     row.addEventListener("click", function (e) { e.preventDefault(); pick(parseInt(this.dataset.i, 10), true); });
     pyr.appendChild(row);
   }
-  main.appendChild(pyr);
+  if (!tool.single) main.appendChild(pyr);
   var panel = el("section", "tp-panel"); main.appendChild(panel);
 
   function pick(i, user) {
@@ -60,7 +60,7 @@
     } else head.innerHTML = '<div class="tp-lvnum"></div>';
     var info = el("div", "tp-info");
     info.innerHTML = '<p class="lp-track"></p><h2></h2><p class="tp-cert"></p>';
-    info.querySelector(".lp-track").textContent = "Level " + i + " of " + (N - 1) + " · " + (lv.role || "");
+    info.querySelector(".lp-track").textContent = tool.single ? "Lesson" : "Level " + i + " of " + (N - 1) + " · " + (lv.role || "");
     info.querySelector("h2").textContent = lv.title;
     if (lv.cert) { var p = info.querySelector(".tp-cert"); p.textContent = "Certification: " + lv.cert[1] + " (" + lv.cert[2] + ") "; var a = el("a", "", "View in Certifications →"); a.href = "certs.html?q=" + encodeURIComponent(lv.cert[0]); p.appendChild(a); }
     else info.querySelector(".tp-cert").textContent = "No exam at this level: just the skills you need on the job.";
@@ -90,12 +90,13 @@
     }
     var nav = el("nav", "lv-nav");
     function nb(j, txt) { var a = el("a", "lv-nl", txt); a.href = "tool.html?t=" + tool.id + "&l=" + j; a.style.setProperty("--c", tool.levels[j].color); a.addEventListener("click", function (e) { e.preventDefault(); pick(j, true); panel.scrollIntoView({ behavior: "smooth", block: "start" }); }); return a; }
-    nav.appendChild(i > 0 ? nb(i - 1, "← Level " + (i - 1)) : el("span"));
-    nav.appendChild(i < N - 1 ? nb(i + 1, "Level " + (i + 1) + " →") : el("span"));
+    if (!tool.single) nav.appendChild(i > 0 ? nb(i - 1, "← Level " + (i - 1)) : el("span"));
+    if (!tool.single) nav.appendChild(i < N - 1 ? nb(i + 1, "Level " + (i + 1) + " →") : el("span"));
     panel.appendChild(nav);
     if (user) panel.scrollIntoView({ behavior: "smooth", block: "start" });
   }
+  if (tool.single) sel = 0;
   pick(sel, false);
-  if (sel >= 0) setTimeout(function () { panel.scrollIntoView({ block: "start" }); }, 50);
+  if (sel >= 0 && !tool.single) setTimeout(function () { panel.scrollIntoView({ block: "start" }); }, 50);
   var y = $("year"); if (y) y.textContent = new Date().getFullYear();
 })();
