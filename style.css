@@ -782,3 +782,33 @@ a.cx-card:hover { border-color: var(--vc); transform: translateY(-2px); }
 .exam-head p { margin: 0; color: var(--muted); font-size: 14px; }
 .exam-sec .cl-ico { font-size: 13px; }
 .grp-head.exam-grp { padding: 10px 12px; border: 2px dashed var(--c); border-left-width: 4px; border-radius: 12px; background: color-mix(in srgb, var(--c) 8%, transparent); }
+
+/* ===== ITIL Version 5 roadmap (ITIL page) ===== */
+.irm { margin: 26px auto 10px; padding: 26px 20px; border-radius: 20px; background: linear-gradient(180deg, rgba(16,24,39,.92), rgba(12,16,30,.92)); border: 1px solid rgba(255,255,255,.08); text-align: center; }
+.irm-title { margin: 0; color: #38bdf8; font-size: clamp(22px, 4vw, 30px); letter-spacing: .04em; }
+.irm-sub { margin: 4px 0 18px; color: #94a3b8; letter-spacing: 3px; font-size: 12px; }
+.irm-box { position: relative; display: block; max-width: 440px; margin: 0 auto; padding: 18px 18px 16px; border: 2px solid var(--c); border-radius: 14px; background: #172b42; color: #fff; text-decoration: none; transition: transform .15s, box-shadow .2s, background .2s; }
+.irm-box h3, .irm-path h3 { margin: 0 0 6px; font-size: 17px; letter-spacing: .03em; color: var(--c); }
+.irm-box p { margin: 0; font-size: 13.5px; color: #cbd5e1; line-height: 1.45; }
+.irm-num { position: absolute; top: -13px; left: 50%; transform: translateX(-50%); min-width: 26px; height: 26px; padding: 0 6px; border-radius: 99px; background: var(--c); color: #07070d; font-weight: 800; font-size: 13px; display: grid; place-items: center; }
+.irm-arrow { color: #38bdf8; font-size: 28px; line-height: 1; margin: 10px 0 14px; display: flex; flex-direction: column; align-items: center; gap: 4px; }
+.irm-arrow small { font-size: 12px; color: #94a3b8; letter-spacing: .08em; text-transform: uppercase; }
+.irm-paths { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; margin: 6px 0; align-items: stretch; }
+.irm-path { position: relative; padding: 22px 14px 14px; border-radius: 14px; border: 2px solid var(--c); background: #172b42; }
+.irm-pdesc { margin: 0 0 8px; font-size: 13px; color: #cbd5e1; }
+.irm-rule { display: inline-block; margin: 0 0 6px; padding: 3px 10px; border-radius: 99px; font-size: 11px; font-weight: 800; letter-spacing: .06em; color: #07070d; background: var(--c); }
+.irm-mod { display: block; background: #263b52; padding: 11px 12px; margin: 10px 0 0; border-radius: 9px; color: #fff; text-decoration: none; border: 2px solid transparent; transition: border-color .15s, transform .15s, background .15s; }
+.irm-mod b { display: block; font-size: 15px; letter-spacing: .04em; }
+.irm-mod small { display: block; margin-top: 3px; font-size: 12px; color: #a8b5c8; line-height: 1.35; }
+.irm-box:hover, .irm-mod:hover { transform: translateY(-2px); box-shadow: 0 0 24px -6px var(--c); }
+.irm-mod:hover { border-color: var(--c); }
+.irm-box.on { background: color-mix(in srgb, var(--c) 22%, #172b42); box-shadow: 0 0 30px -4px var(--c); }
+.irm-mod.on { border-color: var(--c); background: color-mix(in srgb, var(--c) 28%, #263b52); box-shadow: 0 0 20px -6px var(--c); }
+.irm-path .irm-mod { --c: inherit; }
+.irm-optional { margin-top: 26px; border-style: dashed; border-width: 1px; background: transparent; }
+.irm-optional h3 { color: #94a3b8; font-size: 14px; }
+.irm-optional p { color: #94a3b8; }
+@media (max-width: 760px) {
+  .irm { padding: 22px 12px; }
+  .irm-paths { grid-template-columns: 1fr; gap: 24px; }
+}

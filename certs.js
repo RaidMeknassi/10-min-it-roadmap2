@@ -41,10 +41,15 @@
     ["Google Data Analytics Certificate", "Google", "DATA", ["l7"], ["Data and Artificial Intelligence"]]
   ];
   /* certifications from the tool pages (courses.js): each one links to its level on the tool page */
-  if (typeof ITIL_COURSE !== "undefined") ITIL_COURSE.path.forEach(function (t, i) {
-    if (t.foundation) return;
-    C.push([t.title, "PeopleCert", t.code, [i === ITIL_COURSE.path.length - 1 ? "a" : (i === 1 ? "i" : "a")], ["IT Support Engineering"], "course.html?c=itil&l=" + i]);
-  });
+  if (typeof ITIL_COURSE !== "undefined") {
+    var IM = ITIL_COURSE.modules;
+    ["transformation", "msf", "pic", "cai", "product", "service", "experience", "strategy", "aigov"].forEach(function (id) {
+      var t = IM[id]; C.push([t.title + (id === "aigov" ? " (optional)" : ""), "PeopleCert", t.code, [id === "transformation" ? "i" : "a"], ["IT Support Engineering"], "course.html?c=itil&m=" + id]);
+    });
+    ITIL_COURSE.designations.forEach(function (d) { C.push(["ITIL " + d.name + " (designation)", "PeopleCert", d.id.toUpperCase(), ["a"], ["IT Support Engineering"], "course.html?c=itil&m=" + d.modules[0]]); });
+    C.push(["ITIL Master", "PeopleCert", "Master", ["a"], ["IT Support Engineering"], "course.html?c=itil&m=master"]);
+  }
+
   if (typeof TOOLS !== "undefined") TOOLS.forEach(function (t) {
     var withCert = t.levels.map(function (l, i) { return [l, i]; }).filter(function (x) { return x[0].cert; });
     withCert.forEach(function (x, k) {

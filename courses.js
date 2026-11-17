@@ -12,17 +12,35 @@ const ITIL_COURSE = {
   id: "itil", name: "ITIL 4 Foundation", vendor: "PeopleCert", badge: "ITIL 4", color: "#4ade80",
   desc: "The world's most used framework for IT service management. Learn it level by level, then pass the ITIL Foundation exam.",
   note: "ITIL (Version 5) launched in January 2026 and runs alongside ITIL 4. An ITIL 4 Foundation certificate stays valid and counts as the starting point for every higher ITIL level.",
-  /* the ITIL certification pyramid (bottom to top). Level 1 = this Foundation course. */
-  path: [
-    { code: "Foundation", title: "ITIL Foundation", role: "Service Desk / 1st Line", color: "#1d5f9e", foundation: true },
-    { code: "PM", title: "ITIL Practice Manager", role: "Team Lead / Practice Owner", color: "#2b78c2",
-      lessons: ["What the Practice Manager Designation Is", "ITIL Transformation", "Monitor, Support and Fulfil (MSF)", "Plan, Implement and Control (PIC)", "Collaborate, Assure and Improve (CAI)", "Choosing Your Practice Module"], exam: "Practice Manager" },
-    { code: "MP", title: "ITIL Managing Professional", role: "Service Manager", color: "#3f93dc",
-      lessons: ["What the Managing Professional Designation Is", "ITIL Product", "ITIL Service", "ITIL Experience", "How Transformation Counts Toward MP"], exam: "Managing Professional" },
-    { code: "SL", title: "ITIL Strategic Leader", role: "IT Manager / Leader", color: "#62acec",
-      lessons: ["What the Strategic Leader Designation Is", "ITIL Strategy", "Leading Digital Transformation", "ITIL AI Governance (Extension Module)"], exam: "Strategic Leader" },
-    { code: "Master", title: "ITIL Master", role: "ITIL Master", color: "#93c9f5",
-      lessons: ["What ITIL Master Means", "Holding PM, MP and SL Together", "Planning Your Route to Master"] }
+  /* ITIL (Version 5) certification roadmap. Every box is a module with lessons; "foundation" opens the course above. */
+  modules: {
+    foundation: { code: "Foundation", title: "ITIL Foundation", color: "#38bdf8", desc: "For beginners and IT professionals learning IT Service Management.", foundation: true },
+    transformation: { code: "Transformation", title: "ITIL Transformation", color: "#a78bfa", exam: true, desc: "For professionals leading organizational change and digital transformation. Shared requirement for all three designations: complete it once.",
+      lessons: ["What ITIL Transformation Covers", "Leading Organisational Change", "Digital Transformation Basics", "Building a Transformation Roadmap", "Measuring Transformation Success"] },
+    msf: { code: "MSF", title: "Monitor, Support and Fulfil", color: "#34d399", exam: true, desc: "For service desk, support and incident management professionals.",
+      lessons: ["Monitor, Support and Fulfil Overview", "Monitoring and Event Management", "Incident Management in Practice", "Service Desk Operations", "Service Request Fulfilment"] },
+    pic: { code: "PIC", title: "Plan, Implement and Control", color: "#34d399", exam: true, desc: "For change, deployment, release and asset management professionals.",
+      lessons: ["Plan, Implement and Control Overview", "Change Enablement", "Release and Deployment", "IT Asset and Configuration Management", "Planning and Control in Practice"] },
+    cai: { code: "CAI", title: "Collaborate, Assure and Improve", color: "#34d399", exam: true, desc: "For supplier, relationship and continual improvement professionals.",
+      lessons: ["Collaborate, Assure and Improve Overview", "Supplier Management", "Relationship Management", "Service Assurance", "Continual Improvement in Practice"] },
+    product: { code: "Product", title: "ITIL Product", color: "#38bdf8", exam: true, desc: "For digital product managers.",
+      lessons: ["What ITIL Product Covers", "The Digital Product Lifecycle", "Product Ownership and Roadmaps", "Measuring Product Value"] },
+    service: { code: "Service", title: "ITIL Service", color: "#38bdf8", exam: true, desc: "For IT service managers.",
+      lessons: ["What ITIL Service Covers", "Designing and Running Services", "Service Levels and Performance", "Service Value Streams"] },
+    experience: { code: "Experience", title: "ITIL Experience", color: "#38bdf8", exam: true, desc: "For customer and user experience professionals.",
+      lessons: ["What ITIL Experience Covers", "Customer and User Journeys", "Designing Great Experiences", "Measuring Experience"] },
+    strategy: { code: "Strategy", title: "ITIL Strategy", color: "#f472b6", exam: true, desc: "For professionals responsible for digital strategy and business alignment.",
+      lessons: ["What ITIL Strategy Covers", "Digital Strategy and Business Alignment", "Portfolio and Investment Decisions", "Governance and Risk", "Communicating Strategy"] },
+    master: { code: "Master", title: "ITIL Master", color: "#fbbf24", desc: "For experienced professionals who achieve all three designations. No separate exam.",
+      lessons: ["What ITIL Master Means", "Holding PM, MP and SL Together", "Planning Your Route to Master"] },
+    aigov: { code: "AI Gov", title: "ITIL AI Governance", color: "#94a3b8", exam: true, desc: "Optional extension for professionals responsible for AI governance, risk and responsible AI adoption.",
+      lessons: ["What ITIL AI Governance Covers", "AI Risk and Responsible AI", "Policies and Controls for AI", "AI Governance in Practice"] }
+  },
+  /* the three designations (each needs Foundation + Transformation + its modules) */
+  designations: [
+    { id: "pm", name: "Practice Manager", color: "#34d399", desc: "For IT operations managers and practice owners.", rule: "Choose ONE", modules: ["msf", "pic", "cai"] },
+    { id: "mp", name: "Managing Professional", color: "#38bdf8", desc: "For professionals managing digital products and services.", rule: "ALL THREE required", modules: ["product", "service", "experience"] },
+    { id: "sl", name: "Strategic Leader", color: "#f472b6", desc: "For IT directors and senior decision-makers.", rule: "ONE required", modules: ["strategy"] }
   ],
   levels: [
     { title: "Introduction to IT Service Management", lessons: ["What Is IT Service Management?", "What Is ITIL?", "Why Companies Use ITIL", "ITIL History and Evolution"] },
@@ -182,15 +200,16 @@ const COURSE_LEVELS = [];
   function examPrep(code) {
     return ["How the " + code + " Exam Works", code + " Exam Objectives Checklist", code + " Practice Questions", code + " Full Mock Exam and Review", "Booking the Exam and Exam Day Tips"];
   }
-  ITIL_COURSE.path.forEach(function (t, i) {
+  Object.keys(ITIL_COURSE.modules).forEach(function (id) {
+    var t = ITIL_COURSE.modules[id], tag = t.code.replace(/\s+/g, "");
     if (t.foundation) return;
-    t.lessons = t.lessons.map(function (x, k) { return Array.isArray(x) ? x : ["itilp." + i + "." + (k + 1), x]; });
-    t.lessons.forEach(function (r, k) { LBL[r[0]] = "L" + (i + 1) + "." + (k + 1); });
-    t.examLessons = !t.exam ? [] : ["How the " + t.exam + " Exams Work", "Exam Objectives Checklist", "Practice Questions", "Full Mock Exam and Review", "Booking the Exam and Exam Day Tips"]
-      .map(function (x, k) { return ["itilp." + i + ".x" + (k + 1), x]; });
-    t.examLessons.forEach(function (r, k) { LBL[r[0]] = "L" + (i + 1) + ".E" + (k + 1); });
-    COURSE_LEVELS.push({ id: "itilp-" + i, name: "ITIL Level " + (i + 1), title: t.title, color: t.color, lessons: t.lessons.concat(t.examLessons),
-      href: "course.html?c=itil&l=" + i, group: "itilp", crumbs: [["Road map", "index.html#map"], ["ITIL", "course.html?c=itil"]] });
+    t.lessons = t.lessons.map(function (x, k) { return Array.isArray(x) ? x : ["itilp." + id + "." + (k + 1), x]; });
+    t.lessons.forEach(function (r, k) { LBL[r[0]] = tag + "." + (k + 1); });
+    t.examLessons = !t.exam ? [] : ["How the " + t.title + " Exam Works", "Exam Objectives Checklist", "Practice Questions", "Full Mock Exam and Review", "Booking the Exam and Exam Day Tips"]
+      .map(function (x, k) { return ["itilp." + id + ".x" + (k + 1), x]; });
+    t.examLessons.forEach(function (r, k) { LBL[r[0]] = tag + ".E" + (k + 1); });
+    COURSE_LEVELS.push({ id: "itilp-" + id, name: "ITIL", title: t.title, color: t.color, lessons: t.lessons.concat(t.examLessons),
+      href: "course.html?c=itil&m=" + id, group: "itilp", crumbs: [["Road map", "index.html#map"], ["ITIL", "course.html?c=itil"]] });
   });
   TOOLS.forEach(function (tool) {
     tool.levels.forEach(function (lv, i) {
