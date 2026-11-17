@@ -84,6 +84,7 @@
     var total = 0, c = 0;
     C.levels.forEach(function (lv) { lv.lessons.forEach(function (r) { total++; if (done[r[0]]) c++; }); });
     panel.appendChild(head(M.foundation, "The full ITIL Foundation course: " + C.levels.length + " levels · " + total + " lessons · " + c + " / " + total + " done."));
+    var ab0 = certAbout("foundation"); if (ab0) panel.appendChild(ab0);
     var chips = el("nav", "cx-chips cp-jump");
     C.levels.forEach(function (lv, i) { var a = el("a", "cx-chip", "Level " + i); a.href = "#lv" + i; chips.appendChild(a); });
     panel.appendChild(chips);
@@ -102,6 +103,7 @@
     var t = M[id], all = t.lessons.concat(t.examLessons), c = 0;
     all.forEach(function (r) { if (done[r[0]]) c++; });
     panel.appendChild(head(t, t.desc + (id === "master" ? "" : " Needs ITIL Foundation first (ITIL 4 Foundation counts).")));
+    var ab = certAbout(id); if (ab) panel.appendChild(ab);
     panel.appendChild(el("p", "lv-meta", all.length + " lessons · " + c + " / " + all.length + " done"));
     var list = el("div", "lvlist"); t.lessons.forEach(function (r) { list.appendChild(card(r)); }); panel.appendChild(list);
     if (t.examLessons.length) {

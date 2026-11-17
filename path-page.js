@@ -68,6 +68,7 @@
     h.querySelector("h2").textContent = c.title;
     var p = h.querySelector(".tp-cert"); p.textContent = c.desc + " "; var a = el("a", "", "View in Certifications →"); a.href = "certs.html?q=" + encodeURIComponent(c.code); p.appendChild(a);
     panel.appendChild(h);
+    var ab = certAbout(id); if (ab) panel.appendChild(ab);
     var all = c.lessons.concat(c.examLessons), d = 0; all.forEach(function (r) { if (done[r[0]]) d++; });
     panel.appendChild(el("p", "lv-meta", all.length + " lessons · " + d + " / " + all.length + " done"));
     var list = el("div", "lvlist"); c.lessons.forEach(function (r) { list.appendChild(card(r)); }); panel.appendChild(list);

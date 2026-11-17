@@ -66,6 +66,7 @@
     else info.querySelector(".tp-cert").textContent = "No exam at this level: just the skills you need on the job.";
     if (!lv.cert) head.querySelector(".tp-lvnum").textContent = "L" + i;
     head.appendChild(info); panel.appendChild(head);
+    var ab = lv.cert ? certAbout(tool.id + "-" + i) : null; if (ab) panel.appendChild(ab);
     function lessonCard(r) {
       var a = el("a", "lc" + (done[r[0]] ? " done" : "")); a.href = "lesson.html?n=" + encodeURIComponent(r[0]);
       a.innerHTML = '<span class="cl-ico"></span><span class="lc-body"><b></b><small></small></span><span class="lc-tags"></span><span class="lc-check">✓</span>';

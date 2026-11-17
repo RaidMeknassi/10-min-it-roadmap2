@@ -329,3 +329,67 @@ const AGILE_PATH = {
     });
   });
 })();
+
+/* ---- "About this certification": what it is, who it is for, what jobs it helps with ----
+   keys: ITIL module ids, Agile cert ids, and "<toolId>-<level>" for tool certifications */
+const CERT_INFO = {
+  /* ITIL */
+  foundation: ["The basics of ITIL: how IT teams deliver services and keep users happy.", "Beginners, service desk staff and anyone working in an IT team.", "Service desk agent, IT support, junior ITSM analyst."],
+  transformation: ["How to lead change when a company modernises its IT and ways of working.", "People who already know ITIL Foundation and help their company change.", "Team lead, change lead, transformation or improvement manager."],
+  msf: ["Running day-to-day IT operations: monitoring, incidents, service desk and requests.", "Service desk and support people who want to lead or own a practice.", "Service desk lead, incident manager, support team manager."],
+  pic: ["Planning and controlling change: releases, deployments, assets and configuration.", "People who handle changes, releases or IT assets.", "Change manager, release manager, IT asset or CMDB manager."],
+  cai: ["Working with suppliers and customers, and making services better over time.", "People who manage vendors, relationships or improvement work.", "Supplier manager, relationship manager, continual improvement lead."],
+  product: ["Managing digital products from idea to retirement.", "People who own or shape digital products.", "Product manager, product owner, digital product lead."],
+  service: ["Designing, running and measuring IT services.", "IT service managers and people responsible for a service.", "IT service manager, service owner, service delivery manager."],
+  experience: ["Designing great experiences for customers and users of IT services.", "People working on user journeys, customer experience or UX.", "CX/UX lead, customer experience manager, service designer."],
+  strategy: ["Setting digital strategy and making sure IT supports business goals.", "Senior people who make big decisions about IT.", "IT director, head of IT, CIO, digital strategy lead."],
+  master: ["The top ITIL level: you prove you can use ITIL in real work at a high level.", "Very experienced ITIL professionals who already hold all three designations.", "Senior IT leader, ITSM consultant, CIO."],
+  aigov: ["How to use AI safely: rules, risks and responsible adoption in IT.", "Anyone responsible for AI use, risk or compliance in a company.", "AI governance lead, risk and compliance manager, IT manager."],
+  /* Agile & Project Management */
+  psm1: ["Proves you understand Scrum: the roles, events and rules from the Scrum Guide.", "Beginners in agile, new Scrum Masters, developers and team members.", "Scrum Master, agile team member, junior project coordinator."],
+  psm2: ["Shows you can really act as a Scrum Master: coaching, facilitation and fixing team problems.", "Scrum Masters with some real experience.", "Scrum Master, agile coach (junior), delivery lead."],
+  psm3: ["The expert Scrum Master level, with essay-style answers on hard real situations.", "Senior Scrum Masters and agile coaches.", "Senior Scrum Master, agile coach, agile transformation lead."],
+  pspo1: ["Proves you understand the Product Owner role: value, backlog and stakeholders.", "New Product Owners, business analysts and product people.", "Product Owner, business analyst, junior product manager."],
+  pspo2: ["Advanced product ownership: strategy, measuring value and planning releases.", "Product Owners with real experience.", "Product Owner, product manager."],
+  pspo3: ["Expert product ownership in big, complex organisations.", "Senior Product Owners and product leaders.", "Senior product manager, head of product, product coach."],
+  csm: ["A beginner Scrum Master certificate: a 2-day course with a trainer, then a short exam.", "People who like learning in a live class.", "Scrum Master, agile team member."],
+  acsm: ["The next step after CSM: better facilitation, coaching and handling conflict.", "Scrum Masters with about a year of experience.", "Scrum Master, team coach."],
+  cspsm: ["Scrum Alliance's top Scrum Master level: leading change across teams.", "Experienced Scrum Masters who hold A-CSM.", "Senior Scrum Master, agile coach."],
+  ssm: ["The Scrum Master role inside SAFe, the framework big companies use to scale agile.", "Scrum Masters in large companies that use SAFe.", "SAFe Scrum Master, team coach in large organisations."],
+  capm: ["An entry-level project management certificate from PMI, the people behind PMP.", "Beginners with little or no project experience.", "Project coordinator, project assistant, junior PM."],
+  prince2f: ["The basics of PRINCE2, a structured project method used a lot in Europe and the UK.", "Anyone working on or around projects.", "Project coordinator, project support officer, junior PM."],
+  prince2p: ["Using PRINCE2 on real projects: tailoring the method, plans, risks and changes.", "People who manage projects or want to.", "Project manager, PMO analyst."],
+  pmiacp: ["Agile methods across the board: Scrum, Kanban, Lean and more.", "People working on agile projects who want a broad agile certificate.", "Agile project manager, Scrum Master, delivery lead."],
+  pmp: ["The best-known project management certificate in the world. Needs real project experience.", "Project managers with a few years of experience.", "Project manager, senior PM, program manager, PMO lead."],
+  /* Tool certifications */
+  "servicenow-1": ["Proves you can set up and look after a ServiceNow system: users, forms, lists and reports.", "Beginners in ServiceNow and admins of the platform.", "ServiceNow administrator, ITSM analyst."],
+  "servicenow-2": ["Proves you can build your own apps on ServiceNow with scripts and flows.", "ServiceNow admins who want to code.", "ServiceNow developer."],
+  "servicenow-3": ["Proves you can set up ServiceNow ITSM for a company: incidents, problems, changes and requests.", "ServiceNow admins and consultants working on ITSM.", "ServiceNow consultant, implementation specialist."],
+  "servicenow-4": ["A bundle certificate for one ServiceNow area, like ITSM, with extra micro-certificates.", "Experienced ServiceNow consultants.", "Senior ServiceNow consultant, application specialist."],
+  "servicenow-5": ["The top ServiceNow level: designing and leading big ServiceNow platforms.", "Very experienced ServiceNow architects.", "ServiceNow technical architect, master architect."],
+  "jira-1": ["Proves you can work requests as an agent in Jira Service Management.", "Service desk agents using Jira.", "Service desk agent, IT support."],
+  "jira-2": ["Proves you understand ITSM practices and AI features inside Jira Service Management.", "Agents and team leads using JSM for ITSM.", "ITSM analyst, service desk lead."],
+  "jira-3": ["Proves you can set up and manage service projects: request types, workflows, SLAs.", "People who configure JSM for their team.", "JSM project admin, ITSM tools specialist."],
+  "jira-4": ["Proves you can administer a whole Jira Cloud site.", "Jira administrators.", "Jira administrator, Atlassian admin."],
+  "microsoft365-1": ["The basics of Microsoft 365 plus Copilot and AI agents (replaced MS-900).", "Beginners and anyone supporting Microsoft 365 users.", "IT support, M365 support technician."],
+  "microsoft365-2": ["Proves you can manage company devices with Intune and Windows Autopilot.", "Desktop support and endpoint admins.", "Endpoint administrator, desktop engineer, 2nd line support."],
+  "microsoft365-3": ["Proves you can set up and manage Microsoft Teams for a company.", "People who run Teams, meetings and calling.", "Teams administrator, collaboration engineer."],
+  "microsoft365-4": ["Proves you can run a whole Microsoft 365 tenant: identity, security and compliance.", "Experienced Microsoft 365 admins.", "Microsoft 365 administrator, M365 engineer."],
+  "googleworkspace-1": ["Proves you can manage Google Workspace: users, groups and basic settings.", "IT support staff in companies or schools using Google.", "Workspace admin, IT support."],
+  "googleworkspace-2": ["Proves you can run Google Workspace securely at a bigger scale.", "Experienced Google Workspace admins.", "Senior Workspace administrator, collaboration engineer."],
+  "slack-1": ["Proves you can manage a Slack workspace: users, channels, apps and security.", "People who run Slack for their company.", "Slack administrator, collaboration admin."],
+  "slack-2": ["Proves you can plan and roll out Slack for a whole organisation.", "Consultants and project leads.", "Slack consultant, collaboration consultant."],
+  "slack-3": ["Proves you can build Slack apps, bots and automations.", "Developers.", "Slack developer, integration developer."],
+  "rdp-2": ["Proves you can build and run virtual desktops in Azure (Azure Virtual Desktop).", "Admins who manage remote desktops at scale.", "Virtual desktop engineer, cloud desktop admin."]
+};
+function certAbout(key) {
+  var i = CERT_INFO[key]; if (!i) return null;
+  var d = document.createElement("div"); d.className = "cert-about";
+  [["📘", "What it is"], ["👤", "Who it's for"], ["💼", "Jobs it helps with"]].forEach(function (h, k) {
+    var b = document.createElement("div"); b.className = "ca-item";
+    b.innerHTML = '<span class="ca-ico"></span><div><b></b><p></p></div>';
+    b.querySelector(".ca-ico").textContent = h[0]; b.querySelector("b").textContent = h[1]; b.querySelector("p").textContent = i[k];
+    d.appendChild(b);
+  });
+  return d;
+}
