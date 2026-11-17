@@ -206,7 +206,7 @@ const CERTS = [
   { stage: "Level 4", title: "Cybersecurity", color: "#f472b6",
     items: ["CompTIA Security+", "ISC2 Certified in Cybersecurity (CC)", "Microsoft SC-900"] },
   { stage: "Level 5", title: "IT Workplace", color: "#4ade80",
-    items: ["ITIL 4 Foundation", "CompTIA A+"] }
+    items: ["ITIL Foundation", "CompTIA A+"] }
 ];
 
 /* Level 6: certifications for each specialization path */
@@ -218,7 +218,7 @@ const PATH_CERTS = [
   ["Systems Engineering", "#fb923c", ["Microsoft Windows Server Hybrid Administrator (AZ-800)", "Red Hat RHCSA", "VMware VCP"]],
   ["Software Development", "#4ade80", ["Python Institute PCEP / PCAP", "Microsoft Azure Developer (AZ-204)"]],
   ["Data and Artificial Intelligence", "#fbbf24", ["Microsoft DP-900 / AI-900", "Google Data Analytics Certificate"]],
-  ["IT Support Engineering", "#2dd4bf", ["CompTIA A+", "ITIL 4 Foundation", "Microsoft Endpoint Administrator (MD-102)"]]
+  ["IT Support Engineering", "#2dd4bf", ["CompTIA A+", "ITIL Foundation", "Microsoft Endpoint Administrator (MD-102)"]]
 ];
 
 /* YouTube video IDs, by lesson number. Leave empty until the video is ready. */

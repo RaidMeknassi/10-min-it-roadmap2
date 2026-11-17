@@ -44,6 +44,10 @@
   mapEl.appendChild(br2);
   mapEl.appendChild(mid2);
   mapEl.appendChild(br3);
+  // recommended ITIL certification at the end of the tree
+  var recEl = document.createElement("div"); recEl.className = "final itil-rec-node";
+  var recCard = (typeof itilRecCard === "function") ? itilRecCard("intermediate") : null;
+  if (recCard) { recEl.appendChild(recCard); mapEl.appendChild(recEl); }
 
   /* ---- makeLevel: create a level card with flyout lesson list ---- */
   function makeLevel(info, container, flip) {
@@ -157,6 +161,15 @@
       link(5, 6); link(5, 7);        // fork to M7 & M8
       link(6, 8); link(7, 8);        // converge at M9
       link(8, 9); link(8, 10);       // final fork to M10 & M11
+    }
+    if (recCard) {
+      var rc = recCard.getBoundingClientRect();
+      function dash(i) {
+        var a = entries[i].card.getBoundingClientRect();
+        var x1 = a.left + a.width / 2 - base.left, y1 = a.bottom - base.top, x2 = rc.left + rc.width / 2 - base.left, y2 = rc.top - base.top, my = (y1 + y2) / 2;
+        out += '<path stroke="#34d399" stroke-dasharray="6 5" opacity="0.7" d="M' + x1 + " " + y1 + " C" + x1 + " " + my + "," + x2 + " " + my + "," + x2 + " " + y2 + '"/>';
+      }
+      if (stacked) dash(10); else { dash(9); dash(10); }
     }
     svg.innerHTML = out;
   }

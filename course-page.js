@@ -72,7 +72,7 @@
     var h = el("div", "tp-head");
     h.innerHTML = '<div class="cx-badge"><small>PeopleCert</small><b></b></div><div class="tp-info"><p class="lp-track"></p><h2></h2><p class="tp-cert"></p></div>';
     h.querySelector(".cx-badge").style.setProperty("--vc", t.color);
-    h.querySelector(".cx-badge b").textContent = t.code === "Foundation" ? "ITIL 4" : t.code;
+    h.querySelector(".cx-badge b").textContent = t.code === "Foundation" ? "ITIL" : t.code;
     var des = C.designations.filter(function (d) { return d.modules.indexOf(sel) >= 0; })[0];
     h.querySelector(".lp-track").textContent = des ? "Part of " + des.name + " · " + des.rule : (sel === "transformation" ? "Shared by all three designations" : sel === "aigov" ? "Optional certification" : "ITIL certification");
     h.querySelector("h2").textContent = t.title;
@@ -83,7 +83,7 @@
   function foundation() {
     var total = 0, c = 0;
     C.levels.forEach(function (lv) { lv.lessons.forEach(function (r) { total++; if (done[r[0]]) c++; }); });
-    panel.appendChild(head(M.foundation, "The full ITIL 4 Foundation course: " + C.levels.length + " levels · " + total + " lessons · " + c + " / " + total + " done."));
+    panel.appendChild(head(M.foundation, "The full ITIL Foundation course: " + C.levels.length + " levels · " + total + " lessons · " + c + " / " + total + " done."));
     var chips = el("nav", "cx-chips cp-jump");
     C.levels.forEach(function (lv, i) { var a = el("a", "cx-chip", "Level " + i); a.href = "#lv" + i; chips.appendChild(a); });
     panel.appendChild(chips);

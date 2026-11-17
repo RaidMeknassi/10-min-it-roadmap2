@@ -812,3 +812,21 @@ a.cx-card:hover { border-color: var(--vc); transform: translateY(-2px); }
   .irm { padding: 22px 12px; }
   .irm-paths { grid-template-columns: 1fr; gap: 24px; }
 }
+
+/* ===== ITIL recommendation boxes (end of Intermediate / Advanced trees) ===== */
+.itil-rec-node { display: flex; justify-content: center; padding: 10px 0; }
+.itil-rec-card { width: 100%; max-width: 520px; border: 2px dashed var(--c); border-radius: 18px; background: color-mix(in srgb, var(--c) 7%, transparent); padding: 16px 20px; text-align: left; }
+.itil-rec-head { display: flex; align-items: center; gap: 14px; text-decoration: none; color: inherit; margin-bottom: 12px; }
+.itil-rec-head .cx-badge { width: 64px; height: 72px; flex: none; }
+.itil-rec-head .cx-badge small { font-size: 7.5px; }
+.itil-rec-head .cx-badge b { font-size: 14px; }
+.itil-rec-head .irc-t { display: block; font-size: 15px; color: #fff; }
+.itil-rec-head .irc-s { display: block; font-size: 12px; color: var(--c); margin-top: 2px; }
+.itil-rec-head:hover .irc-t { text-decoration: underline; }
+.itil-rec-groups { display: flex; flex-direction: column; gap: 10px; }
+.itil-rec-gt { font-size: 12.5px; font-weight: 700; color: #cbd5e1; margin-bottom: 6px; }
+.itil-rec-chips { display: flex; flex-wrap: wrap; gap: 6px; }
+.itil-chip { font-size: 12.5px; padding: 5px 11px; border-radius: 999px; text-decoration: none; color: #e2e8f0; background: color-mix(in srgb, var(--mc) 16%, transparent); border: 1px solid color-mix(in srgb, var(--mc) 55%, transparent); transition: background .15s, transform .15s; }
+.itil-chip:hover { background: color-mix(in srgb, var(--mc) 35%, transparent); color: #fff; transform: translateY(-1px); }
+.itil-rec-page { margin-top: 26px; display: flex; flex-direction: column; gap: 16px; align-items: stretch; }
+.itil-rec-page .itil-rec-card { max-width: none; }

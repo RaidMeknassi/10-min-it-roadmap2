@@ -14,7 +14,7 @@
     ["CompTIA Security+", "CompTIA", "SEC+", ["l4"], ["Cybersecurity"]],
     ["ISC2 Certified in Cybersecurity (CC)", "ISC2", "CC", ["l4"], ["Cybersecurity"]],
     ["Microsoft SC-900", "Microsoft", "SC-900", ["l4"], ["Cybersecurity"]],
-    ["ITIL 4 Foundation", "PeopleCert", "ITIL 4", ["l5"], ["IT Support Engineering"], "course.html?c=itil"],
+    ["ITIL Foundation", "PeopleCert", "ITIL", ["l5"], ["IT Support Engineering"], "course.html?c=itil"],
     ["CompTIA Linux+", "CompTIA", "LNX+", ["l6"], ["Systems Engineering"]],
     ["Red Hat RHCSA", "Red Hat", "RHCSA", ["l6", "l7"], ["Systems Engineering"]],
     ["Microsoft AZ-900 Azure Fundamentals", "Microsoft", "AZ-900", ["l6", "l7"], ["Cloud Computing"]],

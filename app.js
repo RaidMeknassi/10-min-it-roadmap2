@@ -31,11 +31,11 @@
   var trunk = document.createElement("div");   trunk.className = "trunk";
   var branches = document.createElement("div"); branches.className = "branches";
   var l5El = document.createElement("div");  l5El.className = "final l5";
-  // ITIL 4 Foundation: clickable node, hover shows its course levels and lessons
+  // ITIL Foundation: clickable node, hover shows its course levels and lessons
   var certEl = document.createElement("div"); certEl.className = "final cert-rec-node";
   var certLv = document.createElement("div"); certLv.className = "lv cert-lv"; certLv.style.setProperty("--c", ITIL_COURSE.color);
-  certLv.innerHTML = '<a class="cert-node-card" href="course.html?c=itil"><div class="cx-badge" style="--vc:#4ade80"><small>PeopleCert</small><b>ITIL 4</b></div><div class="cert-node-text"><b>ITIL 4 Foundation</b><span>Recommended Certification · ' + ITIL_COURSE.levels.length + ' levels</span></div></a>' +
-    '<div class="flyout"><div class="flyout-card"><div class="fl-head">ITIL 4 Foundation · Course</div><div class="fl-list"></div></div></div>';
+  certLv.innerHTML = '<a class="cert-node-card" href="course.html?c=itil"><div class="cx-badge" style="--vc:#4ade80"><small>PeopleCert</small><b>ITIL</b></div><div class="cert-node-text"><b>ITIL Foundation</b><span>Recommended Certification · ' + ITIL_COURSE.levels.length + ' levels</span></div></a>' +
+    '<div class="flyout"><div class="flyout-card"><div class="fl-head">ITIL Foundation · Course</div><div class="fl-list"></div></div></div>';
   (function () {
     var list = certLv.querySelector(".fl-list");
     ITIL_COURSE.levels.forEach(function (lv, i) {
@@ -71,8 +71,10 @@
 
   var midEl = document.createElement("div");  midEl.className = "final l6m";
   var finalEl = document.createElement("div");  finalEl.className = "final";
+  var advRecEl = document.createElement("div"); advRecEl.className = "final itil-rec-node"; var advRec = itilRecCard("advanced"); advRecEl.appendChild(advRec);
+  var furRecEl = document.createElement("div"); furRecEl.className = "final itil-rec-node"; var furRec = itilRecCard("further"); furRecEl.appendChild(furRec);
   var trackEl = document.createElement("div");  trackEl.className = "final track";
-  if (levelsEl) { levelsEl.appendChild(trunk); levelsEl.appendChild(branches); levelsEl.appendChild(l5El); levelsEl.appendChild(certEl); levelsEl.appendChild(toolsEl); levelsEl.appendChild(midEl); levelsEl.appendChild(finalEl); levelsEl.appendChild(trackEl); }
+  if (levelsEl) { levelsEl.appendChild(trunk); levelsEl.appendChild(branches); levelsEl.appendChild(l5El); levelsEl.appendChild(certEl); levelsEl.appendChild(toolsEl); levelsEl.appendChild(midEl); levelsEl.appendChild(finalEl); levelsEl.appendChild(advRecEl); levelsEl.appendChild(furRecEl); levelsEl.appendChild(trackEl); }
 
   function closeAll(except) {
     entries.forEach(function (en) { if (en.lv !== except) en.lv.classList.remove("open"); });
@@ -254,6 +256,9 @@
       linkDashed(toolsRect, l6mRect, "#38bdf8");
       link(6, 7, 7);
     }
+    var l7Rect = entries[7].card.getBoundingClientRect(), advRect = advRec.getBoundingClientRect(), furRect = furRec.getBoundingClientRect();
+    linkDashed(l7Rect, advRect, "#38bdf8");
+    linkDashed(advRect, furRect, "#fbbf24");
     svg.innerHTML = out;
   }
 

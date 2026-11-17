@@ -7,9 +7,9 @@
    To add a video to one of these lessons, add its key to VIDEOS in roadmap.js.
    ------------------------------------------------------------ */
 
-/* ITIL 4 Foundation course (opens from the ITIL 4 node under Level 5) */
+/* ITIL Foundation course (opens from the ITIL node under Level 5) */
 const ITIL_COURSE = {
-  id: "itil", name: "ITIL 4 Foundation", vendor: "PeopleCert", badge: "ITIL 4", color: "#4ade80",
+  id: "itil", name: "ITIL Foundation", vendor: "PeopleCert", badge: "ITIL", color: "#4ade80",
   desc: "The world's most used framework for IT service management. Learn it level by level, then pass the ITIL Foundation exam.",
   note: "ITIL (Version 5) launched in January 2026 and runs alongside ITIL 4. An ITIL 4 Foundation certificate stays valid and counts as the starting point for every higher ITIL level.",
   /* ITIL (Version 5) certification roadmap. Every box is a module with lessons; "foundation" opens the course above. */
@@ -44,13 +44,13 @@ const ITIL_COURSE = {
   ],
   levels: [
     { title: "Introduction to IT Service Management", lessons: ["What Is IT Service Management?", "What Is ITIL?", "Why Companies Use ITIL", "ITIL History and Evolution"] },
-    { title: "ITIL 4 Key Concepts", lessons: ["Services and Service Management", "Value and Value Co-creation", "Customers, Users and Sponsors", "Outcomes, Outputs and Costs", "Utility and Warranty", "Service Relationships"] },
+    { title: "ITIL Key Concepts", lessons: ["Services and Service Management", "Value and Value Co-creation", "Customers, Users and Sponsors", "Outcomes, Outputs and Costs", "Utility and Warranty", "Service Relationships"] },
     { title: "The Seven Guiding Principles", lessons: ["Focus on Value", "Start Where You Are", "Progress Iteratively with Feedback", "Collaborate and Promote Visibility", "Think and Work Holistically", "Keep It Simple and Practical", "Optimize and Automate"] },
     { title: "Four Dimensions of Service Management", lessons: ["Organizations and People", "Information and Technology", "Partners and Suppliers", "Value Streams and Processes"] },
     { title: "The Service Value System", lessons: ["The ITIL Service Value System", "Opportunity, Demand and Value", "Governance", "The Continual Improvement Model"] },
     { title: "The Service Value Chain", lessons: ["What Is the Service Value Chain?", "Plan and Improve", "Engage", "Design and Transition", "Obtain/Build", "Deliver and Support", "Value Streams in Action"] },
     { title: "Key ITIL Practices", lessons: ["Incident Management", "Problem Management", "Service Request Management", "Service Desk", "Change Enablement", "Service Level Management", "Continual Improvement", "Relationship Management", "IT Asset Management", "Monitoring and Event Management", "Release Management", "Service Configuration Management", "Deployment Management", "Information Security Management", "Supplier Management"] },
-    { title: "Exam Preparation", exam: true, lessons: ["How the ITIL 4 Foundation Exam Works", "Exam Objectives Checklist", "Key Terms to Remember", "Practice Questions", "Full Mock Exam and Review", "Booking the Exam and Exam Day Tips"] }
+    { title: "Exam Preparation", exam: true, lessons: ["How the ITIL Foundation Exam Works", "Exam Objectives Checklist", "Key Terms to Remember", "Practice Questions", "Full Mock Exam and Review", "Booking the Exam and Exam Day Tips"] }
   ]
 };
 
@@ -194,7 +194,7 @@ const COURSE_LEVELS = [];
     lv.lessons = lv.lessons.map(function (t, k) { return Array.isArray(t) ? t : ["itil." + i + "." + (k + 1), t]; });
     lv.lessons.forEach(function (r, k) { LBL[r[0]] = i + "." + (k + 1); });
     COURSE_LEVELS.push({ id: "itil-" + i, name: "ITIL Level " + i, title: lv.title, color: ITIL_COURSE.color, lessons: lv.lessons,
-      href: "course.html?c=itil#lv" + i, group: "itil", crumbs: [["Road map", "index.html#map"], ["ITIL 4 Foundation", "course.html?c=itil"]] });
+      href: "course.html?c=itil#lv" + i, group: "itil", crumbs: [["Road map", "index.html#map"], ["ITIL Foundation", "course.html?c=itil"]] });
   });
   /* every level with a certification gets an Exam Preparation section (lessons x1, x2 ...) */
   function examPrep(code) {
@@ -223,3 +223,39 @@ const COURSE_LEVELS = [];
     });
   });
 })();
+
+/* ---- ITIL recommendation boxes shown at the end of the Intermediate and Advanced trees ---- */
+const ITIL_RECS = {
+  intermediate: { title: "ITIL Practice Manager pathway", sub: "Recommended certification", color: "#34d399", groups: [
+    { name: "Choose ONE specialization:", items: ["msf", "pic", "cai"] },
+    { name: "Plus:", items: ["transformation"], note: "required" }
+  ]},
+  advanced: { title: "ITIL Managing Professional & Strategic Leader", sub: "Recommended certifications", color: "#38bdf8", groups: [
+    { name: "ITIL Managing Professional", items: ["product", "service", "experience", "transformation"], note: "Transformation is the shared requirement" },
+    { name: "ITIL Strategic Leader", items: ["strategy", "transformation"], note: "Transformation is the shared requirement" }
+  ]},
+  further: { title: "Further achievements and specialization", sub: "Optional", color: "#fbbf24", groups: [
+    { name: "ITIL Master", items: ["master"], note: "requires all three designations" },
+    { name: "ITIL AI Governance", items: ["aigov"], note: "optional extension certification" }
+  ]}
+};
+function itilRecCard(key) {
+  var r = ITIL_RECS[key], M = ITIL_COURSE.modules;
+  var card = document.createElement("div"); card.className = "itil-rec-card"; card.style.setProperty("--c", r.color);
+  var h = '<a class="itil-rec-head" href="course.html?c=itil"><div class="cx-badge" style="--vc:' + r.color + '"><small>PeopleCert</small><b>ITIL</b></div><div><b class="irc-t"></b><span class="irc-s"></span></div></a><div class="itil-rec-groups"></div>';
+  card.innerHTML = h;
+  card.querySelector(".irc-t").textContent = r.title;
+  card.querySelector(".irc-s").textContent = r.sub + " · click a module";
+  var box = card.querySelector(".itil-rec-groups");
+  r.groups.forEach(function (g) {
+    var d = document.createElement("div"); d.className = "itil-rec-group";
+    d.innerHTML = '<div class="itil-rec-gt"></div><div class="itil-rec-chips"></div>';
+    d.querySelector(".itil-rec-gt").textContent = g.name + (g.note ? "  (" + g.note + ")" : "");
+    g.items.forEach(function (id) {
+      var t = M[id], a = document.createElement("a"); a.className = "itil-chip"; a.href = "course.html?c=itil&m=" + id; a.style.setProperty("--mc", t.color);
+      a.textContent = t.title + (["msf", "pic", "cai"].indexOf(id) >= 0 ? " (" + t.code + ")" : ""); d.querySelector(".itil-rec-chips").appendChild(a);
+    });
+    box.appendChild(d);
+  });
+  return card;
+}
