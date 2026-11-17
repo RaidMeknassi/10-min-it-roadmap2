@@ -56,9 +56,23 @@ const LEVELS = [
   ]}
 ];
 
+/* Level 5.5 - IT Support Fundamentals (shown on the map after the ITIL Foundation box) */
+const LEVEL55 = { id: "l55", desc: "How real IT support works: tickets, priorities, troubleshooting and talking to users.", name: "Level 5.5", title: "IT Support Fundamentals", color: "#f59e0b",
+  jobReady: "Lab: practical troubleshooting scenarios", lessons: [
+  ["5.5.1", "What Is IT Support?", 0],
+  ["5.5.2", "Help Desk vs Service Desk", 0],
+  ["5.5.3", "Incident vs Service Request", 0],
+  ["5.5.4", "Ticket Lifecycle", 0],
+  ["5.5.5", "Priority, Severity and SLA", 0],
+  ["5.5.6", "Basic Troubleshooting Methodology", 1],
+  ["5.5.7", "Customer Service and Communication", 0],
+  ["5.5.8", "Escalation and Documentation", 1]
+]};
+
 /* Display labels: Level 0 keeps 0.1 ... ; other levels show level.position (1.1, 2.3 ...). Keys stay the same so progress is kept. */
 const LBL = {};
 LEVELS.forEach(function (lv, li) { lv.lessons.forEach(function (r, k) { LBL[r[0]] = li === 0 ? r[0] : li + "." + (k + 1); }); });
+LEVEL55.lessons.forEach(function (r) { LBL[r[0]] = r[0]; });
 // Level 1 custom labels
 LBL["1"] = "1"; LBL["2"] = "2"; LBL["3"] = "3"; LBL["4"] = "4"; LBL["5"] = "5"; LBL["58"] = "5.1";
 // Level 2 custom labels (6, 7, 8, 9)
@@ -298,6 +312,8 @@ const QUIZZES = {
 
 /* LABS - hands-on lab description per lesson (labs are for subscribers later) */
 const LABS = {
+  "5.5.6": { title: "Practical troubleshooting scenarios", text: "Real support cases step by step: a user can't print, Wi-Fi drops, Outlook won't open, a PC is slow. Find the cause, fix it and write the ticket." },
+  "5.5.8": { title: "Practical troubleshooting scenarios", text: "Work a ticket from start to finish: decide when to escalate, write clear notes and close it the right way." },
   "56": { title: "Real-World IT Scenarios", text: "Practical support cases and workplace situations: handle tickets, talk to users and decide priorities like a real IT team." },
   "1": { title: "Input, Process, Output", text: "Type any number into the input box, watch the processor work, and see which emoji comes out. Then find the secret rule." },
   "2": { title: "3D hardware teardown", text: "Click a part (CPU, RAM, CPU cooler) and see it float in 3D. Turn it around and learn what it does." },

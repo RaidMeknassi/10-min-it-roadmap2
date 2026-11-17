@@ -6,7 +6,7 @@
   try { done = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) { done = {}; }
   function save() { try { localStorage.setItem(KEY, JSON.stringify(done)); } catch (e) {} }
   var flat = [];
-  var allLevels = LEVELS.concat((typeof INTERMEDIATE_LEVELS !== "undefined") ? INTERMEDIATE_LEVELS : []).concat((typeof COURSE_LEVELS !== "undefined") ? COURSE_LEVELS : []);
+  var allLevels = LEVELS.concat([LEVEL55]).concat((typeof INTERMEDIATE_LEVELS !== "undefined") ? INTERMEDIATE_LEVELS : []).concat((typeof COURSE_LEVELS !== "undefined") ? COURSE_LEVELS : []);
   allLevels.forEach(function (lv) { lv.lessons.forEach(function (r) { flat.push({ n: r[0], title: r[1], lab: !!r[2], level: lv }); }); });
   var qs = new URLSearchParams(location.search), main = $("lp"), tab = "lesson";
   function el(tag, cls, txt) { var e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; }
@@ -74,7 +74,7 @@
 
   var head = el("div", "lp-head");
   head.innerHTML = '<span class="ico"></span><div class="lp-title"><p class="lp-track"></p><h1></h1></div><button type="button" class="lp-done"></button>';
-  head.querySelector(".ico").innerHTML = level.group ? '<span class="cl-ico" style="--c:' + level.color + '">' + (LBL[item.n] || "") + '</span>' : iconSVG(item.n, level.color);
+  head.querySelector(".ico").innerHTML = level.id === "l55" ? '<img src="assets/lesson-icons/' + item.n + '.png" alt="" width="64" height="64" style="border-radius:14px">' : level.group ? '<span class="cl-ico" style="--c:' + level.color + '">' + (LBL[item.n] || "") + '</span>' : iconSVG(item.n, level.color);
   head.querySelector(".lp-track").textContent = level.name + " · Lesson " + (LBL[item.n] || item.n) + " · 10 min";
   head.querySelector("h1").textContent = item.title;
   var db = head.querySelector(".lp-done");
