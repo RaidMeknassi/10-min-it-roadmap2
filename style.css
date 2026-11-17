@@ -840,3 +840,8 @@ a.cx-card:hover { border-color: var(--vc); transform: translateY(-2px); }
 .itil-chip-ico { width: 22px; height: 22px; filter: none; margin-left: -5px; }
 .cert-node-card .itil-badge { margin: -4px 0; }
 .cx-img { height: 106px; width: 106px; }
+.irm-paths-4 { grid-template-columns: repeat(4, 1fr); }
+.irm-step { color: var(--c); font-size: 18px; line-height: 1; margin: 6px 0 -4px; }
+@media (max-width: 1000px) { .irm-paths-4 { grid-template-columns: repeat(2, 1fr); } }
+@media (max-width: 760px) { .irm-paths-4 { grid-template-columns: 1fr; } }
+.irm-alt { font-size: 11px; letter-spacing: .06em; text-transform: uppercase; color: #94a3b8; margin: 14px 0 -4px; border-top: 1px dashed rgba(255,255,255,.18); padding-top: 10px; }

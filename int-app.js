@@ -46,8 +46,10 @@
   mapEl.appendChild(br3);
   // recommended ITIL certification at the end of the tree
   var recEl = document.createElement("div"); recEl.className = "final itil-rec-node";
-  var recCard = (typeof itilRecCard === "function") ? itilRecCard("intermediate") : null;
-  if (recCard) { recEl.appendChild(recCard); mapEl.appendChild(recEl); }
+  var recCard = (typeof itilRecCard === "function") ? itilRecCard("itilpath") : null;
+  var agileCard = (typeof itilRecCard === "function") ? itilRecCard("agile") : null;
+  var agileEl = document.createElement("div"); agileEl.className = "final itil-rec-node";
+  if (recCard) { recEl.appendChild(recCard); mapEl.appendChild(recEl); agileEl.appendChild(agileCard); mapEl.appendChild(agileEl); }
 
   /* ---- makeLevel: create a level card with flyout lesson list ---- */
   function makeLevel(info, container, flip) {
@@ -170,6 +172,8 @@
         out += '<path stroke="#34d399" stroke-dasharray="6 5" opacity="0.7" d="M' + x1 + " " + y1 + " C" + x1 + " " + my + "," + x2 + " " + my + "," + x2 + " " + y2 + '"/>';
       }
       if (stacked) dash(10); else { dash(9); dash(10); }
+      var ac = agileCard.getBoundingClientRect();
+      out += '<path stroke="#f59e0b" stroke-dasharray="6 5" opacity="0.7" d="M' + (rc.left + rc.width / 2 - base.left) + " " + (rc.bottom - base.top) + " L" + (ac.left + ac.width / 2 - base.left) + " " + (ac.top - base.top) + '"/>';
     }
     svg.innerHTML = out;
   }

@@ -42,12 +42,6 @@
       a.querySelector("b").textContent = p.name; a.querySelector("small").textContent = p.items.length + " topics";
       list.appendChild(a);
     });
-    if (typeof itilRecCard === "function") {
-      var rec = document.createElement("section"); rec.className = "itil-rec-page";
-      rec.innerHTML = '<h3 class="cert-rec-title">🎓 Recommended Certifications</h3>';
-      rec.appendChild(itilRecCard("advanced")); rec.appendChild(itilRecCard("further"));
-      list.parentNode.insertBefore(rec, list.nextSibling);
-    }
   } else {
     var c = 0;
     lv.lessons.forEach(function (row) {

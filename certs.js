@@ -3,7 +3,7 @@
   var LEVELS_F = [["b", "Beginner"], ["i", "Intermediate"], ["a", "Advanced"]];
   var STAGE = { l02: "b", l3: "b", l4: "b", l5: "b", l6: "i", l7: "a", b: "b", i: "i", a: "a" };
   var SPECS_F = ["Cybersecurity", "Network Engineering", "Systems Engineering", "Cloud Computing", "DevOps and Automation", "Software Development", "Data and Artificial Intelligence", "IT Support Engineering"];
-  var V = { CompTIA: "#ef4444", Cisco: "#0ea5e9", Microsoft: "#38bdf8", Google: "#34a853", AWS: "#f59e0b", "Red Hat": "#f43f5e", ISC2: "#84cc16", PeopleCert: "#a855f7", ServiceNow: "#62d84e", Atlassian: "#2684ff", Salesforce: "#c084fc", HashiCorp: "#8b5cf6", GitHub: "#94a3b8", VMware: "#2dd4bf", "Python Institute": "#facc15", CNCF: "#3b82f6", OffSec: "#fb923c" };
+  var V = { CompTIA: "#ef4444", Cisco: "#0ea5e9", Microsoft: "#38bdf8", Google: "#34a853", AWS: "#f59e0b", "Red Hat": "#f43f5e", ISC2: "#84cc16", PeopleCert: "#a855f7", "Scrum.org": "#38bdf8", "Scrum Alliance": "#fb923c", PMI: "#a78bfa", "Scaled Agile": "#22d3ee", ServiceNow: "#62d84e", Atlassian: "#2684ff", Salesforce: "#c084fc", HashiCorp: "#8b5cf6", GitHub: "#94a3b8", VMware: "#2dd4bf", "Python Institute": "#facc15", CNCF: "#3b82f6", OffSec: "#fb923c" };
   /* [name, vendor, badge text, levels, specializations] */
   var C = [
     ["CompTIA IT Fundamentals (ITF+)", "CompTIA", "ITF+", ["l02"], []],
@@ -50,6 +50,9 @@
     C.push(["ITIL Master", "PeopleCert", "Master", ["a"], ["IT Support Engineering"], "course.html?c=itil&m=master", "master"]);
   }
 
+  if (typeof AGILE_PATH !== "undefined") AGILE_PATH.tracks.forEach(function (t) {
+    t.certs.forEach(function (c, k) { C.push([c.title + " (" + c.code + ")", c.vendor, c.code, [k === 0 ? "i" : "a"], ["Software Development", "IT Support Engineering"], "path.html?p=agile&c=" + c.id]); });
+  });
   if (typeof TOOLS !== "undefined") TOOLS.forEach(function (t) {
     var withCert = t.levels.map(function (l, i) { return [l, i]; }).filter(function (x) { return x[0].cert; });
     withCert.forEach(function (x, k) {

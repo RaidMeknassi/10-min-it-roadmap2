@@ -226,10 +226,8 @@ const COURSE_LEVELS = [];
 
 /* ---- ITIL recommendation boxes shown at the end of the Intermediate and Advanced trees ---- */
 const ITIL_RECS = {
-  intermediate: { badge: "pm", title: "ITIL Practice Manager pathway", sub: "Recommended certification", color: "#34d399", groups: [
-    { name: "Choose ONE specialization:", items: ["msf", "pic", "cai"] },
-    { name: "Plus:", items: ["transformation"], note: "required" }
-  ]},
+  itilpath: { badge: "foundation", title: "ITIL & IT Service Management Pathway", sub: "Recommended certifications · Foundation to ITIL Master", color: "#a78bfa", href: "course.html?c=itil", groups: [] },
+  agile: { title: "Agile & Project Management Pathway", sub: "Recommended certifications · click one", color: "#f59e0b", href: "path.html?p=agile", groups: [], agile: true },
   advanced: { badge: "mp", title: "ITIL Managing Professional & Strategic Leader", sub: "Recommended certifications", color: "#38bdf8", groups: [
     { name: "ITIL Managing Professional", items: ["product", "service", "experience", "transformation"], note: "Transformation is the shared requirement" },
     { name: "ITIL Strategic Leader", items: ["strategy", "transformation"], note: "Transformation is the shared requirement" }
@@ -242,11 +240,18 @@ const ITIL_RECS = {
 function itilRecCard(key) {
   var r = ITIL_RECS[key], M = ITIL_COURSE.modules;
   var card = document.createElement("div"); card.className = "itil-rec-card"; card.style.setProperty("--c", r.color);
-  var h = '<a class="itil-rec-head" href="course.html?c=itil">' + (r.badge ? itilBadgeImg(r.badge, 72) : '<div class="cx-badge" style="--vc:' + r.color + '"><small>PeopleCert</small><b>ITIL</b></div>') + '<div><b class="irc-t"></b><span class="irc-s"></span></div></a><div class="itil-rec-groups"></div>';
+  var h = '<a class="itil-rec-head" href="' + (r.href || "course.html?c=itil") + '">' + (r.agile ? '<div class="cx-badge" style="--vc:' + r.color + '"><small>Agile</small><b>PM</b></div>' : r.badge ? itilBadgeImg(r.badge, 72) : '<div class="cx-badge" style="--vc:' + r.color + '"><small>PeopleCert</small><b>ITIL</b></div>') + '<div><b class="irc-t"></b><span class="irc-s"></span></div></a><div class="itil-rec-groups"></div>';
   card.innerHTML = h;
   card.querySelector(".irc-t").textContent = r.title;
-  card.querySelector(".irc-s").textContent = r.sub + " · click a module";
+  card.querySelector(".irc-s").textContent = r.sub + (r.groups.length ? " · click a module" : "");
   var box = card.querySelector(".itil-rec-groups");
+  if (r.agile) AGILE_PATH.tracks.forEach(function (tr) {
+    var d = document.createElement("div"); d.className = "itil-rec-group";
+    d.innerHTML = '<div class="itil-rec-gt"></div><div class="itil-rec-chips"></div>'; d.querySelector(".itil-rec-gt").textContent = tr.name;
+    tr.certs.forEach(function (c) { var a = document.createElement("a"); a.className = "itil-chip"; a.href = "path.html?p=agile&c=" + c.id; a.style.setProperty("--mc", c.color); a.textContent = c.code; d.querySelector(".itil-rec-chips").appendChild(a); });
+    box.appendChild(d);
+  });
+  if (!r.groups.length && !r.agile) box.remove();
   r.groups.forEach(function (g) {
     var d = document.createElement("div"); d.className = "itil-rec-group";
     d.innerHTML = '<div class="itil-rec-gt"></div><div class="itil-rec-chips"></div>';
@@ -267,3 +272,66 @@ function itilBadgeImg(id, size, cls) {
   if (ITIL_BADGES.indexOf(id) < 0) return "";
   return '<img class="itil-badge ' + (cls || "") + '" src="assets/itil-badges/' + id + '.png" alt="" width="' + size + '" height="' + size + '">';
 }
+
+/* ---- Agile & Project Management pathway (page: path.html?p=agile) ----
+   tracks = columns on the page; certs inside a track go from entry to expert. */
+const AGILE_PATH = {
+  id: "agile", name: "Agile & Project Management Pathway", color: "#f59e0b",
+  desc: "Run projects and agile teams: Scrum Master and Product Owner certifications, plus PRINCE2 and PMP for project management.",
+  note: "Exams change over time: the PMP exam was updated on 9 July 2026 and PRINCE2 is now version 7. Check the official site before you book.",
+  tracks: [
+    { name: "Scrum Master (Scrum.org)", color: "#38bdf8", certs: [
+      { id: "psm1", code: "PSM I", title: "Professional Scrum Master I", vendor: "Scrum.org", desc: "The Scrum Guide, Scrum roles, events and artifacts. No course required.",
+        lessons: ["What Scrum Is and Why Teams Use It", "The Scrum Team: Scrum Master, Product Owner, Developers", "Scrum Events: Sprint, Planning, Daily, Review, Retrospective", "Scrum Artifacts and Commitments", "The Scrum Master as Servant Leader"] },
+      { id: "psm2", code: "PSM II", title: "Professional Scrum Master II", vendor: "Scrum.org", desc: "Advanced Scrum Master skills: coaching, facilitation and removing impediments.",
+        lessons: ["Coaching and Facilitation", "Helping the Product Owner", "Dealing with Impediments", "Scaling Scrum to More Teams", "Real Scrum Master Scenarios"] },
+      { id: "psm3", code: "PSM III", title: "Professional Scrum Master III", vendor: "Scrum.org", desc: "Expert level: written essay answers on complex real situations.",
+        lessons: ["Scrum in Complex Organisations", "Changing Organisational Culture", "Leading Agile Transformation", "Writing Strong Essay Answers"] }
+    ]},
+    { name: "Product Owner (Scrum.org)", color: "#a78bfa", certs: [
+      { id: "pspo1", code: "PSPO I", title: "Professional Scrum Product Owner I", vendor: "Scrum.org", desc: "Product value, the Product Backlog and the Product Owner role.",
+        lessons: ["What a Product Owner Does", "Product Vision and Product Goal", "Managing the Product Backlog", "Maximising Value", "Working with Stakeholders"] },
+      { id: "pspo2", code: "PSPO II", title: "Professional Scrum Product Owner II", vendor: "Scrum.org", desc: "Advanced product ownership: strategy, value metrics and stakeholders.",
+        lessons: ["Product Strategy", "Measuring Value with Evidence", "Release Planning and Forecasting", "Product Owner Scenarios"] },
+      { id: "pspo3", code: "PSPO III", title: "Professional Scrum Product Owner III", vendor: "Scrum.org", desc: "Expert product ownership in complex organisations.",
+        lessons: ["Product Ownership at Scale", "Business Agility", "Leading Product Decisions", "Writing Strong Essay Answers"] }
+    ]},
+    { name: "Scrum Master (Scrum Alliance & SAFe)", color: "#fb923c", certs: [
+      { id: "csm", code: "CSM", title: "Certified ScrumMaster", vendor: "Scrum Alliance", desc: "Two-day course with a certified trainer, then a short online exam.",
+        lessons: ["Scrum Basics for the CSM", "Running Scrum Events", "Supporting the Team", "What to Expect in the CSM Course"] },
+      { id: "acsm", code: "A-CSM", title: "Advanced Certified ScrumMaster", vendor: "Scrum Alliance", desc: "For Scrum Masters with at least one year of experience.",
+        lessons: ["Facilitation Techniques", "Coaching Teams", "Handling Conflict", "Working with Several Teams"] },
+      { id: "cspsm", code: "CSP-SM", title: "Certified Scrum Professional – ScrumMaster", vendor: "Scrum Alliance", desc: "Top Scrum Alliance Scrum Master level, needs A-CSM and experience.",
+        lessons: ["Systems Thinking", "Organisational Coaching", "Agile Leadership", "Building Your CSP Portfolio"] },
+      { id: "ssm", alt: true, code: "SSM", title: "SAFe Scrum Master", vendor: "Scaled Agile", desc: "Scrum Master role inside the Scaled Agile Framework (SAFe) for big companies.",
+        lessons: ["What SAFe Is", "Agile Release Trains", "PI Planning", "The SAFe Scrum Master Role"] }
+    ]},
+    { name: "Project Management", color: "#f472b6", certs: [
+      { id: "capm", code: "CAPM", title: "Certified Associate in Project Management", vendor: "PMI", desc: "Entry-level PMI certificate, a good first step before PMP.",
+        lessons: ["Project Management Basics", "Predictive vs Agile Projects", "Business Analysis Basics", "The Project Lifecycle"] },
+      { id: "prince2f", code: "PRINCE2 F", title: "PRINCE2 7 Foundation", vendor: "PeopleCert", desc: "The PRINCE2 method: principles, practices and processes.",
+        lessons: ["What PRINCE2 Is", "The 7 Principles", "The 7 Practices", "The 7 Processes", "People and Project Context"] },
+      { id: "prince2p", code: "PRINCE2 P", title: "PRINCE2 7 Practitioner", vendor: "PeopleCert", desc: "Apply PRINCE2 to real project scenarios. Needs Foundation (or another accepted cert).",
+        lessons: ["Tailoring PRINCE2 to a Project", "Business Case and Plans", "Risk, Issues and Change", "Scenario Practice"] },
+      { id: "pmiacp", code: "PMI-ACP", title: "PMI Agile Certified Practitioner", vendor: "PMI", desc: "Agile methods across Scrum, Kanban, Lean and more.",
+        lessons: ["Agile Mindset and Principles", "Scrum, Kanban and Lean", "Agile Planning and Estimation", "Team Performance"] },
+      { id: "pmp", code: "PMP", title: "Project Management Professional", vendor: "PMI", desc: "The best-known project management certification. Needs project experience.",
+        lessons: ["PMP Eligibility and Application", "People Domain", "Process Domain", "Business Environment Domain", "Agile and Hybrid Projects"] }
+    ]}
+  ]
+};
+(function () {
+  AGILE_PATH.tracks.forEach(function (tr) {
+    tr.certs.forEach(function (c) {
+      c.color = tr.color;
+      c.lessons = c.lessons.map(function (x, k) { return Array.isArray(x) ? x : ["agile." + c.id + "." + (k + 1), x]; });
+      var tag = c.code.replace(/\s+/g, "");
+      c.lessons.forEach(function (r, k) { LBL[r[0]] = tag + "." + (k + 1); });
+      c.examLessons = ["How the " + c.code + " Exam Works", "Exam Objectives Checklist", "Practice Questions", "Full Mock Exam and Review", "Booking the Exam and Exam Day Tips"]
+        .map(function (x, k) { return ["agile." + c.id + ".x" + (k + 1), x]; });
+      c.examLessons.forEach(function (r, k) { LBL[r[0]] = tag + ".E" + (k + 1); });
+      COURSE_LEVELS.push({ id: "agile-" + c.id, name: c.code, title: c.title, color: c.color, lessons: c.lessons.concat(c.examLessons),
+        href: "path.html?p=agile&c=" + c.id, group: "agile", crumbs: [["Intermediate", "intermediate.html"], ["Agile & Project Management", "path.html?p=agile"]] });
+    });
+  });
+})();
