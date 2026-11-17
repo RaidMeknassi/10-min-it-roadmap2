@@ -47,7 +47,7 @@
       var t = IM[id]; C.push([t.title + (id === "aigov" ? " (optional)" : ""), "PeopleCert", t.code, [id === "transformation" ? "i" : "a"], ["IT Support Engineering"], "course.html?c=itil&m=" + id, id]);
     });
     ITIL_COURSE.designations.forEach(function (d) { C.push(["ITIL " + d.name + " (designation)", "PeopleCert", d.id.toUpperCase(), ["a"], ["IT Support Engineering"], "course.html?c=itil&m=" + d.modules[0], d.id]); });
-    C.push(["ITIL Master", "PeopleCert", "Master", ["a"], ["IT Support Engineering"], "course.html?c=itil&m=master"]);
+    C.push(["ITIL Master", "PeopleCert", "Master", ["a"], ["IT Support Engineering"], "course.html?c=itil&m=master", "master"]);
   }
 
   if (typeof TOOLS !== "undefined") TOOLS.forEach(function (t) {

@@ -71,10 +71,8 @@
 
   var midEl = document.createElement("div");  midEl.className = "final l6m";
   var finalEl = document.createElement("div");  finalEl.className = "final";
-  var advRecEl = document.createElement("div"); advRecEl.className = "final itil-rec-node"; var advRec = itilRecCard("advanced"); advRecEl.appendChild(advRec);
-  var furRecEl = document.createElement("div"); furRecEl.className = "final itil-rec-node"; var furRec = itilRecCard("further"); furRecEl.appendChild(furRec);
   var trackEl = document.createElement("div");  trackEl.className = "final track";
-  if (levelsEl) { levelsEl.appendChild(trunk); levelsEl.appendChild(branches); levelsEl.appendChild(l5El); levelsEl.appendChild(certEl); levelsEl.appendChild(toolsEl); levelsEl.appendChild(midEl); levelsEl.appendChild(finalEl); levelsEl.appendChild(advRecEl); levelsEl.appendChild(furRecEl); levelsEl.appendChild(trackEl); }
+  if (levelsEl) { levelsEl.appendChild(trunk); levelsEl.appendChild(branches); levelsEl.appendChild(l5El); levelsEl.appendChild(certEl); levelsEl.appendChild(toolsEl); levelsEl.appendChild(midEl); levelsEl.appendChild(finalEl); levelsEl.appendChild(trackEl); }
 
   function closeAll(except) {
     entries.forEach(function (en) { if (en.lv !== except) en.lv.classList.remove("open"); });
@@ -256,9 +254,6 @@
       linkDashed(toolsRect, l6mRect, "#38bdf8");
       link(6, 7, 7);
     }
-    var l7Rect = entries[7].card.getBoundingClientRect(), advRect = advRec.getBoundingClientRect(), furRect = furRec.getBoundingClientRect();
-    linkDashed(l7Rect, advRect, "#38bdf8");
-    linkDashed(advRect, furRect, "#fbbf24");
     svg.innerHTML = out;
   }
 

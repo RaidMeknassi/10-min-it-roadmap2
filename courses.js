@@ -234,7 +234,7 @@ const ITIL_RECS = {
     { name: "ITIL Managing Professional", items: ["product", "service", "experience", "transformation"], note: "Transformation is the shared requirement" },
     { name: "ITIL Strategic Leader", items: ["strategy", "transformation"], note: "Transformation is the shared requirement" }
   ]},
-  further: { title: "Further achievements and specialization", sub: "Optional", color: "#fbbf24", groups: [
+  further: { badge: "master", title: "Further achievements and specialization", sub: "Optional", color: "#fbbf24", groups: [
     { name: "ITIL Master", items: ["master"], note: "requires all three designations" },
     { name: "ITIL AI Governance", items: ["aigov"], note: "optional extension certification" }
   ]}
@@ -261,8 +261,8 @@ function itilRecCard(key) {
   return card;
 }
 
-/* official-style ITIL badge images (assets/itil-badges/<id>.png). ITIL Master has none, so it keeps the drawn badge. */
-const ITIL_BADGES = ["foundation", "transformation", "pm", "mp", "sl", "msf", "pic", "cai", "product", "service", "experience", "strategy", "aigov"];
+/* official-style ITIL badge images (assets/itil-badges/<id>.png) */
+const ITIL_BADGES = ["foundation", "transformation", "pm", "mp", "sl", "master", "msf", "pic", "cai", "product", "service", "experience", "strategy", "aigov"];
 function itilBadgeImg(id, size, cls) {
   if (ITIL_BADGES.indexOf(id) < 0) return "";
   return '<img class="itil-badge ' + (cls || "") + '" src="assets/itil-badges/' + id + '.png" alt="" width="' + size + '" height="' + size + '">';
