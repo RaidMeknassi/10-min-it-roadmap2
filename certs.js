@@ -14,7 +14,7 @@
     ["CompTIA Security+", "CompTIA", "SEC+", ["l4"], ["Cybersecurity"]],
     ["ISC2 Certified in Cybersecurity (CC)", "ISC2", "CC", ["l4"], ["Cybersecurity"]],
     ["Microsoft SC-900", "Microsoft", "SC-900", ["l4"], ["Cybersecurity"]],
-    ["ITIL Foundation", "PeopleCert", "ITIL", ["l5"], ["IT Support Engineering"], "course.html?c=itil"],
+    ["ITIL Foundation", "PeopleCert", "ITIL", ["l5"], ["IT Support Engineering"], "course.html?c=itil", "foundation"],
     ["CompTIA Linux+", "CompTIA", "LNX+", ["l6"], ["Systems Engineering"]],
     ["Red Hat RHCSA", "Red Hat", "RHCSA", ["l6", "l7"], ["Systems Engineering"]],
     ["Microsoft AZ-900 Azure Fundamentals", "Microsoft", "AZ-900", ["l6", "l7"], ["Cloud Computing"]],
@@ -44,9 +44,9 @@
   if (typeof ITIL_COURSE !== "undefined") {
     var IM = ITIL_COURSE.modules;
     ["transformation", "msf", "pic", "cai", "product", "service", "experience", "strategy", "aigov"].forEach(function (id) {
-      var t = IM[id]; C.push([t.title + (id === "aigov" ? " (optional)" : ""), "PeopleCert", t.code, [id === "transformation" ? "i" : "a"], ["IT Support Engineering"], "course.html?c=itil&m=" + id]);
+      var t = IM[id]; C.push([t.title + (id === "aigov" ? " (optional)" : ""), "PeopleCert", t.code, [id === "transformation" ? "i" : "a"], ["IT Support Engineering"], "course.html?c=itil&m=" + id, id]);
     });
-    ITIL_COURSE.designations.forEach(function (d) { C.push(["ITIL " + d.name + " (designation)", "PeopleCert", d.id.toUpperCase(), ["a"], ["IT Support Engineering"], "course.html?c=itil&m=" + d.modules[0]]); });
+    ITIL_COURSE.designations.forEach(function (d) { C.push(["ITIL " + d.name + " (designation)", "PeopleCert", d.id.toUpperCase(), ["a"], ["IT Support Engineering"], "course.html?c=itil&m=" + d.modules[0], d.id]); });
     C.push(["ITIL Master", "PeopleCert", "Master", ["a"], ["IT Support Engineering"], "course.html?c=itil&m=master"]);
   }
 
@@ -83,7 +83,8 @@
       n++;
       var col = V[c[1]] || "#a78bfa", card = el(c[5] ? "a" : "div", "cx-card" + (c[5] ? " cx-link" : "")); if (c[5]) card.href = c[5]; card.style.setProperty("--vc", col);
       var badge = el("div", "cx-badge"); badge.appendChild(el("small", "", c[1])); badge.appendChild(el("b", "", c[2]));
-      card.appendChild(badge); card.appendChild(el("h3", "", c[0]));
+      if (c[6] && typeof itilBadgeImg === "function") { var w = document.createElement("div"); w.innerHTML = itilBadgeImg(c[6], 106, "cx-img"); card.appendChild(w.firstChild); } else card.appendChild(badge);
+      card.appendChild(el("h3", "", c[0]));
       var tags = el("div", "cx-tags");
       c[3].forEach(function (l) { tags.appendChild(el("span", "cx-tag", lname[l])); });
       c[4].forEach(function (s) { tags.appendChild(el("span", "cx-tag cx-tag-s", s)); });

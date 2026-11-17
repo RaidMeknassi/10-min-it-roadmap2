@@ -71,7 +71,7 @@
       var rec = el("div", "cert-rec");
       rec.innerHTML = '<h3 class="cert-rec-title">🎓 Recommended Certification</h3>'
         + '<div class="cert-rec-card">'
-        + '<div class="cx-badge" style="--vc:#4ade80"><small>PeopleCert</small><b>ITIL</b></div>'
+        + itilBadgeImg("foundation", 96)
         + '<div class="cert-rec-info">'
         + '<b>ITIL Foundation</b>'
         + '<p>The globally recognised entry-level certification for IT service management. Lesson 5.3 introduces it; the full course takes you level by level to the exam.</p>'

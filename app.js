@@ -34,7 +34,7 @@
   // ITIL Foundation: clickable node, hover shows its course levels and lessons
   var certEl = document.createElement("div"); certEl.className = "final cert-rec-node";
   var certLv = document.createElement("div"); certLv.className = "lv cert-lv"; certLv.style.setProperty("--c", ITIL_COURSE.color);
-  certLv.innerHTML = '<a class="cert-node-card" href="course.html?c=itil"><div class="cx-badge" style="--vc:#4ade80"><small>PeopleCert</small><b>ITIL</b></div><div class="cert-node-text"><b>ITIL Foundation</b><span>Recommended Certification · ' + ITIL_COURSE.levels.length + ' levels</span></div></a>' +
+  certLv.innerHTML = '<a class="cert-node-card" href="course.html?c=itil">' + itilBadgeImg("foundation", 76) + '<div class="cert-node-text"><b>ITIL Foundation</b><span>Recommended Certification · ' + ITIL_COURSE.levels.length + ' levels</span></div></a>' +
     '<div class="flyout"><div class="flyout-card"><div class="fl-head">ITIL Foundation · Course</div><div class="fl-list"></div></div></div>';
   (function () {
     var list = certLv.querySelector(".fl-list");

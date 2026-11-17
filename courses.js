@@ -226,11 +226,11 @@ const COURSE_LEVELS = [];
 
 /* ---- ITIL recommendation boxes shown at the end of the Intermediate and Advanced trees ---- */
 const ITIL_RECS = {
-  intermediate: { title: "ITIL Practice Manager pathway", sub: "Recommended certification", color: "#34d399", groups: [
+  intermediate: { badge: "pm", title: "ITIL Practice Manager pathway", sub: "Recommended certification", color: "#34d399", groups: [
     { name: "Choose ONE specialization:", items: ["msf", "pic", "cai"] },
     { name: "Plus:", items: ["transformation"], note: "required" }
   ]},
-  advanced: { title: "ITIL Managing Professional & Strategic Leader", sub: "Recommended certifications", color: "#38bdf8", groups: [
+  advanced: { badge: "mp", title: "ITIL Managing Professional & Strategic Leader", sub: "Recommended certifications", color: "#38bdf8", groups: [
     { name: "ITIL Managing Professional", items: ["product", "service", "experience", "transformation"], note: "Transformation is the shared requirement" },
     { name: "ITIL Strategic Leader", items: ["strategy", "transformation"], note: "Transformation is the shared requirement" }
   ]},
@@ -242,7 +242,7 @@ const ITIL_RECS = {
 function itilRecCard(key) {
   var r = ITIL_RECS[key], M = ITIL_COURSE.modules;
   var card = document.createElement("div"); card.className = "itil-rec-card"; card.style.setProperty("--c", r.color);
-  var h = '<a class="itil-rec-head" href="course.html?c=itil"><div class="cx-badge" style="--vc:' + r.color + '"><small>PeopleCert</small><b>ITIL</b></div><div><b class="irc-t"></b><span class="irc-s"></span></div></a><div class="itil-rec-groups"></div>';
+  var h = '<a class="itil-rec-head" href="course.html?c=itil">' + (r.badge ? itilBadgeImg(r.badge, 72) : '<div class="cx-badge" style="--vc:' + r.color + '"><small>PeopleCert</small><b>ITIL</b></div>') + '<div><b class="irc-t"></b><span class="irc-s"></span></div></a><div class="itil-rec-groups"></div>';
   card.innerHTML = h;
   card.querySelector(".irc-t").textContent = r.title;
   card.querySelector(".irc-s").textContent = r.sub + " · click a module";
@@ -253,9 +253,17 @@ function itilRecCard(key) {
     d.querySelector(".itil-rec-gt").textContent = g.name + (g.note ? "  (" + g.note + ")" : "");
     g.items.forEach(function (id) {
       var t = M[id], a = document.createElement("a"); a.className = "itil-chip"; a.href = "course.html?c=itil&m=" + id; a.style.setProperty("--mc", t.color);
-      a.textContent = t.title + (["msf", "pic", "cai"].indexOf(id) >= 0 ? " (" + t.code + ")" : ""); d.querySelector(".itil-rec-chips").appendChild(a);
+      a.innerHTML = itilBadgeImg(id, 22, "itil-chip-ico") + "<span></span>";
+      a.querySelector("span").textContent = t.title + (["msf", "pic", "cai"].indexOf(id) >= 0 ? " (" + t.code + ")" : ""); d.querySelector(".itil-rec-chips").appendChild(a);
     });
     box.appendChild(d);
   });
   return card;
+}
+
+/* official-style ITIL badge images (assets/itil-badges/<id>.png). ITIL Master has none, so it keeps the drawn badge. */
+const ITIL_BADGES = ["foundation", "transformation", "pm", "mp", "sl", "msf", "pic", "cai", "product", "service", "experience", "strategy", "aigov"];
+function itilBadgeImg(id, size, cls) {
+  if (ITIL_BADGES.indexOf(id) < 0) return "";
+  return '<img class="itil-badge ' + (cls || "") + '" src="assets/itil-badges/' + id + '.png" alt="" width="' + size + '" height="' + size + '">';
 }

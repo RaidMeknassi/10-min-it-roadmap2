@@ -12,8 +12,7 @@
   var hero = el("section", "lvhero");
   hero.innerHTML = '<nav class="crumb"><a href="index.html#map">Road map</a><span class="sep">›</span><a href="level.html?l=l5">Level 5</a><span class="sep">›</span><span class="now">ITIL</span></nav>' +
     '<div class="tp-title"><div class="cx-badge"><small></small><b></b></div><div><span class="badge">Recommended certification</span><h1>ITIL Certifications</h1></div></div><p class="tp-desc"></p><p class="tp-note"></p>';
-  hero.querySelector(".cx-badge").style.setProperty("--vc", C.color);
-  hero.querySelector(".cx-badge small").textContent = C.vendor; hero.querySelector(".cx-badge b").textContent = "ITIL";
+  hero.querySelector(".cx-badge").outerHTML = itilBadgeImg("foundation", 96);
   hero.querySelector(".tp-desc").textContent = C.desc;
   hero.querySelector(".tp-note").textContent = C.note;
   main.appendChild(hero);
@@ -22,7 +21,7 @@
   var rm = el("section", "irm"); rm.setAttribute("aria-label", "ITIL Version 5 certification roadmap");
   function box(id, num, extra) {
     var t = M[id], a = el("a", "irm-box irm-" + id + (extra ? " " + extra : "")); a.href = "course.html?c=itil&m=" + id; a.dataset.m = id; a.style.setProperty("--c", t.color);
-    a.innerHTML = (num ? '<span class="irm-num"></span>' : "") + "<h3></h3><p></p>";
+    a.innerHTML = (num ? '<span class="irm-num"></span>' : "") + itilBadgeImg(id, 64, "irm-logo") + "<h3></h3><p></p>";
     if (num) a.querySelector(".irm-num").textContent = num;
     a.querySelector("h3").textContent = t.title.replace(/^ITIL /, "ITIL ").toUpperCase();
     a.querySelector("p").textContent = t.desc;
@@ -39,14 +38,14 @@
   var paths = el("div", "irm-paths");
   C.designations.forEach(function (d, k) {
     var sec = el("section", "irm-path"); sec.style.setProperty("--c", d.color);
-    sec.innerHTML = '<span class="irm-num"></span><h3></h3><p class="irm-pdesc"></p><p class="irm-rule"></p><div class="irm-mods"></div>';
+    sec.innerHTML = '<span class="irm-num"></span>' + itilBadgeImg(d.id, 64, "irm-logo") + '<h3></h3><p class="irm-pdesc"></p><p class="irm-rule"></p><div class="irm-mods"></div>';
     sec.querySelector(".irm-num").textContent = String(3 + k);
     sec.querySelector("h3").textContent = d.name.toUpperCase();
     sec.querySelector(".irm-pdesc").textContent = d.desc;
     sec.querySelector(".irm-rule").textContent = d.rule;
     d.modules.forEach(function (id) {
       var t = M[id], a = el("a", "irm-mod"); a.href = "course.html?c=itil&m=" + id; a.dataset.m = id;
-      a.innerHTML = "<b></b><small></small>"; a.querySelector("b").textContent = t.code.toUpperCase(); a.querySelector("small").textContent = t.desc;
+      a.innerHTML = itilBadgeImg(id, 40, "irm-mod-logo") + "<b></b><small></small>"; a.querySelector("b").textContent = t.code.toUpperCase(); a.querySelector("small").textContent = t.desc;
       a.addEventListener("click", function (e) { e.preventDefault(); pick(id, true); });
       sec.querySelector(".irm-mods").appendChild(a);
     });
@@ -77,6 +76,7 @@
     h.querySelector(".lp-track").textContent = des ? "Part of " + des.name + " · " + des.rule : (sel === "transformation" ? "Shared by all three designations" : sel === "aigov" ? "Optional certification" : "ITIL certification");
     h.querySelector("h2").textContent = t.title;
     h.querySelector(".tp-cert").textContent = sub;
+    var img = itilBadgeImg(sel, 104); if (img) h.querySelector(".cx-badge").outerHTML = img;
     return h;
   }
 

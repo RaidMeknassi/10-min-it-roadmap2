@@ -830,3 +830,13 @@ a.cx-card:hover { border-color: var(--vc); transform: translateY(-2px); }
 .itil-chip:hover { background: color-mix(in srgb, var(--mc) 35%, transparent); color: #fff; transform: translateY(-1px); }
 .itil-rec-page { margin-top: 26px; display: flex; flex-direction: column; gap: 16px; align-items: stretch; }
 .itil-rec-page .itil-rec-card { max-width: none; }
+
+/* ITIL badge images */
+.itil-badge { display: block; flex: none; object-fit: contain; filter: drop-shadow(0 6px 12px rgba(0,0,0,.45)); }
+.irm-logo { margin: 4px auto 8px; }
+.irm-mod-logo { float: left; margin: -2px 10px 0 -2px; width: 40px; height: 40px; }
+.irm-mod { overflow: hidden; text-align: left; }
+.itil-chip { display: inline-flex; align-items: center; gap: 6px; }
+.itil-chip-ico { width: 22px; height: 22px; filter: none; margin-left: -5px; }
+.cert-node-card .itil-badge { margin: -4px 0; }
+.cx-img { height: 106px; width: 106px; }
