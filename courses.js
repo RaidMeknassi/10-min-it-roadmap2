@@ -191,7 +191,7 @@ const COURSE_LEVELS = [];
 (function () {
   ITIL_COURSE.levels.forEach(function (lv, i) {
     lv.lessons = lv.lessons.map(function (t, k) { return Array.isArray(t) ? t : ["itil." + i + "." + (k + 1), t]; });
-    lv.lessons.forEach(function (r, k) { LBL[r[0]] = tool.single ? String(k + 1) : i + "." + (k + 1); });
+    lv.lessons.forEach(function (r, k) { LBL[r[0]] = i + "." + (k + 1); });
     COURSE_LEVELS.push({ id: "itil-" + i, name: "ITIL Level " + i, title: lv.title, color: ITIL_COURSE.color, lessons: lv.lessons,
       href: "course.html?c=itil#lv" + i, group: "itil", crumbs: [["Road map", "index.html#map"], ["ITIL Foundation", "course.html?c=itil"]] });
   });
