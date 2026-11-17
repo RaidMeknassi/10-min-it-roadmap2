@@ -257,6 +257,8 @@ const VIDEOS = {
   "51":  "KvRj8-frEHU", // What Is the OSI Model?
   "52":  "0bVW9aI1exE", // Cybersecurity Best Practices
   "54":  "VlwUAFHQPfo", // Finding Your First IT Job
+  "55":  "GEFlkUeh0IU", // A Day Working in an IT Company
+  "57":  "3NG1EqnIRXs", // Understanding ITSM and ITIL
   "58":  "3kp40W0oT0Q", // How to Calculate in Binary
   "im4.14": "hy5FD9k1Hd8", // MAC Addresses Explained
   "im1.1": "0VVAza-8CUY", // Understanding the Kernel
