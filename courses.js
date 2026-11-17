@@ -227,7 +227,7 @@ const COURSE_LEVELS = [];
 /* ---- ITIL recommendation boxes shown at the end of the Intermediate and Advanced trees ---- */
 const ITIL_RECS = {
   itilpath: { badge: "foundation", title: "ITIL & IT Service Management Pathway", sub: "Recommended certifications · Foundation to ITIL Master", color: "#a78bfa", href: "course.html?c=itil", groups: [] },
-  agile: { title: "Agile & Project Management Pathway", sub: "Recommended certifications · click one", color: "#f59e0b", href: "path.html?p=agile", groups: [], agile: true },
+  agile: { title: "Agile & Project Management Pathway", sub: "Recommended certifications · PSM, PSPO, PRINCE2, PMP and more", color: "#f59e0b", href: "path.html?p=agile", groups: [], agile: true },
   advanced: { badge: "mp", title: "ITIL Managing Professional & Strategic Leader", sub: "Recommended certifications", color: "#38bdf8", groups: [
     { name: "ITIL Managing Professional", items: ["product", "service", "experience", "transformation"], note: "Transformation is the shared requirement" },
     { name: "ITIL Strategic Leader", items: ["strategy", "transformation"], note: "Transformation is the shared requirement" }
@@ -245,13 +245,7 @@ function itilRecCard(key) {
   card.querySelector(".irc-t").textContent = r.title;
   card.querySelector(".irc-s").textContent = r.sub + (r.groups.length ? " · click a module" : "");
   var box = card.querySelector(".itil-rec-groups");
-  if (r.agile) AGILE_PATH.tracks.forEach(function (tr) {
-    var d = document.createElement("div"); d.className = "itil-rec-group";
-    d.innerHTML = '<div class="itil-rec-gt"></div><div class="itil-rec-chips"></div>'; d.querySelector(".itil-rec-gt").textContent = tr.name;
-    tr.certs.forEach(function (c) { var a = document.createElement("a"); a.className = "itil-chip"; a.href = "path.html?p=agile&c=" + c.id; a.style.setProperty("--mc", c.color); a.textContent = c.code; d.querySelector(".itil-rec-chips").appendChild(a); });
-    box.appendChild(d);
-  });
-  if (!r.groups.length && !r.agile) box.remove();
+  if (!r.groups.length) box.remove();
   r.groups.forEach(function (g) {
     var d = document.createElement("div"); d.className = "itil-rec-group";
     d.innerHTML = '<div class="itil-rec-gt"></div><div class="itil-rec-chips"></div>';
