@@ -19,8 +19,10 @@
 
   // roadmap diagram
   var rm = el("section", "irm"); rm.setAttribute("aria-label", "ITIL Version 5 certification roadmap");
+  function modDone(id) { var t = M[id]; if (t.foundation) { var r = []; C.levels.forEach(function (lv) { r = r.concat(lv.lessons); }); return rowsDone(r); } return rowsDone(t.lessons.concat(t.examLessons || [])); }
   function box(id, num, extra) {
     var t = M[id], a = el("a", "irm-box irm-" + id + (extra ? " " + extra : "")); a.href = "course.html?c=itil&m=" + id; a.dataset.m = id; a.style.setProperty("--c", t.color);
+    if (modDone(id)) a.classList.add("is-done");
     a.innerHTML = (num ? '<span class="irm-num"></span>' : "") + itilBadgeImg(id, 64, "irm-logo") + "<h3></h3><p></p>";
     if (num) a.querySelector(".irm-num").textContent = num;
     a.querySelector("h3").textContent = t.title.replace(/^ITIL /, "ITIL ").toUpperCase();
@@ -44,7 +46,7 @@
     sec.querySelector(".irm-pdesc").textContent = d.desc;
     sec.querySelector(".irm-rule").textContent = d.rule;
     d.modules.forEach(function (id) {
-      var t = M[id], a = el("a", "irm-mod"); a.href = "course.html?c=itil&m=" + id; a.dataset.m = id;
+      var t = M[id], a = el("a", "irm-mod" + (modDone(id) ? " is-done" : "")); a.href = "course.html?c=itil&m=" + id; a.dataset.m = id;
       a.innerHTML = itilBadgeImg(id, 40, "irm-mod-logo") + "<b></b><small></small>"; a.querySelector("b").textContent = t.code.toUpperCase(); a.querySelector("small").textContent = t.desc;
       a.addEventListener("click", function (e) { e.preventDefault(); pick(id, true); });
       sec.querySelector(".irm-mods").appendChild(a);

@@ -259,6 +259,9 @@ const VIDEOS = {
   "5.5.2": "0RQUFHYX2PQ", // Basic Troubleshooting Methodology
   "5.5.3": "w6V56fsX7Qk", // Remote Support Tools
   "5.5.4": "SSTCBHDDtp8", // Professional IT Support Practices
+  "servicenow.0.1": "TM3_vAdGZnA", // What Is ServiceNow?
+  "servicenow.0.2": "wKNf6ootoZo", // Incidents vs Service Requests
+  "servicenow.0.3": "YVxOj4NwIIc", // Knowledge Base + PDI Lab
   "linkedin.0.1": "1haDfgG7waE", // LinkedIn for IT Jobs
   "glassdoor.0.1": "MeM2IGOA6yM", // Glassdoor: research companies
   "indeed.0.1": "MI-nP0w4Wh8", // Indeed: search, filter and apply

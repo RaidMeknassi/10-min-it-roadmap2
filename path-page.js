@@ -33,7 +33,7 @@
     var mods = sec.querySelector(".irm-mods");
     t.certs.forEach(function (c, j) {
       if (j) mods.appendChild(el("div", "irm-step" + (c.alt ? " irm-alt" : ""), c.alt ? "also popular:" : "↓"));
-      var a = el("a", "irm-mod"); a.href = "path.html?p=agile&c=" + c.id; a.dataset.m = c.id;
+      var a = el("a", "irm-mod" + (rowsDone(c.lessons.concat(c.examLessons || [])) ? " is-done" : "")); a.href = "path.html?p=agile&c=" + c.id; a.dataset.m = c.id;
       a.innerHTML = "<b></b><small></small>"; a.querySelector("b").textContent = c.code; a.querySelector("small").textContent = c.title + " · " + c.vendor;
       a.addEventListener("click", function (e) { e.preventDefault(); pick(c.id, true); });
       mods.appendChild(a);

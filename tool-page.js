@@ -30,9 +30,10 @@
     var i = N - 1 - j, lv = tool.levels[i];
     var top = j / N, bot = (j + 1) / N;
     var row = el("a", "pyr-row"); row.href = "tool.html?t=" + tool.id + "&l=" + i; row.dataset.i = i; row.style.setProperty("--c", lv.color);
+    var lvDone = rowsDone(lv.lessons.concat(lv.exam || [])); if (lvDone) row.classList.add("is-done");
     row.innerHTML = '<span class="pyr-l"></span><span class="pyr-mid"><span class="pyr-shape"></span><span class="pyr-num"></span></span><span class="pyr-r"></span>';
     row.querySelector(".pyr-shape").style.clipPath = "polygon(" + (50 - 50 * top) + "% 0," + (50 + 50 * top) + "% 0," + (50 + 50 * bot) + "% 100%," + (50 - 50 * bot) + "% 100%)";
-    row.querySelector(".pyr-num").textContent = "L" + i;
+    row.querySelector(".pyr-num").textContent = lvDone ? "✓" : "L" + i;
     row.querySelector(".pyr-l").textContent = lv.cert ? lv.cert[0] : "Level " + i;
     row.querySelector(".pyr-r").textContent = lv.role || lv.title;
     row.addEventListener("click", function (e) { e.preventDefault(); pick(parseInt(this.dataset.i, 10), true); });

@@ -90,7 +90,7 @@ const TOOLS = [
     desc: "The leading enterprise IT service management platform. Most big companies run their service desk on it.",
     note: "ServiceNow certifications build on each other like a pyramid: CSA first, then CAD, then CIS, Suite and finally the expert architect exams.",
     levels: [
-      { title: "ServiceNow Basics for the Service Desk", role: "Fulfiller / Agent", color: "#8a9aa8", lessons: ["What Is ServiceNow?", "Navigating the Platform", "Logging and Updating an Incident", "Requests, the Service Catalog and Approvals", "Using the Knowledge Base", "Getting a Free Personal Developer Instance"] },
+      { title: "ServiceNow Basics for the Service Desk", role: "Fulfiller / Agent", color: "#8a9aa8", lessons: ["What Is ServiceNow? Beginner Introduction for IT Support", "ServiceNow for Beginners: Incidents vs Service Requests (Create, Update, Resolve)", "ServiceNow Knowledge Base + Free Developer Instance (PDI) Lab"] },
       { title: "Certified System Administrator", role: "Systems Administrator", color: "#4f7f7f", cert: ["CSA", "ServiceNow Certified System Administrator", "ServiceNow"],
         groups: [["Domain 1: Platform Overview and Navigation — 7%", 1], ["Domain 2: Instance Configuration — 10%", 2], ["Domain 3: Configuring Applications for Collaboration — 20%", 5], ["Domain 4: Self-Service and Automation — 20%", 3], ["Domain 5: Database Management and Platform Security — 30%", 4], ["Domain 6: Data Migration and Integration — 13%", 2]],
         lessons: ["ServiceNow Platform Overview and Capabilities", "Applications, Plugins and Instance Configuration", "Personalization, Customization and User Interfaces", "Lists, Filters, Tags and Forms", "Form Configuration, Templates and Advanced Configuration", "Task Management and Visual Task Boards", "Reports, Dashboards and Platform Analytics", "Notifications", "Knowledge Management", "Service Catalog and Catalog Items", "Workflow Studio and Virtual Agent", "Tables, Fields and Data Schema", "Users, Groups, Roles and Access Control", "Importing Data, CMDB and CSDM", "Security Center and Shared Responsibility Model", "UI Policies and Business Rules", "Update Sets and Scripting Fundamentals"],
@@ -394,3 +394,10 @@ function certAbout(key) {
   });
   return d;
 }
+
+/* ---- "done" helpers: a tool / level / certification counts as done when every one of its lessons is marked done ---- */
+function rowsDone(rows) {
+  var d = {}; try { d = JSON.parse(localStorage.getItem("itroadmap-v2-done") || "{}"); } catch (e) { d = {}; }
+  return !!rows && rows.length > 0 && rows.every(function (r) { return d[r[0]]; });
+}
+function toolRows(t) { var a = []; t.levels.forEach(function (l) { a = a.concat(l.lessons, l.exam || []); }); return a; }
