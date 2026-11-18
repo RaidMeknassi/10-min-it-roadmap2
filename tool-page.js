@@ -79,7 +79,18 @@
     var all = lv.lessons.concat(lv.exam || []);
     all.forEach(function (r) { if (done[r[0]]) c++; });
     panel.appendChild(el("p", "lv-meta", all.length + " lessons · " + c + " / " + all.length + " done"));
-    var list = el("div", "lvlist"); lv.lessons.forEach(function (r) { list.appendChild(lessonCard(r)); }); panel.appendChild(list);
+    var list = el("div", "lvlist");
+    var gi = 0, gleft = 0;
+    lv.lessons.forEach(function (r) {
+      if (lv.groups && gleft === 0 && lv.groups[gi]) {
+        var g = lv.groups[gi++], gl = g[1], gd = 0; gleft = gl;
+        var seg = lv.lessons.slice(lv.lessons.indexOf(r), lv.lessons.indexOf(r) + gl); seg.forEach(function (x) { if (done[x[0]]) gd++; });
+        var gh = el("div", "grp-head"); gh.innerHTML = "<h2></h2><p></p>"; gh.querySelector("h2").textContent = g[0]; gh.querySelector("p").textContent = gl + " lesson" + (gl > 1 ? "s" : "") + " · " + gd + " / " + gl + " done";
+        list.appendChild(gh);
+      }
+      list.appendChild(lessonCard(r)); if (gleft > 0) gleft--;
+    });
+    panel.appendChild(list);
     if (lv.exam && lv.exam.length) {
       var ex = el("div", "exam-sec");
       ex.innerHTML = '<div class="exam-head"><span class="exam-ico">📝</span><div><h3></h3><p></p></div></div>';
