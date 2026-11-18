@@ -55,7 +55,7 @@
       if (has) tg.appendChild(tag("Lesson", "t-les"));
       if (QUIZZES[n]) tg.appendChild(tag("Quiz", "t-quiz"));
       if (LAB_PAGES[n]) tg.appendChild(tag("Lab", "t-lab")); else if (row[2]) tg.appendChild(tag("🔒 Lab", "t-lock"));
-      if (!has) tg.appendChild(tag("Coming soon", "t-soon"));
+      if (!has && !QUIZZES[n]) tg.appendChild(tag("Coming soon", "t-soon"));
       list.appendChild(a);
     });
     $("lv-meta").textContent = lv.lessons.length + " lessons · " + c + " / " + lv.lessons.length + " done";

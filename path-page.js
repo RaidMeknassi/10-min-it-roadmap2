@@ -50,7 +50,7 @@
     a.querySelector(".cl-ico").textContent = LBL[r[0]];
     a.querySelector("b").textContent = r[1];
     a.querySelector("small").textContent = "Lesson " + LBL[r[0]] + " · 10 min";
-    a.querySelector(".lc-tags").appendChild(el("span", "tg " + (VIDEOS[r[0]] ? "t-les" : "t-soon"), VIDEOS[r[0]] ? "Lesson" : "Coming soon"));
+    a.querySelector(".lc-tags").appendChild(function () { var w = document.createDocumentFragment(); lessonTags(r[0]).forEach(function (t) { w.appendChild(el("span", "tg " + t[1], t[0])); }); return w; }());
     return a;
   }
   function pick(id, user) {
