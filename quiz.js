@@ -25,6 +25,12 @@
         b.onclick = function () {
           if (locked) return; locked = true;
           if (k === it.a) { score++; b.classList.add("good"); } else { b.classList.add("bad"); box.querySelectorAll(".q-opt")[it.a].classList.add("good"); }
+          if (it.e) {
+            box.appendChild(el("p", "q-exp", (k === it.a ? "Correct. " : "Not quite. ") + it.e));
+            var nx = el("button", "btn q-next", i + 1 >= q.items.length ? "See my score" : "Next question"); nx.type = "button";
+            nx.onclick = function () { i++; show(); }; box.appendChild(nx);
+            return;
+          }
           setTimeout(function () { i++; show(); }, 900);
         };
         box.appendChild(b);

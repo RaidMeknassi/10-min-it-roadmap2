@@ -860,3 +860,6 @@ a.cx-card:hover { border-color: var(--vc); transform: translateY(-2px); }
 .pyr-row.is-done .pyr-shape { filter: saturate(.9) brightness(1.05); outline: 0; }
 .pyr-row.is-done .pyr-num { color: #07070d; font-weight: 900; text-shadow: none; }
 .pyr-row.is-done .pyr-l { color: #4ade80; }
+
+.q-exp { margin: 14px 0 6px; padding: 12px 14px; border-left: 4px solid #62d84e; background: rgba(98,216,78,.08); border-radius: 8px; font-size: 15px; line-height: 1.5; }
+.q-next { margin-top: 10px; }
