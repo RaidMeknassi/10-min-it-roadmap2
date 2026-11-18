@@ -87,7 +87,8 @@
     var b = el("button", "lp-tab", t[1]); b.type = "button"; b.dataset.t = t[0]; b.disabled = !t[2];
     b.onclick = function () { tab = t[0]; stage(); }; tabs.appendChild(b);
   });
-  main.appendChild(tabs);
+  var quizOnly = !!QUIZZES[item.n] && !VIDEOS[item.n] && !LESSON_PAGES[item.n] && !LABS[item.n] && !LAB_PAGES[item.n] && !item.lab;
+  if (quizOnly) tab = "quiz"; else main.appendChild(tabs);
   var box = el("div", "lp-stage"), note = el("p", "lp-note"); main.appendChild(box); main.appendChild(note);
 
   function frame(src, title) { var f = document.createElement("iframe"); f.src = src; f.title = title; f.allow = "autoplay; fullscreen"; f.allowFullscreen = true; return f; }
