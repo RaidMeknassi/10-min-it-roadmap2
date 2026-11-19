@@ -262,6 +262,25 @@ const VIDEOS = {
   "servicenow.0.1": "TM3_vAdGZnA", // What Is ServiceNow?
   "servicenow.0.2": "wKNf6ootoZo", // Incidents vs Service Requests
   "servicenow.0.3": "YVxOj4NwIIc", // Knowledge Base + PDI Lab
+  "servicenow.1.1": "K-vS398IRXU", // CSA 1.1
+  "servicenow.1.2": "1JaGR57fjvE", // CSA 1.2
+  "servicenow.1.3": "RBCjQf83c0M", // CSA 1.3
+  "servicenow.1.4": "T4tNA8FzERA", // CSA 1.4
+  "servicenow.1.5": "wcDHHE1Gx3U", // CSA 1.5
+  "servicenow.1.6": "9j4UeO247q0", // CSA 1.6
+  "servicenow.1.7": "Mml5s_T60BA", // CSA 1.7
+  "servicenow.1.8": "IPYHytHQCxE", // CSA 1.8
+  "servicenow.1.9": "Nj5-nMwIjXI", // CSA 1.9
+  "servicenow.1.10": "AAVU0MuAnhc", // CSA 1.10
+  "servicenow.1.11": "8CCCps5U-lg", // CSA 1.11
+  "servicenow.1.12": "2xpTxSJYbLU", // CSA 1.12
+  "servicenow.1.13": "vvInCu0-SBQ", // CSA 1.13
+  "servicenow.1.14": "Ehz75y72_Bg", // CSA 1.14
+  "servicenow.1.15": "TDToy5T2WAM", // CSA 1.15
+  "servicenow.1.16": "9YfRoCo0_8w", // CSA 1.16
+  "servicenow.1.17": "etPzSpcHtec", // CSA 1.17
+  "servicenow.1.x1": "F6T60AyT3tU", // CSA 1.E1 exam explained
+  "servicenow.1.x2": "3u2caY3y3io", // CSA 1.E2 objectives checklist
   "linkedin.0.1": "1haDfgG7waE", // LinkedIn for IT Jobs
   "glassdoor.0.1": "MeM2IGOA6yM", // Glassdoor: research companies
   "indeed.0.1": "MI-nP0w4Wh8", // Indeed: search, filter and apply
