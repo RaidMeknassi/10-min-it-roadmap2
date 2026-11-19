@@ -19,7 +19,7 @@
 
   // ----- level chips (jump links) -----
   var chips = document.getElementById("chips");
-  if (chips) LEVELS.concat([LEVEL55, INTERMEDIATE, LEVEL6]).forEach(function (lv) {
+  if (chips) LEVELS.concat([LEVEL55, LEVEL52, INTERMEDIATE, LEVEL6]).forEach(function (lv) {
     var a = document.createElement("a");
     a.href = "#" + lv.id;
     a.style.setProperty("--c", lv.color);
@@ -32,6 +32,7 @@
   var branches = document.createElement("div"); branches.className = "branches";
   var l5El = document.createElement("div");  l5El.className = "final l5";
   var l55El = document.createElement("div"); l55El.className = "final l55";
+  var l52El = document.createElement("div"); l52El.className = "final l52";
   // ITIL Foundation: clickable node, hover shows its course levels and lessons
   var certEl = document.createElement("div"); certEl.className = "final cert-rec-node";
   var certLv = document.createElement("div"); certLv.className = "lv cert-lv"; certLv.style.setProperty("--c", ITIL_COURSE.color);
@@ -73,7 +74,7 @@
   var midEl = document.createElement("div");  midEl.className = "final l6m";
   var finalEl = document.createElement("div");  finalEl.className = "final";
   var trackEl = document.createElement("div");  trackEl.className = "final track";
-  if (levelsEl) { levelsEl.appendChild(trunk); levelsEl.appendChild(branches); levelsEl.appendChild(l5El); levelsEl.appendChild(certEl); levelsEl.appendChild(l55El); levelsEl.appendChild(toolsEl); levelsEl.appendChild(midEl); levelsEl.appendChild(finalEl); levelsEl.appendChild(trackEl); }
+  if (levelsEl) { levelsEl.appendChild(trunk); levelsEl.appendChild(branches); levelsEl.appendChild(l5El); levelsEl.appendChild(certEl); levelsEl.appendChild(l55El); levelsEl.appendChild(l52El); levelsEl.appendChild(toolsEl); levelsEl.appendChild(midEl); levelsEl.appendChild(finalEl); levelsEl.appendChild(trackEl); }
 
   function closeAll(except) {
     entries.forEach(function (en) { if (en.lv !== except) en.lv.classList.remove("open"); });
@@ -184,6 +185,29 @@
       en.items.push({ el: b, lesson: lesson });
     });
   });
+  // tool chips under Level 5 (job-search platforms) and Level 5.2 (ticketing systems)
+  if (!LEVEL_MODE) { var tb5 = levelToolsBox("l5"); if (tb5) l5El.appendChild(tb5); }
+  // Level 5.2: Microsoft 365 for Everyday Support (entries[9], placed after Level 5.1)
+  if (!LEVEL_MODE) [LEVEL52].forEach(function (lv) {
+    var en = makeLevel(lv, l52El, false);
+    var tb52 = levelToolsBox("l52"); if (tb52) l52El.appendChild(tb52);
+    var list = en.lv.querySelector(".fl-list");
+    if (false) { var fl = document.createElement("span"); fl.className = "job-tag"; fl.textContent = "\uD83D\uDD12 " + lv.jobReady; en.card.appendChild(fl); }
+    lv.lessons.forEach(function (row, rk) {
+      var lesson = { n: row[0], title: row[1], lab: !!row[2], level: lv };
+      total++;
+      var b = document.createElement("button");
+      b.type = "button"; b.className = "fl-item";
+      b.innerHTML = '<span class="ico"></span><span class="fl-num"></span><span class="fl-title"></span>' + (lesson.lab ? '<span class="fl-lock" title="Has a lab">🔒</span>' : "");
+      b.querySelector(".fl-num").textContent = lv.lbl(rk);
+      var ic = b.querySelector(".ico"); ic.style.setProperty("--c", lv.color);
+      ic.remove();
+      b.querySelector(".fl-title").textContent = lesson.title;
+      b.addEventListener("click", function (e) { e.stopPropagation(); location.href = "lesson.html?n=" + encodeURIComponent(lesson.n); });
+      list.appendChild(b);
+      en.items.push({ el: b, lesson: lesson });
+    });
+  });
 
   // Level 6 splits into one separate card per specialization. Cybersecurity continues down into Levels 7 and 8.
   if (false) (function () {
@@ -260,14 +284,15 @@
     link(1, 2, 2);
     var certRect  = certCard.getBoundingClientRect();
     var toolsRect = toolsCard.getBoundingClientRect();
-    var l5Rect    = entries[5].card.getBoundingClientRect();
+    var l5Rect    = l5El.getBoundingClientRect();
     var l6mRect   = entries[6].card.getBoundingClientRect();
     var l55Rect   = entries[8].card.getBoundingClientRect();
+    var l52Rect   = entries[9] ? entries[9].card.getBoundingClientRect() : null, l52Box = l52El.getBoundingClientRect();
     if (stacked) {
       link(2, 3, 3); link(3, 4, 4); link(4, 5, 5);
       linkDashed(l5Rect, certRect, "#4ade80");
       linkDashed(certRect, l55Rect, "#f59e0b");
-      linkDashed(l55Rect, toolsRect, "#38bdf8");
+      if (l52Rect) { linkDashed(l55Rect, l52Rect, "#d83b01"); linkDashed(l52Box, toolsRect, "#38bdf8"); } else linkDashed(l55Rect, toolsRect, "#38bdf8");
       linkDashed(toolsRect, l6mRect, "#38bdf8");
       link(6, 7, 7);
     } else {
@@ -275,7 +300,7 @@
       link(3, 5, 3); link(4, 5, 4);
       linkDashed(l5Rect, certRect, "#4ade80");
       linkDashed(certRect, l55Rect, "#f59e0b");
-      linkDashed(l55Rect, toolsRect, "#38bdf8");
+      if (l52Rect) { linkDashed(l55Rect, l52Rect, "#d83b01"); linkDashed(l52Box, toolsRect, "#38bdf8"); } else linkDashed(l55Rect, toolsRect, "#38bdf8");
       linkDashed(toolsRect, l6mRect, "#38bdf8");
       link(6, 7, 7);
     }

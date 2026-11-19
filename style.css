@@ -863,3 +863,10 @@ a.cx-card:hover { border-color: var(--vc); transform: translateY(-2px); }
 
 .q-exp { margin: 14px 0 6px; padding: 12px 14px; border-left: 4px solid #62d84e; background: rgba(98,216,78,.08); border-radius: 8px; font-size: 15px; line-height: 1.5; }
 .q-next { margin-top: 10px; }
+
+/* Level 5.2 node and tool chips under a level */
+.final.l5, .final.l52 { flex-direction: column; align-items: center; }
+.node-tools { margin-top: 14px; padding: 12px 14px; border: 1px dashed rgba(56,189,248,.35); border-radius: 14px; background: rgba(56,189,248,.05); max-width: 340px; width: 100%; }
+.node-tools .tools-group + .tools-group { margin-top: 10px; }
+.lv-toolsbox { margin: 22px 0 6px; }
+.lv-toolsbox .node-tools { max-width: none; }

@@ -57,7 +57,7 @@ const LEVELS = [
 ];
 
 /* Level 5.5 - IT Support Fundamentals (shown on the map after the ITIL Foundation box) */
-const LEVEL55 = { id: "l55", desc: "How real IT support works: the role, troubleshooting, remote tools and professional habits.", name: "Level 5.5", title: "IT Support Fundamentals", color: "#f59e0b",
+const LEVEL55 = { id: "l55", desc: "How real IT support works: the role, troubleshooting, remote tools and professional habits.", name: "Level 5.1", title: "IT Support Fundamentals", color: "#f59e0b",
   jobReady: "Lab: practical troubleshooting scenarios", lessons: [
   ["5.5.1", "The Role of an IT Support Technician", 0],
   ["5.5.2", "Basic Troubleshooting Methodology", 1],
@@ -68,7 +68,7 @@ const LEVEL55 = { id: "l55", desc: "How real IT support works: the role, trouble
 /* Display labels: Level 0 keeps 0.1 ... ; other levels show level.position (1.1, 2.3 ...). Keys stay the same so progress is kept. */
 const LBL = {};
 LEVELS.forEach(function (lv, li) { lv.lessons.forEach(function (r, k) { LBL[r[0]] = li === 0 ? r[0] : li + "." + (k + 1); }); });
-LEVEL55.lessons.forEach(function (r) { LBL[r[0]] = r[0]; });
+LEVEL55.lessons.forEach(function (r, k) { LBL[r[0]] = "5.1." + (k + 1); });
 // Level 1 custom labels
 LBL["1"] = "1"; LBL["2"] = "2"; LBL["3"] = "3"; LBL["4"] = "4"; LBL["5"] = "5"; LBL["58"] = "5.1";
 // Level 2 custom labels (6, 7, 8, 9)

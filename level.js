@@ -2,7 +2,7 @@
 (function () {
   var $ = function (i) { return document.getElementById(i); };
   var imLevels = (typeof INTERMEDIATE_LEVELS !== "undefined") ? INTERMEDIATE_LEVELS : [];
-  var ALL = LEVELS.concat([LEVEL55]).concat(imLevels).concat([{ id: "l6m", name: INTERMEDIATE.name, title: INTERMEDIATE.title, color: INTERMEDIATE.color }, { id: "l6", name: "Level 7", title: "Advanced Specializations", color: "#f472b6" }]);
+  var ALL = LEVELS.concat([LEVEL55, LEVEL52]).concat(imLevels).concat([{ id: "l6m", name: INTERMEDIATE.name, title: INTERMEDIATE.title, color: INTERMEDIATE.color }, { id: "l6", name: "Level 7", title: "Advanced Specializations", color: "#f472b6" }]);
   var done = {}; try { done = JSON.parse(localStorage.getItem("itroadmap-v2-done") || "{}"); } catch (e) { done = {}; }
   var idx = -1, id = new URLSearchParams(location.search).get("l");
   ALL.forEach(function (x, i) { if (x.id === id) idx = i; });
@@ -44,13 +44,14 @@
     });
   } else {
     var c = 0;
-    lv.lessons.forEach(function (row) {
+    lv.lessons.forEach(function (row, rk) {
       var n = row[0], a = el("a", "lc" + (done[n] ? " done" : "")); a.href = "lesson.html?n=" + encodeURIComponent(n);
       if (done[n]) c++;
       a.innerHTML = '<span class="ico"></span><span class="lc-body"><b></b><small></small></span><span class="lc-tags"></span><span class="lc-check">✓</span>';
       var iconSrc = /^im\d+\./.test(n) ? "assets/lesson-icons/" + n + ".png" : "assets/lesson-icons/" + n + ".png";
-      a.querySelector(".ico").innerHTML = '<img src="' + iconSrc + '" alt="" width="28" height="28" style="border-radius:8px;vertical-align:middle;">';
-      a.querySelector("b").textContent = row[1]; a.querySelector("small").textContent = "Lesson " + (LBL[n] || n) + " · 10 min";
+      if (lv.lbl) { a.querySelector(".ico").innerHTML = '<span class="cl-ico" style="--c:' + lv.color + '"></span>'; a.querySelector(".cl-ico").textContent = lv.lbl(rk); }
+      else a.querySelector(".ico").innerHTML = '<img src="' + iconSrc + '" alt="" width="28" height="28" style="border-radius:8px;vertical-align:middle;">';
+      a.querySelector("b").textContent = row[1]; a.querySelector("small").textContent = "Lesson " + (lv.lbl ? lv.lbl(rk) : (LBL[n] || n)) + " · 10 min";
       var tg = a.querySelector(".lc-tags"), has = LESSON_PAGES[n] || VIDEOS[n];
       if (has) tg.appendChild(tag("Lesson", "t-les"));
       if (QUIZZES[n]) tg.appendChild(tag("Quiz", "t-quiz"));
@@ -61,6 +62,8 @@
     $("lv-meta").textContent = lv.lessons.length + " lessons · " + c + " / " + lv.lessons.length + " done";
     document.querySelector("#lv-bar i").style.width = (c / lv.lessons.length * 100) + "%";
 
+    var tbx = levelToolsBox(lv.id);
+    if (tbx) { var th = el("h3", "cert-rec-title", "\uD83D\uDEE0 Tools for this level"); var wrap = el("div", "lv-toolsbox"); wrap.appendChild(th); wrap.appendChild(tbx); list.parentNode.insertBefore(wrap, list.nextSibling); }
     if (lv.id === "l5") {
       var rec = el("div", "cert-rec");
       rec.innerHTML = '<h3 class="cert-rec-title">🎓 Recommended Certification</h3>'

@@ -412,3 +412,31 @@ function lessonTags(key) {
   if (QUIZZES[key]) return [["Quiz", "t-quiz"], ["\uD83D\uDD12 Lab", "t-lock"]];
   return [["Coming soon", "t-soon"]];
 }
+
+/* ---- Level 5.2: Microsoft 365 for Everyday Support (the same lessons stay as Level 0 of the Microsoft 365 tool) ---- */
+var LEVEL52 = (function () {
+  var m = TOOLS.filter(function (t) { return t.id === "microsoft365"; })[0];
+  return { id: "l52", name: "Level 5.2", title: "Microsoft 365 for Everyday Support", desc: "1st Line Support: the skills you need on the job.", color: m.color,
+    lessons: m.levels[0].lessons.map(function (r) { return [r[0], r[1], 0]; }), lbl: function (k) { return "5.2." + (k + 1); } };
+})();
+/* tools shown under a level (they also stay in the Tools section) */
+var LEVEL_TOOLS = { l5: ["jobs"], l52: ["ticketing"] };
+function levelToolsBox(levelId) {
+  var ids = LEVEL_TOOLS[levelId]; if (!ids) return null;
+  var box = document.createElement("div"); box.className = "node-tools";
+  ids.forEach(function (gid) {
+    var g = TOOL_GROUPS.filter(function (x) { return x.id === gid; })[0]; if (!g) return;
+    var grp = document.createElement("div"); grp.className = "tools-group";
+    grp.innerHTML = '<div class="tools-group-title"></div><div class="tools-chips"></div>';
+    grp.querySelector(".tools-group-title").textContent = g.emoji + " " + g.name;
+    TOOLS.forEach(function (t) {
+      if (t.group !== gid) return;
+      var a = document.createElement("a"); a.className = "tool-chip"; a.href = "tool.html?t=" + t.id; a.style.setProperty("--tc", t.color);
+      a.innerHTML = '<img src="assets/tool-icons/' + t.id + '.png" alt="" width="18" height="18"><span></span>'; a.querySelector("span").textContent = t.name;
+      a.addEventListener("click", function (e) { e.stopPropagation(); });
+      grp.querySelector(".tools-chips").appendChild(a);
+    });
+    box.appendChild(grp);
+  });
+  return box;
+}
