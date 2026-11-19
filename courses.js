@@ -417,10 +417,10 @@ function lessonTags(key) {
 var LEVEL52 = (function () {
   var m = TOOLS.filter(function (t) { return t.id === "microsoft365"; })[0];
   return { id: "l52", name: "Level 5.2", title: "Microsoft 365 for Everyday Support", desc: "1st Line Support: the skills you need on the job.", color: m.color,
-    lessons: m.levels[0].lessons.map(function (r) { return [r[0], r[1], 0]; }), lbl: function (k) { return "5.2." + (k + 1); } };
+    lessons: m.levels[0].lessons.map(function (r) { return [r[0], r[1], 0, 1]; }), lbl: function (k) { return "5.2." + (k + 1); } };
 })();
 /* tools shown under a level (they also stay in the Tools section) */
-var LEVEL_TOOLS = { l5: ["jobs"], l52: ["ticketing"] };
+var LEVEL_TOOLS = {};
 function levelToolsBox(levelId) {
   var ids = LEVEL_TOOLS[levelId]; if (!ids) return null;
   var box = document.createElement("div"); box.className = "node-tools";
@@ -440,3 +440,15 @@ function levelToolsBox(levelId) {
   });
   return box;
 }
+
+/* ---- tool lessons shown as lessons inside the beginner levels (they also stay in the Tools section) ----
+   Level 5:   Job-Search Platforms  (LinkedIn, Glassdoor, Indeed)
+   Level 5.1: Ticketing Systems     (ServiceNow, Jira Service Management: their beginner lessons)
+   A row's 4th value (1) means "tool lesson": it gets a number tile instead of a picture. */
+(function () {
+  function level0(id) { var t = TOOLS.filter(function (x) { return x.id === id; })[0]; return t.levels[0].lessons.map(function (r) { return [r[0], r[1], 0, 1]; }); }
+  ["linkedin", "glassdoor", "indeed"].forEach(function (id) { level0(id).forEach(function (r) { LEVELS[5].lessons.push(r); }); });
+  LEVELS[5].lbl = function (k) { return "5." + (k + 1); };
+  ["servicenow", "jira"].forEach(function (id) { level0(id).forEach(function (r) { LEVEL55.lessons.push(r); }); });
+  LEVEL55.lbl = function (k) { return "5.1." + (k + 1); };
+})();

@@ -116,16 +116,16 @@
     var en = makeLevel(lv, li < 3 ? trunk : (li < 5 ? branches : l5El), li === 4);
     var list = en.lv.querySelector(".fl-list");
     if (lv.jobReady) { var fl = document.createElement("span"); fl.className = "job-tag"; fl.textContent = "\u2714 " + lv.jobReady; en.card.appendChild(fl); }
-    lv.lessons.forEach(function (row) {
-      var lesson = { n: row[0], title: row[1], lab: !!row[2], level: lv };
+    lv.lessons.forEach(function (row, rk) {
+      var lesson = { n: row[0], title: row[1], lab: !!row[2], level: lv, tool: !!row[3] };
       total++;
       var b = document.createElement("button");
       b.type = "button";
       b.className = "fl-item";
       b.innerHTML = '<span class="ico"></span><span class="fl-num"></span><span class="fl-title"></span>' + (lesson.lab ? '<span class="fl-lock" title="Has a lab">🔒</span>' : "");
-      b.querySelector(".fl-num").textContent = LBL[lesson.n] || lesson.n;
+      b.querySelector(".fl-num").textContent = lv.lbl ? lv.lbl(rk) : (LBL[lesson.n] || lesson.n);
       var ic = b.querySelector(".ico"); ic.style.setProperty("--c", lv.color);
-      ic.innerHTML = '<img src="assets/lesson-icons/' + lesson.n + '.png" alt="" width="28" height="28" style="border-radius:8px;vertical-align:middle;">';
+      if (lesson.tool) ic.remove(); else ic.innerHTML = '<img src="assets/lesson-icons/' + lesson.n + '.png" alt="" width="28" height="28" style="border-radius:8px;vertical-align:middle;">';
       b.querySelector(".fl-title").textContent = lesson.title;
       b.addEventListener("click", function (e) { e.stopPropagation(); location.href = "lesson.html?n=" + encodeURIComponent(lesson.n); });
       list.appendChild(b);
@@ -170,15 +170,15 @@
     var en = makeLevel(lv, l55El, false);
     var list = en.lv.querySelector(".fl-list");
     if (lv.jobReady) { var fl = document.createElement("span"); fl.className = "job-tag"; fl.textContent = "\uD83D\uDD12 " + lv.jobReady; en.card.appendChild(fl); }
-    lv.lessons.forEach(function (row) {
-      var lesson = { n: row[0], title: row[1], lab: !!row[2], level: lv };
+    lv.lessons.forEach(function (row, rk) {
+      var lesson = { n: row[0], title: row[1], lab: !!row[2], level: lv, tool: !!row[3] };
       total++;
       var b = document.createElement("button");
       b.type = "button"; b.className = "fl-item";
       b.innerHTML = '<span class="ico"></span><span class="fl-num"></span><span class="fl-title"></span>' + (lesson.lab ? '<span class="fl-lock" title="Has a lab">🔒</span>' : "");
-      b.querySelector(".fl-num").textContent = LBL[lesson.n] || lesson.n;
+      b.querySelector(".fl-num").textContent = lv.lbl ? lv.lbl(rk) : (LBL[lesson.n] || lesson.n);
       var ic = b.querySelector(".ico"); ic.style.setProperty("--c", lv.color);
-      ic.innerHTML = '<img src="assets/lesson-icons/' + lesson.n + '.png" alt="" width="28" height="28" style="border-radius:8px;vertical-align:middle;">';
+      if (lesson.tool) ic.remove(); else ic.innerHTML = '<img src="assets/lesson-icons/' + lesson.n + '.png" alt="" width="28" height="28" style="border-radius:8px;vertical-align:middle;">';
       b.querySelector(".fl-title").textContent = lesson.title;
       b.addEventListener("click", function (e) { e.stopPropagation(); location.href = "lesson.html?n=" + encodeURIComponent(lesson.n); });
       list.appendChild(b);
@@ -201,7 +201,6 @@
       b.innerHTML = '<span class="ico"></span><span class="fl-num"></span><span class="fl-title"></span>' + (lesson.lab ? '<span class="fl-lock" title="Has a lab">🔒</span>' : "");
       b.querySelector(".fl-num").textContent = lv.lbl(rk);
       var ic = b.querySelector(".ico"); ic.style.setProperty("--c", lv.color);
-      ic.remove();
       b.querySelector(".fl-title").textContent = lesson.title;
       b.addEventListener("click", function (e) { e.stopPropagation(); location.href = "lesson.html?n=" + encodeURIComponent(lesson.n); });
       list.appendChild(b);
