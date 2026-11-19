@@ -49,8 +49,7 @@
       if (done[n]) c++;
       a.innerHTML = '<span class="ico"></span><span class="lc-body"><b></b><small></small></span><span class="lc-tags"></span><span class="lc-check">✓</span>';
       var iconSrc = /^im\d+\./.test(n) ? "assets/lesson-icons/" + n + ".png" : "assets/lesson-icons/" + n + ".png";
-      if (lv.lbl && row[3]) { a.querySelector(".ico").innerHTML = '<span class="cl-ico" style="--c:' + lv.color + '"></span>'; a.querySelector(".cl-ico").textContent = lv.lbl(rk); }
-      else a.querySelector(".ico").innerHTML = '<img src="' + iconSrc + '" alt="" width="28" height="28" style="border-radius:8px;vertical-align:middle;">';
+      a.querySelector(".ico").innerHTML = '<img src="' + iconSrc + '" alt="" width="28" height="28" style="border-radius:8px;vertical-align:middle;">';
       a.querySelector("b").textContent = row[1]; a.querySelector("small").textContent = "Lesson " + (lv.lbl ? lv.lbl(rk) : (LBL[n] || n)) + " · 10 min";
       var tg = a.querySelector(".lc-tags"), has = LESSON_PAGES[n] || VIDEOS[n];
       if (has) tg.appendChild(tag("Lesson", "t-les"));
