@@ -96,8 +96,8 @@
     if (lv.exam && lv.exam.length) {
       var ex = el("div", "exam-sec");
       ex.innerHTML = '<div class="exam-head"><span class="exam-ico">📝</span><div><h3></h3><p></p></div></div>';
-      ex.querySelector("h3").textContent = lv.cert ? "Exam Preparation · " + lv.cert[0] : "Practical Assessment · Advanced";
-      ex.querySelector("p").textContent = lv.cert ? "Get ready for the " + lv.cert[1] + " exam (" + lv.cert[2] + "): know the format, check every objective, practise, then take a full mock exam." : "No separate certification at this level: prove your skills with hands-on scenarios, labs and a final project.";
+      ex.querySelector("h3").textContent = lv.cert ? "Exam Preparation · " + lv.cert[0] : (lv.assessTitle || "Practical Assessment · Advanced");
+      ex.querySelector("p").textContent = lv.cert ? "Get ready for the " + lv.cert[1] + " exam (" + lv.cert[2] + "): know the format, check every objective, practise, then take a full mock exam." : (lv.assessText || "No separate certification at this level: prove your skills with hands-on scenarios, labs and a final project.");
       if (!lv.cert) ex.querySelector(".exam-ico").textContent = "\uD83D\uDEE0";
       if (lv.examNote) ex.appendChild(el("p", "exam-note", lv.examNote));
       var el2 = el("div", "lvlist"); lv.exam.forEach(function (r) { el2.appendChild(lessonCard(r)); }); ex.appendChild(el2);
