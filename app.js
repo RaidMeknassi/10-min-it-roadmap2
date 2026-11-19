@@ -48,6 +48,7 @@
       });
     });
   })();
+  (function () { var r = []; ITIL_COURSE.levels.forEach(function (l) { r = r.concat(l.lessons); }); if (rowsDone(r)) certLv.querySelector(".cert-node-card").classList.add("is-done"); })();
   certEl.appendChild(certLv);
   var certCard = certLv.querySelector(".cert-node-card");
 

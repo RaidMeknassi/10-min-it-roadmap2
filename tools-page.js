@@ -22,7 +22,7 @@
     if (rowsDone(toolRows(t))) a.title = "Completed";
     a.querySelector("small").textContent = (rowsDone(toolRows(t)) ? "✓ Completed · " : "") + (t.single ? "1 lesson" : t.levels.length + " levels · " + lessons + " lessons") + " · " + (certs.length ? certs.length + " certification" + (certs.length > 1 ? "s" : "") : "no official exam");
     var cb = a.querySelector(".tl-certs");
-    certs.forEach(function (l) { var s = el("span", "tl-cert", l.cert[0]); s.style.setProperty("--c", l.color); cb.appendChild(s); });
+    certs.forEach(function (l) { var ld = rowsDone(l.lessons.concat(l.exam || [])); var s = el("span", "tl-cert" + (ld ? " is-done" : ""), (ld ? "✓ " : "") + l.cert[0]); s.style.setProperty("--c", l.color); cb.appendChild(s); });
     return a;
   }
   function render() {

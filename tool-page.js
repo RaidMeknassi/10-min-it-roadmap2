@@ -66,6 +66,7 @@
     if (lv.cert) { var p = info.querySelector(".tp-cert"); p.textContent = "Certification: " + lv.cert[1] + " (" + lv.cert[2] + ") "; var a = el("a", "", "View in Certifications →"); a.href = "certs.html?q=" + encodeURIComponent(lv.cert[0]); p.appendChild(a); }
     else info.querySelector(".tp-cert").textContent = "No exam at this level: just the skills you need on the job.";
     if (!lv.cert) head.querySelector(".tp-lvnum").textContent = "L" + i;
+    if (lv.cert && rowsDone(lv.lessons.concat(lv.exam || []))) { info.appendChild(el("p", "cert-done", "✓ Certification course completed")); head.classList.add("is-done-head"); }
     head.appendChild(info); panel.appendChild(head);
     var ab = lv.cert ? certAbout(tool.id + "-" + i) : null; if (ab) panel.appendChild(ab);
     function lessonCard(r) {

@@ -77,6 +77,7 @@
     var des = C.designations.filter(function (d) { return d.modules.indexOf(sel) >= 0; })[0];
     h.querySelector(".lp-track").textContent = des ? "Part of " + des.name + " · " + des.rule : (sel === "transformation" ? "Shared by all three designations" : sel === "aigov" ? "Optional certification" : "ITIL certification");
     h.querySelector("h2").textContent = t.title;
+    if (modDone(sel)) { h.querySelector(".tp-info").appendChild(el("p", "cert-done", "✓ Certification course completed")); h.classList.add("is-done-head"); }
     h.querySelector(".tp-cert").textContent = sub;
     var img = itilBadgeImg(sel, 104); if (img) h.querySelector(".cx-badge").outerHTML = img;
     return h;

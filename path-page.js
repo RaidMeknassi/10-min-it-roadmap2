@@ -67,6 +67,7 @@
     h.querySelector(".lp-track").textContent = tr.name;
     h.querySelector("h2").textContent = c.title;
     var p = h.querySelector(".tp-cert"); p.textContent = c.desc + " "; var a = el("a", "", "View in Certifications →"); a.href = "certs.html?q=" + encodeURIComponent(c.code); p.appendChild(a);
+    if (rowsDone(c.lessons.concat(c.examLessons || []))) { h.querySelector(".tp-info").appendChild(el("p", "cert-done", "✓ Certification course completed")); h.classList.add("is-done-head"); }
     panel.appendChild(h);
     var ab = certAbout(id); if (ab) panel.appendChild(ab);
     var all = c.lessons.concat(c.examLessons), d = 0; all.forEach(function (r) { if (done[r[0]]) d++; });

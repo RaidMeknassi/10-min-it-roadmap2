@@ -44,21 +44,21 @@
   if (typeof ITIL_COURSE !== "undefined") {
     var IM = ITIL_COURSE.modules;
     ["transformation", "msf", "pic", "cai", "product", "service", "experience", "strategy", "aigov"].forEach(function (id) {
-      var t = IM[id]; C.push([t.title + (id === "aigov" ? " (optional)" : ""), "PeopleCert", t.code, [id === "transformation" ? "i" : "a"], ["IT Support Engineering"], "course.html?c=itil&m=" + id, id]);
+      var t = IM[id]; C.push([t.title + (id === "aigov" ? " (optional)" : ""), "PeopleCert", t.code, [id === "transformation" ? "i" : "a"], ["IT Support Engineering"], "course.html?c=itil&m=" + id, id, function () { return t.lessons.concat(t.examLessons || []); }]);
     });
-    ITIL_COURSE.designations.forEach(function (d) { C.push(["ITIL " + d.name + " (designation)", "PeopleCert", d.id.toUpperCase(), ["a"], ["IT Support Engineering"], "course.html?c=itil&m=" + d.modules[0], d.id]); });
-    C.push(["ITIL Master", "PeopleCert", "Master", ["a"], ["IT Support Engineering"], "course.html?c=itil&m=master", "master"]);
+    ITIL_COURSE.designations.forEach(function (d) { C.push(["ITIL " + d.name + " (designation)", "PeopleCert", d.id.toUpperCase(), ["a"], ["IT Support Engineering"], "course.html?c=itil&m=" + d.modules[0], d.id, function () { var r = []; d.modules.forEach(function (m) { r = r.concat(IM[m].lessons, IM[m].examLessons || []); }); return r; }]); });
+    C.push(["ITIL Master", "PeopleCert", "Master", ["a"], ["IT Support Engineering"], "course.html?c=itil&m=master", "master", function () { return IM.master.lessons.concat(IM.master.examLessons || []); }]);
   }
 
   if (typeof AGILE_PATH !== "undefined") AGILE_PATH.tracks.forEach(function (t) {
-    t.certs.forEach(function (c, k) { C.push([c.title + " (" + c.code + ")", c.vendor, c.code, [k === 0 ? "i" : "a"], ["Software Development", "IT Support Engineering"], "path.html?p=agile&c=" + c.id]); });
+    t.certs.forEach(function (c, k) { C.push([c.title + " (" + c.code + ")", c.vendor, c.code, [k === 0 ? "i" : "a"], ["Software Development", "IT Support Engineering"], "path.html?p=agile&c=" + c.id, null, function () { return c.lessons.concat(c.examLessons || []); }]); });
   });
   if (typeof TOOLS !== "undefined") TOOLS.forEach(function (t) {
     var withCert = t.levels.map(function (l, i) { return [l, i]; }).filter(function (x) { return x[0].cert; });
     withCert.forEach(function (x, k) {
       var l = x[0], stage = k === 0 ? "b" : (k === withCert.length - 1 && withCert.length > 2 ? "a" : "i");
       var specs = ["IT Support Engineering"]; if (l.cert[0] === "AZ-140") specs.push("Cloud Computing"); if (t.id === "microsoft365") specs.push("Systems Engineering");
-      C.push([l.cert[1] + " (" + t.name + ")", l.cert[2], l.cert[0], [stage], specs, "tool.html?t=" + t.id + "&l=" + x[1]]);
+      C.push([l.cert[1] + " (" + t.name + ")", l.cert[2], l.cert[0], [stage], specs, "tool.html?t=" + t.id + "&l=" + x[1], null, function () { return l.lessons.concat(l.exam || []); }]);
     });
   });
   C.forEach(function (c) { var o = []; c[3].forEach(function (l) { var t = STAGE[l]; if (o.indexOf(t) < 0) o.push(t); }); c[3] = o; });
@@ -85,13 +85,14 @@
       if (q && (c[0] + " " + c[1] + " " + c[2]).toLowerCase().indexOf(q) < 0) return;
       n++;
       var col = V[c[1]] || "#a78bfa", card = el(c[5] ? "a" : "div", "cx-card" + (c[5] ? " cx-link" : "")); if (c[5]) card.href = c[5]; card.style.setProperty("--vc", col);
+      var certDone = c[7] && typeof rowsDone === "function" && rowsDone(c[7]()); if (certDone) card.classList.add("is-done");
       var badge = el("div", "cx-badge"); badge.appendChild(el("small", "", c[1])); badge.appendChild(el("b", "", c[2]));
       if (c[6] && typeof itilBadgeImg === "function") { var w = document.createElement("div"); w.innerHTML = itilBadgeImg(c[6], 106, "cx-img"); card.appendChild(w.firstChild); } else card.appendChild(badge);
       card.appendChild(el("h3", "", c[0]));
       var tags = el("div", "cx-tags");
       c[3].forEach(function (l) { tags.appendChild(el("span", "cx-tag", lname[l])); });
       c[4].forEach(function (s) { tags.appendChild(el("span", "cx-tag cx-tag-s", s)); });
-      card.appendChild(tags); if (c[5]) card.appendChild(el("span", "cx-go", c[5].indexOf("course") === 0 ? "Start the course →" : "See the lessons →")); grid.appendChild(card);
+      card.appendChild(tags); if (c[5]) card.appendChild(el("span", "cx-go", certDone ? "✓ Completed" : c[5].indexOf("course") === 0 ? "Start the course →" : "See the lessons →")); grid.appendChild(card);
     });
     $("cx-count").textContent = n ? n + " certification" + (n === 1 ? "" : "s") : "No certification found. Try another name or clear a filter.";
   }
