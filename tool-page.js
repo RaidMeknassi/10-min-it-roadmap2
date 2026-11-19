@@ -25,7 +25,7 @@
 
   // pyramid
   var pyr = el("section", "pyr"); pyr.setAttribute("aria-label", tool.name + " levels");
-  if (!tool.single) main.appendChild(el("p", "pyr-hint", "Click a level to see its lessons. Level 0 is the base; the top is expert."));
+  if (!tool.single) main.appendChild(el("p", "pyr-hint", tool.paths ? "Click a level to see its lessons. Level 0 is the base for everyone; the levels above are separate career paths, so pick the one you want." : "Click a level to see its lessons. Level 0 is the base; the top is expert."));
   for (var j = 0; j < N; j++) {
     var i = N - 1 - j, lv = tool.levels[i];
     var top = j / N, bot = (j + 1) / N;
@@ -99,6 +99,7 @@
       ex.querySelector("h3").textContent = lv.cert ? "Exam Preparation · " + lv.cert[0] : "Practical Assessment · Advanced";
       ex.querySelector("p").textContent = lv.cert ? "Get ready for the " + lv.cert[1] + " exam (" + lv.cert[2] + "): know the format, check every objective, practise, then take a full mock exam." : "No separate certification at this level: prove your skills with hands-on scenarios, labs and a final project.";
       if (!lv.cert) ex.querySelector(".exam-ico").textContent = "\uD83D\uDEE0";
+      if (lv.examNote) ex.appendChild(el("p", "exam-note", lv.examNote));
       var el2 = el("div", "lvlist"); lv.exam.forEach(function (r) { el2.appendChild(lessonCard(r)); }); ex.appendChild(el2);
       panel.appendChild(ex);
     }
