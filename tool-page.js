@@ -64,7 +64,7 @@
     info.querySelector(".lp-track").textContent = tool.single ? "Lesson" : "Level " + i + " of " + (N - 1) + " · " + (lv.role || "");
     info.querySelector("h2").textContent = lv.title;
     if (lv.cert) { var p = info.querySelector(".tp-cert"); p.textContent = "Certification: " + lv.cert[1] + " (" + lv.cert[2] + ") "; var a = el("a", "", "View in Certifications →"); a.href = "certs.html?q=" + encodeURIComponent(lv.cert[0]); p.appendChild(a); }
-    else info.querySelector(".tp-cert").textContent = "No exam at this level: just the skills you need on the job.";
+    else info.querySelector(".tp-cert").textContent = lv.assess ? "No separate current certification: professional training with practical assessments." : "No exam at this level: just the skills you need on the job.";
     if (!lv.cert) head.querySelector(".tp-lvnum").textContent = "L" + i;
     if (lv.cert && rowsDone(lv.lessons.concat(lv.exam || []))) { info.appendChild(el("p", "cert-done", "✓ Certification course completed")); head.classList.add("is-done-head"); }
     head.appendChild(info); panel.appendChild(head);
@@ -96,8 +96,9 @@
     if (lv.exam && lv.exam.length) {
       var ex = el("div", "exam-sec");
       ex.innerHTML = '<div class="exam-head"><span class="exam-ico">📝</span><div><h3></h3><p></p></div></div>';
-      ex.querySelector("h3").textContent = "Exam Preparation · " + lv.cert[0];
-      ex.querySelector("p").textContent = "Get ready for the " + lv.cert[1] + " exam (" + lv.cert[2] + "): know the format, check every objective, practise, then take a full mock exam.";
+      ex.querySelector("h3").textContent = lv.cert ? "Exam Preparation · " + lv.cert[0] : "Practical Assessment · Advanced";
+      ex.querySelector("p").textContent = lv.cert ? "Get ready for the " + lv.cert[1] + " exam (" + lv.cert[2] + "): know the format, check every objective, practise, then take a full mock exam." : "No separate certification at this level: prove your skills with hands-on scenarios, labs and a final project.";
+      if (!lv.cert) ex.querySelector(".exam-ico").textContent = "\uD83D\uDEE0";
       var el2 = el("div", "lvlist"); lv.exam.forEach(function (r) { el2.appendChild(lessonCard(r)); }); ex.appendChild(el2);
       panel.appendChild(ex);
     }

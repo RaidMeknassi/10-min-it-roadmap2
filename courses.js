@@ -134,14 +134,17 @@ const TOOLS = [
         lessons: ["Tenant Setup and Domains", "Identity with Entra ID", "Defender XDR Basics", "Purview Compliance", "What Comes Next After MS-102", "MS-102 Exam Preparation"] }
     ]},
   { id: "googleworkspace", name: "Google Workspace", group: "collab", color: "#4285f4", tags: ["Gmail", "Drive", "Meet", "Admin"],
-    desc: "Gmail, Drive, Meet, Docs and the Admin console: Google's office ecosystem used by many smaller companies and schools.",
-    note: "Google offers an Associate and a Professional Workspace Administrator exam.",
+    desc: "Google Workspace covers Gmail, Drive, Meet, Docs, Sheets, Calendar and the Admin Console. Learn to support users, administer organizations and manage advanced enterprise environments.",
+    note: "L0 Beginner: no certification · L1 Intermediate: Associate certification · L2 Advanced: professional training, no current equivalent certification.",
     levels: [
-      { title: "Google Workspace for Everyday Support", role: "1st Line Support", color: "#9cbcf7", lessons: ["What Is Google Workspace?", "Gmail and Calendar Support", "Drive and Shared Drives", "Google Meet", "Fixing Common User Issues"] },
-      { title: "Associate Google Workspace Administrator", role: "Workspace Admin", color: "#4285f4", cert: ["Associate", "Associate Google Workspace Administrator", "Google"],
-        lessons: ["The Admin Console", "Users, Groups and Org Units", "Licences and Billing", "Gmail and Drive Settings", "Basic Security Settings", "Associate Exam Preparation"] },
-      { title: "Professional Google Workspace Administrator", role: "Senior Workspace Admin", color: "#1a56c4", cert: ["Professional", "Professional Google Workspace Administrator", "Google"],
-        lessons: ["Identity, SSO and Directory Sync", "Advanced Security and Data Protection", "Mail Routing and Compliance", "Migrations to Workspace", "Troubleshooting at Scale", "Professional Exam Preparation"] }
+      { title: "Google Workspace for Everyday Support", role: "1st Line Support", color: "#9cbcf7",
+        lessons: ["What Is Google Workspace?", "Gmail and Calendar Support", "Google Drive and Shared Drives", "Google Meet and Google Chat", "Google Docs, Sheets and Slides", "Google Account and Password Issues", "Fixing Common User Issues"] },
+      { title: "Google Workspace Administration", role: "Workspace Administrator", color: "#4285f4", cert: ["Associate", "Associate Google Workspace Administrator", "Google"],
+        lessons: ["Understanding the Google Admin Console", "Managing Users, Groups and Organizational Units", "Licences, Subscriptions and Billing", "Gmail Administration", "Drive and Sharing Administration", "Calendar, Meet and Chat Administration", "Security Settings and 2-Step Verification", "Managing Devices and Endpoints", "Reports, Audit Logs and Monitoring", "Troubleshooting Google Workspace Services"],
+        exam: ["Understanding the Associate Exam", "Associate Exam Objectives Checklist", "Associate Practice Questions", "Associate Full Mock Exam and Review", "Booking the Exam and Exam Day Tips"] },
+      { title: "Advanced Google Workspace Administration", role: "Senior Workspace Administrator", color: "#1a56c4",
+        lessons: ["Advanced Identity, SSO and Directory Synchronization", "Advanced Security and Data Protection", "Gmail Routing, Email Security and Compliance", "Google Vault, Retention and eDiscovery", "Data Loss Prevention (DLP)", "Context-Aware Access and Advanced Access Control", "Advanced Endpoint and Device Management", "Google Workspace APIs and Admin SDK", "Google Apps Script and Administration Automation", "Enterprise Migrations and Advanced Troubleshooting"],
+        assess: ["Enterprise Administration Scenario", "Advanced Security Configuration Lab", "Workspace Migration Practical Lab", "Troubleshooting and Incident Response Lab", "Final Enterprise Administration Project"] }
     ]},
   { id: "slack", name: "Slack", group: "collab", color: "#611f69", tags: ["Chat", "Channels", "Salesforce"],
     desc: "Team chat organised in channels, popular in tech companies. Owned by Salesforce.",
@@ -219,6 +222,7 @@ const COURSE_LEVELS = [];
       lv.lessons.forEach(function (r, k) { LBL[r[0]] = tool.single ? String(k + 1) : i + "." + (k + 1); });
       lv.exam = !lv.cert ? [] : (lv.exam || examPrep(lv.cert[0].split(" ")[0])).map(function (t, k) { return Array.isArray(t) ? t : [tool.id + "." + i + ".x" + (k + 1), t]; });
       lv.exam.forEach(function (r, k) { LBL[r[0]] = i + ".E" + (k + 1); });
+      if (!lv.cert && lv.assess) { lv.exam = lv.assess.map(function (t, k) { return [tool.id + "." + i + ".p" + (k + 1), t]; }); lv.exam.forEach(function (r, k) { LBL[r[0]] = i + ".P" + (k + 1); }); }
       COURSE_LEVELS.push({ id: tool.id + "-" + i, name: tool.single ? tool.name : tool.name + " · Level " + i, title: lv.cert ? lv.cert[0] + " · " + lv.title : lv.title, color: lv.color, lessons: lv.lessons.concat(lv.exam),
         href: "tool.html?t=" + tool.id + "&l=" + i, group: "tool-" + tool.id, crumbs: [["Tools", "tools.html"], [tool.name, "tool.html?t=" + tool.id]] });
     });
@@ -377,7 +381,6 @@ const CERT_INFO = {
   "microsoft365-3": ["Proves you can set up and manage Microsoft Teams for a company.", "People who run Teams, meetings and calling.", "Teams administrator, collaboration engineer."],
   "microsoft365-4": ["Proves you can run a whole Microsoft 365 tenant: identity, security and compliance.", "Experienced Microsoft 365 admins.", "Microsoft 365 administrator, M365 engineer."],
   "googleworkspace-1": ["Proves you can manage Google Workspace: users, groups and basic settings.", "IT support staff in companies or schools using Google.", "Workspace admin, IT support."],
-  "googleworkspace-2": ["Proves you can run Google Workspace securely at a bigger scale.", "Experienced Google Workspace admins.", "Senior Workspace administrator, collaboration engineer."],
   "slack-1": ["Proves you can manage a Slack workspace: users, channels, apps and security.", "People who run Slack for their company.", "Slack administrator, collaboration admin."],
   "slack-2": ["Proves you can plan and roll out Slack for a whole organisation.", "Consultants and project leads.", "Slack consultant, collaboration consultant."],
   "slack-3": ["Proves you can build Slack apps, bots and automations.", "Developers.", "Slack developer, integration developer."],
