@@ -67,6 +67,7 @@
     else info.querySelector(".tp-cert").textContent = lv.assess ? "No separate current certification: professional training with practical assessments." : "No exam at this level: just the skills you need on the job.";
     if (!lv.cert) head.querySelector(".tp-lvnum").textContent = "L" + i;
     if (lv.cert && rowsDone(lv.lessons.concat(lv.exam || []))) { info.appendChild(el("p", "cert-done", "✓ Certification course completed")); head.classList.add("is-done-head"); }
+    if (lv.desc) { var dsc = el("p", "tp-lvdesc", lv.desc); info.insertBefore(dsc, info.querySelector(".tp-cert")); }
     head.appendChild(info); panel.appendChild(head);
     var ab = lv.cert ? certAbout(tool.id + "-" + i) : null; if (ab) panel.appendChild(ab);
     function lessonCard(r) {

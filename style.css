@@ -894,3 +894,5 @@ a.cx-card:hover { border-color: var(--vc); transform: translateY(-2px); }
 
 /* job-ready note after Level 5.3 */
 .job-note { margin-top: 16px; max-width: 290px; padding: 9px 14px; border-radius: 12px; text-align: center; font-size: 13px; font-weight: 700; line-height: 1.35; color: #3b2a00; background: linear-gradient(90deg, #fbbf24, #fde68a); box-shadow: 0 6px 18px -8px rgba(251,191,36,.6); }
+
+.tp-lvdesc { margin: 4px 0 0; color: var(--text); opacity: .85; font-size: 14.5px; line-height: 1.5; }
