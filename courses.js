@@ -138,7 +138,7 @@ const TOOLS = [
     note: "L0 Beginner: no certification · L1 Intermediate: Associate certification · L2 Advanced: professional training, no current equivalent certification.",
     levels: [
       { title: "Google Workspace for Everyday Support", role: "1st Line Support", color: "#9cbcf7",
-        lessons: ["What Is Google Workspace?", "Gmail and Calendar Support", "Google Drive and Shared Drives", "Google Meet and Google Chat", "Google Docs, Sheets and Slides", "Google Account and Password Issues", "Fixing Common User Issues"] },
+        lessons: ["Introduction to Google Workspace", "Gmail Support", "Google Drive Support", "Google Meet & Chat", "Docs, Sheets & Slides", "Account & Password Support", "Common Problems & Fixes", "Real Support Scenarios"] },
       { title: "Google Workspace Administration", role: "Workspace Administrator", color: "#4285f4", cert: ["Associate", "Associate Google Workspace Administrator", "Google"],
         lessons: ["Understanding the Google Admin Console", "Managing Users, Groups and Organizational Units", "Licences, Subscriptions and Billing", "Gmail Administration", "Drive and Sharing Administration", "Calendar, Meet and Chat Administration", "Security Settings and 2-Step Verification", "Managing Devices and Endpoints", "Reports, Audit Logs and Monitoring", "Troubleshooting Google Workspace Services"],
         exam: ["Understanding the Associate Exam", "Associate Exam Objectives Checklist", "Associate Practice Questions", "Associate Full Mock Exam and Review", "Booking the Exam and Exam Day Tips"] },
@@ -457,5 +457,16 @@ function levelToolsBox(levelId) {
   ["linkedin", "glassdoor", "indeed"].forEach(function (id) { level0(id).forEach(function (r) { LEVELS[5].lessons.push(r); }); });
   LEVELS[5].lbl = function (k) { return "5." + (k + 1); };
   ["servicenow", "jira"].forEach(function (id) { level0(id).forEach(function (r) { LEVEL55.lessons.push(r); }); });
+  /* communication and remote-support tools: each tool's first lesson, with a short title in Level 5.1 */
+  [["slack", "Slack"], ["zoom", "Zoom Meetings"], ["rdp", "Microsoft Remote Desktop (RDP)"], ["teamviewer", "TeamViewer"], ["anydesk", "AnyDesk"]].forEach(function (x) {
+    var r = level0(x[0])[0]; LEVEL55.lessons.push([r[0], x[1], 0, 1]);
+  });
   LEVEL55.lbl = function (k) { return "5.1." + (k + 1); };
+})();
+
+/* ---- Level 5.3: Google Workspace for Everyday Support (same lessons as Level 0 of the Google Workspace tool) ---- */
+var LEVEL53 = (function () {
+  var g = TOOLS.filter(function (t) { return t.id === "googleworkspace"; })[0];
+  return { id: "l53", name: "Level 5.3", title: "Google Workspace for Everyday Support", desc: "1st Line Support: help users with Gmail, Drive, Meet and their Google account.", color: g.color,
+    lessons: g.levels[0].lessons.map(function (r) { return [r[0], r[1], 0, 1]; }), lbl: function (k) { return "5.3." + (k + 1); } };
 })();
