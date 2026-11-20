@@ -172,7 +172,8 @@ const INTERMEDIATE_LEVELS = [
       ["im11.1","Understanding Cloud Computing"],["im11.2","IaaS, PaaS and SaaS"],
       ["im11.3","Public, Private and Hybrid Cloud"],["im11.4","Cloud Infrastructure and Virtual Networks"],
       ["im11.5","Cloud Storage and Compute"],["im11.6","Microsoft Azure Fundamentals"],
-      ["im11.7","AWS Fundamentals"],["im11.8","Cloud Security and Identity Basics"]
+      ["im11.7","AWS Fundamentals"],
+      ["im11.9","Google Cloud Platform (GCP) Fundamentals"],["im11.8","Cloud Security and Identity Basics"]
     ]}
 ];
 /* Build lesson labels for intermediate modules: M1.1, M1.2, … */
@@ -191,7 +192,7 @@ const INTERMEDIATE = { id: "l6m", desc: "Learn how to work with IT technologies.
   ["Database Fundamentals", "SQL, databases and data management."],
   ["Web Fundamentals", "HTML, CSS, JavaScript, HTTP and APIs."],
   ["Cybersecurity Practices", "Security tools, vulnerability assessment and monitoring."],
-  ["Cloud Computing Fundamentals", "Azure, AWS and cloud services."],
+  ["Cloud Computing Fundamentals", "Azure, AWS, Google Cloud and cloud services."],
   ["Virtualization and Containers", "Virtual machines and Docker basics."]
 ]};
 
