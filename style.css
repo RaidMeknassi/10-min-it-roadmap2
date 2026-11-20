@@ -879,3 +879,15 @@ a.cx-card:hover { border-color: var(--vc); transform: translateY(-2px); }
 .tp-head.is-done-head .cx-badge, .tp-head.is-done-head .itil-badge, .tp-head.is-done-head img { filter: drop-shadow(0 0 10px rgba(74,222,128,.7)); }
 
 .exam-note { margin: 4px 0 12px; padding: 8px 12px; border-radius: 10px; background: rgba(255,255,255,.05); color: var(--muted); font-size: 13.5px; line-height: 1.5; }
+
+/* Get app button + install help */
+.get-app { display: inline-flex; align-items: center; gap: 6px; cursor: pointer; border: 0; font: inherit; }
+.app-modal { box-sizing: border-box; position: fixed; inset: 0; z-index: 9999; background: rgba(5,5,12,.72); display: grid; place-items: center; padding: 16px; }
+.app-box { box-sizing: border-box; max-height: calc(100vh - 32px); overflow: auto; position: relative; width: min(420px, calc(100vw - 32px)); background: #12121e; border: 1px solid rgba(255,255,255,.12); border-radius: 18px; padding: 24px 22px 18px; text-align: center; box-shadow: 0 20px 60px rgba(0,0,0,.5); }
+.app-box img { border-radius: 16px; }
+.app-box h3 { margin: 10px 0 6px; font-size: 20px; }
+.app-box p { margin: 0 0 12px; color: var(--muted); font-size: 14.5px; line-height: 1.5; }
+.app-box ol { text-align: left; margin: 0; padding-left: 22px; line-height: 1.7; font-size: 15px; }
+.app-x { position: absolute; top: 8px; right: 10px; background: none; border: 0; color: var(--muted); font-size: 26px; cursor: pointer; line-height: 1; }
+/* very small phones: the menu scrolls sideways instead of making the page wider */
+@media (max-width: 400px) { .top-nav { min-width: 0; max-width: 100%; flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start; scrollbar-width: none; } .top-nav::-webkit-scrollbar { display: none; } .top-nav a { padding: 6px 10px; flex: none; } }

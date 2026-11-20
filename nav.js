@@ -30,3 +30,34 @@
 
 /* installable phone app: register the service worker */
 if ("serviceWorker" in navigator) window.addEventListener("load", function () { navigator.serviceWorker.register("sw.js").catch(function () {}); });
+
+/* "Get app" button: installs the website as an app (phone home screen / desktop). */
+(function () {
+  var btn = document.getElementById("get-app"); if (!btn) return;
+  var deferred = null;
+  var standalone = (window.matchMedia && window.matchMedia("(display-mode: standalone)").matches) || window.navigator.standalone === true;
+  if (standalone) { btn.style.display = "none"; return; }
+  window.addEventListener("beforeinstallprompt", function (e) { e.preventDefault(); deferred = e; });
+  window.addEventListener("appinstalled", function () { deferred = null; btn.style.display = "none"; });
+  function help() {
+    var ua = navigator.userAgent || "", ios = /iPhone|iPad|iPod/i.test(ua) || (navigator.platform === "MacIntel" && navigator.maxTouchPoints > 1), android = /Android/i.test(ua);
+    var steps = ios
+      ? ["Open this site in <b>Safari</b>.", "Tap the <b>Share</b> button (square with an arrow).", "Tap <b>Add to Home Screen</b>, then <b>Add</b>."]
+      : android
+      ? ["Open this site in <b>Chrome</b> (or Samsung Internet).", "Tap the menu <b>⋮</b> at the top right.", "Tap <b>Install app</b> or <b>Add to Home screen</b>, then <b>Install</b>."]
+      : ["Open this site in <b>Chrome</b> or <b>Edge</b>.", "Click the <b>install icon</b> at the right end of the address bar (or menu ⋮ → <b>Install</b>).", "Click <b>Install</b>."];
+    var bg = document.createElement("div"); bg.className = "app-modal";
+    bg.innerHTML = '<div class="app-box" role="dialog" aria-modal="true" aria-label="Install the app"><button type="button" class="app-x" aria-label="Close">×</button>' +
+      '<img src="assets/app/icon-192.png" alt="" width="64" height="64" onerror="this.remove()"><h3>Install 10-Minute IT Roadmap</h3>' +
+      '<p>Get the app on your home screen. It always opens the live site, so every update appears automatically.</p><ol></ol></div>';
+    var ol = bg.querySelector("ol"); steps.forEach(function (s) { var li = document.createElement("li"); li.innerHTML = s; ol.appendChild(li); });
+    function close() { bg.remove(); }
+    bg.addEventListener("click", function (e) { if (e.target === bg) close(); });
+    bg.querySelector(".app-x").addEventListener("click", close);
+    document.body.appendChild(bg);
+  }
+  btn.addEventListener("click", function () {
+    if (deferred) { var d = deferred; deferred = null; d.prompt(); if (d.userChoice) d.userChoice.then(function (r) { if (r && r.outcome === "accepted") btn.style.display = "none"; }); }
+    else help();
+  });
+})();
