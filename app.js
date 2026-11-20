@@ -117,7 +117,7 @@
   if (!LEVEL_MODE) LEVELS.forEach(function (lv, li) {
     var en = makeLevel(lv, li < 3 ? trunk : (li < 5 ? branches : l5El), li === 4);
     var list = en.lv.querySelector(".fl-list");
-    if (lv.jobReady) { var fl = document.createElement("span"); fl.className = "job-tag"; fl.textContent = "\u2714 " + lv.jobReady; en.card.appendChild(fl); }
+    if (lv.jobReady && lv.id !== "l5") { var fl = document.createElement("span"); fl.className = "job-tag"; fl.textContent = "\u2714 " + lv.jobReady; en.card.appendChild(fl); }
     lv.lessons.forEach(function (row, rk) {
       var lesson = { n: row[0], title: row[1], lab: !!row[2], level: lv, tool: !!row[3] };
       total++;
@@ -213,6 +213,7 @@
   if (!LEVEL_MODE) [LEVEL53].forEach(function (lv) {
     var en = makeLevel(lv, l53El, false);
     var tb53 = levelToolsBox("l53"); if (tb53) l53El.appendChild(tb53);
+    var jr = LEVELS[5] && LEVELS[5].jobReady; if (jr) { var note = document.createElement("div"); note.className = "job-note"; note.textContent = "\u2714 " + jr; l53El.appendChild(note); }
     var list = en.lv.querySelector(".fl-list");
     if (false) { var fl = document.createElement("span"); fl.className = "job-tag"; fl.textContent = "\uD83D\uDD12 " + lv.jobReady; en.card.appendChild(fl); }
     lv.lessons.forEach(function (row, rk) {
@@ -309,12 +310,12 @@
     var l6mRect   = entries[6].card.getBoundingClientRect();
     var l55Rect   = entries[8].card.getBoundingClientRect();
     var l52Rect   = entries[9] ? entries[9].card.getBoundingClientRect() : null, l52Box = l52El.getBoundingClientRect();
-    var l53Rect   = entries[10] ? entries[10].card.getBoundingClientRect() : null;
+    var l53Rect   = entries[10] ? entries[10].card.getBoundingClientRect() : null, l53Box = l53El.getBoundingClientRect();
     if (stacked) {
       link(2, 3, 3); link(3, 4, 4); link(4, 5, 5);
       linkDashed(l5Rect, certRect, "#4ade80");
       linkDashed(certRect, l55Rect, "#f59e0b");
-      if (l52Rect) { linkDashed(l55Rect, l52Rect, "#d83b01"); if (l53Rect) { linkDashed(l52Box, l53Rect, "#4285f4"); linkDashed(l53Rect, toolsRect, "#38bdf8"); } else linkDashed(l52Box, toolsRect, "#38bdf8"); } else linkDashed(l55Rect, toolsRect, "#38bdf8");
+      if (l52Rect) { linkDashed(l55Rect, l52Rect, "#d83b01"); if (l53Rect) { linkDashed(l52Box, l53Rect, "#4285f4"); linkDashed(l53Box, toolsRect, "#38bdf8"); } else linkDashed(l52Box, toolsRect, "#38bdf8"); } else linkDashed(l55Rect, toolsRect, "#38bdf8");
       linkDashed(toolsRect, l6mRect, "#38bdf8");
       link(6, 7, 7);
     } else {
@@ -322,7 +323,7 @@
       link(3, 5, 3); link(4, 5, 4);
       linkDashed(l5Rect, certRect, "#4ade80");
       linkDashed(certRect, l55Rect, "#f59e0b");
-      if (l52Rect) { linkDashed(l55Rect, l52Rect, "#d83b01"); if (l53Rect) { linkDashed(l52Box, l53Rect, "#4285f4"); linkDashed(l53Rect, toolsRect, "#38bdf8"); } else linkDashed(l52Box, toolsRect, "#38bdf8"); } else linkDashed(l55Rect, toolsRect, "#38bdf8");
+      if (l52Rect) { linkDashed(l55Rect, l52Rect, "#d83b01"); if (l53Rect) { linkDashed(l52Box, l53Rect, "#4285f4"); linkDashed(l53Box, toolsRect, "#38bdf8"); } else linkDashed(l52Box, toolsRect, "#38bdf8"); } else linkDashed(l55Rect, toolsRect, "#38bdf8");
       linkDashed(toolsRect, l6mRect, "#38bdf8");
       link(6, 7, 7);
     }

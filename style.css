@@ -891,3 +891,6 @@ a.cx-card:hover { border-color: var(--vc); transform: translateY(-2px); }
 .app-x { position: absolute; top: 8px; right: 10px; background: none; border: 0; color: var(--muted); font-size: 26px; cursor: pointer; line-height: 1; }
 /* very small phones: the menu scrolls sideways instead of making the page wider */
 @media (max-width: 400px) { .top-nav { min-width: 0; max-width: 100%; flex-wrap: nowrap; overflow-x: auto; justify-content: flex-start; scrollbar-width: none; } .top-nav::-webkit-scrollbar { display: none; } .top-nav a { padding: 6px 10px; flex: none; } }
+
+/* job-ready note after Level 5.3 */
+.job-note { margin-top: 16px; max-width: 290px; padding: 9px 14px; border-radius: 12px; text-align: center; font-size: 13px; font-weight: 700; line-height: 1.35; color: #3b2a00; background: linear-gradient(90deg, #fbbf24, #fde68a); box-shadow: 0 6px 18px -8px rgba(251,191,36,.6); }
