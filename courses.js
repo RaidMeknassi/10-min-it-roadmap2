@@ -476,5 +476,5 @@ var LEVEL53 = (function () {
 })();
 
 /* ---- certification badge pictures for tool levels (assets/cert-badges/<tool>-<level>.png) ---- */
-var TOOL_BADGES = { microsoft365: [0, 1, 2, 3, 4], servicenow: [1, 2, 3, 4, 5] };
-function toolBadgeSrc(toolId, i) { var l = TOOL_BADGES[toolId]; return l && l.indexOf(i) >= 0 ? "assets/cert-badges/" + toolId + "-" + i + ".png" : null; }
+var TOOL_BADGES = { microsoft365: [0, 1, 2, 3, 4], servicenow: [0, 1, 2, 3, 4, 5] };
+function toolBadgeSrc(toolId, i) { var l = TOOL_BADGES[toolId]; return l && l.indexOf(i) >= 0 ? "assets/cert-badges/" + toolId + "-" + i + ".png?v=2" : null; }
