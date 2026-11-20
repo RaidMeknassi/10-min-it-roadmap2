@@ -58,7 +58,7 @@ const LEVELS = [
 
 /* Level 5.5 - IT Support Fundamentals (shown on the map after the ITIL Foundation box) */
 const LEVEL55 = { id: "l55", desc: "How real IT support works: the role, troubleshooting, remote tools and professional habits.", name: "Level 5.1", title: "IT Support Fundamentals", color: "#f59e0b",
-  jobReady: "Lab: practical troubleshooting scenarios", lessons: [
+  lessons: [
   ["5.5.1", "The Role of an IT Support Technician", 0],
   ["5.5.2", "Basic Troubleshooting Methodology", 1],
   ["5.5.3", "Remote Support Tools", 0],
