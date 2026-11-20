@@ -58,7 +58,7 @@
     withCert.forEach(function (x, k) {
       var l = x[0], stage = k === 0 ? "b" : (k === withCert.length - 1 && withCert.length > 2 ? "a" : "i");
       var specs = ["IT Support Engineering"]; if (l.cert[0] === "AZ-140") specs.push("Cloud Computing"); if (t.id === "microsoft365") specs.push("Systems Engineering");
-      C.push([l.cert[1] + " (" + t.name + ")", l.cert[2], l.cert[0], [stage], specs, "tool.html?t=" + t.id + "&l=" + x[1], null, function () { return l.lessons.concat(l.exam || []); }]);
+      C.push([l.cert[1] + " (" + t.name + ")", l.cert[2], l.cert[0], [stage], specs, "tool.html?t=" + t.id + "&l=" + x[1], null, function () { return l.lessons.concat(l.exam || []); }, typeof toolBadgeSrc === "function" ? toolBadgeSrc(t.id, x[1]) : null]);
     });
   });
   C.forEach(function (c) { var o = []; c[3].forEach(function (l) { var t = STAGE[l]; if (o.indexOf(t) < 0) o.push(t); }); c[3] = o; });
@@ -87,6 +87,7 @@
       var col = V[c[1]] || "#a78bfa", card = el(c[5] ? "a" : "div", "cx-card" + (c[5] ? " cx-link" : "")); if (c[5]) card.href = c[5]; card.style.setProperty("--vc", col);
       var certDone = c[7] && typeof rowsDone === "function" && rowsDone(c[7]()); if (certDone) card.classList.add("is-done");
       var badge = el("div", "cx-badge"); badge.appendChild(el("small", "", c[1])); badge.appendChild(el("b", "", c[2]));
+      if (c[8]) { var bi = el("img", "cx-img cx-img-tool"); bi.src = c[8]; bi.alt = c[2]; card.appendChild(bi); } else
       if (c[6] && typeof itilBadgeImg === "function") { var w = document.createElement("div"); w.innerHTML = itilBadgeImg(c[6], 106, "cx-img"); card.appendChild(w.firstChild); } else card.appendChild(badge);
       card.appendChild(el("h3", "", c[0]));
       var tags = el("div", "cx-tags");

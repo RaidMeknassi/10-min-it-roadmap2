@@ -35,6 +35,7 @@
     row.querySelector(".pyr-shape").style.clipPath = "polygon(" + (50 - 50 * top) + "% 0," + (50 + 50 * top) + "% 0," + (50 + 50 * bot) + "% 100%," + (50 - 50 * bot) + "% 100%)";
     row.querySelector(".pyr-num").textContent = lvDone ? "✓" : "L" + i;
     row.querySelector(".pyr-l").textContent = lv.cert ? lv.cert[0] : "Level " + i;
+    var pb = toolBadgeSrc(tool.id, i); if (pb) { var pim = el("img", "pyr-badge"); pim.src = pb; pim.alt = ""; row.querySelector(".pyr-l").prepend(pim); }
     row.querySelector(".pyr-r").textContent = lv.role || lv.title;
     row.addEventListener("click", function (e) { e.preventDefault(); pick(parseInt(this.dataset.i, 10), true); });
     pyr.appendChild(row);
@@ -68,6 +69,8 @@
     if (!lv.cert) head.querySelector(".tp-lvnum").textContent = "L" + i;
     if (lv.cert && rowsDone(lv.lessons.concat(lv.exam || []))) { info.appendChild(el("p", "cert-done", "✓ Certification course completed")); head.classList.add("is-done-head"); }
     if (lv.desc) { var dsc = el("p", "tp-lvdesc", lv.desc); info.insertBefore(dsc, info.querySelector(".tp-cert")); }
+    var bsrc = toolBadgeSrc(tool.id, i);
+    if (bsrc) { var bimg = el("img", "tp-badge-img"); bimg.src = bsrc; bimg.alt = lv.cert ? lv.cert[0] : lv.title; var old = head.querySelector(".cx-badge, .tp-lvnum"); if (old) old.replaceWith(bimg); else head.insertBefore(bimg, head.firstChild); }
     head.appendChild(info); panel.appendChild(head);
     var ab = lv.cert ? certAbout(tool.id + "-" + i) : null; if (ab) panel.appendChild(ab);
     function lessonCard(r) {

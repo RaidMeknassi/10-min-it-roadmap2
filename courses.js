@@ -474,3 +474,7 @@ var LEVEL53 = (function () {
   return { id: "l53", name: "Level 5.3", title: "Google Workspace for Everyday Support", desc: "1st Line Support: help users with Gmail, Drive, Meet and their Google account.", color: g.color,
     lessons: g.levels[0].lessons.map(function (r) { return [r[0], r[1], 0, 1]; }), lbl: function (k) { return "5.3." + (k + 1); } };
 })();
+
+/* ---- certification badge pictures for tool levels (assets/cert-badges/<tool>-<level>.png) ---- */
+var TOOL_BADGES = { microsoft365: [0, 1, 2, 3, 4] };
+function toolBadgeSrc(toolId, i) { var l = TOOL_BADGES[toolId]; return l && l.indexOf(i) >= 0 ? "assets/cert-badges/" + toolId + "-" + i + ".png" : null; }
