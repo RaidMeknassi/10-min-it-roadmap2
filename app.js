@@ -55,22 +55,14 @@
 
   // Essential tools: every tool opens its own page
   var toolsEl = document.createElement("div"); toolsEl.className = "final tools-rec-node";
-  toolsEl.innerHTML = '<div class="tools-node-card"><a class="tools-node-header" href="tools.html"><span class="tools-node-icon">🧰</span><div><b>Essential Tools for 1st Line IT Support</b><span>Advanced paths you can pursue · click a tool</span></div></a><div class="tools-node-groups"></div></div>';
+  toolsEl.innerHTML = '<div class="tools-node-card tools-icons-only"><a class="tools-node-header" href="tools.html"><b>Advanced paths you can pursue</b></a><div class="tool-icons"></div></div>';
   (function () {
-    var box = toolsEl.querySelector(".tools-node-groups");
-    var KEEP = ["servicenow", "jira", "microsoft365", "googleworkspace", "slack"];   // tools with advanced certification paths
-    TOOL_GROUPS.forEach(function (g) {
-      if (!TOOLS.some(function (t) { return t.group === g.id && KEEP.indexOf(t.id) >= 0; })) return;
-      var grp = document.createElement("div"); grp.className = "tools-group";
-      grp.innerHTML = '<div class="tools-group-title"></div><div class="tools-chips"></div>';
-      grp.querySelector(".tools-group-title").textContent = g.emoji + " " + g.name;
-      TOOLS.forEach(function (t) {
-        if (t.group !== g.id || KEEP.indexOf(t.id) < 0) return;
-        var a = document.createElement("a"); a.className = "tool-chip"; a.href = "tool.html?t=" + t.id; a.style.setProperty("--tc", t.color);
-        a.innerHTML = '<img src="assets/tool-icons/' + t.id + '.png" alt="" width="18" height="18"><span></span>'; a.querySelector("span").textContent = t.name;
-        grp.querySelector(".tools-chips").appendChild(a);
-      });
-      box.appendChild(grp);
+    var box = toolsEl.querySelector(".tool-icons");
+    ["servicenow", "jira", "microsoft365", "googleworkspace", "slack"].forEach(function (id) {   // tools with advanced certification paths
+      var t = TOOLS.filter(function (x) { return x.id === id; })[0]; if (!t) return;
+      var a = document.createElement("a"); a.className = "tool-icon"; a.href = "tool.html?t=" + t.id; a.title = t.name; a.setAttribute("aria-label", t.name); a.style.setProperty("--tc", t.color);
+      a.innerHTML = '<img src="assets/tool-icons/' + t.id + '.png" alt="" width="52" height="52">';
+      box.appendChild(a);
     });
   })();
   var toolsCard = toolsEl.querySelector(".tools-node-card");

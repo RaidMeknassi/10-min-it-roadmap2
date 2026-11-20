@@ -902,3 +902,12 @@ a.cx-card:hover { border-color: var(--vc); transform: translateY(-2px); }
 .pyr-badge { height: 30px; width: auto; vertical-align: middle; margin-right: 8px; }
 .pyr-l:has(.pyr-badge) { display: flex; align-items: center; justify-content: flex-end; }
 .cx-img-tool { height: 116px; width: auto; display: block; margin: 0 auto 8px; object-fit: contain; }
+
+/* map: advanced paths box shows tool icons only */
+.tools-icons-only .tools-node-header { justify-content: center; margin-bottom: 14px; }
+.tools-icons-only .tools-node-header b { font-size: 15px; }
+.tool-icons { display: flex; flex-wrap: wrap; justify-content: center; gap: 14px; }
+.tool-icon { display: grid; place-items: center; width: 64px; height: 64px; border-radius: 16px; background: rgba(255,255,255,.05); border: 1px solid rgba(255,255,255,.12); transition: transform .15s, border-color .15s, box-shadow .15s; }
+.tool-icon img { width: 48px; height: 48px; border-radius: 12px; }
+.tool-icon:hover, .tool-icon:focus-visible { transform: translateY(-3px); border-color: var(--tc); box-shadow: 0 0 20px -6px var(--tc); }
+@media (max-width: 480px) { .tool-icons { gap: 8px; } .tool-icon { width: 52px; height: 52px; border-radius: 14px; } .tool-icon img { width: 40px; height: 40px; border-radius: 10px; } }
