@@ -99,12 +99,13 @@
     tree.appendChild(link());
     tree.appendChild(stage("What's next?", "More labs, rooms and challenges will be added over time."));
   } else {
-    document.getElementById("sp-title").textContent = P.name + " Learning Roadmap";
+    document.getElementById("sp-title").textContent = P.title || (P.name + " Learning Roadmap");
     document.getElementById("sp-sub").textContent = "This specialization is coming soon. Here is the path we are planning, step by step.";
     tree.appendChild(stage("Start here", "Finish Levels 0 to 5 on the main road map first, then follow this path."));
     P.items.forEach(function (t) {
       tree.appendChild(link());
-      tree.appendChild(specLessonsCard(t) || pathCard(t));
+      var note = (typeof PATH_NOTES !== "undefined") && PATH_NOTES[t];
+      tree.appendChild(specLessonsCard(t) || pathCard(t, null, P.color, note ? note + " \u00B7 coming soon" : null));
     });
     tree.appendChild(link());
     certStage();

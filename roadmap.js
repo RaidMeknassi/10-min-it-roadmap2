@@ -193,8 +193,18 @@ const PATHS = [
   { name: "DevOps and Automation", color: "#a78bfa", items: ["Git and GitHub", "CI/CD", "Docker and Containers", "Kubernetes", "Infrastructure as Code"] },
   { name: "Software Development", color: "#4ade80", items: ["Programming", "Web Development", "Backend Development", "APIs", "Application Development"] },
   { name: "Data and Artificial Intelligence", color: "#fbbf24", items: ["Databases and SQL", "Data Analysis", "Data Engineering", "Machine Learning", "Artificial Intelligence"] },
-  { name: "IT Support Engineering", color: "#2dd4bf", items: ["Help Desk", "Desktop Support", "Hardware Troubleshooting", "Technical Support"] }
+  { name: "IT Support Engineering", color: "#2dd4bf", items: ["Help Desk", "Desktop Support", "Hardware Troubleshooting", "Technical Support"] },
+  { name: "Enterprise Systems", title: "Enterprise Systems · SAP Learning Roadmap", color: "#1b90ff",
+    items: ["SAP Fundamentals", "SAP Functional Consultant", "SAP Technical Administration", "SAP Development", "SAP Security"] }
 ];
+/* short focus line shown under a specialization path */
+const PATH_NOTES = {
+  "SAP Fundamentals": "Understand ERP, SAP and S/4HANA",
+  "SAP Functional Consultant": "Finance, procurement, sales, HR",
+  "SAP Technical Administration": "SAP Basis, HANA, system administration",
+  "SAP Development": "ABAP, SAP BTP, Fiori",
+  "SAP Security": "Authorizations, roles and access control"
+};
 
 /* Lessons inside specialization paths (moved from Intermediate). Keys stay the same, so progress is kept. */
 const SPEC_LESSONS = {
@@ -230,7 +240,8 @@ const PATH_CERTS = [
   ["Systems Engineering", "#fb923c", ["Microsoft Windows Server Hybrid Administrator (AZ-800)", "Red Hat RHCSA", "VMware VCP"]],
   ["Software Development", "#4ade80", ["Python Institute PCEP / PCAP", "Microsoft Azure Developer (AZ-204)"]],
   ["Data and Artificial Intelligence", "#fbbf24", ["Microsoft DP-900 / AI-900", "Google Data Analytics Certificate"]],
-  ["IT Support Engineering", "#2dd4bf", ["CompTIA A+", "ITIL Foundation", "Microsoft Endpoint Administrator (MD-102)"]]
+  ["IT Support Engineering", "#2dd4bf", ["CompTIA A+", "ITIL Foundation", "Microsoft Endpoint Administrator (MD-102)"]],
+  ["Enterprise Systems", "#1b90ff", ["SAP Financial Accounting on S/4HANA (C_TS4FI)", "SAP Sourcing and Procurement (C_TS452)", "SAP Sales (C_TS462)", "SAP SuccessFactors Employee Central (C_THR81)", "SAP HANA Database Administration (C_DBADM)", "SAP System Security and Authorizations (C_SEC)", "SAP Back-End Developer: ABAP Cloud (C_ABAPD)", "SAP BTP Developer (C_ADBTP)"]]
 ];
 
 /* YouTube video IDs, by lesson number. Leave empty until the video is ready. */
