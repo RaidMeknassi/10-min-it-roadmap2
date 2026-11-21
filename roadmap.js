@@ -90,8 +90,7 @@ const INTERMEDIATE_LEVELS = [
       ["im2.3","NTFS Permissions and File Sharing"],["im2.4","Windows Services and Processes"],
       ["im2.5","Windows Registry and System Configuration"],["im2.6","Windows Event Logs"],
       ["im2.7","Windows Updates and Troubleshooting"],["im2.8","Command Prompt (CMD) Fundamentals"],
-      ["im2.9","CMD Commands and Batch Scripting"],["im2.10","PowerShell Fundamentals"],
-      ["im2.11","PowerShell Commands and Cmdlets"],["im2.12","PowerShell Scripting and Automation"]
+      ["im2.10","PowerShell Fundamentals"]
     ]},
   { id: "im3", name: "Module 3", title: "Linux Administration", color: "#34d399",
     desc: "Manage Linux systems, servers, users and services.",
@@ -100,8 +99,7 @@ const INTERMEDIATE_LEVELS = [
       ["im3.3","Linux Permissions and Ownership"],["im3.4","Linux Processes and Services"],
       ["im3.5","Package Management"],["im3.6","Linux Networking Configuration"],
       ["im3.7","Linux Logs and Troubleshooting"],["im3.8","Remote Administration with SSH"],
-      ["im3.9","Bash Fundamentals"],["im3.10","Bash Commands and Shell Scripting"],
-      ["im3.11","Bash Automation and Practical Scripts"]
+      ["im3.9","Bash Fundamentals"]
     ]},
   { id: "im4", name: "Module 4", title: "Intermediate Networking", color: "#a78bfa",
     desc: "Configure and troubleshoot real networks.",
@@ -127,7 +125,7 @@ const INTERMEDIATE_LEVELS = [
     lessons: [
       ["im7.1","Understanding Databases"],["im7.2","Relational vs Non-Relational Databases"],
       ["im7.3","Tables, Rows and Columns"],["im7.4","SQL Fundamentals"],
-      ["im7.5","SQL Queries and Filtering"],["im7.6","Primary Keys and Foreign Keys"],
+      ["im7.6","Primary Keys and Foreign Keys"],
       ["im7.7","Database Relationships"],["im7.8","Database Backup and Recovery"]
     ]},
   { id: "im8", name: "Module 8", title: "Web Fundamentals", color: "#f472b6",
