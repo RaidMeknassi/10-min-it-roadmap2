@@ -941,3 +941,8 @@ a.cx-card:hover { border-color: var(--vc); transform: translateY(-2px); }
 .lang-sugg-a { display: inline-flex; border-radius: 10px; transition: transform .15s; }
 .lang-sugg-a:hover, .lang-sugg-a:focus-visible { transform: translateY(-3px) scale(1.05); }
 .lang-sugg-a, .lg-card, .lang-sugg-a:hover { text-decoration: none; } .lang-ico { text-decoration: none; }
+
+/* specialization path with real lessons */
+.sp-path.sp-has-lessons { max-width: 720px; width: 100%; }
+.sp-lessons { margin-top: 12px; text-align: left; }
+.sp-lessons .cl-ico { --c: var(--pc); }

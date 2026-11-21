@@ -81,10 +81,7 @@ const INTERMEDIATE_LEVELS = [
   { id: "im1", name: "Module 1", title: "Operating Systems — Deep Dive", color: "#60a5fa",
     desc: "Understand how operating systems work internally.",
     lessons: [
-      ["im1.1","Understanding the Kernel"],["im1.2","Understanding Processes"],
-      ["im1.3","Understanding Threads"],["im1.4","Memory Management"],
-      ["im1.5","CPU Scheduling"],["im1.6","File Systems and Storage Management"],
-      ["im1.7","System Calls"],["im1.8","User Mode vs Kernel Mode"]
+      ["im1.2","Understanding Processes"],["im1.6","File Systems and Storage Management"]
     ]},
   { id: "im2", name: "Module 2", title: "Windows Administration", color: "#38bdf8",
     desc: "Manage, configure and automate Windows systems.",
@@ -200,13 +197,23 @@ const INTERMEDIATE = { id: "l6m", desc: "Learn how to work with IT technologies.
 const PATHS = [
   { name: "Cybersecurity", color: "#f472b6", items: ["SOC Analyst", "Blue Team", "Penetration Testing", "Digital Forensics", "Threat Hunting", "Incident Response"] },
   { name: "Network Engineering", color: "#60a5fa", items: ["Network Engineering", "Network Security", "Wireless Networking", "Advanced Routing and Switching"] },
-  { name: "Systems Engineering", color: "#fb923c", items: ["Windows Server", "Linux Server", "Active Directory", "Virtualization", "Enterprise Infrastructure"] },
+  { name: "Systems Engineering", color: "#fb923c", items: ["Operating System Internals", "Windows Server", "Linux Server", "Active Directory", "Virtualization", "Enterprise Infrastructure"] },
   { name: "Cloud Computing", color: "#22d3ee", items: ["Microsoft Azure", "Amazon AWS", "Google Cloud", "Cloud Security", "Cloud Administration"] },
   { name: "DevOps and Automation", color: "#a78bfa", items: ["Git and GitHub", "CI/CD", "Docker and Containers", "Kubernetes", "Infrastructure as Code"] },
   { name: "Software Development", color: "#4ade80", items: ["Programming", "Web Development", "Backend Development", "APIs", "Application Development"] },
   { name: "Data and Artificial Intelligence", color: "#fbbf24", items: ["Databases and SQL", "Data Analysis", "Data Engineering", "Machine Learning", "Artificial Intelligence"] },
   { name: "IT Support Engineering", color: "#2dd4bf", items: ["Help Desk", "Desktop Support", "Hardware Troubleshooting", "Technical Support"] }
 ];
+
+/* Lessons inside specialization paths (moved from Intermediate). Keys stay the same, so progress is kept. */
+const SPEC_LESSONS = {
+  "Operating System Internals": { path: "Systems Engineering", tag: "OS", lessons: [
+    ["im1.1", "Understanding the Kernel"], ["im1.3", "Understanding Threads"], ["im1.4", "Memory Management"],
+    ["im1.5", "CPU Scheduling"], ["im1.7", "System Calls"], ["im1.8", "User Mode vs Kernel Mode"]
+  ]}
+};
+const SPEC_LESSON_KEYS = [];
+Object.keys(SPEC_LESSONS).forEach(function (name) { var s = SPEC_LESSONS[name]; s.lessons.forEach(function (r, k) { SPEC_LESSON_KEYS.push(r[0]); LBL[r[0]] = s.tag + "." + (k + 1); }); });   // labels OS.1, OS.2 ...
 
 /* Certifications to aim for (edit freely). Shown in the Certifications section. */
 const CERTS = [

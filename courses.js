@@ -478,3 +478,14 @@ var LEVEL53 = (function () {
 /* ---- certification badge pictures for tool levels (assets/cert-badges/<tool>-<level>.png) ---- */
 var TOOL_BADGES = { microsoft365: [0, 1, 2, 3, 4], servicenow: [0, 1, 2, 3, 4, 5] };
 function toolBadgeSrc(toolId, i) { var l = TOOL_BADGES[toolId]; return l && l.indexOf(i) >= 0 ? "assets/cert-badges/" + toolId + "-" + i + ".png?v=2" : null; }
+
+/* ---- specialization paths that have lessons (so lesson pages can open them) ---- */
+(function () {
+  if (typeof SPEC_LESSONS === "undefined") return;
+  Object.keys(SPEC_LESSONS).forEach(function (name) {
+    var s = SPEC_LESSONS[name], pi = -1; PATHS.forEach(function (p, i) { if (p.name === s.path) pi = i; });
+    var P = PATHS[pi] || { color: "#f472b6" };
+    COURSE_LEVELS.push({ id: "spec-" + name.toLowerCase().replace(/[^a-z0-9]+/g, "-"), name: s.path, title: name, color: P.color, lessons: s.lessons,
+      href: "spec.html?s=" + pi, group: "spec-" + name, crumbs: [["Specializations", "level.html?l=l6"], [s.path, "spec.html?s=" + pi]] });
+  });
+})();
