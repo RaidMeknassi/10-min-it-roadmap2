@@ -28,9 +28,10 @@ const LANGS = [
              ["Batch File Basics", "Variables and Parameters", "IF, FOR and GOTO", "Calling Programs and Error Levels", "Useful Admin Commands (net, sc, tasklist)"],
              ["Automating Support Tasks with Batch", "Logging and Output Handling", "Scheduled Batch Jobs", "Batch vs PowerShell: When to Switch", "Troubleshooting Batch Scripts"]] },
   { id: "python", name: "Python", abbr: "Py", color: "#3776ab", group: "scripting", desc: "An easy, powerful language used for automation, networking, security, data and AI.",
-    levels: [["What Is Python and Why Learn It?", "Installing Python and Your First Script", "Variables and Data Types", "Conditions and Loops", "Functions"],
-             ["Lists, Dictionaries and Sets", "Working with Files and CSV", "Modules and pip", "Error Handling", "Working with APIs and JSON"],
-             ["Automating IT Tasks with Python", "Python for Networking", "Python for Security and Log Analysis", "Object-Oriented Python", "Testing and Packaging Your Code"]] },
+    levels: [[["im6.1", "Introduction to Programming"], "What Is Python and Why Learn It?", "Installing Python and Your First Script", ["im6.2", "Variables, Data Types and Operators"], ["im6.3", "Conditions and Loops"],
+              ["im6.4", "Functions and Modules"], ["im6.5", "Lists, Dictionaries and Data Structures"], ["im6.6", "Working with Files"], ["im6.8", "Error Handling"], ["im6.9", "Python Automation and Practical Scripts"]],
+             ["Sets, Tuples and Comprehensions", "CSV and Excel Files", "pip and Virtual Environments", "Regular Expressions in Python", "Working with APIs and JSON"],
+             ["Advanced IT Automation Projects", "Python for Networking", "Python for Security and Log Analysis", "Object-Oriented Python", "Testing and Packaging Your Code"]] },
   { id: "sql", name: "SQL", abbr: "SQL", color: "#d97706", group: "query", desc: "The language of databases. Read, filter and change data in almost every company system.",
     levels: [["What Is SQL and a Database?", "SELECT and FROM", "Filtering with WHERE", "Sorting and Limiting Results", "INSERT, UPDATE and DELETE"],
              ["JOINs Explained", "GROUP BY and Aggregates", "Subqueries", "Creating Tables and Keys", "Indexes and Performance Basics"],
@@ -115,7 +116,7 @@ const LANGS = [
 /* languages suggested after each Intermediate module */
 const LANG_SUGGEST = {
   im1: ["powershell", "bash"], im2: ["powershell", "cmd", "xml"], im3: ["bash", "python"], im4: ["python", "bash"], im5: ["powershell", "kql"],
-  im6: ["python"], im7: ["sql", "kql"], im8: ["html", "css", "javascript", "php", "json"], im9: ["kql", "spl", "python", "regex"],
+  im7: ["sql", "kql"], im8: ["html", "css", "javascript", "php", "json"], im9: ["kql", "spl", "python", "regex"],
   im10: ["bash", "yaml", "go"], im11: ["yaml", "json", "terraform", "python", "powershell"]
 };
 
@@ -123,7 +124,7 @@ const LANG_SUGGEST = {
 (function () {
   LANGS.forEach(function (L) {
     L.lv = L.levels.map(function (titles, i) {
-      var rows = titles.map(function (t, k) { var key = "lang." + L.id + "." + (i + 1) + "." + (k + 1); LBL[key] = (i + 1) + "." + (k + 1); return [key, t]; });
+      var rows = titles.map(function (t, k) { var key = Array.isArray(t) ? t[0] : "lang." + L.id + "." + (i + 1) + "." + (k + 1); LBL[key] = (i + 1) + "." + (k + 1); return [key, Array.isArray(t) ? t[1] : t]; });
       if (typeof COURSE_LEVELS !== "undefined") COURSE_LEVELS.push({ id: "lang-" + L.id + "-" + (i + 1), name: L.name, title: LANG_LEVELS[i].name, color: LANG_LEVELS[i].color, lessons: rows,
         href: "language.html?l=" + L.id + "&v=" + (i + 1), group: "lang-" + L.id, crumbs: [["Languages", "languages.html"], [L.name, "language.html?l=" + L.id]] });
       return rows;

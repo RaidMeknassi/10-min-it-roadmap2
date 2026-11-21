@@ -15,7 +15,7 @@
     var p = langProgress(L), a = el("a", "lg-card" + (p === 3 ? " is-done" : "")); a.href = "language.html?l=" + L.id; a.style.setProperty("--c", L.color);
     a.innerHTML = '<div class="lg-top">' + langIcon(L, 52) + '<div class="lg-body"><b></b><p></p></div></div><div class="lg-gauge">' + langGauge(p) + '<small></small></div>';
     a.querySelector("b").textContent = L.name; a.querySelector("p").textContent = L.desc;
-    a.querySelector("small").textContent = p === 3 ? "✓ All 3 levels done" : "Now: " + LANG_LEVELS[p].name + " · 3 levels · 15 lessons";
+    a.querySelector("small").textContent = p === 3 ? "✓ All 3 levels done" : "Now: " + LANG_LEVELS[p].name + " · 3 levels · " + (L.lv[0].length + L.lv[1].length + L.lv[2].length) + " lessons";
     return a;
   }
   function render() {

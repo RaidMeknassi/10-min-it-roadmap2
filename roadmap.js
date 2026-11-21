@@ -122,15 +122,6 @@ const INTERMEDIATE_LEVELS = [
       ["im5.5","Authentication and Kerberos"],["im5.6","LDAP and Directory Services"],
       ["im5.7","Active Directory Administration"]
     ]},
-  { id: "im6", name: "Module 6", title: "Programming Fundamentals — Python", color: "#fbbf24",
-    desc: "Learn general-purpose programming and automation.",
-    lessons: [
-      ["im6.1","Introduction to Programming"],["im6.2","Variables, Data Types and Operators"],
-      ["im6.3","Conditions and Loops"],["im6.4","Functions and Modules"],
-      ["im6.5","Lists, Dictionaries and Data Structures"],["im6.6","Working with Files"],
-      ["im6.7","Python Fundamentals"],["im6.8","Error Handling"],
-      ["im6.9","Python Automation and Practical Scripts"]
-    ]},
   { id: "im7", name: "Module 7", title: "Database Fundamentals", color: "#fb923c",
     desc: "Understand how applications store and manage data.",
     lessons: [
@@ -175,17 +166,17 @@ const INTERMEDIATE_LEVELS = [
 ];
 /* Build lesson labels for intermediate modules: M1.1, M1.2, … */
 INTERMEDIATE_LEVELS.forEach(function(lv, mi) {
+  lv.name = "Module " + (mi + 1);   // modules are numbered by their position
   lv.lessons.forEach(function(r, k) { LBL[r[0]] = "M" + (mi + 1) + "." + (k + 1); });
 });
 
 /* Level 6 - Intermediate (a path tree on its own page) */
 const INTERMEDIATE = { id: "l6m", desc: "Learn how to work with IT technologies.", name: "Level 6", title: "Intermediate", color: "#38bdf8", items: [
-  ["Operating Systems", "Deep dive into how operating systems work.", ["The Kernel", "Understanding Processes", "CPU Scheduling"]],
+  ["Operating Systems", "Processes, file systems and storage.", ["Understanding Processes", "File Systems and Storage"]],
   ["Windows Administration", "Manage Windows systems, users and settings."],
   ["Linux Administration", "Manage Linux servers, users, services and permissions."],
   ["Intermediate Networking", "Configure and troubleshoot real networks.", ["Subnetting", "DNS", "DHCP", "TCP and UDP"]],
   ["Active Directory Fundamentals", "Domains, users, groups and policies."],
-  ["Scripting and Programming Basics", "PowerShell, Bash and Python."],
   ["Database Fundamentals", "SQL, databases and data management."],
   ["Web Fundamentals", "HTML, CSS, JavaScript, HTTP and APIs."],
   ["Cybersecurity Practices", "Security tools, vulnerability assessment and monitoring."],

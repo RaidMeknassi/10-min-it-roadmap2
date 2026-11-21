@@ -1,5 +1,5 @@
 /* int-app.js — Intermediate level roadmap tree renderer
-   Layout (11 modules):
+   Layout (10 modules; Python moved to the Languages page):
      trunk    : M1 (OS), M2 (Windows), M3 (Linux)
      branches : M4 (Networking), M5 (Active Directory)
      single   : M6 (Python)
@@ -40,7 +40,6 @@
   var br3    = document.createElement("div"); br3.className    = "branches";   // M10 + M11
   mapEl.appendChild(trunk);
   mapEl.appendChild(br1);
-  mapEl.appendChild(mid1);
   mapEl.appendChild(br2);
   mapEl.appendChild(mid2);
   mapEl.appendChild(br3);
@@ -118,20 +117,18 @@
   //  Branches 1: M4(flip), M5
   makeLevel(INTERMEDIATE_LEVELS[3], br1,    true);  // entries[3]
   makeLevel(INTERMEDIATE_LEVELS[4], br1,    false); // entries[4]
-  //  Single: M6 Python
-  makeLevel(INTERMEDIATE_LEVELS[5], mid1,   false); // entries[5]
-  //  Branches 2: M7(flip), M8
-  makeLevel(INTERMEDIATE_LEVELS[6], br2,    true);  // entries[6]
-  makeLevel(INTERMEDIATE_LEVELS[7], br2,    false); // entries[7]
-  //  Single: M9 Cybersec
-  makeLevel(INTERMEDIATE_LEVELS[8], mid2,   false); // entries[8]
-  //  Branches 3: M10(flip), M11
-  makeLevel(INTERMEDIATE_LEVELS[9],  br3,   true);  // entries[9]
-  makeLevel(INTERMEDIATE_LEVELS[10], br3,   false); // entries[10]
+  //  Branches 2: Databases(flip), Web
+  makeLevel(INTERMEDIATE_LEVELS[5], br2,    true);  // entries[5]
+  makeLevel(INTERMEDIATE_LEVELS[6], br2,    false); // entries[6]
+  //  Single: Cybersecurity
+  makeLevel(INTERMEDIATE_LEVELS[7], mid2,   false); // entries[7]
+  //  Branches 3: Virtualization(flip), Cloud
+  makeLevel(INTERMEDIATE_LEVELS[8], br3,    true);  // entries[8]
+  makeLevel(INTERMEDIATE_LEVELS[9], br3,    false); // entries[9]
 
   /* ---- connecting lines ---- */
   function drawRoad() {
-    if (!svg || !road || entries.length < 11) return;
+    if (!svg || !road || entries.length < 10) return;
     var base = road.getBoundingClientRect();
     svg.setAttribute("viewBox", "0 0 " + base.width + " " + base.height);
     var stacked = window.innerWidth <= 720;
@@ -157,14 +154,13 @@
       // straight chain on mobile
       link(2, 3); link(3, 4); link(4, 5);
       link(5, 6); link(6, 7); link(7, 8);
-      link(8, 9); link(9, 10);
+      link(8, 9);
     } else {
-      // desktop topology: fork → converge × 3
-      link(2, 3); link(2, 4);        // fork to M4 & M5
-      link(3, 5); link(4, 5);        // converge at M6
-      link(5, 6); link(5, 7);        // fork to M7 & M8
-      link(6, 8); link(7, 8);        // converge at M9
-      link(8, 9); link(8, 10);       // final fork to M10 & M11
+      // desktop topology
+      link(2, 3); link(2, 4);        // fork to Networking & Active Directory
+      link(3, 5); link(4, 6);        // straight down to Databases & Web
+      link(5, 7); link(6, 7);        // converge at Cybersecurity
+      link(7, 8); link(7, 9);        // final fork to Virtualization & Cloud
     }
     if (recCard) {
       var rc = recCard.getBoundingClientRect();
@@ -173,7 +169,7 @@
         var x1 = a.left + a.width / 2 - base.left, y1 = a.bottom - base.top, x2 = rc.left + rc.width / 2 - base.left, y2 = rc.top - base.top, my = (y1 + y2) / 2;
         out += '<path stroke="#34d399" stroke-dasharray="6 5" opacity="0.7" d="M' + x1 + " " + y1 + " C" + x1 + " " + my + "," + x2 + " " + my + "," + x2 + " " + y2 + '"/>';
       }
-      if (stacked) dash(10); else { dash(9); dash(10); }
+      if (stacked) dash(9); else { dash(8); dash(9); }
       var ac = agileCard.getBoundingClientRect();
       out += '<path stroke="#f59e0b" stroke-dasharray="6 5" opacity="0.7" d="M' + (rc.left + rc.width / 2 - base.left) + " " + (rc.bottom - base.top) + " L" + (ac.left + ac.width / 2 - base.left) + " " + (ac.top - base.top) + '"/>';
     }
