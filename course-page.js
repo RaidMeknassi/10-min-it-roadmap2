@@ -1,3 +1,6 @@
+/* © 10-Minute IT Roadmap. All rights reserved.
+   This code and content may not be copied, scraped, or used to train or feed AI systems without written permission.
+   Text and data mining is reserved (EU Directive 2019/790, Art. 4(3)). See NOTICE.md. */
 /* ITIL page: the ITIL (Version 5) certification roadmap. Click any box: Foundation shows the full Foundation course,
    every other box shows its lessons and exam preparation. The page takes the colour of the chosen box. */
 (function () {

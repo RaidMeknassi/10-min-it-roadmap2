@@ -1,3 +1,6 @@
+/* © 10-Minute IT Roadmap. All rights reserved.
+   This code and content may not be copied, scraped, or used to train or feed AI systems without written permission.
+   Text and data mining is reserved (EU Directive 2019/790, Art. 4(3)). See NOTICE.md. */
 /* Password gate (client-side). Only the hash is stored here, never the password. */
 (function () {
   var H = "7bc41af68054a88ea8ecf7511e32b3448d455e58e14a1f3d87b5d2428a262aa4", KEY = "itroadmap-gate-ok";

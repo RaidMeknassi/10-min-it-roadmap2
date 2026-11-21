@@ -1,3 +1,6 @@
+/* © 10-Minute IT Roadmap. All rights reserved.
+   This code and content may not be copied, scraped, or used to train or feed AI systems without written permission.
+   Text and data mining is reserved (EU Directive 2019/790, Art. 4(3)). See NOTICE.md. */
 /* Programming, scripting and query languages.
    Each language has 3 levels (Beginner, Intermediate, Advanced) shown as a gauge.
    Lesson keys: "lang.<id>.<level 1-3>.<n>"  (shown as 1.1, 2.3 ...). */

@@ -1,3 +1,6 @@
+/* © 10-Minute IT Roadmap. All rights reserved.
+   This code and content may not be copied, scraped, or used to train or feed AI systems without written permission.
+   Text and data mining is reserved (EU Directive 2019/790, Art. 4(3)). See NOTICE.md. */
 /* One tool: a pyramid of levels (basics at the bottom, expert at the top).
    Click a level to see its certification and the lessons for it. The page takes the colour of the chosen level. */
 (function () {

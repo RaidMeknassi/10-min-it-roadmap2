@@ -1,0 +1,4 @@
+# © 10-Minute IT Roadmap. All rights reserved.
+# No permission is given to use any text, images, video, code or data on this site for AI training, AI datasets or AI answers.
+User-Agent: *
+Disallow: /

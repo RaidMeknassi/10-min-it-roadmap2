@@ -1,3 +1,6 @@
+/* © 10-Minute IT Roadmap. All rights reserved.
+   This code and content may not be copied, scraped, or used to train or feed AI systems without written permission.
+   Text and data mining is reserved (EU Directive 2019/790, Art. 4(3)). See NOTICE.md. */
 /* Fake-3D lesson icons, drawn as vector shapes (no image files).
    iconSVG("5", "#a78bfa") returns an <svg> string: a glossy tile with a 3D object on it. */
 (function () {
