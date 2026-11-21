@@ -102,11 +102,13 @@
     document.getElementById("sp-title").textContent = P.title || (P.name + " Learning Roadmap");
     document.getElementById("sp-sub").textContent = "This specialization is coming soon. Here is the path we are planning, step by step.";
     tree.appendChild(stage("Start here", "Finish Levels 0 to 5 on the main road map first, then follow this path."));
-    P.items.forEach(function (t) {
+    function addItem(t) {
       tree.appendChild(link());
       var note = (typeof PATH_NOTES !== "undefined") && PATH_NOTES[t];
       tree.appendChild(specLessonsCard(t) || pathCard(t, null, P.color, note ? note + " \u00B7 coming soon" : null));
-    });
+    }
+    if (P.groups) P.groups.forEach(function (g) { tree.appendChild(link()); tree.appendChild(stage(g.title, g.text)); g.items.forEach(addItem); });
+    else P.items.forEach(addItem);
     tree.appendChild(link());
     certStage();
     tree.appendChild(link());
