@@ -8,10 +8,11 @@ const LANG_LEVELS = [
 ];
 const LANG_GROUPS = [
   { id: "scripting", name: "Scripting & Automation", emoji: "⚙️" },
-  { id: "query", name: "Query & Data", emoji: "🔎" },
+  { id: "query", name: "Query & Search", emoji: "🔎" },
   { id: "web", name: "Web Development", emoji: "🌐" },
   { id: "prog", name: "Programming Languages", emoji: "💻" },
-  { id: "iac", name: "Infrastructure as Code & Config", emoji: "☁️" }
+  { id: "data", name: "Data & Config Formats", emoji: "🗂️" },
+  { id: "iac", name: "Infrastructure as Code", emoji: "☁️" }
 ];
 const LANGS = [
   { id: "powershell", name: "PowerShell", abbr: "PS>", color: "#2671be", group: "scripting", desc: "Microsoft's command shell and scripting language. The main tool to automate Windows, Active Directory and Microsoft 365.",
@@ -86,7 +87,23 @@ const LANGS = [
     levels: [["What Is Rust?", "Your First Rust Program", "Variables and Mutability", "Conditions and Loops", "Functions"],
              ["Ownership and Borrowing", "Structs and Enums", "Pattern Matching", "Error Handling with Result", "Collections"],
              ["Traits and Generics", "Lifetimes", "Concurrency in Rust", "Cargo and Crates", "Rust for Security Tools"]] },
-  { id: "yaml", name: "YAML", abbr: "YML", color: "#cb171e", group: "iac", desc: "A simple format for configuration files: Docker, Kubernetes, Ansible and CI/CD pipelines.",
+  { id: "ruby", name: "Ruby", abbr: "Rb", color: "#cc342d", group: "scripting", desc: "A friendly scripting language used for automation, web apps and security tools like Metasploit.",
+    levels: [["What Is Ruby?", "Your First Ruby Script", "Variables and Data Types", "Conditions and Loops", "Methods"],
+             ["Arrays and Hashes", "Blocks and Iterators", "Classes and Objects", "Gems and Bundler", "Files and Error Handling"],
+             ["Ruby for Automation", "Ruby in Metasploit Modules", "Building CLI Tools", "Ruby on Rails Basics", "Testing with RSpec"]] },
+  { id: "regex", name: "Regex", abbr: ".*", color: "#be185d", group: "query", desc: "Regular expressions: patterns to search, filter and extract text. Essential for logs and security investigations.",
+    levels: [["What Is Regex?", "Literal Characters and Wildcards", "Character Classes and Ranges", "Quantifiers: *, + and ?", "Anchors: ^ and $"],
+             ["Groups and Capturing", "Alternation and Escaping", "Regex in grep, PowerShell and Python", "Extracting IPs, Emails and URLs", "Regex in KQL and Splunk"],
+             ["Lookahead and Lookbehind", "Named Groups", "Regex for Log Analysis and Detection", "Performance and Catastrophic Backtracking", "Testing and Debugging Regex"]] },
+  { id: "json", name: "JSON", abbr: "JSON", color: "#0f766e", group: "data", desc: "The most common data format for APIs, logs, configuration and automation.",
+    levels: [["What Is JSON?", "Objects, Arrays and Values", "JSON Syntax Rules and Common Errors", "Reading JSON from APIs and Logs", "JSON vs YAML vs XML"],
+             ["Validating JSON with JSON Schema", "Querying JSON with jq", "JSON in PowerShell and Python", "Nested Data and Flattening", "JSON Logs in SIEM Tools"],
+             ["Designing JSON APIs", "JSON Web Tokens (JWT)", "Large JSON Files and Streaming", "Security: JSON Injection and Parsing Risks", "Automating Configs with JSON"]] },
+  { id: "xml", name: "XML", abbr: "XML", color: "#a16207", group: "data", desc: "A structured data format used in Windows, enterprise applications, configuration and data exchange.",
+    levels: [["What Is XML?", "Elements, Attributes and Nesting", "Well-Formed XML Rules", "XML in Windows and Enterprise Apps", "XML vs JSON"],
+             ["Namespaces", "Validating with XSD and DTD", "Querying XML with XPath", "XML in PowerShell", "Windows Event Logs as XML"],
+             ["Transforming XML with XSLT", "SOAP Web Services", "Group Policy and Config Files in XML", "Security: XXE and XML Attacks", "Automating XML Processing"]] },
+  { id: "yaml", name: "YAML", abbr: "YML", color: "#cb171e", group: "data", desc: "A simple format for configuration files: Docker, Kubernetes, Ansible and CI/CD pipelines.",
     levels: [["What Is YAML?", "Keys, Values and Indentation", "Lists and Nested Data", "Comments and Multi-line Text", "YAML vs JSON"],
              ["YAML in Docker Compose", "YAML in GitHub Actions", "YAML in Ansible", "Anchors and Aliases", "Validating YAML"],
              ["Kubernetes Manifests", "CI/CD Pipelines in YAML", "Templating with Helm", "Secrets and Security in YAML", "Debugging YAML Errors"]] },
@@ -97,9 +114,9 @@ const LANGS = [
 ];
 /* languages suggested after each Intermediate module */
 const LANG_SUGGEST = {
-  im1: ["c", "cpp"], im2: ["powershell", "cmd"], im3: ["bash", "python"], im4: ["python", "bash"], im5: ["powershell", "kql"],
-  im6: ["python"], im7: ["sql", "kql"], im8: ["html", "css", "javascript", "php"], im9: ["kql", "spl", "python"],
-  im10: ["bash", "yaml", "go"], im11: ["yaml", "terraform", "python", "powershell"]
+  im1: ["c", "cpp"], im2: ["powershell", "cmd", "xml"], im3: ["bash", "python"], im4: ["python", "bash"], im5: ["powershell", "kql"],
+  im6: ["python"], im7: ["sql", "kql"], im8: ["html", "css", "javascript", "php", "json"], im9: ["kql", "spl", "python", "regex"],
+  im10: ["bash", "yaml", "go"], im11: ["yaml", "json", "terraform", "python", "powershell"]
 };
 
 /* build lesson rows, labels and lesson-page levels */
