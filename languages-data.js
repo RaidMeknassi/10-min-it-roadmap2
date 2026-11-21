@@ -2,9 +2,9 @@
    Each language has 3 levels (Beginner, Intermediate, Advanced) shown as a gauge.
    Lesson keys: "lang.<id>.<level 1-3>.<n>"  (shown as 1.1, 2.3 ...). */
 const LANG_LEVELS = [
-  { name: "Beginner", color: "#1e9ad6" },
-  { name: "Intermediate", color: "#22c3ee" },
-  { name: "Advanced", color: "#4cbb4a" }
+  { name: "Beginner", color: "#f2d43d" },
+  { name: "Intermediate", color: "#f7863a" },
+  { name: "Advanced", color: "#e8253f" }
 ];
 const LANG_GROUPS = [
   { id: "scripting", name: "Scripting & Automation", emoji: "⚙️" },
@@ -151,7 +151,7 @@ function langGauge(pos, opts) {
     var p0 = pt(a0, R), p1 = pt(a1, R), p2 = pt(a1, r), p3 = pt(a0, r);
     var d = "M" + p0[0].toFixed(1) + " " + p0[1].toFixed(1) + " A" + R + " " + R + " 0 0 1 " + p1[0].toFixed(1) + " " + p1[1].toFixed(1) + " L" + p2[0].toFixed(1) + " " + p2[1].toFixed(1) + " A" + r + " " + r + " 0 0 0 " + p3[0].toFixed(1) + " " + p3[1].toFixed(1) + " Z";
     var on = opts.sel === i, dim = opts.sel != null && opts.sel !== i;
-    out.push('<path class="g-seg' + (on ? " on" : "") + '" data-i="' + i + '" d="' + d + '" fill="' + lv.color + '"' + (dim ? ' opacity="0.45"' : "") + '><title>' + lv.name + '</title></path>');
+    out.push('<path class="g-seg' + (on ? " on" : "") + '" data-i="' + i + '" d="' + d + '" fill="' + lv.color + '"' + (dim ? ' opacity="0.62"' : "") + '><title>' + lv.name + '</title></path>');
     if (opts.labels) { var m = pt(180 - i * 60 - 30, R + 16); out.push('<text x="' + m[0].toFixed(1) + '" y="' + (m[1] + 4).toFixed(1) + '" text-anchor="middle" class="g-lbl">' + lv.name.toUpperCase() + '</text>'); }
   });
   var ang = pos >= 3 ? 8 : 180 - pos * 60 - 30, tip = pt(ang, R - 12), b1 = pt(ang + 90, 6), b2 = pt(ang - 90, 6);
