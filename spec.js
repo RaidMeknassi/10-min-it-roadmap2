@@ -32,6 +32,27 @@
     tree.appendChild(st);
   }
 
+  /* a specialization path that already has lessons: card with its lesson list */
+  function specLessonsCard(t) {
+    var S = (typeof SPEC_LESSONS !== "undefined") && SPEC_LESSONS[t]; if (!S) return null;
+    var doneMap = {}; try { doneMap = JSON.parse(localStorage.getItem("itroadmap-v2-done") || "{}"); } catch (e) {}
+    var d = 0; S.lessons.forEach(function (r) { if (doneMap[r[0]]) d++; });
+    var card = pathCard(t, null, P.color, S.lessons.length + " lessons \u00B7 " + d + " / " + S.lessons.length + " done");
+    card.classList.add("sp-has-lessons"); card.querySelector(".sp-bar i").style.width = (d / S.lessons.length * 100) + "%";
+    var list = el("div", "lvlist sp-lessons");
+    S.lessons.forEach(function (r) {
+      var a = el("a", "lc" + (doneMap[r[0]] ? " done" : "")); a.href = "lesson.html?n=" + encodeURIComponent(r[0]);
+      a.innerHTML = '<span class="cl-ico"></span><span class="lc-body"><b></b><small></small></span><span class="lc-tags"></span><span class="lc-check">\u2713</span>';
+      a.querySelector(".cl-ico").textContent = LBL[r[0]]; a.querySelector("b").textContent = r[1];
+      a.querySelector("small").textContent = "Lesson " + LBL[r[0]] + " \u00B7 10 min";
+      var tg = (typeof lessonTags === "function") ? lessonTags(r[0]) : (VIDEOS[r[0]] ? [["Lesson", "t-les"]] : [["Coming soon", "t-soon"]]);
+      tg.forEach(function (x) { a.querySelector(".lc-tags").appendChild(el("span", "tg " + x[1], x[0])); });
+      list.appendChild(a);
+    });
+    card.appendChild(list);
+    return card;
+  }
+
   if (MID) {
     document.title = "Intermediate · 10-Minute IT Roadmap";
     document.getElementById("sp-title").textContent = "Intermediate Learning Roadmap";
@@ -54,6 +75,7 @@
     tree.appendChild(link());
     tree.appendChild(stage("Cyber Security Foundations", "Develop cyber security skills needed to enter any career in the industry."));
     tree.appendChild(link()); tree.appendChild(pathCard("Cybersecurity Foundations 101"));
+    var siem = specLessonsCard("SIEM and Incident Response"); if (siem) { tree.appendChild(link()); tree.appendChild(siem); }
     tree.appendChild(link());
     tree.appendChild(stage("Cyber Security Career Skills", "Master the specific skills necessary for your career of interest. Not sure which career path is right for you? Look at the groups below and pick the one that fits you."));
     tree.appendChild(link());
@@ -77,25 +99,9 @@
     document.getElementById("sp-title").textContent = P.name + " Learning Roadmap";
     document.getElementById("sp-sub").textContent = "This specialization is coming soon. Here is the path we are planning, step by step.";
     tree.appendChild(stage("Start here", "Finish Levels 0 to 5 on the main road map first, then follow this path."));
-    var doneMap = {}; try { doneMap = JSON.parse(localStorage.getItem("itroadmap-v2-done") || "{}"); } catch (e) {}
     P.items.forEach(function (t) {
       tree.appendChild(link());
-      var S = (typeof SPEC_LESSONS !== "undefined") && SPEC_LESSONS[t];
-      if (!S) { tree.appendChild(pathCard(t)); return; }
-      var d = 0; S.lessons.forEach(function (r) { if (doneMap[r[0]]) d++; });
-      var card = pathCard(t, null, P.color, S.lessons.length + " lessons \u00B7 " + d + " / " + S.lessons.length + " done");
-      card.classList.add("sp-has-lessons"); card.querySelector(".sp-bar i").style.width = (d / S.lessons.length * 100) + "%";
-      var list = el("div", "lvlist sp-lessons");
-      S.lessons.forEach(function (r) {
-        var a = el("a", "lc" + (doneMap[r[0]] ? " done" : "")); a.href = "lesson.html?n=" + encodeURIComponent(r[0]);
-        a.innerHTML = '<span class="cl-ico"></span><span class="lc-body"><b></b><small></small></span><span class="lc-tags"></span><span class="lc-check">\u2713</span>';
-        a.querySelector(".cl-ico").textContent = LBL[r[0]]; a.querySelector("b").textContent = r[1];
-        a.querySelector("small").textContent = "Lesson " + LBL[r[0]] + " \u00B7 10 min";
-        var tg = (typeof lessonTags === "function") ? lessonTags(r[0]) : (VIDEOS[r[0]] ? [["Lesson", "t-les"]] : [["Coming soon", "t-soon"]]);
-        tg.forEach(function (x) { a.querySelector(".lc-tags").appendChild(el("span", "tg " + x[1], x[0])); });
-        list.appendChild(a);
-      });
-      card.appendChild(list); tree.appendChild(card);
+      tree.appendChild(specLessonsCard(t) || pathCard(t));
     });
     tree.appendChild(link());
     certStage();

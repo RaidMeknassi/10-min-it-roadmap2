@@ -141,8 +141,7 @@ const INTERMEDIATE_LEVELS = [
     lessons: [
       ["im9.1","Security Principles and CIA Triad"],["im9.2","Authentication and Access Control"],
       ["im9.3","Encryption and Hashing"],["im9.4","Firewalls and Endpoint Security"],
-      ["im9.5","Vulnerabilities and Vulnerability Assessment"],["im9.6","Security Monitoring and Logging"],
-      ["im9.7","Introduction to SIEM Tools"],["im9.8","Incident Detection and Response Fundamentals"]
+      ["im9.5","Vulnerabilities and Vulnerability Assessment"],["im9.6","Security Monitoring and Logging"]
     ]},
   { id: "im10", name: "Module 10", title: "Virtualization and Containers", color: "#4ade80",
     desc: "Create and manage virtual environments.",
@@ -184,7 +183,7 @@ const INTERMEDIATE = { id: "l6m", desc: "Learn how to work with IT technologies.
 
 /* Level 7 (id l6) - choose a specialization path */
 const PATHS = [
-  { name: "Cybersecurity", color: "#f472b6", items: ["SOC Analyst", "Blue Team", "Penetration Testing", "Digital Forensics", "Threat Hunting", "Incident Response"] },
+  { name: "Cybersecurity", color: "#f472b6", items: ["SIEM and Incident Response", "SOC Analyst", "Blue Team", "Penetration Testing", "Digital Forensics", "Threat Hunting", "Incident Response"] },
   { name: "Network Engineering", color: "#60a5fa", items: ["Network Engineering", "Network Security", "Wireless Networking", "Advanced Routing and Switching"] },
   { name: "Systems Engineering", color: "#fb923c", items: ["Operating System Internals", "Windows Server", "Linux Server", "Active Directory", "Virtualization", "Enterprise Infrastructure"] },
   { name: "Cloud Computing", color: "#22d3ee", items: ["Microsoft Azure", "Amazon AWS", "Google Cloud", "Cloud Security", "Cloud Administration"] },
@@ -196,6 +195,9 @@ const PATHS = [
 
 /* Lessons inside specialization paths (moved from Intermediate). Keys stay the same, so progress is kept. */
 const SPEC_LESSONS = {
+  "SIEM and Incident Response": { path: "Cybersecurity", tag: "SEC", lessons: [
+    ["im9.7", "Introduction to SIEM Tools"], ["im9.8", "Incident Detection and Response Fundamentals"]
+  ]},
   "Operating System Internals": { path: "Systems Engineering", tag: "OS", lessons: [
     ["im1.1", "Understanding the Kernel"], ["im1.3", "Understanding Threads"], ["im1.4", "Memory Management"],
     ["im1.5", "CPU Scheduling"], ["im1.7", "System Calls"], ["im1.8", "User Mode vs Kernel Mode"]
