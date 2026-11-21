@@ -9,6 +9,7 @@
   if (/lesson\.html$/.test(p) && typeof TOOLS !== "undefined" && TOOLS.some(function (t) { return n.indexOf(t.id + ".") === 0; })) k = "t";
   if (/path\.html$/.test(p) || (/lesson\.html$/.test(p) && /^agile\./.test(n))) k = "i";
   if (/tools?\.html$/.test(p)) k = "t";
+  if (/languages?\.html$/.test(p) || (/lesson\.html$/.test(p) && /^lang\./.test(n))) k = "g";
   if (/certs\.html$/.test(p)) k = "c";
   if (/plans\.html$/.test(p)) k = "p";
   var a = document.querySelector('.top-nav a[data-nav="' + k + '"]'); if (a) a.classList.add("on");

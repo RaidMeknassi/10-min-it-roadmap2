@@ -71,6 +71,8 @@
     var dEl = lv.querySelector(".lv-desc");
     if (info.desc) dEl.textContent = info.desc; else dEl.remove();
     container.appendChild(lv);
+    var sugg = (typeof langSuggestBox === "function") ? langSuggestBox(info.id) : null;
+    if (sugg) lv.insertBefore(sugg, lv.querySelector(".flyout"));
 
     var card = lv.querySelector(".lv-card");
     card.addEventListener("click", function (e) {
@@ -79,7 +81,7 @@
     });
 
     var en = {
-      info: info, lv: lv, card: card,
+      info: info, lv: lv, card: card, sugg: sugg,
       metaEl: lv.querySelector(".lv-meta"),
       barEl:  lv.querySelector(".lv-bar i"),
       barWrap: lv.querySelector(".lv-bar"),
@@ -136,7 +138,7 @@
     var out = "";
 
     function link(i, j) {
-      var a = entries[i].card.getBoundingClientRect();
+      var a = (entries[i].sugg || entries[i].card).getBoundingClientRect();
       var b = entries[j].card.getBoundingClientRect();
       var x1 = a.left + a.width / 2 - base.left, y1 = a.bottom - base.top;
       var x2 = b.left + b.width / 2 - base.left, y2 = b.top  - base.top;
@@ -167,7 +169,7 @@
     if (recCard) {
       var rc = recCard.getBoundingClientRect();
       function dash(i) {
-        var a = entries[i].card.getBoundingClientRect();
+        var a = (entries[i].sugg || entries[i].card).getBoundingClientRect();
         var x1 = a.left + a.width / 2 - base.left, y1 = a.bottom - base.top, x2 = rc.left + rc.width / 2 - base.left, y2 = rc.top - base.top, my = (y1 + y2) / 2;
         out += '<path stroke="#34d399" stroke-dasharray="6 5" opacity="0.7" d="M' + x1 + " " + y1 + " C" + x1 + " " + my + "," + x2 + " " + my + "," + x2 + " " + y2 + '"/>';
       }
