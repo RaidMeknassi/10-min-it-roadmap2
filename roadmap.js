@@ -98,7 +98,6 @@ const INTERMEDIATE_LEVELS = [
       ["im3.1","Linux File System Structure"],["im3.2","Linux Users and Groups"],
       ["im3.3","Linux Permissions and Ownership"],["im3.4","Linux Processes and Services"],
       ["im3.5","Package Management"],
-      ["im3.7","Linux Logs and Troubleshooting"],["im3.8","Remote Administration with SSH"],
       ["im3.9","Bash Fundamentals"]
     ]},
   { id: "im4", name: "Module 4", title: "Intermediate Networking", color: "#a78bfa",
@@ -221,7 +220,7 @@ const PATH_NOTES = {
 /* Lessons inside specialization paths (moved from Intermediate). Keys stay the same, so progress is kept. */
 const SPEC_LESSONS = {
   "Linux Server": { path: "Systems Engineering", tag: "LX", lessons: [
-    ["im3.6", "Linux Networking Configuration"]
+    ["im3.6", "Linux Networking Configuration"], ["im3.7", "Linux Logs and Troubleshooting"], ["im3.8", "Remote Administration with SSH"]
   ]},
   "SIEM and Incident Response": { path: "Cybersecurity", tag: "SEC", lessons: [
     ["im9.7", "Introduction to SIEM Tools"], ["im9.8", "Incident Detection and Response Fundamentals"]
