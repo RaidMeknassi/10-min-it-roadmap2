@@ -19,7 +19,7 @@ const LANG_GROUPS = [
 ];
 const LANGS = [
   { id: "powershell", name: "PowerShell", abbr: "PS>", color: "#2671be", group: "scripting", desc: "Microsoft's command shell and scripting language. The main tool to automate Windows, Active Directory and Microsoft 365.",
-    levels: [["What Is PowerShell?", ["im2.11", "PowerShell Commands and Cmdlets"], "Get-Help and Get-Command", "The Pipeline and Objects", "Variables and Basic Operators", ["im2.12", "PowerShell Scripting and Automation"]],
+    levels: [["What Is PowerShell?", ["im2.11", "PowerShell Cmdlets Basics"], "Get-Help and Get-Command", "The Pipeline and Objects", "Variables and Basic Operators", ["im2.12", "PowerShell Scripting and Automation"]],
              ["Conditions and Loops", "Functions and Parameters", "Working with Files and the Registry", "Managing Services and Processes", "Error Handling with Try/Catch"],
              ["Writing Advanced Scripts and Modules", "Remoting with PowerShell", "Active Directory Automation", "Scheduled Tasks and Automation", "Script Security and Execution Policy"]] },
   { id: "bash", name: "Bash", abbr: "$_", color: "#3a8a2f", group: "scripting", desc: "The command shell of Linux and macOS. Used every day to manage servers and automate tasks.",
@@ -27,7 +27,7 @@ const LANGS = [
              ["Variables and Arguments", "Conditions and Loops", "Functions in Bash", "grep, sed and awk", "Scheduling with cron"],
              ["Robust Scripts: Exit Codes and Error Handling", "Text Processing for Logs", "Automating Server Tasks", "Working with APIs using curl and jq", "Bash Script Security Best Practices"]] },
   { id: "cmd", name: "CMD / Batch", abbr: "C:\\>", color: "#4b5563", group: "scripting", desc: "The classic Windows Command Prompt and batch files. Still useful for quick support tasks.",
-    levels: [["What Is the Command Prompt?", "Navigating with cd and dir", "Managing Files and Folders", "Network Commands: ipconfig, ping, tracert", "System Information Commands", ["im2.9", "CMD Commands and Batch Scripting"]],
+    levels: [["What Is the Command Prompt?", "Navigating with cd and dir", "Managing Files and Folders", "Network Commands: ipconfig, ping, tracert", "System Information Commands", ["im2.9", "CMD Commands and Batch Basics"]],
              ["Batch File Basics", "Variables and Parameters", "IF, FOR and GOTO", "Calling Programs and Error Levels", "Useful Admin Commands (net, sc, tasklist)"],
              ["Automating Support Tasks with Batch", "Logging and Output Handling", "Scheduled Batch Jobs", "Batch vs PowerShell: When to Switch", "Troubleshooting Batch Scripts"]] },
   { id: "python", name: "Python", abbr: "Py", color: "#3776ab", group: "scripting", desc: "An easy, powerful language used for automation, networking, security, data and AI.",
