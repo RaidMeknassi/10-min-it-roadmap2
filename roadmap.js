@@ -319,6 +319,8 @@ const VIDEOS = {
   "microsoft365.0.1": "PLcNq2KzEFA", // What Is Microsoft 365? / Admin Center (Level 5.2)
   "microsoft365.0.3": "5Hg7GuQCYvA", // Microsoft Teams: Chat, Meetings & Devices (Level 5.2)
   "jira.0.4": "8iFVbAuMB8M",         // Jira Service Management: Handling Your First Request (Level 5.1)
+  "jira.0.2": "7xUB-mSc-AQ",         // Jira: Service Projects, Queues & Requests (Level 5.1)
+  "jira.0.3": "_Ujdr1p9Uu0",         // How to Get a FREE Jira Cloud Site (Level 5.1)
   "linkedin.0.1": "1haDfgG7waE", // LinkedIn for IT Jobs
   "glassdoor.0.1": "MeM2IGOA6yM", // Glassdoor: research companies
   "indeed.0.1": "MI-nP0w4Wh8", // Indeed: search, filter and apply
