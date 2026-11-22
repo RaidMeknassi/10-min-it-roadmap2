@@ -81,11 +81,6 @@ LBL["15"] = "3.1"; LBL["16"] = "3.2"; LBL["51"] = "3.3"; LBL["17"] = "3.4";
 
 /* Intermediate Modules — full lesson data for the intermediate roadmap tree */
 const INTERMEDIATE_LEVELS = [
-  { id: "im1", name: "Module 1", title: "Operating Systems — Deep Dive", color: "#60a5fa",
-    desc: "Understand how operating systems work internally.",
-    lessons: [
-      ["im1.2","Understanding Processes"],["im1.6","File Systems and Storage Management"]
-    ]},
   { id: "im2", name: "Module 2", title: "Windows Administration", color: "#38bdf8",
     desc: "Manage, configure and automate Windows systems.",
     lessons: [
@@ -172,7 +167,6 @@ INTERMEDIATE_LEVELS.forEach(function(lv, mi) {
 
 /* Level 6 - Intermediate (a path tree on its own page) */
 const INTERMEDIATE = { id: "l6m", desc: "Learn how to work with IT technologies.", name: "Level 6", title: "Intermediate", color: "#38bdf8", items: [
-  ["Operating Systems", "Processes, file systems and storage.", ["Understanding Processes", "File Systems and Storage"]],
   ["Windows Administration", "Manage Windows systems, users and settings."],
   ["Linux Administration", "Manage Linux servers, users, services and permissions."],
   ["Intermediate Networking", "Configure and troubleshoot real networks.", ["Subnetting", "DNS", "DHCP", "TCP and UDP"]],
@@ -222,8 +216,9 @@ const SPEC_LESSONS = {
     ["im9.7", "Introduction to SIEM Tools"], ["im9.8", "Incident Detection and Response Fundamentals"]
   ]},
   "Operating System Internals": { path: "Systems Engineering", tag: "OS", lessons: [
-    ["im1.1", "Understanding the Kernel"], ["im1.3", "Understanding Threads"], ["im1.4", "Memory Management"],
-    ["im1.5", "CPU Scheduling"], ["im1.7", "System Calls"], ["im1.8", "User Mode vs Kernel Mode"]
+    ["im1.1", "Understanding the Kernel"], ["im1.2", "Understanding Processes"], ["im1.3", "Understanding Threads"],
+    ["im1.4", "Memory Management"], ["im1.5", "CPU Scheduling"], ["im1.6", "File Systems and Storage Management"],
+    ["im1.7", "System Calls"], ["im1.8", "User Mode vs Kernel Mode"]
   ]}
 };
 const SPEC_LESSON_KEYS = [];

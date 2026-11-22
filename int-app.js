@@ -114,24 +114,23 @@
 
   /* ---- build tree ---- */
   //  Trunk: M1, M2, M3
-  makeLevel(INTERMEDIATE_LEVELS[0], trunk,  false); // entries[0]
-  makeLevel(INTERMEDIATE_LEVELS[1], trunk,  false); // entries[1]
-  makeLevel(INTERMEDIATE_LEVELS[2], trunk,  false); // entries[2]
+  makeLevel(INTERMEDIATE_LEVELS[0], trunk,  false); // entries[0] Windows
+  makeLevel(INTERMEDIATE_LEVELS[1], trunk,  false); // entries[1] Linux
   //  Branches 1: M4(flip), M5
-  makeLevel(INTERMEDIATE_LEVELS[3], br1,    true);  // entries[3]
-  makeLevel(INTERMEDIATE_LEVELS[4], br1,    false); // entries[4]
+  makeLevel(INTERMEDIATE_LEVELS[2], br1,    true);  // entries[3]
+  makeLevel(INTERMEDIATE_LEVELS[3], br1,    false); // entries[4]
   //  Branches 2: Databases(flip), Web
-  makeLevel(INTERMEDIATE_LEVELS[5], br2,    true);  // entries[5]
-  makeLevel(INTERMEDIATE_LEVELS[6], br2,    false); // entries[6]
+  makeLevel(INTERMEDIATE_LEVELS[4], br2,    true);  // entries[5]
+  makeLevel(INTERMEDIATE_LEVELS[5], br2,    false); // entries[6]
   //  Single: Cybersecurity
-  makeLevel(INTERMEDIATE_LEVELS[7], mid2,   false); // entries[7]
+  makeLevel(INTERMEDIATE_LEVELS[6], mid2,   false); // entries[7]
   //  Branches 3: Virtualization(flip), Cloud
-  makeLevel(INTERMEDIATE_LEVELS[8], br3,    true);  // entries[8]
-  makeLevel(INTERMEDIATE_LEVELS[9], br3,    false); // entries[9]
+  makeLevel(INTERMEDIATE_LEVELS[7], br3,    true);  // entries[8]
+  makeLevel(INTERMEDIATE_LEVELS[8], br3,    false); // entries[9]
 
   /* ---- connecting lines ---- */
   function drawRoad() {
-    if (!svg || !road || entries.length < 10) return;
+    if (!svg || !road || entries.length < 9) return;
     var base = road.getBoundingClientRect();
     svg.setAttribute("viewBox", "0 0 " + base.width + " " + base.height);
     var stacked = window.innerWidth <= 720;
@@ -152,18 +151,18 @@
     }
 
     // trunk
-    link(0, 1); link(1, 2);
+    link(0, 1);
     if (stacked) {
       // straight chain on mobile
-      link(2, 3); link(3, 4); link(4, 5);
-      link(5, 6); link(6, 7); link(7, 8);
-      link(8, 9);
+      link(1, 2); link(2, 3); link(3, 4);
+      link(4, 5); link(5, 6); link(6, 7);
+      link(7, 8);
     } else {
       // desktop topology
-      link(2, 3); link(2, 4);        // fork to Networking & Active Directory
-      link(3, 5); link(4, 6);        // straight down to Databases & Web
-      link(5, 7); link(6, 7);        // converge at Cybersecurity
-      link(7, 8); link(7, 9);        // final fork to Virtualization & Cloud
+      link(1, 2); link(1, 3);        // fork to Networking & Active Directory
+      link(2, 4); link(3, 5);        // straight down to Databases & Web
+      link(4, 6); link(5, 6);        // converge at Cybersecurity
+      link(6, 7); link(6, 8);        // final fork to Virtualization & Cloud
     }
     if (recCard) {
       var rc = recCard.getBoundingClientRect();
@@ -172,7 +171,7 @@
         var x1 = a.left + a.width / 2 - base.left, y1 = a.bottom - base.top, x2 = rc.left + rc.width / 2 - base.left, y2 = rc.top - base.top, my = (y1 + y2) / 2;
         out += '<path stroke="#34d399" stroke-dasharray="6 5" opacity="0.7" d="M' + x1 + " " + y1 + " C" + x1 + " " + my + "," + x2 + " " + my + "," + x2 + " " + y2 + '"/>';
       }
-      if (stacked) dash(9); else { dash(8); dash(9); }
+      if (stacked) dash(8); else { dash(7); dash(8); }
       var ac = agileCard.getBoundingClientRect();
       out += '<path stroke="#f59e0b" stroke-dasharray="6 5" opacity="0.7" d="M' + (rc.left + rc.width / 2 - base.left) + " " + (rc.bottom - base.top) + " L" + (ac.left + ac.width / 2 - base.left) + " " + (ac.top - base.top) + '"/>';
     }

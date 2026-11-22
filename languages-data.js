@@ -118,7 +118,7 @@ const LANGS = [
 ];
 /* languages suggested after each Intermediate module */
 const LANG_SUGGEST = {
-  im1: ["powershell", "bash"], im2: ["powershell", "cmd", "xml"], im3: ["bash", "python"], im4: ["python", "bash"], im5: ["powershell", "kql"],
+  im2: ["powershell", "cmd", "xml"], im3: ["bash", "python"], im4: ["python", "bash"], im5: ["powershell", "kql"],
   im7: ["sql", "kql"], im8: ["html", "css", "javascript", "php", "json"], im9: ["kql", "spl", "python", "regex"],
   im10: ["bash", "yaml", "go"], im11: ["yaml", "json", "terraform", "python", "powershell"]
 };
