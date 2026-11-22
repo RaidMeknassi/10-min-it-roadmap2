@@ -81,6 +81,17 @@ LBL["15"] = "3.1"; LBL["16"] = "3.2"; LBL["51"] = "3.3"; LBL["17"] = "3.4";
 
 /* Intermediate Modules — full lesson data for the intermediate roadmap tree */
 const INTERMEDIATE_LEVELS = [
+  { id: "im4", name: "Module 4", title: "Intermediate Networking", color: "#a78bfa",
+    desc: "Configure and troubleshoot real networks.",
+    lessons: [
+      ["im4.1","IPv4 Address Structure"],["im4.2","Subnet Masks and CIDR"],
+      ["im4.3","Subnetting"],["im4.4","ARP and Default Gateway"],
+      ["im4.5","DNS and DNS Resolution"],["im4.6","DHCP and the DORA Process"],
+      ["im4.7","TCP and UDP"],["im4.8","Ports and Network Services"],
+      ["im4.9","Routing Fundamentals"],["im4.10","NAT and VLAN Fundamentals"],
+      ["im4.11","Network Troubleshooting"],
+      ["im4.12","The OSI Model — A Deeper Look at the 7 Layers"],["im4.13","IP Addressing"],["im4.14","MAC Addresses — How Devices Find Each Other"]
+    ]},
   { id: "im2", name: "Module 2", title: "Windows Administration", color: "#38bdf8",
     desc: "Manage, configure and automate Windows systems.",
     lessons: [
@@ -101,17 +112,6 @@ const INTERMEDIATE_LEVELS = [
       ["im3.3","Linux Permissions and Ownership"],["im3.4","Linux Processes and Services"],
       ["im3.5","Package Management"],
       ["im3.9","Bash Fundamentals"]
-    ]},
-  { id: "im4", name: "Module 4", title: "Intermediate Networking", color: "#a78bfa",
-    desc: "Configure and troubleshoot real networks.",
-    lessons: [
-      ["im4.1","IPv4 Address Structure"],["im4.2","Subnet Masks and CIDR"],
-      ["im4.3","Subnetting"],["im4.4","ARP and Default Gateway"],
-      ["im4.5","DNS and DNS Resolution"],["im4.6","DHCP and the DORA Process"],
-      ["im4.7","TCP and UDP"],["im4.8","Ports and Network Services"],
-      ["im4.9","Routing Fundamentals"],["im4.10","NAT and VLAN Fundamentals"],
-      ["im4.11","Network Troubleshooting"],
-      ["im4.12","The OSI Model — A Deeper Look at the 7 Layers"],["im4.13","IP Addressing"],["im4.14","MAC Addresses — How Devices Find Each Other"]
     ]},
   { id: "im5", name: "Module 5", title: "Active Directory Fundamentals", color: "#818cf8",
     desc: "Understand centralized identity and Windows domain management.",
@@ -176,9 +176,9 @@ INTERMEDIATE_LEVELS.forEach(function(lv, mi) {
 
 /* Level 6 - Intermediate (a path tree on its own page) */
 const INTERMEDIATE = { id: "l6m", desc: "Learn how to work with IT technologies.", name: "Level 6", title: "Intermediate", color: "#38bdf8", items: [
+  ["Intermediate Networking", "Configure and troubleshoot real networks.", ["Subnetting", "DNS", "DHCP", "TCP and UDP"]],
   ["Windows Administration", "Manage Windows systems, users and settings."],
   ["Linux Administration", "Manage Linux servers, users, services and permissions."],
-  ["Intermediate Networking", "Configure and troubleshoot real networks.", ["Subnetting", "DNS", "DHCP", "TCP and UDP"]],
   ["Active Directory Fundamentals", "Domains, users, groups and policies."],
   ["Database Fundamentals", "SQL, databases and data management."],
   ["Web Fundamentals", "HTML, CSS, JavaScript, HTTP and APIs."],
