@@ -1056,3 +1056,18 @@ a.cx-card:hover { border-color: var(--vc); transform: translateY(-2px); }
   .sp-treeview .sp-group .sp-lv .sp-state { font-size: 11px; }
   .sp-treeview .sp-lv .sp-bar { height: 5px; margin-top: 8px; }
 }
+/* Tree cards: short horizontal layout (logo left, text right) */
+.sp-treeview .sp-path.sp-lv { display: grid; grid-template-columns: auto minmax(0, 1fr); column-gap: 11px; align-items: center; padding: 9px 12px; border-radius: 14px; }
+.sp-treeview .sp-lv .sp-lv-ico { grid-row: 1 / span 3; width: 46px; height: 46px; margin: 0; border-radius: 12px; }
+.sp-treeview .sp-lv b { grid-column: 2; font-size: 14.5px; line-height: 1.2; }
+.sp-treeview .sp-lv .sp-state { grid-column: 2; font-size: 11.5px; margin-top: 1px; }
+.sp-treeview .sp-lv .sp-bar { grid-column: 2; height: 4px; margin-top: 5px; }
+@media (max-width: 620px) {
+  .sp-treeview .sp-path.sp-lv { padding: 8px 11px; border-radius: 13px; width: min(270px, 100%); }
+  .sp-treeview .sp-lv b { font-size: 14px; }
+  .sp-treeview .sp-group .sp-path.sp-lv { padding: 7px 7px; column-gap: 7px; border-radius: 11px; }
+  .sp-treeview .sp-group .sp-lv .sp-lv-ico { width: 34px; height: 34px; border-radius: 9px; margin: 0; }
+  .sp-treeview .sp-group .sp-lv b { font-size: 11.5px; line-height: 1.2; }
+  .sp-treeview .sp-group .sp-lv .sp-state { font-size: 9.5px; }
+  .sp-treeview .sp-lv .sp-bar { height: 3px; margin-top: 4px; }
+}
