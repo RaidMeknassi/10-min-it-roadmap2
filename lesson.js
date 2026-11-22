@@ -77,7 +77,7 @@
 
   var head = el("div", "lp-head");
   head.innerHTML = '<span class="ico"></span><div class="lp-title"><p class="lp-track"></p><h1></h1></div><button type="button" class="lp-done"></button>';
-  head.querySelector(".ico").innerHTML = level.id === "l55" ? '<img src="assets/lesson-icons/' + item.n + '.png" alt="" width="64" height="64" style="border-radius:14px">' : level.group ? '<img src="assets/lesson-icons/' + item.n + '.png" alt="" width="64" height="64" style="border-radius:14px" onerror="var s=document.createElement(\'span\');s.className=\'cl-ico\';s.style.setProperty(\'--c\',\'' + level.color + '\');s.textContent=\'' + (LBL[item.n] || "") + '\';this.replaceWith(s)">' : iconSVG(item.n, level.color);
+  head.querySelector(".ico").innerHTML = (level.id === "l55" || /^im\d+$/.test(level.id)) ? '<img src="assets/lesson-icons/' + item.n + '.png" alt="" width="64" height="64" style="border-radius:14px">' : level.group ? '<img src="assets/lesson-icons/' + item.n + '.png" alt="" width="64" height="64" style="border-radius:14px" onerror="var s=document.createElement(\'span\');s.className=\'cl-ico\';s.style.setProperty(\'--c\',\'' + level.color + '\');s.textContent=\'' + (LBL[item.n] || "") + '\';this.replaceWith(s)">' : iconSVG(item.n, level.color);
   head.querySelector(".lp-track").textContent = level.name + " · Lesson " + (LBL[item.n] || item.n) + " · 10 min";
   head.querySelector("h1").textContent = item.title;
   var db = head.querySelector(".lp-done");

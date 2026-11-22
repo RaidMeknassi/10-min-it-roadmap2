@@ -101,7 +101,7 @@
       b.querySelector(".fl-num").textContent   = LBL[n] || n;
       b.querySelector(".fl-title").textContent = row[1];
       var ic = b.querySelector(".ico"); ic.style.setProperty("--c", info.color);
-      ic.innerHTML = iconSVG(n, info.color);
+      ic.innerHTML = '<img src="assets/lesson-icons/' + n + '.png" alt="" width="28" height="28" style="border-radius:8px;vertical-align:middle;">';
       b.addEventListener("click", function (e) {
         e.stopPropagation();
         location.href = "lesson.html?n=" + encodeURIComponent(n);
