@@ -320,20 +320,6 @@ const VIDEOS = {
 /* Web-version lessons (HTML pages inside the "lessons" folder), by lesson number.
    To add a lesson: put its folder in lessons/ and add a line here. */
 const LESSON_PAGES = {
-  "im2.1":  "lessons/win-admin-role/index.html",          // What a Windows Admin Does
-  "im2.2":  "lessons/win-users-groups/index.html",        // Managing Users and Groups
-  "im2.3":  "lessons/win-ntfs-sharing/index.html",        // NTFS Permissions and File Sharing
-  "im2.4":  "lessons/win-services-processes/index.html",  // Windows Services and Processes
-  "im2.13": "lessons/win-registry-intro/index.html",      // What Is the Windows Registry?
-  "im2.5":  "lessons/win-registry-config/index.html",     // Windows Registry and System Configuration
-  "im2.6":  "lessons/win-event-logs/index.html",          // Windows Event Logs
-  "im2.7":  "lessons/win-updates/index.html",             // Windows Updates and Troubleshooting
-  "im2.14": "lessons/cmd-vs-powershell/index.html",       // CMD vs PowerShell
-  "im2.8":  "lessons/cmd-fundamentals/index.html",        // CMD Fundamentals
-  "im2.10": "lessons/powershell-fundamentals/index.html", // PowerShell Fundamentals
-  "im2.9":  "lessons/cmd-batch-basics/index.html",        // CMD Commands and Batch Basics (CMD language)
-  "im2.11": "lessons/powershell-cmdlets/index.html",      // PowerShell Cmdlets Basics (PowerShell language)
-  "im2.12": "lessons/powershell-scripting/index.html"     // PowerShell Scripting and Automation (PowerShell language)
 };
 
 /* QUIZZES - one per lesson, each with its own style (type):
