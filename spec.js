@@ -79,7 +79,7 @@
     tree.appendChild(stage("What's next?", "Continue to Level 7 and choose your Advanced Specialization."));
     var go = el("a", "sp-go", "Level 7 \u00B7 Advanced Specializations \u2192"); go.href = "level.html?l=l6"; tree.appendChild(go);
   } else if (i === 0) {
-    tree.classList.add("sp-compact");
+    tree.classList.add("sp-compact", "sp-treeview");
     document.getElementById("sp-title").textContent = "Cyber Security Learning Roadmap";
     document.getElementById("sp-sub").textContent = "From fundamental principles to advanced techniques, this roadmap provides clear steps and essential resources to help you build a robust skill set.";
     tree.appendChild(stage("Computer Science Basics", "Acquire the basic computer science skills required to get started in cyber security."));
@@ -95,11 +95,13 @@
     var groups = TRACKS.l7.concat([]);
     groups.forEach(function (g, gi) {
       var col = el("div", "sp-group"); col.style.setProperty("--pc", g.color);
-      col.appendChild(el("h3", "", g.name)); col.appendChild(el("p", "", g.blurb));
+      col.appendChild(el("span", "sp-bt")); col.appendChild(el("span", "sp-stub"));
+      var gh = el("div", "sp-ghead"); gh.appendChild(el("h3", "", g.name)); gh.appendChild(el("p", "", g.blurb)); col.appendChild(gh);
       g.paths.forEach(function (pt, pi) {
         col.appendChild(link());
         col.appendChild(pathCard(pt.name, "lesson.html?t=l7&g=" + gi + "&p=" + pi, g.color, pt.topics.length + " topics · coming soon"));
       });
+      col.appendChild(el("span", "sp-fill")); col.appendChild(el("span", "sp-bb")); col.appendChild(el("span", "sp-trunk"));
       grid.appendChild(col);
     });
     tree.appendChild(grid);
