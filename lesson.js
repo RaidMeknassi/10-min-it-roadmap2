@@ -92,7 +92,8 @@
   main.appendChild(head);
 
   var tabs = el("div", "lp-tabs");
-  [["lesson", "▶ Lesson", true], ["quiz", "Quiz", !!QUIZZES[item.n]], ["lab", (item.lab || LAB_PAGES[item.n]) ? "🔒 Lab" : "Lab", true]].forEach(function (t) {
+  var SUM = (typeof SUMMARIES !== "undefined" && SUMMARIES[item.n]) || null;
+  [["lesson", "▶ Lesson", true], ["summary", "Summary", !!SUM], ["quiz", "Quiz", !!QUIZZES[item.n]], ["lab", (item.lab || LAB_PAGES[item.n]) ? "🔒 Lab" : "Lab", true]].forEach(function (t) {
     var b = el("button", "lp-tab", t[1]); b.type = "button"; b.dataset.t = t[0]; b.disabled = !t[2];
     b.onclick = function () { tab = t[0]; stage(); }; tabs.appendChild(b);
   });
@@ -115,6 +116,12 @@
       else if (page) { box.appendChild(frame(page, item.title)); var a = el("a", "", "Open full screen ↗"); a.href = page; a.target = "_blank"; a.rel = "noopener"; note.appendChild(a); }
       else if (vid) box.appendChild(frame("https://www.youtube-nocookie.com/embed/" + encodeURIComponent(vid), item.title));
       else { box.className = "lp-stage t-card"; box.appendChild(el("div", "lp-center", "This lesson is coming soon.")); }
+    } else if (tab === "summary") {
+      box.className = "lp-stage t-card";
+      var sd = el("div", "lp-sum"); sd.appendChild(el("h3", "", "In short"));
+      sd.appendChild(el("p", "", SUM.s));
+      if (SUM.k && SUM.k.length) { sd.appendChild(el("h4", "", "Key points")); var ul = el("ul"); SUM.k.forEach(function (k) { ul.appendChild(el("li", "", k)); }); sd.appendChild(ul); }
+      box.appendChild(sd);
     } else if (tab === "quiz") {
       box.className = "lp-stage t-quiz";
       if (quiz) { var q = el("div"); box.appendChild(q); renderQuiz(item.n, q, function (s) { try { var k = JSON.parse(localStorage.getItem("itroadmap-v2-quiz") || "{}"); if (!k[item.n] || s > k[item.n]) k[item.n] = s; localStorage.setItem("itroadmap-v2-quiz", JSON.stringify(k)); } catch (e) {} }); }

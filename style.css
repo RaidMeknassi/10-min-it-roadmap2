@@ -966,3 +966,10 @@ a.cx-card:hover { border-color: var(--vc); transform: translateY(-2px); }
 .pyr-l:has(.pyr-badge) { gap: 6px; }
 @media (max-width: 720px) { .pyr-row { grid-template-columns: minmax(0, 1fr) minmax(110px, 1.3fr) minmax(0, 1fr); } .pyr-badge { height: 24px; margin-right: 4px; } }
 @media (max-width: 480px) { .pyr-row .pyr-r { font-size: 11.5px; padding-left: 8px; padding-right: 6px; } .pyr-row .pyr-l { font-size: 13px; } }
+/* Summary tab */
+.lp-sum{max-width:680px;margin:0 auto;padding:22px 24px;text-align:left;line-height:1.6}
+.lp-sum h3{margin:0 0 8px;font-size:1.15rem}
+.lp-sum h4{margin:18px 0 6px;font-size:.95rem;opacity:.8;text-transform:uppercase;letter-spacing:.04em}
+.lp-sum p{margin:0}
+.lp-sum ul{margin:0;padding-left:20px}
+.lp-sum li{margin:4px 0}
