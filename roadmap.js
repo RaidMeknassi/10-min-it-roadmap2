@@ -163,7 +163,7 @@ const INTERMEDIATE_LEVELS = [
     ]}
 ];
 /* extra lessons that sit between two numbered lessons (shown as M1.4.1, M1.7.1 ...) */
-const SUB_LESSONS = ["im2.13", "im2.14", "im3.12"];
+const SUB_LESSONS = ["im2.13", "im2.14"];
 /* Build lesson labels for intermediate modules: M1.1, M1.2, … */
 INTERMEDIATE_LEVELS.forEach(function(lv, mi) {
   lv.name = "Module " + (mi + 1);   // modules are numbered by their position
