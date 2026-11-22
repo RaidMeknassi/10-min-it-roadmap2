@@ -960,3 +960,9 @@ a.cx-card:hover { border-color: var(--vc); transform: translateY(-2px); }
 .lp-foot .lp-mid { flex: 0 1 auto; min-width: 0; max-width: none; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
 @media (max-width: 720px) { .lp-foot .lp-arrow, .lp-foot .lp-arrow-gap { width: 46px; height: 46px; } .lp-foot .lp-mid { font-size: 13px; padding: 10px 12px; } }
 @media (max-width: 720px) { .lp-foot .lp-mid { order: 0; } }
+/* pyramid: keep every row's columns the same width so the levels line up exactly */
+.pyr-row { grid-template-columns: minmax(0, 1fr) minmax(180px, 400px) minmax(0, 1fr); }
+.pyr-l, .pyr-r { min-width: 0; overflow-wrap: break-word; hyphens: auto; }
+.pyr-l:has(.pyr-badge) { gap: 6px; }
+@media (max-width: 720px) { .pyr-row { grid-template-columns: minmax(0, 1fr) minmax(110px, 1.3fr) minmax(0, 1fr); } .pyr-badge { height: 24px; margin-right: 4px; } }
+@media (max-width: 480px) { .pyr-row .pyr-r { font-size: 11.5px; padding-left: 8px; padding-right: 6px; } .pyr-row .pyr-l { font-size: 13px; } }
