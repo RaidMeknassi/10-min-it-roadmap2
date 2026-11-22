@@ -1032,3 +1032,27 @@ a.cx-card:hover { border-color: var(--vc); transform: translateY(-2px); }
   .sp-treeview .sp-stub, .sp-treeview .sp-fill { height: 12px; min-height: 12px; }
   .sp-treeview .sp-fill { height: auto; }
 }
+/* Tree cards in the beginner-level style (glossy colour card + logo) */
+.sp-treeview .sp-path.sp-lv {
+  position: relative; overflow: hidden; width: min(290px, 100%); padding: 14px 16px 16px; text-align: left;
+  border: 1px solid rgba(255,255,255,.22); border-top: 1px solid rgba(255,255,255,.35); border-radius: 18px;
+  background:
+    radial-gradient(120% 95% at 100% 0%, color-mix(in srgb, var(--pc, var(--c)) 60%, #fff) 0%, transparent 58%),
+    linear-gradient(150deg, color-mix(in srgb, var(--pc, var(--c)) 82%, #000) 0%, color-mix(in srgb, var(--pc, var(--c)) 42%, #0a0c18) 100%);
+  box-shadow: 0 14px 34px -16px color-mix(in srgb, var(--pc, var(--c)) 80%, #000), inset 0 1px 0 rgba(255,255,255,.28);
+}
+.sp-treeview .sp-group .sp-path.sp-lv { width: 100%; }
+.sp-treeview .sp-lv .sp-lv-ico { display: block; width: 64px; height: 64px; margin: 2px auto 8px; border-radius: 16px; }
+.sp-treeview .sp-lv b { font-size: 17px; line-height: 1.25; color: #fff; text-shadow: 0 1px 8px rgba(0,0,0,.25); }
+.sp-treeview .sp-lv .sp-state { font-size: 12.5px; color: rgba(255,255,255,.82) !important; margin-top: 4px; }
+.sp-treeview .sp-lv .sp-bar { height: 6px; margin-top: 10px; background: rgba(0,0,0,.28); border: 1px solid rgba(255,255,255,.18); }
+.sp-treeview .sp-lv .sp-bar i { background: #fff; }
+@media (max-width: 620px) {
+  .sp-treeview .sp-path.sp-lv { width: min(290px, 100%); padding: 14px 16px 16px; border-radius: 18px; border-left-width: 1px; }
+  .sp-treeview .sp-group .sp-path.sp-lv { width: 100%; padding: 10px 10px 12px; border-radius: 14px; }
+  .sp-treeview .sp-lv b { font-size: 17px; }
+  .sp-treeview .sp-group .sp-lv b { font-size: 13.5px; }
+  .sp-treeview .sp-group .sp-lv .sp-lv-ico { width: 52px; height: 52px; border-radius: 13px; margin-bottom: 6px; }
+  .sp-treeview .sp-group .sp-lv .sp-state { font-size: 11px; }
+  .sp-treeview .sp-lv .sp-bar { height: 5px; margin-top: 8px; }
+}

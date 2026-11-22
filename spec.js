@@ -80,13 +80,19 @@
     var go = el("a", "sp-go", "Level 7 \u00B7 Advanced Specializations \u2192"); go.href = "level.html?l=l6"; tree.appendChild(go);
   } else if (i === 0) {
     tree.classList.add("sp-compact", "sp-treeview");
+    var lvCard = function (card, name) {
+      card.classList.add("sp-lv");
+      var im = document.createElement("img"); im.className = "sp-lv-ico"; im.alt = ""; im.width = 64; im.height = 64;
+      im.src = "assets/spec-icons/" + name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") + ".png?v=1"; im.onerror = function () { im.remove(); };
+      card.insertBefore(im, card.firstChild); return card;
+    };
     document.getElementById("sp-title").textContent = "Cyber Security Learning Roadmap";
     document.getElementById("sp-sub").textContent = "From fundamental principles to advanced techniques, this roadmap provides clear steps and essential resources to help you build a robust skill set.";
     tree.appendChild(stage("Computer Science Basics", "Acquire the basic computer science skills required to get started in cyber security."));
-    tree.appendChild(link()); tree.appendChild(pathCard("Pre-Security Basics"));
+    tree.appendChild(link()); tree.appendChild(lvCard(pathCard("Pre-Security Basics"), "Pre-Security Basics"));
     tree.appendChild(link());
     tree.appendChild(stage("Cyber Security Foundations", "Develop cyber security skills needed to enter any career in the industry."));
-    tree.appendChild(link()); tree.appendChild(pathCard("Cybersecurity Foundations 101"));
+    tree.appendChild(link()); tree.appendChild(lvCard(pathCard("Cybersecurity Foundations 101"), "Cybersecurity Foundations 101"));
     var siem = specLessonsCard("SIEM and Incident Response"); if (siem) { tree.appendChild(link()); tree.appendChild(siem); }
     tree.appendChild(link());
     tree.appendChild(stage("Cyber Security Career Skills", "Master the specific skills necessary for your career of interest. Not sure which career path is right for you? Look at the groups below and pick the one that fits you."));
@@ -99,7 +105,7 @@
       var gh = el("div", "sp-ghead"); gh.appendChild(el("h3", "", g.name)); gh.appendChild(el("p", "", g.blurb)); col.appendChild(gh);
       g.paths.forEach(function (pt, pi) {
         col.appendChild(link());
-        col.appendChild(pathCard(pt.name, "lesson.html?t=l7&g=" + gi + "&p=" + pi, g.color, pt.topics.length + " topics · coming soon"));
+        col.appendChild(lvCard(pathCard(pt.name, "lesson.html?t=l7&g=" + gi + "&p=" + pi, g.color, pt.topics.length + " topics · coming soon"), pt.name));
       });
       col.appendChild(el("span", "sp-fill")); col.appendChild(el("span", "sp-bb")); col.appendChild(el("span", "sp-trunk"));
       grid.appendChild(col);
