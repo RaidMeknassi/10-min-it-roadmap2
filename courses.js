@@ -104,8 +104,12 @@ const TOOLS = [
         lessons: ["Incident Management Setup", "Problem Management Setup", "Change Management Setup", "Service Catalog and Request Fulfillment", "Knowledge Management", "CMDB and CSDM Basics", "SLAs and Workflows", "CIS-ITSM Exam Preparation"] },
       { title: "Suite Certification", role: "Application Specialist", color: "#fb7185", cert: ["SUITE", "ServiceNow Suite Certification (e.g. ITSM Professional)", "ServiceNow"],
         lessons: ["What Suite Certifications Are", "Choosing Your Suite (ITSM, CSM, HR...)", "Micro-certifications and Accreditations", "Advanced ITSM Features", "Suite Exam Preparation"] },
-      { title: "Expert Programs", role: "Technical / Master Architect", color: "#fbbf24", cert: ["CTA / CMA", "Certified Technical Architect / Certified Master Architect", "ServiceNow"],
-        lessons: ["The Expert Path: ArchX, CTA and CMA", "Platform Architecture and Governance", "Designing Large Implementations", "Performance and Upgrades", "Preparing for the Expert Board"] }
+      { title: "Certified Technical Architect", role: "Technical Architect", color: "#fbbf24", cert: ["CTA", "ServiceNow Certified Technical Architect", "ServiceNow"],
+        lessons: ["ServiceNow Platform Architecture", "Integration Architecture", "Security and Governance", "Architecture Design Scenarios"],
+        exam: ["CTA Exam Preparation"] },
+      { title: "Certified Master Architect", role: "Master Architect", color: "#f97316", cert: ["CMA", "ServiceNow Certified Master Architect", "ServiceNow"],
+        lessons: ["Enterprise Architecture Strategy", "Business and Technology Alignment", "Enterprise Transformation", "Architecture Governance", "Portfolio and Platform Strategy", "Leadership and Decision-Making"],
+        exam: ["CMA Assessment Preparation"] }
     ]},
   { id: "jira", name: "Jira Service Management", group: "ticketing", color: "#1868db", tags: ["Helpdesk", "Tickets", "Atlassian"],
     desc: "Atlassian's service desk tool, used by many tech companies and start-ups.",
@@ -382,7 +386,8 @@ const CERT_INFO = {
   "servicenow-2": ["Proves you can build your own apps on ServiceNow with scripts and flows.", "ServiceNow admins who want to code.", "ServiceNow developer."],
   "servicenow-3": ["Proves you can set up ServiceNow ITSM for a company: incidents, problems, changes and requests.", "ServiceNow admins and consultants working on ITSM.", "ServiceNow consultant, implementation specialist."],
   "servicenow-4": ["A bundle certificate for one ServiceNow area, like ITSM, with extra micro-certificates.", "Experienced ServiceNow consultants.", "Senior ServiceNow consultant, application specialist."],
-  "servicenow-5": ["The top ServiceNow level: designing and leading big ServiceNow platforms.", "Very experienced ServiceNow architects.", "ServiceNow technical architect, master architect."],
+  "servicenow-5": ["Proves you can design large, secure ServiceNow platforms and their integrations.", "Very experienced ServiceNow developers and consultants.", "ServiceNow technical architect, platform architect."],
+  "servicenow-6": ["The highest ServiceNow level: leading enterprise architecture, strategy and transformation on ServiceNow.", "Senior architects who already work at CTA level.", "ServiceNow master architect, enterprise architect."],
   "jira-1": ["Proves you can work requests as an agent in Jira Service Management.", "Service desk agents using Jira.", "Service desk agent, IT support."],
   "jira-2": ["Proves you understand ITSM practices and AI features inside Jira Service Management.", "Agents and team leads using JSM for ITSM.", "ITSM analyst, service desk lead."],
   "jira-3": ["Proves you can set up and manage service projects: request types, workflows, SLAs.", "People who configure JSM for their team.", "JSM project admin, ITSM tools specialist."],
@@ -479,8 +484,8 @@ var LEVEL53 = (function () {
 })();
 
 /* ---- certification badge pictures for tool levels (assets/cert-badges/<tool>-<level>.png) ---- */
-var TOOL_BADGES = { microsoft365: [0, 1, 2, 3, 4], servicenow: [0, 1, 2, 3, 4, 5] };
-function toolBadgeSrc(toolId, i) { var l = TOOL_BADGES[toolId]; return l && l.indexOf(i) >= 0 ? "assets/cert-badges/" + toolId + "-" + i + ".png?v=2" : null; }
+var TOOL_BADGES = { microsoft365: [0, 1, 2, 3, 4], servicenow: [0, 1, 2, 3, 4, 5, 6] };
+function toolBadgeSrc(toolId, i) { var l = TOOL_BADGES[toolId]; return l && l.indexOf(i) >= 0 ? "assets/cert-badges/" + toolId + "-" + i + ".png?v=3" : null; }
 
 /* ---- specialization paths that have lessons (so lesson pages can open them) ---- */
 (function () {
