@@ -307,6 +307,10 @@ const VIDEOS = {
   "servicenow.1.17": "etPzSpcHtec", // CSA 1.17
   "servicenow.1.x1": "F6T60AyT3tU", // CSA 1.E1 exam explained
   "servicenow.1.x2": "3u2caY3y3io", // CSA 1.E2 objectives checklist
+  "zoom.0.1": "JR_r2w0pONY",       // Zoom Meetings for IT Support (Level 5.1)
+  "rdp.0.1": "1RHpe7gc_Po",        // Microsoft Remote Desktop (RDP) (Level 5.1)
+  "teamviewer.0.1": "aMg-MOJWcoo", // TeamViewer for IT Support (Level 5.1)
+  "anydesk.0.1": "pbgu2ydPWXg",    // AnyDesk for IT Support (Level 5.1)
   "linkedin.0.1": "1haDfgG7waE", // LinkedIn for IT Jobs
   "glassdoor.0.1": "MeM2IGOA6yM", // Glassdoor: research companies
   "indeed.0.1": "MI-nP0w4Wh8", // Indeed: search, filter and apply
