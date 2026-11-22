@@ -126,7 +126,7 @@
       var ic = b.querySelector(".ico"); ic.style.setProperty("--c", lv.color);
       ic.innerHTML = '<img src="assets/lesson-icons/' + lesson.n + '.png" alt="" width="28" height="28" style="border-radius:8px;vertical-align:middle;">';
       b.querySelector(".fl-title").textContent = lesson.title;
-      b.addEventListener("click", function (e) { e.stopPropagation(); location.href = "lesson.html?n=" + encodeURIComponent(lesson.n); });
+      b.addEventListener("click", function (e) { e.stopPropagation(); location.href = "lesson.html?n=" + encodeURIComponent(lesson.n) + "&from=" + encodeURIComponent(lv.id); });
       list.appendChild(b);
       en.items.push({ el: b, lesson: lesson });
     });
@@ -179,7 +179,7 @@
       var ic = b.querySelector(".ico"); ic.style.setProperty("--c", lv.color);
       ic.innerHTML = '<img src="assets/lesson-icons/' + lesson.n + '.png" alt="" width="28" height="28" style="border-radius:8px;vertical-align:middle;">';
       b.querySelector(".fl-title").textContent = lesson.title;
-      b.addEventListener("click", function (e) { e.stopPropagation(); location.href = "lesson.html?n=" + encodeURIComponent(lesson.n); });
+      b.addEventListener("click", function (e) { e.stopPropagation(); location.href = "lesson.html?n=" + encodeURIComponent(lesson.n) + "&from=" + encodeURIComponent(lv.id); });
       list.appendChild(b);
       en.items.push({ el: b, lesson: lesson });
     });
@@ -201,7 +201,7 @@
       b.querySelector(".fl-num").textContent = lv.lbl(rk);
       var ic = b.querySelector(".ico"); ic.style.setProperty("--c", lv.color);
       b.querySelector(".fl-title").textContent = lesson.title;
-      b.addEventListener("click", function (e) { e.stopPropagation(); location.href = "lesson.html?n=" + encodeURIComponent(lesson.n); });
+      b.addEventListener("click", function (e) { e.stopPropagation(); location.href = "lesson.html?n=" + encodeURIComponent(lesson.n) + "&from=" + encodeURIComponent(lv.id); });
       list.appendChild(b);
       en.items.push({ el: b, lesson: lesson });
     });
@@ -222,7 +222,7 @@
       b.querySelector(".fl-num").textContent = lv.lbl(rk);
       var ic = b.querySelector(".ico"); ic.style.setProperty("--c", lv.color);
       b.querySelector(".fl-title").textContent = lesson.title;
-      b.addEventListener("click", function (e) { e.stopPropagation(); location.href = "lesson.html?n=" + encodeURIComponent(lesson.n); });
+      b.addEventListener("click", function (e) { e.stopPropagation(); location.href = "lesson.html?n=" + encodeURIComponent(lesson.n) + "&from=" + encodeURIComponent(lv.id); });
       list.appendChild(b);
       en.items.push({ el: b, lesson: lesson });
     });

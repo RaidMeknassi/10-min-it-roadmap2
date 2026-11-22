@@ -9,7 +9,7 @@
   try { done = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) { done = {}; }
   function save() { try { localStorage.setItem(KEY, JSON.stringify(done)); } catch (e) {} }
   var flat = [];
-  var allLevels = LEVELS.concat([LEVEL55]).concat((typeof INTERMEDIATE_LEVELS !== "undefined") ? INTERMEDIATE_LEVELS : []).concat((typeof COURSE_LEVELS !== "undefined") ? COURSE_LEVELS : []);
+  var allLevels = LEVELS.concat([LEVEL55]).concat((typeof LEVEL52 !== "undefined") ? [LEVEL52] : []).concat((typeof LEVEL53 !== "undefined") ? [LEVEL53] : []).concat((typeof INTERMEDIATE_LEVELS !== "undefined") ? INTERMEDIATE_LEVELS : []).concat((typeof COURSE_LEVELS !== "undefined") ? COURSE_LEVELS : []);
   allLevels.forEach(function (lv) { lv.lessons.forEach(function (r) { flat.push({ n: r[0], title: r[1], lab: !!r[2], level: lv }); }); });
   var qs = new URLSearchParams(location.search), main = $("lp"), tab = "lesson";
   function el(tag, cls, txt) { var e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; }
@@ -65,20 +65,26 @@
   }
 
   // ---------- one lesson ----------
-  var n = qs.get("n"), ix = -1;
-  flat.forEach(function (l, i) { if (l.n === n) ix = i; });
+  // the same lesson can sit in two places (e.g. a ServiceNow lesson in Level 5.1 and on the ServiceNow page):
+  // "from" says which place it was opened from; without it, the first place (the road map) is used
+  var n = qs.get("n"), from = qs.get("from"), ix = -1;
+  flat.forEach(function (l, i) { if (l.n === n && (ix < 0 || (from && l.level.id === from))) ix = i; });
   if (ix < 0) { location.replace("index.html"); return; }
+  function lblOf(it) {   // a level can number its lessons itself (Level 5 -> 5.4, Level 5.1 -> 5.1.7 ...)
+    if (it.level.lbl) { var k = -1; it.level.lessons.forEach(function (r, i) { if (k < 0 && r[0] === it.n) k = i; }); if (k >= 0) return it.level.lbl(k); }
+    return LBL[it.n] || it.n;
+  }
   var item = flat[ix], level = item.level, lvHref = level.href || ("level.html?l=" + level.id);
   // previous / next only move inside the same course (main road map, ITIL, or one tool)
   var grp = level.group || "", sib = flat.filter(function (l) { return (l.level.group || "") === grp; }), si = sib.indexOf(item);
-  document.title = "Lesson " + (LBL[item.n] || item.n) + " · " + item.title + " · 10-Minute IT Roadmap";
+  document.title = "Lesson " + lblOf(item) + " · " + item.title + " · 10-Minute IT Roadmap";
   main.style.setProperty("--c", level.color);
-  main.appendChild(crumbs((level.crumbs || [["Road map", "index.html#map"]]).concat([[level.name + " · " + level.title, lvHref], ["Lesson " + (LBL[item.n] || item.n)]])));
+  main.appendChild(crumbs((level.crumbs || [["Road map", "index.html#map"]]).concat([[level.name + " · " + level.title, lvHref], ["Lesson " + lblOf(item)]])));
 
   var head = el("div", "lp-head");
   head.innerHTML = '<span class="ico"></span><div class="lp-title"><p class="lp-track"></p><h1></h1></div><button type="button" class="lp-done"></button>';
-  head.querySelector(".ico").innerHTML = (level.id === "l55" || /^im\d+$/.test(level.id)) ? '<img src="assets/lesson-icons/' + item.n + '.png" alt="" width="64" height="64" style="border-radius:14px">' : level.group ? '<img src="assets/lesson-icons/' + item.n + '.png" alt="" width="64" height="64" style="border-radius:14px" onerror="var s=document.createElement(\'span\');s.className=\'cl-ico\';s.style.setProperty(\'--c\',\'' + level.color + '\');s.textContent=\'' + (LBL[item.n] || "") + '\';this.replaceWith(s)">' : iconSVG(item.n, level.color);
-  head.querySelector(".lp-track").textContent = level.name + " · Lesson " + (LBL[item.n] || item.n) + " · 10 min";
+  head.querySelector(".ico").innerHTML = (level.id === "l55" || /^im\d+$/.test(level.id)) ? '<img src="assets/lesson-icons/' + item.n + '.png" alt="" width="64" height="64" style="border-radius:14px">' : level.group ? '<img src="assets/lesson-icons/' + item.n + '.png" alt="" width="64" height="64" style="border-radius:14px" onerror="var s=document.createElement(\'span\');s.className=\'cl-ico\';s.style.setProperty(\'--c\',\'' + level.color + '\');s.textContent=\'' + lblOf(item) + '\';this.replaceWith(s)">' : iconSVG(item.n, level.color);
+  head.querySelector(".lp-track").textContent = level.name + " · Lesson " + lblOf(item) + " · 10 min";
   head.querySelector("h1").textContent = item.title;
   var db = head.querySelector(".lp-done");
   function dl() { db.textContent = done[item.n] ? "✓ Done" : "Mark as done"; db.classList.toggle("on", !!done[item.n]); }
@@ -122,10 +128,17 @@
   stage();
 
   var foot = el("div", "lp-foot");
-  function nb(l, txt) { var a = el("a", "lp-btn", txt); a.href = "lesson.html?n=" + encodeURIComponent(l.n); a.style.setProperty("--c", l.level.color); return a; }
-  foot.appendChild(si > 0 ? nb(sib[si - 1], "← " + sib[si - 1].title) : el("span"));
+  var ICON_PREV = '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>';
+  var ICON_NEXT = '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>';
+  function nb(l, dir) {
+    var a = el("a", "lp-btn lp-arrow lp-" + dir); a.href = "lesson.html?n=" + encodeURIComponent(l.n) + "&from=" + encodeURIComponent(l.level.id);
+    a.innerHTML = dir === "prev" ? ICON_PREV : ICON_NEXT;
+    var lbl = (dir === "prev" ? "Previous lesson: " : "Next lesson: ") + l.title; a.title = lbl; a.setAttribute("aria-label", lbl);
+    a.style.setProperty("--c", l.level.color); return a;
+  }
+  foot.appendChild(si > 0 ? nb(sib[si - 1], "prev") : el("span", "lp-arrow-gap"));
   var mid = el("a", "lp-btn lp-mid", "All " + level.name + " lessons"); mid.href = lvHref; foot.appendChild(mid);
-  foot.appendChild(si < sib.length - 1 ? nb(sib[si + 1], sib[si + 1].title + " →") : el("span"));
+  foot.appendChild(si < sib.length - 1 ? nb(sib[si + 1], "next") : el("span", "lp-arrow-gap"));
   main.appendChild(foot);
   var y = $("year"); if (y) y.textContent = new Date().getFullYear();
 })();

@@ -77,7 +77,7 @@
     head.appendChild(info); panel.appendChild(head);
     var ab = lv.cert ? certAbout(tool.id + "-" + i) : null; if (ab) panel.appendChild(ab);
     function lessonCard(r) {
-      var a = el("a", "lc" + (done[r[0]] ? " done" : "")); a.href = "lesson.html?n=" + encodeURIComponent(r[0]);
+      var a = el("a", "lc" + (done[r[0]] ? " done" : "")); a.href = "lesson.html?n=" + encodeURIComponent(r[0]) + "&from=" + encodeURIComponent(tool.id + "-" + i);
       a.innerHTML = '<span class="cl-ico"></span><span class="lc-body"><b></b><small></small></span><span class="lc-tags"></span><span class="lc-check">✓</span>';
       a.querySelector(".cl-ico").textContent = LBL[r[0]];
       a.querySelector("b").textContent = r[1];

@@ -952,3 +952,11 @@ a.cx-card:hover { border-color: var(--vc); transform: translateY(-2px); }
 
 .sp-langs { margin-top: 10px; border: 0; background: transparent; padding: 0; }
 .sp-langs .lang-sugg-t { display: none; }
+
+/* lesson page: previous / next as round arrow buttons, back-to-level in the middle */
+.lp-foot { display: flex; flex-direction: row !important; flex-wrap: nowrap !important; align-items: center !important; justify-content: space-between; gap: 10px; }
+.lp-foot .lp-arrow { flex: none; width: 52px; height: 52px; max-width: none; padding: 0; display: inline-grid; place-items: center; border-radius: 50%; }
+.lp-foot .lp-arrow-gap { flex: none; width: 52px; height: 52px; }
+.lp-foot .lp-mid { flex: 0 1 auto; min-width: 0; max-width: none; text-align: center; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+@media (max-width: 720px) { .lp-foot .lp-arrow, .lp-foot .lp-arrow-gap { width: 46px; height: 46px; } .lp-foot .lp-mid { font-size: 13px; padding: 10px 12px; } }
+@media (max-width: 720px) { .lp-foot .lp-mid { order: 0; } }
