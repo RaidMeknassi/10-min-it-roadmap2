@@ -315,6 +315,7 @@ const VIDEOS = {
   "microsoft365.0.4": "r0lm_sZLyMc", // OneDrive for IT Support (Level 5.2)
   "microsoft365.0.5": "nUr8xgQ1MjA", // SharePoint: Sites, Permissions & Access (Level 5.2)
   "microsoft365.0.6": "7FD5XMkWGsc", // Top 10 Microsoft 365 Issues (Level 5.2)
+  "slack.0.1": "08tCIiXc8Z8",      // Slack (Level 5.1)
   "linkedin.0.1": "1haDfgG7waE", // LinkedIn for IT Jobs
   "glassdoor.0.1": "MeM2IGOA6yM", // Glassdoor: research companies
   "indeed.0.1": "MI-nP0w4Wh8", // Indeed: search, filter and apply
