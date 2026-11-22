@@ -80,6 +80,8 @@
     var go = el("a", "sp-go", "Level 7 \u00B7 Advanced Specializations \u2192"); go.href = "level.html?l=l6"; tree.appendChild(go);
   } else if (i === 0) {
     tree.classList.add("sp-compact", "sp-treeview");
+    /* phones open this page in the desktop layout (whole tree visible, pinch to zoom) */
+    var vp = document.querySelector('meta[name="viewport"]'); if (vp && screen.width < 1000) vp.setAttribute("content", "width=1040");
     var lvCard = function (card, name) {
       card.classList.add("sp-lv");
       var im = document.createElement("img"); im.className = "sp-lv-ico"; im.alt = ""; im.width = 64; im.height = 64;
