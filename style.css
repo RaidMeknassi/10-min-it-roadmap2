@@ -949,3 +949,6 @@ a.cx-card:hover { border-color: var(--vc); transform: translateY(-2px); }
 .sp-path.sp-has-lessons { max-width: 720px; width: 100%; }
 .sp-lessons { margin-top: 12px; text-align: left; }
 .sp-lessons .cl-ico { --c: var(--pc); }
+
+.sp-langs { margin-top: 10px; border: 0; background: transparent; padding: 0; }
+.sp-langs .lang-sugg-t { display: none; }

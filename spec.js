@@ -26,6 +26,14 @@
   }
   function link() { return el("div", "sp-link"); }
 
+  /* "Languages to learn" box for this specialization */
+  function langStage() {
+    if (MID || typeof SPEC_LANGS === "undefined" || !SPEC_LANGS[P.name] || typeof langSuggestBox !== "function") return;
+    var box = langSuggestBox(SPEC_LANGS[P.name]); if (!box) return;
+    tree.appendChild(link());
+    var st = stage("Languages to learn", "Languages and formats you will use in this specialization.");
+    box.classList.add("sp-langs"); st.appendChild(box); tree.appendChild(st);
+  }
   function certStage() {
     var row = PATH_CERTS.filter(function (r) { return r[0] === P.name; })[0];
     if (!row) return;
@@ -95,6 +103,7 @@
     });
     tree.appendChild(grid);
     tree.appendChild(link());
+    langStage();
     certStage();
     tree.appendChild(link());
     tree.appendChild(stage("What's next?", "More labs, rooms and challenges will be added over time."));
@@ -110,6 +119,7 @@
     if (P.groups) P.groups.forEach(function (g) { tree.appendChild(link()); tree.appendChild(stage(g.title, g.text)); g.items.forEach(addItem); });
     else P.items.forEach(addItem);
     tree.appendChild(link());
+    langStage();
     certStage();
     tree.appendChild(link());
     tree.appendChild(stage("What's next?", "Lessons for this path will appear here as they are published."));

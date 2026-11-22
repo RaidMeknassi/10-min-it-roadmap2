@@ -163,9 +163,21 @@ function langGauge(pos, opts) {
   var vb = opts.labels ? "-44 -18 288 130" : "0 0 200 112";
   return '<svg class="lang-gauge' + (opts.cls ? " " + opts.cls : "") + '" viewBox="' + vb + '" role="img" aria-label="Level gauge">' + out.join("") + '</svg>';
 }
-/* strip of suggested languages (icons only) for a level/module */
+/* languages suggested on each Advanced specialization page */
+const SPEC_LANGS = {
+  "Cybersecurity": ["kql", "spl", "python", "powershell", "regex", "xml"],
+  "Network Engineering": ["python", "bash", "yaml"],
+  "Systems Engineering": ["powershell", "bash", "xml"],
+  "Cloud Computing": ["terraform", "yaml", "json", "python"],
+  "DevOps and Automation": ["yaml", "bash", "python", "go", "terraform"],
+  "Software Development": ["javascript", "typescript", "python", "csharp", "java"],
+  "Data and Artificial Intelligence": ["sql", "python", "json"],
+  "IT Support Engineering": ["powershell", "cmd"],
+  "Enterprise Systems": ["sql", "xml", "json", "javascript"]
+};
+/* strip of suggested languages (icons only) for a level/module (or a list of language ids) */
 function langSuggestBox(levelId) {
-  var ids = LANG_SUGGEST[levelId]; if (!ids) return null;
+  var ids = Array.isArray(levelId) ? levelId : LANG_SUGGEST[levelId]; if (!ids) return null;
   var box = document.createElement("div"); box.className = "lang-sugg";
   box.innerHTML = '<span class="lang-sugg-t">Languages to learn</span><div class="lang-sugg-icons"></div>';
   ids.forEach(function (id) {
