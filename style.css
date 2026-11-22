@@ -973,3 +973,29 @@ a.cx-card:hover { border-color: var(--vc); transform: translateY(-2px); }
 .lp-sum p{margin:0}
 .lp-sum ul{margin:0;padding-left:20px}
 .lp-sum li{margin:4px 0}
+/* Compact tree on phones (test: Cybersecurity specialization) */
+@media (max-width: 620px) {
+  .sp-compact .sp-stage { padding: 10px 14px; border-top-width: 3px; border-radius: 11px; width: min(330px, 100%); }
+  .sp-compact .sp-stage h2 { font-size: 15px; margin-bottom: 3px; }
+  .sp-compact .sp-stage p { font-size: 12px; line-height: 1.4; }
+  .sp-compact .sp-link { height: 14px; width: 2px; }
+  .sp-compact .sp-path { width: min(250px, 100%); padding: 8px 12px; border-left-width: 4px; border-radius: 10px; }
+  .sp-compact .sp-path b { font-size: 13px; line-height: 1.25; }
+  .sp-compact .sp-state { font-size: 11px; margin-top: 2px; }
+  .sp-compact .sp-bar { height: 3px; margin-top: 6px; }
+  .sp-compact .sp-path.sp-has-lessons { width: min(330px, 100%); }
+  .sp-compact .sp-groups { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 8px; }
+  .sp-compact .sp-group { padding: 10px 7px 12px; border-top-width: 3px; border-radius: 11px; }
+  .sp-compact .sp-group h3 { font-size: 13.5px; margin-bottom: 3px; }
+  .sp-compact .sp-group > p { font-size: 11px; line-height: 1.35; }
+  .sp-compact .sp-group .sp-path { width: 100%; padding: 7px 9px; }
+  .sp-compact .sp-group .sp-path b { font-size: 12px; }
+  .sp-compact .sp-group .sp-state { font-size: 10px; }
+  .sp-compact .sp-certs li { font-size: 11px; padding: 3px 8px; }
+  .sp-compact .sp-lessons { margin-top: 8px; }
+  .sp-compact .sp-lessons .lc { padding: 7px 9px; gap: 8px; margin-top: 6px; }
+  .sp-compact .sp-lessons .cl-ico { width: 34px; height: 34px; border-radius: 9px; font-size: 10px; }
+  .sp-compact .sp-lessons .lc-body b { font-size: 12.5px; line-height: 1.25; }
+  .sp-compact .sp-lessons .lc-body small { font-size: 10.5px; white-space: nowrap; }
+  .sp-compact .sp-lessons .tg { font-size: 8.5px; padding: 2px 6px; }
+}

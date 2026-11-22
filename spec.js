@@ -79,6 +79,7 @@
     tree.appendChild(stage("What's next?", "Continue to Level 7 and choose your Advanced Specialization."));
     var go = el("a", "sp-go", "Level 7 \u00B7 Advanced Specializations \u2192"); go.href = "level.html?l=l6"; tree.appendChild(go);
   } else if (i === 0) {
+    tree.classList.add("sp-compact");
     document.getElementById("sp-title").textContent = "Cyber Security Learning Roadmap";
     document.getElementById("sp-sub").textContent = "From fundamental principles to advanced techniques, this roadmap provides clear steps and essential resources to help you build a robust skill set.";
     tree.appendChild(stage("Computer Science Basics", "Acquire the basic computer science skills required to get started in cyber security."));
