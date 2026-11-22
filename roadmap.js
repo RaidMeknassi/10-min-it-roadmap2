@@ -95,7 +95,9 @@ const INTERMEDIATE_LEVELS = [
   { id: "im3", name: "Module 3", title: "Linux Administration", color: "#34d399",
     desc: "Manage Linux systems, servers, users and services.",
     lessons: [
-      ["im3.1","Linux File System Structure"],["im3.2","Linux Users and Groups"],
+      ["im3.1","Linux File System Structure"],
+      ["im3.12","Linux Folders Made Simple"],
+      ["im3.2","Linux Users and Groups"],
       ["im3.3","Linux Permissions and Ownership"],["im3.4","Linux Processes and Services"],
       ["im3.5","Package Management"],
       ["im3.9","Bash Fundamentals"]
@@ -161,7 +163,7 @@ const INTERMEDIATE_LEVELS = [
     ]}
 ];
 /* extra lessons that sit between two numbered lessons (shown as M1.4.1, M1.7.1 ...) */
-const SUB_LESSONS = ["im2.13", "im2.14"];
+const SUB_LESSONS = ["im2.13", "im2.14", "im3.12"];
 /* Build lesson labels for intermediate modules: M1.1, M1.2, … */
 INTERMEDIATE_LEVELS.forEach(function(lv, mi) {
   lv.name = "Module " + (mi + 1);   // modules are numbered by their position
