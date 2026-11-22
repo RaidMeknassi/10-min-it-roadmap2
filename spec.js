@@ -64,6 +64,13 @@
     return card;
   }
 
+  var lvCard = function (card, name) {
+    card.classList.add("sp-lv");
+    var im = document.createElement("img"); im.className = "sp-lv-ico"; im.alt = ""; im.width = 64; im.height = 64;
+    im.src = "assets/spec-icons/" + name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") + ".png?v=1"; im.onerror = function () { im.remove(); };
+    card.insertBefore(im, card.firstChild); return card;
+  };
+  tree.classList.add("sp-compact", "sp-treeview");
   if (MID) {
     document.title = "Intermediate · 10-Minute IT Roadmap";
     document.getElementById("sp-title").textContent = "Intermediate Learning Roadmap";
@@ -71,7 +78,7 @@
     tree.appendChild(stage("Level 6 \u00B7 Intermediate", "You finished the beginner levels. Now learn how real IT technologies work."));
     INTERMEDIATE.items.forEach(function (it) {
       tree.appendChild(link());
-      var c = pathCard(it[0], null, INTERMEDIATE.color, it[1]);
+      var c = lvCard(pathCard(it[0], null, INTERMEDIATE.color, it[1]), it[0]);
       if (it[2]) { var ul = el("ul", "sp-subs"); it[2].forEach(function (t) { ul.appendChild(el("li", "", t)); }); c.insertBefore(ul, c.querySelector(".sp-bar")); }
       tree.appendChild(c);
     });
@@ -79,15 +86,6 @@
     tree.appendChild(stage("What's next?", "Continue to Level 7 and choose your Advanced Specialization."));
     var go = el("a", "sp-go", "Level 7 \u00B7 Advanced Specializations \u2192"); go.href = "level.html?l=l6"; tree.appendChild(go);
   } else if (i === 0) {
-    tree.classList.add("sp-compact", "sp-treeview");
-    /* phones open this page in the desktop layout (whole tree visible, pinch to zoom) */
-    var vp = document.querySelector('meta[name="viewport"]'); if (vp && screen.width < 1000) vp.setAttribute("content", "width=1040");
-    var lvCard = function (card, name) {
-      card.classList.add("sp-lv");
-      var im = document.createElement("img"); im.className = "sp-lv-ico"; im.alt = ""; im.width = 64; im.height = 64;
-      im.src = "assets/spec-icons/" + name.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, "") + ".png?v=1"; im.onerror = function () { im.remove(); };
-      card.insertBefore(im, card.firstChild); return card;
-    };
     document.getElementById("sp-title").textContent = "Cyber Security Learning Roadmap";
     document.getElementById("sp-sub").textContent = "From fundamental principles to advanced techniques, this roadmap provides clear steps and essential resources to help you build a robust skill set.";
     tree.appendChild(stage("Computer Science Basics", "Acquire the basic computer science skills required to get started in cyber security."));
@@ -125,7 +123,7 @@
     function addItem(t) {
       tree.appendChild(link());
       var note = (typeof PATH_NOTES !== "undefined") && PATH_NOTES[t];
-      tree.appendChild(specLessonsCard(t) || pathCard(t, null, P.color, note ? note + " \u00B7 coming soon" : null));
+      tree.appendChild(specLessonsCard(t) || lvCard(pathCard(t, null, P.color, note ? note + " \u00B7 coming soon" : null), t));
     }
     if (P.groups) P.groups.forEach(function (g) { tree.appendChild(link()); tree.appendChild(stage(g.title, g.text)); g.items.forEach(addItem); });
     else P.items.forEach(addItem);

@@ -1071,3 +1071,4 @@ a.cx-card:hover { border-color: var(--vc); transform: translateY(-2px); }
   .sp-treeview .sp-group .sp-lv .sp-state { font-size: 9.5px; }
   .sp-treeview .sp-lv .sp-bar { height: 3px; margin-top: 4px; }
 }
+.sp-treeview .sp-lv > b:first-child, .sp-treeview .sp-lv > b:first-child ~ * { grid-column: 1 / -1; }
