@@ -311,6 +311,10 @@ const VIDEOS = {
   "rdp.0.1": "1RHpe7gc_Po",        // Microsoft Remote Desktop (RDP) (Level 5.1)
   "teamviewer.0.1": "aMg-MOJWcoo", // TeamViewer for IT Support (Level 5.1)
   "anydesk.0.1": "pbgu2ydPWXg",    // AnyDesk for IT Support (Level 5.1)
+  "microsoft365.0.2": "Bi4pZ9m2sJA", // Outlook for IT Support (Level 5.2)
+  "microsoft365.0.4": "r0lm_sZLyMc", // OneDrive for IT Support (Level 5.2)
+  "microsoft365.0.5": "nUr8xgQ1MjA", // SharePoint: Sites, Permissions & Access (Level 5.2)
+  "microsoft365.0.6": "7FD5XMkWGsc", // Top 10 Microsoft 365 Issues (Level 5.2)
   "linkedin.0.1": "1haDfgG7waE", // LinkedIn for IT Jobs
   "glassdoor.0.1": "MeM2IGOA6yM", // Glassdoor: research companies
   "indeed.0.1": "MI-nP0w4Wh8", // Indeed: search, filter and apply
