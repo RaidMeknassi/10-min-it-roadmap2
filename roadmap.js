@@ -322,6 +322,17 @@ const VIDEOS = {
   "jira.0.2": "7xUB-mSc-AQ",         // Jira: Service Projects, Queues & Requests (Level 5.1)
   "jira.0.3": "_Ujdr1p9Uu0",         // How to Get a FREE Jira Cloud Site (Level 5.1)
   "jira.0.1": "Cjdh9ZMLVSo",         // What Is Jira Service Management? (Level 5.1)
+  "im2.1":  "B5bl2iICzkc", // What a Windows Admin Does
+  "im2.2":  "nhuogqgvBgU", // Managing Users and Groups
+  "im2.3":  "FioiwHD4WQY", // NTFS Permissions and File Sharing
+  "im2.4":  "4Jstj_OvdrM", // Windows Services and Processes
+  "im2.13": "p-JWuZHxH3U", // What Is the Windows Registry?
+  "im2.5":  "nEusztqABN8", // Windows Registry and System Configuration
+  "im2.6":  "m-DRuyJQYgc", // Windows Event Logs
+  "im2.7":  "GWsHB4EgjTc", // Windows Updates and Troubleshooting
+  "im2.14": "GCOOZXDblYM", // CMD vs PowerShell
+  "im2.8":  "5r3unso1fo4", // CMD Fundamentals
+  "im2.10": "9aGTvgEiA10", // PowerShell Fundamentals
   "linkedin.0.1": "1haDfgG7waE", // LinkedIn for IT Jobs
   "glassdoor.0.1": "MeM2IGOA6yM", // Glassdoor: research companies
   "indeed.0.1": "MI-nP0w4Wh8", // Indeed: search, filter and apply
