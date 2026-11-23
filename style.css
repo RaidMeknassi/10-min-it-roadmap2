@@ -1100,3 +1100,24 @@ a.cx-card:hover { border-color: var(--vc); transform: translateY(-2px); }
 .adv-mod h3 { margin: 0 0 8px; font-size: 16px; }
 @media (max-width: 900px) { .adv-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 560px) { .adv-grid { grid-template-columns: 1fr; } }
+/* Network Engineering map (nodes, fan-out and join lines) */
+.nt-map .sp-link { background: var(--c); opacity: 1; }
+.nt-node { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; text-decoration: none; color: #fff; box-sizing: border-box; min-height: 58px; padding: 9px 10px; border-radius: 14px; width: 100%;
+  border: 1px solid rgba(255,255,255,.22);
+  background: radial-gradient(120% 95% at 100% 0%, color-mix(in srgb, var(--c) 55%, #fff) 0%, transparent 58%), linear-gradient(150deg, color-mix(in srgb, var(--c) 80%, #000) 0%, color-mix(in srgb, var(--c) 42%, #0a0c18) 100%);
+  box-shadow: 0 10px 24px -14px color-mix(in srgb, var(--c) 80%, #000), inset 0 1px 0 rgba(255,255,255,.25); transition: transform .15s, box-shadow .2s; }
+a.nt-node:hover { transform: translateY(-2px); box-shadow: 0 0 22px -6px var(--c); }
+.nt-node b { font-size: 14px; line-height: 1.25; text-shadow: 0 1px 6px rgba(0,0,0,.25); }
+.nt-node small { font-size: 11px; color: rgba(255,255,255,.82); margin-top: 3px; }
+.nt-node.nt-off { opacity: .8; filter: saturate(.7); }
+.nt-wide { width: min(340px, 100%); min-height: 62px; }
+.nt-row { --g: 12px; display: grid; grid-template-columns: repeat(var(--n), minmax(0, 1fr)); gap: var(--g); width: 100%; }
+.nt-col { position: relative; display: flex; flex-direction: column; align-items: center; }
+.nt-col::before, .nt-join .nt-col::after { content: ""; position: absolute; height: 2px; background: var(--c); left: calc(var(--g) / -2); right: calc(var(--g) / -2); }
+.nt-col::before { top: 0; }
+.nt-join .nt-col::after { bottom: 0; }
+.nt-col:first-child::before, .nt-join .nt-col:first-child::after { left: calc(50% - 1px); }
+.nt-col:last-child::before, .nt-join .nt-col:last-child::after { right: calc(50% - 1px); }
+.nt-stub { width: 2px; height: 18px; background: var(--c); flex: none; }
+.nt-col .nt-node { flex: 1 1 auto; }
+.nt-map .sp-has-lessons { scroll-margin-top: 90px; }

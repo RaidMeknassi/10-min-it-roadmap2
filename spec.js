@@ -120,6 +120,58 @@
     document.getElementById("sp-title").textContent = P.title || (P.name + " Learning Roadmap");
     document.getElementById("sp-sub").textContent = "This specialization is coming soon. Here is the path we are planning, step by step.";
     tree.appendChild(stage("Start here", "Finish Levels 0 to 5 on the main road map first, then follow this path."));
+    function nodeRow(items, join) {
+      var row = el("div", "nt-row" + (join ? " nt-join" : "")); row.style.setProperty("--n", items.length);
+      items.forEach(function (it) {
+        var col = el("div", "nt-col");
+        col.appendChild(el("span", "nt-stub nt-top"));
+        var n = el(it.href ? "a" : "div", "nt-node" + (it.href ? "" : " nt-off")); if (it.href) n.href = it.href;
+        n.appendChild(el("b", "", it.t)); n.appendChild(el("small", "", it.sub));
+        col.appendChild(n);
+        if (join) col.appendChild(el("span", "nt-stub nt-bot"));
+        row.appendChild(col);
+      });
+      return row;
+    }
+    function ntBox(t, href, sub) { var n = el(href ? "a" : "div", "nt-node nt-wide"); if (href) n.href = href; n.appendChild(el("b", "", t)); if (sub) n.appendChild(el("small", "", sub)); return n; }
+    function cnt(name) { return SPEC_LESSONS[name] ? SPEC_LESSONS[name].lessons.length + " lessons" : "coming soon"; }
+    function anc(name) { return SPEC_LESSONS[name] ? "#" + name.toLowerCase().replace(/[^a-z0-9]+/g, "-") : null; }
+    if (i === 1) {
+      /* Network Engineering: roadmap map (fundamentals -> advanced -> five branches -> professional specializations -> careers) */
+      document.getElementById("sp-title").textContent = P.title;
+      document.getElementById("sp-sub").textContent = "A map from networking basics to a professional network career. Click a box to jump to its lessons.";
+      tree.classList.add("nt-map");
+      tree.innerHTML = "";   // the map starts at Networking Fundamentals
+      tree.appendChild(ntBox("Networking Fundamentals", "level.html?l=l3", "Beginner Level 3 + Intermediate Module 1")); tree.appendChild(link());
+      tree.appendChild(ntBox("Advanced Networking", null, "Configure, operate, troubleshoot and secure real networks")); tree.appendChild(link());
+      tree.appendChild(nodeRow([
+        { t: "Advanced Switching", href: anc("Switching Technologies"), sub: cnt("Switching Technologies") },
+        { t: "Advanced Routing", href: anc("Routing Technologies"), sub: cnt("Routing Technologies") },
+        { t: "Network Security", href: anc("Network Security"), sub: cnt("Network Security") },
+        { t: "Troubleshooting", href: anc("Troubleshooting and Monitoring"), sub: cnt("Troubleshooting and Monitoring") },
+        { t: "High Availability", href: null, sub: "coming soon" }], true));
+      tree.appendChild(link());
+      tree.appendChild(ntBox("Professional Specializations", null, "Choose the field you want. You do not need to study every one.")); tree.appendChild(link());
+      tree.appendChild(nodeRow([
+        { t: "Network Engineer", href: null, sub: "core path" },
+        { t: "Network Security Engineer", href: anc("Advanced Network Security"), sub: cnt("Advanced Network Security") },
+        { t: "Cloud Network Engineer", href: anc("Cloud Networking"), sub: cnt("Cloud Networking") },
+        { t: "Wireless Network Engineer", href: anc("Wireless Networking"), sub: cnt("Wireless Networking") },
+        { t: "Data Center Engineer", href: anc("Data Center Networking"), sub: cnt("Data Center Networking") },
+        { t: "Network Automation Engineer", href: anc("Network Automation and Programmability"), sub: cnt("Network Automation and Programmability") },
+        { t: "ISP / Telecom Engineer", href: anc("Service Provider and Telecom Networking"), sub: cnt("Service Provider and Telecom Networking") }], false));
+      P.groups.forEach(function (g) {
+        tree.appendChild(link()); tree.appendChild(stage(g.title + " · lessons", g.text));
+        g.items.forEach(function (t) {
+          tree.appendChild(link());
+          var c = specLessonsCard(t); c.id = anc(t).slice(1); tree.appendChild(c);
+        });
+      });
+      tree.appendChild(link()); langStage(); certStage();
+      tree.appendChild(link());
+      tree.appendChild(stage("What's next?", "Lessons for this path will appear here as they are published."));
+      return;
+    }
     function addItem(t) {
       tree.appendChild(link());
       var note = (typeof PATH_NOTES !== "undefined") && PATH_NOTES[t];
