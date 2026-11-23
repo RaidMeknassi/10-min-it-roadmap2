@@ -31,7 +31,7 @@
   function link() { return el("div", "adv-link"); }
   function stage(title, text) { var s = el("div", "adv-stage"); s.appendChild(el("h2", "", title)); if (text) s.appendChild(el("p", "", text)); return s; }
 
-  root.appendChild(stage("Advanced modules", "The same modules as the Intermediate level, one level deeper. Advanced lessons are added here as they are published."));
+  root.appendChild(stage("Advanced modules", "The same modules as the Intermediate level, one level deeper. Hover or tap a module to see its lessons."));
   root.appendChild(link());
   var road = el("div", "road adv-road"); var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg"); svg.setAttribute("class", "road-lines"); road.appendChild(svg);
   var lev = el("div", "levels"); road.appendChild(lev);
@@ -40,11 +40,29 @@
     var lv = IL[i], L = lessonsOf(lv), dn = 0; L.forEach(function (r) { if (done[r[0]]) dn++; });
     var w = el("div", "lv"); w.style.setProperty("--c", lv.color);
     w.innerHTML = '<a class="lv-card" style="text-decoration:none"><span class="badge"></span><h2></h2><div class="lv-meta"></div><div class="lv-bar"><i></i></div></a>';
-    var c = w.querySelector(".lv-card"); if (L.length) c.href = "#adv-" + lv.id; else c.style.cursor = "default";
+    var c = w.querySelector(".lv-card"); c.style.cursor = "default";
     w.querySelector(".badge").textContent = "Module " + (i + 1);
     w.querySelector("h2").textContent = lv.title.replace(/^Intermediate /, "");
     w.querySelector(".lv-meta").textContent = L.length ? L.length + " lessons \u00B7 " + dn + " / " + L.length + " done" : "Lessons coming soon";
     w.querySelector(".lv-bar i").style.width = (L.length ? dn / L.length * 100 : 0) + "%";
+    if (L.length) {
+      if (i === 1 || i === 3) w.classList.add("flip");
+      var fo = el("div", "flyout"); fo.innerHTML = '<div class="flyout-card"><div class="fl-head"></div><div class="fl-list"></div></div>';
+      fo.querySelector(".fl-head").textContent = "Advanced \u00B7 " + lv.title.replace(/^Intermediate /, "");
+      var fl = fo.querySelector(".fl-list"), secs = sectionsOf(lv);
+      secs.forEach(function (sec) {
+        if (secs.length > 1) { var h = el("div", "fl-head", sec.title); h.style.fontSize = "11px"; h.style.opacity = ".85"; fl.appendChild(h); }
+        sec.lessons.forEach(function (r) {
+          var b = el("button", "fl-item"); b.type = "button"; b.style.setProperty("--c", lv.color);
+          b.innerHTML = '<span class="fl-num"></span><span class="fl-title"></span>';
+          b.querySelector(".fl-num").textContent = (typeof LBL !== "undefined" && LBL[r[0]]) || ""; b.querySelector(".fl-title").textContent = r[1];
+          if (done[r[0]]) b.classList.add("done");
+          b.addEventListener("click", function () { location.href = "lesson.html?n=" + encodeURIComponent(r[0]); });
+          fl.appendChild(b);
+        });
+      });
+      w.appendChild(fo);
+    }
     parent.appendChild(w); cards[i] = { el: c, color: lv.color }; return w;
   }
   function single(i) { var d = el("div", "final"); d.style.marginTop = "56px"; lev.appendChild(d); card(i, d); }
@@ -66,28 +84,4 @@
   }
   window.addEventListener("load", draw); window.addEventListener("resize", draw); draw();
 
-  var any = IL.some(function (lv) { return lessonsOf(lv).length; });
-  if (any) {
-    root.appendChild(link()); root.appendChild(stage("Lessons by module", "Open a lesson to start."));
-    IL.forEach(function (lv) {
-      var L = lessonsOf(lv); if (!L.length) return;
-      root.appendChild(link());
-      var box = el("div", "adv-mod"); box.id = "adv-" + lv.id; box.appendChild(el("h3", "", "Advanced · " + lv.title.replace(/^Intermediate /, "")));
-      sectionsOf(lv).forEach(function (sec) {
-        if (sectionsOf(lv).length > 1) box.appendChild(el("h4", "adv-sec", sec.title));
-        var list = el("div", "lvlist sp-lessons");
-        sec.lessons.forEach(function (r) {
-          var a = el("a", "lc" + (done[r[0]] ? " done" : "")); a.href = "lesson.html?n=" + encodeURIComponent(r[0]);
-          a.innerHTML = '<span class="cl-ico"></span><span class="lc-body"><b></b><small></small></span><span class="lc-tags"></span><span class="lc-check">\u2713</span>';
-          a.querySelector(".cl-ico").textContent = (typeof LBL !== "undefined" && LBL[r[0]]) || r[0]; a.querySelector("b").textContent = r[1];
-          a.querySelector("small").textContent = "Lesson " + ((typeof LBL !== "undefined" && LBL[r[0]]) || "") + " \u00B7 10 min";
-          var tg = (typeof lessonTags === "function") ? lessonTags(r[0]) : [];
-          tg.forEach(function (x) { a.querySelector(".lc-tags").appendChild(el("span", "tg " + x[1], x[0])); });
-          list.appendChild(a);
-        });
-        box.appendChild(list);
-      });
-      root.appendChild(box);
-    });
-  }
 })();
