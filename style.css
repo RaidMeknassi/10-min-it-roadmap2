@@ -1121,3 +1121,19 @@ a.nt-node:hover { transform: translateY(-2px); box-shadow: 0 0 22px -6px var(--c
 .nt-stub { width: 2px; height: 18px; background: var(--c); flex: none; }
 .nt-col .nt-node { flex: 1 1 auto; }
 .nt-map .sp-has-lessons { scroll-margin-top: 90px; }
+/* Intermediate map */
+.im-root { --c: #38bdf8; }
+.im-map { width: 100%; display: flex; flex-direction: column; align-items: center; }
+.im-link { width: 2px; height: 26px; background: #38bdf8; opacity: .9; flex: none; }
+.im-link.im-dash { background: none; border-left: 2px dashed var(--lc, #34d399); }
+.nt-two { max-width: 760px; }
+.nt-col > .nt-stub:not(.nt-top):not(.nt-bot) { height: 26px; }
+.im-mod { width: min(860px, 100%); border-left-color: var(--c); scroll-margin-top: 90px; }
+.im-mod-h { display: flex; justify-content: space-between; align-items: baseline; gap: 10px; text-decoration: none; color: inherit; margin-bottom: 8px; flex-wrap: wrap; }
+.im-mod-h h3 { margin: 0; font-size: 17px; } .im-mod-h span { font-size: 12.5px; color: var(--c); }
+.im-mod .lang-sugg { margin: 0 0 10px; }
+.im-mod .cl-ico { background: none; box-shadow: none; }
+.im-map .final.itil-rec-node { margin-top: 0; padding: 0; }
+.im-map .im-link.im-dash { height: 34px; }
+.im-map .itil-rec-card { background: rgba(15,23,42,.85); }
+.im-map .itil-rec-gt { color: #e2e8f0; }
