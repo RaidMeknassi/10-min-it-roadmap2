@@ -523,14 +523,16 @@ const TRACKS = {
 /* Advanced level: the same 9 modules as Intermediate. Lessons already published are collected from SPEC_LESSONS; new ones are added below. */
 const ADV_NEW = {"im2": {"tag": "AWN", "lessons": [[1, "Windows Server Roles and Features"], [2, "DNS and DHCP on Windows Server"], [3, "Advanced PowerShell Scripting"], [4, "PowerShell Remoting and Automation"], [5, "Windows Performance Monitoring"], [6, "Windows Security Hardening"], [7, "Windows Server Backup and Recovery"], [8, "Troubleshooting Windows Boot and Startup Problems"]]}, "im5": {"tag": "AAD", "lessons": [[1, "Active Directory Sites and Replication"], [2, "FSMO Roles"], [3, "Advanced Group Policy Design and Troubleshooting"], [4, "Kerberos in Depth"], [5, "Active Directory Security and Tiered Administration"], [6, "Hybrid Identity with Microsoft Entra ID Connect"], [7, "Active Directory Backup and Disaster Recovery"]]}, "im8": {"tag": "AWB", "lessons": [[1, "TLS and Certificates in Depth"], [2, "Nginx and Apache Configuration"], [3, "Reverse Proxies and Load Balancers"], [4, "Caching and CDNs"], [5, "Web Application Security and the OWASP Top 10"], [6, "HTTP/2 and HTTP/3"], [7, "Web Performance and Troubleshooting"]]}, "im10": {"tag": "AVC", "lessons": [[1, "VMware vSphere and Hyper-V Administration"], [2, "Live Migration and High Availability for Virtual Machines"], [3, "Docker Images and Dockerfiles"], [4, "Docker Networking and Volumes"], [5, "Docker Compose"], [6, "Kubernetes Fundamentals"], [7, "Container Security"]]}, "im7": {"tag": "ADB", "lessons": [[1, "Advanced SQL: Joins, Subqueries and Window Functions"], [2, "Indexes and Query Optimization"], [3, "Transactions, ACID and Locking"], [4, "Database Replication and High Availability"], [5, "Database Security and Auditing"], [6, "NoSQL Databases in Practice"], [7, "Backup Strategies and Point-in-Time Recovery"]]}, "im11": {"tag": "ACL", "lessons": [[1, "Cloud Identity and Access Management"], [2, "Infrastructure as Code with Terraform"], [3, "Cloud Monitoring and Logging"], [4, "Cloud High Availability and Disaster Recovery"], [5, "Serverless Computing"], [6, "Containers in the Cloud"], [7, "Cloud Cost Management (FinOps)"], [8, "Cloud Security Posture Management"]]}};
 const ADV_FROM_SPEC = {
-  im4: ["Switching Technologies", "Routing Technologies", "Network Security", "Troubleshooting and Monitoring", "High Availability", "Advanced Network Security", "Wireless Networking", "Cloud Networking", "Data Center Networking", "Network Automation and Programmability", "Service Provider and Telecom Networking", "Network Architecture and Design"],
+  im4: ["Switching Technologies", "Routing Technologies", "Network Security", "Troubleshooting and Monitoring", "High Availability"],
   im3: ["Linux Server", "Operating System Internals"],
   im9: ["SIEM and Incident Response"]
 };
+const ADV_SEC_NAME = { "Switching Technologies": "Advanced Switching", "Routing Technologies": "Advanced Routing", "Troubleshooting and Monitoring": "Troubleshooting" };
+const ADV_TITLE = { im4: "Advanced Networking" };
 const ADVANCED_LEVELS = INTERMEDIATE_LEVELS.map(function (lv) {
-  var rows = [];
-  (ADV_FROM_SPEC[lv.id] || []).forEach(function (n) { if (SPEC_LESSONS[n]) SPEC_LESSONS[n].lessons.forEach(function (r) { rows.push(r); }); });
+  var rows = [], sections = [];
+  (ADV_FROM_SPEC[lv.id] || []).forEach(function (n) { if (SPEC_LESSONS[n]) { sections.push({ title: ADV_SEC_NAME[n] || n, from: rows.length }); SPEC_LESSONS[n].lessons.forEach(function (r) { rows.push(r); }); } });
   if (ADV_NEW[lv.id]) ADV_NEW[lv.id].lessons.forEach(function (r) { var key = "av." + lv.id + "." + r[0]; LBL[key] = ADV_NEW[lv.id].tag + "." + r[0]; rows.push([key, r[1]]); });
-  var t = lv.title.replace(/^Intermediate /, "");
-  return { id: "adv-" + lv.id, name: "Advanced Module " + (INTERMEDIATE_LEVELS.indexOf(lv) + 1), title: t, color: lv.color, desc: "Go deeper in " + t + ".", lessons: rows };
+  var t = ADV_TITLE[lv.id] || lv.title.replace(/^Intermediate /, "");
+  return { id: "adv-" + lv.id, name: "Advanced Module " + (INTERMEDIATE_LEVELS.indexOf(lv) + 1), title: t, color: lv.color, desc: "Go deeper in " + t + ".", lessons: rows, sections: sections.length > 1 ? sections : [] };
 });

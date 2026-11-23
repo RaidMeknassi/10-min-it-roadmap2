@@ -1160,3 +1160,4 @@ a.nt-node:hover { transform: translateY(-2px); box-shadow: 0 0 22px -6px var(--c
 .sp-gl { text-align: center; font-weight: 800; font-size: 17px; line-height: 1.15; color: #fff; }
 .sp-gl span, .sp-gl b { display: block; }
 .sp-gl b { color: var(--pc); }
+.lvlist > .adv-sec { grid-column: 1 / -1; margin: 14px 0 2px; font-size: 14px; letter-spacing: .04em; text-transform: uppercase; color: var(--c, #a78bfa); }

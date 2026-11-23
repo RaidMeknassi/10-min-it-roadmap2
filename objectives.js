@@ -108,9 +108,9 @@ const LEVEL_OBJECTIVES = {
   "Find vulnerabilities and watch systems with logs and monitoring"
  ],
  "adv-im4": [
-  "Configure and troubleshoot switching, routing and network security",
-  "Monitor, protect and design enterprise networks",
-  "Choose a networking specialization such as wireless, cloud, data center or automation"
+  "Configure and troubleshoot VLANs, trunks, STP, OSPF, EIGRP and BGP",
+  "Secure, monitor and troubleshoot a real network",
+  "Keep networks available with HSRP/VRRP, redundant links and failover"
  ],
  "adv-im2": [
   "Manage Windows Server roles, DNS and DHCP",

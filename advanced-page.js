@@ -18,9 +18,7 @@
   function link() { return el("div", "adv-link"); }
   function stage(title, text) { var s = el("div", "adv-stage"); s.appendChild(el("h2", "", title)); if (text) s.appendChild(el("p", "", text)); return s; }
 
-  root.appendChild(stage("Advanced modules", "The same modules as the Intermediate level, one level deeper. Click a module to open its lessons."));
-  root.appendChild(link());
-  var road = el("div", "road adv-road"); var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg"); svg.setAttribute("class", "road-lines"); road.appendChild(svg);
+var road = el("div", "road adv-road"); var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg"); svg.setAttribute("class", "road-lines"); road.appendChild(svg);
   var lev = el("div", "levels"); road.appendChild(lev);
   var cards = [];
   function card(i, parent) {

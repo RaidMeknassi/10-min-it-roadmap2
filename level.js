@@ -84,6 +84,7 @@
   } else {
     var c = 0;
     lv.lessons.forEach(function (row, rk) {
+      (lv.sections || []).forEach(function (sc) { if (sc.from === rk) list.appendChild(el("h3", "adv-sec", sc.title)); });
       var n = row[0], a = el("a", "lc" + (done[n] ? " done" : "")); a.href = "lesson.html?n=" + encodeURIComponent(n) + "&from=" + encodeURIComponent(lv.id);
       if (done[n]) c++;
       a.innerHTML = '<span class="ico"></span><span class="lc-body"><b></b><small></small></span><span class="lc-tags"></span><span class="lc-check">✓</span>';
