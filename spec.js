@@ -88,14 +88,12 @@
   } else if (i === 0) {
     document.getElementById("sp-title").textContent = "Cyber Security Learning Roadmap";
     document.getElementById("sp-sub").textContent = "From fundamental principles to advanced techniques, this roadmap provides clear steps and essential resources to help you build a robust skill set.";
-    tree.appendChild(stage("Computer Science Basics", "Acquire the basic computer science skills required to get started in cyber security."));
+    tree.appendChild(stage("Cyber Security Foundations", "Acquire the basic computer science skills required to get started, then develop the cyber security skills needed to enter any career in the industry."));
     tree.appendChild(link()); tree.appendChild(lvCard(pathCard("Pre-Security Basics"), "Pre-Security Basics"));
-    tree.appendChild(link());
-    tree.appendChild(stage("Cyber Security Foundations", "Develop cyber security skills needed to enter any career in the industry."));
     tree.appendChild(link()); tree.appendChild(lvCard(pathCard("Cybersecurity Foundations 101"), "Cybersecurity Foundations 101"));
-    var siem = specLessonsCard("SIEM and Incident Response"); if (siem) { tree.appendChild(link()); tree.appendChild(siem); }
     tree.appendChild(link());
-    tree.appendChild(stage("Cyber Security Career Skills", "Master the specific skills necessary for your career of interest. Not sure which career path is right for you? Look at the groups below and pick the one that fits you."));
+    var note = stage("Cyber Security Career Skills", "Master the specific skills necessary for your career of interest. Not sure which career path is right for you? Look at the groups below and pick the one that fits you.");
+    note.classList.add("sp-note"); tree.appendChild(note);
     tree.appendChild(link());
     var grid = el("div", "sp-groups");
     var groups = TRACKS.l7.concat([]);
