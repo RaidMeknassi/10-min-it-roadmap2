@@ -129,12 +129,13 @@ const INTERMEDIATE_LEVELS = [
       ["im8.5","HTTP and HTTPS"],["im8.6","Understanding Web Servers"],
       ["im8.7","APIs and REST Fundamentals"],["im8.8","How Web Applications Communicate with Databases"]
     ]},
-  { id: "im9", name: "Module 9", title: "Cybersecurity Practices", color: "#f87171",
-    desc: "Apply security concepts and understand defensive tools.",
+  { id: "im10", name: "Module 10", title: "Virtualization and Containers", color: "#4ade80",
+    desc: "Create and manage virtual environments.",
     lessons: [
-      ["im9.1","Security Principles and CIA Triad"],["im9.2","Authentication and Access Control"],
-      ["im9.3","Encryption and Hashing"],["im9.4","Firewalls and Endpoint Security"],
-      ["im9.5","Vulnerabilities and Vulnerability Assessment"],["im9.6","Security Monitoring and Logging"]
+      ["im10.1","Understanding Virtualization"],["im10.2","Virtual Machines and Hypervisors"],
+      ["im10.3","VirtualBox, VMware and Hyper-V"],["im10.4","Virtual Networks and Virtual Storage"],
+      ["im10.5","Understanding Containers"],["im10.6","Docker Fundamentals"],
+      ["im10.7","Containers vs Virtual Machines"]
     ]},
   { id: "im7", name: "Module 7", title: "Database Fundamentals", color: "#fb923c",
     desc: "Understand how applications store and manage data.",
@@ -144,14 +145,6 @@ const INTERMEDIATE_LEVELS = [
       ["im7.6","Primary Keys and Foreign Keys"],
       ["im7.7","Database Relationships"],["im7.8","Database Backup and Recovery"]
     ]},
-  { id: "im10", name: "Module 10", title: "Virtualization and Containers", color: "#4ade80",
-    desc: "Create and manage virtual environments.",
-    lessons: [
-      ["im10.1","Understanding Virtualization"],["im10.2","Virtual Machines and Hypervisors"],
-      ["im10.3","VirtualBox, VMware and Hyper-V"],["im10.4","Virtual Networks and Virtual Storage"],
-      ["im10.5","Understanding Containers"],["im10.6","Docker Fundamentals"],
-      ["im10.7","Containers vs Virtual Machines"]
-    ]},
   { id: "im11", name: "Module 11", title: "Cloud Computing Fundamentals", color: "#22d3ee",
     desc: "Understand cloud infrastructure and services.",
     lessons: [
@@ -160,7 +153,14 @@ const INTERMEDIATE_LEVELS = [
       ["im11.5","Cloud Storage and Compute"],["im11.6","Microsoft Azure Fundamentals"],
       ["im11.7","AWS Fundamentals"],
       ["im11.9","Google Cloud Platform (GCP) Fundamentals"],["im11.8","Cloud Security and Identity Basics"]
-    ]}
+    ]},
+  { id: "im9", name: "Module 9", title: "Cybersecurity Practices", color: "#f87171",
+    desc: "Apply security concepts and understand defensive tools.",
+    lessons: [
+      ["im9.1","Security Principles and CIA Triad"],["im9.2","Authentication and Access Control"],
+      ["im9.3","Encryption and Hashing"],["im9.4","Firewalls and Endpoint Security"],
+      ["im9.5","Vulnerabilities and Vulnerability Assessment"],["im9.6","Security Monitoring and Logging"]
+    ]},
 ];
 /* extra lessons that sit between two numbered lessons (shown as M1.4.1, M1.7.1 ...) */
 const SUB_LESSONS = ["im2.13", "im2.14"];

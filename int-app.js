@@ -45,9 +45,9 @@
   mapEl.appendChild(br1);
   mapEl.appendChild(br2);
   mapEl.appendChild(mid2);
-  var mid3 = document.createElement("div"); mid3.className = "final"; // Databases
-  mapEl.appendChild(mid3);
-  mapEl.appendChild(br3);
+  var mid3 = document.createElement("div"); mid3.className = "final"; mapEl.appendChild(mid3);
+  var mid4 = document.createElement("div"); mid4.className = "final"; mapEl.appendChild(mid4);
+  var mid5 = document.createElement("div"); mid5.className = "final"; mapEl.appendChild(mid5);
   // recommended ITIL certification at the end of the tree
   var recEl = document.createElement("div"); recEl.className = "final itil-rec-node";
   var recCard = (typeof itilRecCard === "function") ? itilRecCard("itilpath") : null;
@@ -116,16 +116,16 @@
 
   /* ---- build tree ----
      Networking -> split [Windows -> Active Directory] and [Linux -> Web]
-     -> join at Cybersecurity -> Databases -> split [Virtualization] [Cloud] */
+     -> join at Virtualization -> Databases -> Cloud -> Cybersecurity */
   makeLevel(INTERMEDIATE_LEVELS[0], trunk, false); // 0 Networking
   makeLevel(INTERMEDIATE_LEVELS[1], br1,   true);  // 1 Windows
   makeLevel(INTERMEDIATE_LEVELS[2], br1,   false); // 2 Linux
   makeLevel(INTERMEDIATE_LEVELS[3], br2,   true);  // 3 Active Directory
   makeLevel(INTERMEDIATE_LEVELS[4], br2,   false); // 4 Web
-  makeLevel(INTERMEDIATE_LEVELS[5], mid2,  false); // 5 Cybersecurity
+  makeLevel(INTERMEDIATE_LEVELS[5], mid2,  false); // 5 Virtualization
   makeLevel(INTERMEDIATE_LEVELS[6], mid3,  false); // 6 Databases
-  makeLevel(INTERMEDIATE_LEVELS[7], br3,   true);  // 7 Virtualization
-  makeLevel(INTERMEDIATE_LEVELS[8], br3,   false); // 8 Cloud
+  makeLevel(INTERMEDIATE_LEVELS[7], mid4,  false); // 7 Cloud
+  makeLevel(INTERMEDIATE_LEVELS[8], mid5,  false); // 8 Cybersecurity
 
   /* ---- connecting lines ---- */
   function drawRoad() {
@@ -154,9 +154,8 @@
     } else {
       link(0, 1); link(0, 2);        // Networking splits to Windows & Linux
       link(1, 3); link(2, 4);        // Windows -> AD, Linux -> Web
-      link(3, 5); link(4, 5);        // join at Cybersecurity
-      link(5, 6);                    // Databases
-      link(6, 7); link(6, 8);        // split to Virtualization & Cloud
+      link(3, 5); link(4, 5);        // join at Virtualization
+      link(5, 6); link(6, 7); link(7, 8); // Databases -> Cloud -> Cybersecurity
     }
     if (recCard) {
       var rc = recCard.getBoundingClientRect();
@@ -165,7 +164,7 @@
         var x1 = a.left + a.width / 2 - base.left, y1 = a.bottom - base.top, x2 = rc.left + rc.width / 2 - base.left, y2 = rc.top - base.top, my = (y1 + y2) / 2;
         out += '<path stroke="#34d399" stroke-dasharray="6 5" opacity="0.7" d="M' + x1 + " " + y1 + " C" + x1 + " " + my + "," + x2 + " " + my + "," + x2 + " " + y2 + '"/>';
       }
-      if (stacked) dash(8); else { dash(7); dash(8); }
+      dash(8);
       var ac = agileCard.getBoundingClientRect();
       out += '<path stroke="#f59e0b" stroke-dasharray="6 5" opacity="0.7" d="M' + (rc.left + rc.width / 2 - base.left) + " " + (rc.bottom - base.top) + " L" + (ac.left + ac.width / 2 - base.left) + " " + (ac.top - base.top) + '"/>';
     }
