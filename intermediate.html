@@ -7,7 +7,7 @@
   <meta name="tdm-reservation" content="1">
   <meta name="tdm-policy" content="https://raidmeknassi.github.io/10-min-it-roadmap2/NOTICE.md">
   <meta name="copyright" content="© 10-Minute IT Roadmap. All rights reserved.">
-  <script src="gate.js?v=172"></script>
+  <script src="gate.js?v=169"></script>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <script>if (screen.width < 1000) document.querySelector('meta[name="viewport"]').setAttribute("content", "width=1040");</script>
   <title>Intermediate · 10-Minute IT Roadmap</title>
@@ -16,7 +16,7 @@
   <link rel="manifest" href="manifest.webmanifest">
   <meta name="theme-color" content="#0a0a14">
   <link rel="apple-touch-icon" href="assets/app/apple-touch-icon.png">
-  <link rel="stylesheet" href="style.css?v=172">
+  <link rel="stylesheet" href="style.css?v=169">
   <style>
     /* Intermediate page — blue-teal accent overrides */
     body[data-page="int"] {
@@ -83,10 +83,13 @@
       <div class="int-chips-wrap">
         <nav class="chips" id="int-chips" aria-label="Jump to a module"></nav>
       </div>
-      <p class="lock-note">Click a box to jump to its lessons</p>
+      <p class="lock-note">Hover a module to preview its lessons &nbsp;·&nbsp; click to open its page</p>
     </section>
 
-    <section class="adv-wrap nt-map im-root" id="int-root" aria-label="Intermediate road map"></section>
+    <div class="road" id="int-road">
+      <svg class="road-lines" id="int-road-lines" aria-hidden="true"></svg>
+      <section id="int-map" class="levels" aria-label="Intermediate road map"></section>
+    </div>
   </main>
 
   <footer class="foot">
@@ -94,12 +97,12 @@
     <span>Videos on <a href="https://www.youtube.com/" target="_blank" rel="noopener">YouTube</a></span>
   </footer>
 
-  <script src="roadmap.js?v=172"></script>
-  <script src="lesson-extras.js?v=172"></script>
-  <script src="courses.js?v=172"></script>
-  <script src="languages-data.js?v=172"></script>
-  <script src="icons.js?v=172"></script>
-  <script src="intermediate-map.js?v=172"></script>
-  <script src="nav.js?v=172"></script>
+  <script src="roadmap.js?v=169"></script>
+  <script src="lesson-extras.js?v=169"></script>
+  <script src="courses.js?v=169"></script>
+  <script src="languages-data.js?v=169"></script>
+  <script src="icons.js?v=169"></script>
+  <script src="int-app.js?v=169"></script>
+  <script src="nav.js?v=169"></script>
 </body>
 </html>
