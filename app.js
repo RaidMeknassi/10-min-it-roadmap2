@@ -73,6 +73,7 @@
 
   var midEl = document.createElement("div");  midEl.className = "final l6m";
   var finalEl = document.createElement("div");  finalEl.className = "final";
+  midEl.style.display = "none"; finalEl.style.display = "none";   // Intermediate / Advanced have their own pages now: not part of the beginner tree
   var trackEl = document.createElement("div");  trackEl.className = "final track";
   if (levelsEl) { levelsEl.appendChild(trunk); levelsEl.appendChild(branches); levelsEl.appendChild(l5El); levelsEl.appendChild(certEl); levelsEl.appendChild(l55El); levelsEl.appendChild(l54El); levelsEl.appendChild(l52El); levelsEl.appendChild(l53El); levelsEl.appendChild(toolsEl); levelsEl.appendChild(midEl); levelsEl.appendChild(finalEl); levelsEl.appendChild(trackEl); }
 
@@ -334,16 +335,12 @@
       linkDashed(l5Rect, certRect, "#4ade80");
       linkDashed(certRect, l55Rect, "#f59e0b");
       if (l52Rect) { if (l54Rect) { linkDashed(l55Rect, l54Rect, "#8b5cf6"); linkDashed(l54Box, l52Rect, "#d83b01"); } else linkDashed(l55Rect, l52Rect, "#d83b01"); if (l53Rect) { linkDashed(l52Box, l53Rect, "#4285f4"); linkDashed(l53Box, toolsRect, "#38bdf8"); } else linkDashed(l52Box, toolsRect, "#38bdf8"); } else linkDashed(l55Rect, toolsRect, "#38bdf8");
-      linkDashed(toolsRect, l6mRect, "#38bdf8");
-      link(6, 7, 7);
     } else {
       link(2, 3, 3); link(2, 4, 4);
       link(3, 5, 3); link(4, 5, 4);
       linkDashed(l5Rect, certRect, "#4ade80");
       linkDashed(certRect, l55Rect, "#f59e0b");
       if (l52Rect) { if (l54Rect) { linkDashed(l55Rect, l54Rect, "#8b5cf6"); linkDashed(l54Box, l52Rect, "#d83b01"); } else linkDashed(l55Rect, l52Rect, "#d83b01"); if (l53Rect) { linkDashed(l52Box, l53Rect, "#4285f4"); linkDashed(l53Box, toolsRect, "#38bdf8"); } else linkDashed(l52Box, toolsRect, "#38bdf8"); } else linkDashed(l55Rect, toolsRect, "#38bdf8");
-      linkDashed(toolsRect, l6mRect, "#38bdf8");
-      link(6, 7, 7);
     }
     svg.innerHTML = out;
   }
