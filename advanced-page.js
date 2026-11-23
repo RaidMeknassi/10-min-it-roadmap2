@@ -17,34 +17,35 @@
   function link() { return el("div", "adv-link"); }
   function stage(title, text) { var s = el("div", "adv-stage"); s.appendChild(el("h2", "", title)); if (text) s.appendChild(el("p", "", text)); return s; }
 
-  root.appendChild(stage("Choose your specialization", "Finish the beginner levels and the intermediate modules, then go deep in the area you like most."));
+  root.appendChild(stage("Advanced modules", "Finish the intermediate modules first, then work through the advanced modules. Click a module to jump to its lessons."));
   root.appendChild(link());
   /* tree: start node -> three columns of three specializations (same cards as the Intermediate tree) */
   var road = el("div", "road adv-road"); var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg"); svg.setAttribute("class", "road-lines"); road.appendChild(svg);
   var lev = el("div", "levels"); road.appendChild(lev);
   var top = el("div", "trunk"); lev.appendChild(top);
   var start = el("div", "lv"); start.style.setProperty("--c", "#a78bfa");
-  start.innerHTML = '<div class="lv-card" style="cursor:default"><span class="badge">Start</span><h2>Intermediate complete</h2><p class="lv-desc">Finish the beginner levels and the intermediate modules, then choose a path.</p></div>';
+  start.innerHTML = '<div class="lv-card" style="cursor:default"><span class="badge">Start</span><h2>Intermediate complete</h2></div>';
   top.appendChild(start);
   var cols = el("div", "branches"); cols.style.marginTop = "70px"; lev.appendChild(cols);
-  var order = [[0, 1, 7], [2, 3, 4], [5, 6, 8]], colEls = [], cardEls = [];
-  order.forEach(function (idxs) {
-    var col = el("div", "trunk"); col.style.gap = "56px"; col.style.width = "100%"; col.style.alignItems = "center"; cols.appendChild(col); var chain = [];
-    idxs.forEach(function (i) {
-      var p = PATHS[i]; if (!p) return;
-      var ready = 0, dn = 0;
-      (p.groups ? p.groups.reduce(function (a, g) { return a.concat(g.items); }, []) : p.items).forEach(function (t) {
-        if (SL[t]) SL[t].lessons.forEach(function (r) { ready++; if (done[r[0]]) dn++; });
-      });
-      var topics = p.groups ? p.groups.reduce(function (a, g) { return a + g.items.length; }, 0) : p.items.length;
-      var lv = el("div", "lv"); lv.style.setProperty("--c", p.color);
+  var COLS = [["Operating System Internals", "Linux Server", "SIEM and Incident Response"],
+    ["Switching Technologies", "Routing Technologies", "Network Security", "Troubleshooting and Monitoring", "High Availability"],
+    ["Advanced Network Security", "Wireless Networking", "Cloud Networking", "Data Center Networking"],
+    ["Network Automation and Programmability", "Service Provider and Telecom Networking", "Network Architecture and Design"]];
+  var COLORS = ["#fb923c", "#60a5fa", "#a78bfa", "#2dd4bf"], modNo = 0, cardEls = [];
+  function slug(n) { return "adv-" + n.toLowerCase().replace(/[^a-z0-9]+/g, "-"); }
+  COLS.forEach(function (names, ci) {
+    var col = el("div", "trunk"); col.style.gap = "50px"; col.style.width = "100%"; col.style.alignItems = "center"; cols.appendChild(col); var chain = [];
+    names.forEach(function (name) {
+      var S = SL[name]; if (!S) return; modNo++;
+      var dn = 0; S.lessons.forEach(function (r) { if (done[r[0]]) dn++; });
+      var lv = el("div", "lv"); lv.style.setProperty("--c", COLORS[ci]);
       lv.innerHTML = '<a class="lv-card" style="text-decoration:none"><span class="badge"></span><h2></h2><div class="lv-meta"></div><div class="lv-bar"><i></i></div></a>';
-      var c = lv.querySelector(".lv-card"); c.href = "spec.html?s=" + i;
-      lv.querySelector(".badge").textContent = "Specialization " + (i + 1);
-      lv.querySelector("h2").textContent = p.title ? p.title.split(" \u00B7 ")[0] : p.name;
-      lv.querySelector(".lv-meta").textContent = topics + " paths" + (ready ? " \u00B7 " + dn + " / " + ready + " lessons done" : " \u00B7 coming soon");
-      lv.querySelector(".lv-bar i").style.width = (ready ? dn / ready * 100 : 0) + "%";
-      col.appendChild(lv); chain.push({ el: c, color: p.color });
+      var c = lv.querySelector(".lv-card"); c.href = "#" + slug(name);
+      lv.querySelector(".badge").textContent = "Module " + modNo;
+      lv.querySelector("h2").textContent = name;
+      lv.querySelector(".lv-meta").textContent = S.lessons.length + " lessons \u00B7 " + dn + " / " + S.lessons.length + " done";
+      lv.querySelector(".lv-bar i").style.width = (dn / S.lessons.length * 100) + "%";
+      col.appendChild(lv); chain.push({ el: c, color: COLORS[ci] });
     });
     cardEls.push(chain);
   });
@@ -66,11 +67,11 @@
   var names = Object.keys(SL);
   if (names.length) {
     root.appendChild(link());
-    root.appendChild(stage("Advanced lessons ready now", "These advanced lessons are already published."));
+    root.appendChild(stage("Lessons by module", "Open a lesson to start."));
     names.forEach(function (name) {
       var S = SL[name];
       root.appendChild(link());
-      var box = el("div", "adv-mod"); box.appendChild(el("h3", "", name));
+      var box = el("div", "adv-mod"); box.id = slug(name); box.appendChild(el("h3", "", name));
       var list = el("div", "lvlist sp-lessons");
       S.lessons.forEach(function (r) {
         var a = el("a", "lc" + (done[r[0]] ? " done" : "")); a.href = "lesson.html?n=" + encodeURIComponent(r[0]);
