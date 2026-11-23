@@ -77,7 +77,7 @@ LBL["1"] = "1"; LBL["2"] = "2"; LBL["3"] = "3"; LBL["4"] = "4"; LBL["5"] = "5"; 
 // Level 2 custom labels (6, 7, 8, 9)
 LBL["6"] = "6"; LBL["10"] = "7"; LBL["11"] = "8"; LBL["13"] = "9";
 // Level 3 custom labels (3.1–3.4)
-LBL["15"] = "3.1"; LBL["16"] = "3.2"; LBL["51"] = "3.3"; LBL["17"] = "3.4";
+LBL["15"] = "3.1"; LBL["16"] = "3.2"; LBL["17"] = "3.3"; LBL["51"] = "3.4";
 
 /* Intermediate Modules — full lesson data for the intermediate roadmap tree */
 const INTERMEDIATE_LEVELS = [
