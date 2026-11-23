@@ -99,6 +99,11 @@
   });
   var quizOnly = !!QUIZZES[item.n] && !VIDEOS[item.n] && !LESSON_PAGES[item.n] && !LABS[item.n] && !LAB_PAGES[item.n] && !item.lab;
   if (quizOnly) tab = "quiz"; else main.appendChild(tabs);
+  /* objective of this lesson, above the lesson */
+  var goal = (typeof LESSON_OBJECTIVES !== "undefined" && LESSON_OBJECTIVES[item.n]) || ("Explain the key ideas of \u201C" + item.title + "\u201D.");
+  var ob = el("div", "obj-box obj-lesson"); ob.appendChild(el("h3", "", "🎯 Objective"));
+  ob.appendChild(el("p", "", "By the end of this lesson you will be able to: " + goal.charAt(0).toLowerCase() + goal.slice(1)));
+  main.appendChild(ob);
   var box = el("div", "lp-stage"), note = el("p", "lp-note"); main.appendChild(box); main.appendChild(note);
 
   function frame(src, title) { var f = document.createElement("iframe"); f.src = src; f.title = title; f.allow = "autoplay; fullscreen"; f.allowFullscreen = true; return f; }

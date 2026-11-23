@@ -1072,3 +1072,13 @@ a.cx-card:hover { border-color: var(--vc); transform: translateY(-2px); }
   .sp-treeview .sp-lv .sp-bar { height: 3px; margin-top: 4px; }
 }
 .sp-treeview .sp-lv > b:first-child, .sp-treeview .sp-lv > b:first-child ~ * { grid-column: 1 / -1; }
+/* Objective boxes (level page and lesson page) */
+.obj-box { max-width: 1040px; margin: 0 auto 18px; padding: 14px 18px; border-radius: 14px; text-align: left; line-height: 1.55;
+  background: color-mix(in srgb, var(--c, #38bdf8) 14%, rgba(12,14,24,.85)); border: 1px solid color-mix(in srgb, var(--c, #38bdf8) 55%, transparent); border-left: 5px solid var(--c, #38bdf8); }
+.obj-box h3 { margin: 0 0 6px; font-size: 15px; letter-spacing: .02em; }
+.obj-box p { margin: 0; font-size: 14.5px; color: #dbe4f0; }
+.obj-box ul { margin: 6px 0 0; padding-left: 20px; font-size: 14.5px; color: #dbe4f0; }
+.obj-box li { margin: 3px 0; }
+.obj-lesson { margin-bottom: 14px; padding: 11px 16px; }
+.obj-lesson h3 { display: inline; margin: 0 8px 0 0; font-size: 14px; }
+.obj-lesson p { display: inline; font-size: 14px; }

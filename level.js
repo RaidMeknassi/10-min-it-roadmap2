@@ -18,6 +18,15 @@
   function el(tag, cls, txt) { var e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; }
   function tag(t, cls) { return el("span", "tg " + cls, t); }
   var list = $("level-list");
+  /* objective of the whole level, above the lessons */
+  (function () {
+    var goals = (typeof LEVEL_OBJECTIVES !== "undefined" && LEVEL_OBJECTIVES[lv.id]) || null;
+    if (!goals || isPaths) return;
+    var ob = el("div", "obj-box"); ob.appendChild(el("h3", "", "🎯 Objective"));
+    ob.appendChild(el("p", "", "By the end of this level you will be able to:"));
+    var ul = el("ul"); goals.forEach(function (g) { ul.appendChild(el("li", "", g)); }); ob.appendChild(ul);
+    list.parentNode.insertBefore(ob, list);
+  })();
 
   if (TRACKS[lv.id]) {
     var groups = TRACKS[lv.id], total = 0;
