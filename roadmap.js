@@ -38,11 +38,11 @@ const LEVELS = [
     ["13", "Mobile and Other Operating Systems", 0]
   ]},
 
-  { id: "l3", desc: "Learn how devices talk: the OSI model, devices, IP and MAC addresses.", name: "Level 3", title: "Networking Fundamentals", color: "#60a5fa", lessons: [
+  { id: "l3", desc: "Learn how devices talk: devices, IP and MAC addresses, and the OSI model.", name: "Level 3", title: "Networking Fundamentals", color: "#60a5fa", lessons: [
     ["15", "What Is a Network?", 0],
     ["16", "Network Devices and Their Functions", 0],
-    ["51", "The OSI Model", 0],
-    ["17", "IP Addresses and MAC Addresses", 1]
+    ["17", "IP Addresses and MAC Addresses", 1],
+    ["51", "The OSI Model", 0]
   ]},
 
   { id: "l4", desc: "Threats, attacks, passwords and the basics of staying safe.", name: "Level 4", title: "Cybersecurity Fundamentals", color: "#f472b6", lessons: [
