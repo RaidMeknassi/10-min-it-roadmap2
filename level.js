@@ -66,18 +66,6 @@
 
     var tbx = levelToolsBox(lv.id);
     if (tbx) { var th = el("h3", "cert-rec-title", "\uD83D\uDEE0 Tools for this level"); var wrap = el("div", "lv-toolsbox"); wrap.appendChild(th); wrap.appendChild(tbx); list.parentNode.insertBefore(wrap, list.nextSibling); }
-    if (lv.id === "l5") {
-      var rec = el("div", "cert-rec");
-      rec.innerHTML = '<h3 class="cert-rec-title">🎓 Recommended Certification</h3>'
-        + '<div class="cert-rec-card">'
-        + itilBadgeImg("foundation", 96)
-        + '<div class="cert-rec-info">'
-        + '<b>ITIL Foundation</b>'
-        + '<p>The globally recognised entry-level certification for IT service management. Lesson 5.3 introduces it; the full course takes you level by level to the exam.</p>'
-        + '<a class="cert-rec-link" href="course.html?c=itil">Start the ITIL Foundation course →</a>'
-        + '</div></div>';
-      list.parentNode.insertBefore(rec, list.nextSibling);
-    }
   }
   var nav = $("lv-nav"), prev = ALL[idx - 1], next = ALL[idx + 1];
   function nl(x, txt, cls) { var a = el("a", "lv-nl " + cls, txt); a.href = "level.html?l=" + x.id; a.style.setProperty("--c", x.color); nav.appendChild(a); }
