@@ -88,8 +88,7 @@
   } else if (i === 0) {
     document.getElementById("sp-title").textContent = "Cyber Security Learning Roadmap";
     document.getElementById("sp-sub").textContent = "From fundamental principles to advanced techniques, this roadmap provides clear steps and essential resources to help you build a robust skill set.";
-    tree.appendChild(stage("Cyber Security Foundations", "Acquire the basic computer science skills required to get started, then develop the cyber security skills needed to enter any career in the industry."));
-    tree.appendChild(link()); tree.appendChild(lvCard(pathCard("Pre-Security Basics"), "Pre-Security Basics"));
+    tree.appendChild(lvCard(pathCard("Pre-Security Basics"), "Pre-Security Basics"));
     tree.appendChild(link()); tree.appendChild(lvCard(pathCard("Cybersecurity Foundations 101"), "Cybersecurity Foundations 101"));
     tree.appendChild(link());
     var note = stage("Cyber Security Career Skills", "Master the specific skills necessary for your career of interest. Not sure which career path is right for you? Look at the groups below and pick the one that fits you.");
@@ -100,7 +99,11 @@
     groups.forEach(function (g, gi) {
       var col = el("div", "sp-group"); col.style.setProperty("--pc", g.color);
       col.appendChild(el("span", "sp-bt")); col.appendChild(el("span", "sp-stub"));
-      var gh = el("div", "sp-ghead"); gh.appendChild(el("h3", "", g.name)); gh.appendChild(el("p", "", g.blurb)); col.appendChild(gh);
+      var CIMG = { "Security Analyst": "analyst", "Penetration Tester": "pentester", "Security Engineer": "engineer", "AI Security": "ai" };
+      var gh = el("div", "sp-ghead");
+      if (CIMG[g.name]) { gh.classList.add("sp-gimg"); var gi2 = document.createElement("img"); gi2.src = "assets/career-icons/" + CIMG[g.name] + ".png?v=1"; gi2.alt = g.name; gi2.title = g.blurb; gh.appendChild(gi2); }
+      else { gh.appendChild(el("h3", "", g.name)); gh.appendChild(el("p", "", g.blurb)); }
+      col.appendChild(gh);
       g.paths.forEach(function (pt, pi) {
         col.appendChild(link());
         col.appendChild(lvCard(pathCard(pt.name, "lesson.html?t=l7&g=" + gi + "&p=" + pi, g.color, pt.topics.length + " topics · coming soon"), pt.name));
@@ -109,11 +112,6 @@
       grid.appendChild(col);
     });
     tree.appendChild(grid);
-    tree.appendChild(link());
-    langStage();
-    certStage();
-    tree.appendChild(link());
-    tree.appendChild(stage("What's next?", "More labs, rooms and challenges will be added over time."));
   } else {
     document.getElementById("sp-title").textContent = P.title || (P.name + " Learning Roadmap");
     document.getElementById("sp-sub").textContent = "This specialization is coming soon. Here is the path we are planning, step by step.";
