@@ -45,6 +45,8 @@
   mapEl.appendChild(br1);
   mapEl.appendChild(br2);
   mapEl.appendChild(mid2);
+  var mid3 = document.createElement("div"); mid3.className = "final"; // Databases
+  mapEl.appendChild(mid3);
   mapEl.appendChild(br3);
   // recommended ITIL certification at the end of the tree
   var recEl = document.createElement("div"); recEl.className = "final itil-rec-node";
@@ -112,21 +114,18 @@
     return en;
   }
 
-  /* ---- build tree ---- */
-  //  Trunk: M1, M2, M3
-  makeLevel(INTERMEDIATE_LEVELS[0], trunk,  false); // entries[0] Windows
-  makeLevel(INTERMEDIATE_LEVELS[1], trunk,  false); // entries[1] Linux
-  //  Branches 1: M4(flip), M5
-  makeLevel(INTERMEDIATE_LEVELS[2], br1,    true);  // entries[3]
-  makeLevel(INTERMEDIATE_LEVELS[3], br1,    false); // entries[4]
-  //  Branches 2: Databases(flip), Web
-  makeLevel(INTERMEDIATE_LEVELS[4], br2,    true);  // entries[5]
-  makeLevel(INTERMEDIATE_LEVELS[5], br2,    false); // entries[6]
-  //  Single: Cybersecurity
-  makeLevel(INTERMEDIATE_LEVELS[6], mid2,   false); // entries[7]
-  //  Branches 3: Virtualization(flip), Cloud
-  makeLevel(INTERMEDIATE_LEVELS[7], br3,    true);  // entries[8]
-  makeLevel(INTERMEDIATE_LEVELS[8], br3,    false); // entries[9]
+  /* ---- build tree ----
+     Networking -> split [Windows -> Active Directory] and [Linux -> Web]
+     -> join at Cybersecurity -> Databases -> split [Virtualization] [Cloud] */
+  makeLevel(INTERMEDIATE_LEVELS[0], trunk, false); // 0 Networking
+  makeLevel(INTERMEDIATE_LEVELS[1], br1,   true);  // 1 Windows
+  makeLevel(INTERMEDIATE_LEVELS[2], br1,   false); // 2 Linux
+  makeLevel(INTERMEDIATE_LEVELS[3], br2,   true);  // 3 Active Directory
+  makeLevel(INTERMEDIATE_LEVELS[4], br2,   false); // 4 Web
+  makeLevel(INTERMEDIATE_LEVELS[5], mid2,  false); // 5 Cybersecurity
+  makeLevel(INTERMEDIATE_LEVELS[6], mid3,  false); // 6 Databases
+  makeLevel(INTERMEDIATE_LEVELS[7], br3,   true);  // 7 Virtualization
+  makeLevel(INTERMEDIATE_LEVELS[8], br3,   false); // 8 Cloud
 
   /* ---- connecting lines ---- */
   function drawRoad() {
@@ -150,19 +149,14 @@
       out += '<path class="' + cls + '" stroke="' + col + '" d="' + d + '"/>';
     }
 
-    // trunk
-    link(0, 1);
     if (stacked) {
-      // straight chain on mobile
-      link(1, 2); link(2, 3); link(3, 4);
-      link(4, 5); link(5, 6); link(6, 7);
-      link(7, 8);
+      for (var k = 0; k < 8; k++) link(k, k + 1);   // straight chain on phones
     } else {
-      // desktop topology
-      link(1, 2); link(1, 3);        // fork to Networking & Active Directory
-      link(2, 4); link(3, 5);        // straight down to Databases & Web
-      link(4, 6); link(5, 6);        // converge at Cybersecurity
-      link(6, 7); link(6, 8);        // final fork to Virtualization & Cloud
+      link(0, 1); link(0, 2);        // Networking splits to Windows & Linux
+      link(1, 3); link(2, 4);        // Windows -> AD, Linux -> Web
+      link(3, 5); link(4, 5);        // join at Cybersecurity
+      link(5, 6);                    // Databases
+      link(6, 7); link(6, 8);        // split to Virtualization & Cloud
     }
     if (recCard) {
       var rc = recCard.getBoundingClientRect();

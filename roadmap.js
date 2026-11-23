@@ -121,14 +121,6 @@ const INTERMEDIATE_LEVELS = [
       ["im5.5","Authentication and Kerberos"],["im5.6","LDAP and Directory Services"],
       ["im5.7","Active Directory Administration"]
     ]},
-  { id: "im7", name: "Module 7", title: "Database Fundamentals", color: "#fb923c",
-    desc: "Understand how applications store and manage data.",
-    lessons: [
-      ["im7.1","Understanding Databases"],["im7.2","Relational vs Non-Relational Databases"],
-      ["im7.3","Tables, Rows and Columns"],["im7.4","SQL Fundamentals"],
-      ["im7.6","Primary Keys and Foreign Keys"],
-      ["im7.7","Database Relationships"],["im7.8","Database Backup and Recovery"]
-    ]},
   { id: "im8", name: "Module 8", title: "Web Fundamentals", color: "#f472b6",
     desc: "Understand how websites and web applications work.",
     lessons: [
@@ -143,6 +135,14 @@ const INTERMEDIATE_LEVELS = [
       ["im9.1","Security Principles and CIA Triad"],["im9.2","Authentication and Access Control"],
       ["im9.3","Encryption and Hashing"],["im9.4","Firewalls and Endpoint Security"],
       ["im9.5","Vulnerabilities and Vulnerability Assessment"],["im9.6","Security Monitoring and Logging"]
+    ]},
+  { id: "im7", name: "Module 7", title: "Database Fundamentals", color: "#fb923c",
+    desc: "Understand how applications store and manage data.",
+    lessons: [
+      ["im7.1","Understanding Databases"],["im7.2","Relational vs Non-Relational Databases"],
+      ["im7.3","Tables, Rows and Columns"],["im7.4","SQL Fundamentals"],
+      ["im7.6","Primary Keys and Foreign Keys"],
+      ["im7.7","Database Relationships"],["im7.8","Database Backup and Recovery"]
     ]},
   { id: "im10", name: "Module 10", title: "Virtualization and Containers", color: "#4ade80",
     desc: "Create and manage virtual environments.",
