@@ -194,11 +194,11 @@ const INTERMEDIATE = { id: "l6m", desc: "Learn how to work with IT technologies.
 const PATHS = [
   { name: "Cybersecurity", color: "#f472b6", items: ["SIEM and Incident Response", "SOC Analyst", "Blue Team", "Penetration Testing", "Digital Forensics", "Threat Hunting", "Incident Response"] },
   { name: "Network Engineering", title: "Network Engineering · From Zero to Network Specialist", color: "#60a5fa",
-    items: ["Switching Technologies", "Routing Technologies", "Network Security", "Troubleshooting and Monitoring",
-            "Advanced Network Security", "Wireless Networking", "Cloud Networking", "Data Center Networking", "Network Automation and Programmability", "Service Provider and Telecom Networking"],
+    items: ["Switching Technologies", "Routing Technologies", "Network Security", "Troubleshooting and Monitoring", "High Availability",
+            "Advanced Network Security", "Wireless Networking", "Cloud Networking", "Data Center Networking", "Network Automation and Programmability", "Service Provider and Telecom Networking", "Network Architecture and Design"],
     groups: [
-      { title: "Advanced Networking", text: "Configure, operate, troubleshoot and secure real-world networks (CCNA is the backbone).", items: ["Switching Technologies", "Routing Technologies", "Network Security", "Troubleshooting and Monitoring"] },
-      { title: "Specialized Networking", text: "Choose the professional field you want. You do not need to study every one.", items: ["Advanced Network Security", "Wireless Networking", "Cloud Networking", "Data Center Networking", "Network Automation and Programmability", "Service Provider and Telecom Networking"] }
+      { title: "Advanced Networking", text: "Configure, operate, troubleshoot and secure real-world networks (CCNA is the backbone).", items: ["Switching Technologies", "Routing Technologies", "Network Security", "Troubleshooting and Monitoring", "High Availability"] },
+      { title: "Specialized Networking", text: "Choose the professional field you want. You do not need to study every one.", items: ["Advanced Network Security", "Wireless Networking", "Cloud Networking", "Data Center Networking", "Network Automation and Programmability", "Service Provider and Telecom Networking", "Network Architecture and Design"] }
     ] },
   { name: "Systems Engineering", color: "#fb923c", items: ["Operating System Internals", "Windows Server", "Linux Server", "Active Directory", "Virtualization", "Enterprise Infrastructure"] },
   { name: "Cloud Computing", color: "#22d3ee", items: ["Microsoft Azure", "Amazon AWS", "Google Cloud", "Cloud Security", "Cloud Administration"] },
@@ -242,22 +242,25 @@ const SPEC_LESSONS = {
     ["im1.7", "System Calls"], ["im1.8", "User Mode vs Kernel Mode"]
   ]},
   "Switching Technologies": { path: "Network Engineering", tag: "SW", lessons: [
-    ["nw.sw.1", "How Ethernet Switching Works"], ["nw.sw.2", "VLAN Configuration and Management"], ["nw.sw.3", "Trunking and 802.1Q"], ["nw.sw.4", "Spanning Tree Protocol (STP)"], ["nw.sw.5", "Link Aggregation"]
+    ["nw.sw.1", "How Ethernet Switching Works"], ["nw.sw.2", "VLAN Configuration and Management"], ["nw.sw.3", "Trunking and 802.1Q"], ["nw.sw.4", "Spanning Tree Protocol (STP)"], ["nw.sw.5", "Link Aggregation"], ["nw.sw.6", "VLAN Troubleshooting"]
   ]},
   "Routing Technologies": { path: "Network Engineering", tag: "RT", lessons: [
-    ["im4.9", "Routing Fundamentals"], ["nw.rt.2", "Static and Default Routing"], ["nw.rt.3", "Dynamic Routing"], ["nw.rt.4", "OSPF — Open Shortest Path First"], ["nw.rt.5", "BGP — Border Gateway Protocol"], ["nw.rt.6", "IPv6 Routing"]
+    ["im4.9", "Routing Fundamentals"], ["nw.rt.2", "Static and Default Routing"], ["nw.rt.3", "Dynamic Routing"], ["nw.rt.4", "OSPF — Open Shortest Path First"], ["nw.rt.7", "EIGRP"], ["nw.rt.5", "BGP — Border Gateway Protocol"], ["nw.rt.8", "Route Redistribution"], ["nw.rt.6", "IPv6 Routing"]
   ]},
   "Network Security": { path: "Network Engineering", tag: "NS", lessons: [
-    ["nw.ns.1", "Network Firewalls"], ["nw.ns.2", "ACLs — Access Control Lists"], ["nw.ns.3", "VPN Fundamentals"], ["nw.ns.4", "Network Segmentation and Security"]
+    ["nw.ns.5", "Network Security Fundamentals"], ["nw.ns.1", "Network Firewalls"], ["nw.ns.2", "ACLs — Access Control Lists"], ["nw.ns.3", "VPN Fundamentals"], ["nw.ns.4", "Network Segmentation and Security"], ["nw.ns.6", "Secure Network Management"]
   ]},
   "Troubleshooting and Monitoring": { path: "Network Engineering", tag: "TR", lessons: [
-    ["im4.11", "Network Troubleshooting Methodology"], ["nw.tr.2", "Network Diagnostic Tools"], ["nw.tr.3", "Packet Analysis with Wireshark"]
+    ["im4.11", "Network Troubleshooting Methodology"], ["nw.tr.2", "Network Diagnostic Tools"], ["nw.tr.3", "Packet Analysis with Wireshark"], ["nw.tr.4", "SNMP and Syslog"], ["nw.tr.5", "Network Performance Monitoring"]
+  ]},
+  "High Availability": { path: "Network Engineering", tag: "HA", lessons: [
+    ["nw.ha.1", "HSRP and VRRP"], ["nw.ha.2", "Redundant Links"], ["nw.ha.3", "Failover and Recovery"]
   ]},
   "Advanced Network Security": { path: "Network Engineering", tag: "ANS", lessons: [
     ["nw.as.1", "Next-Generation Firewalls (NGFW)"], ["nw.as.2", "IDS and IPS"], ["nw.as.3", "Network Access Control (NAC)"], ["nw.as.4", "Zero Trust Network Architecture"], ["nw.as.5", "Network Security Monitoring"], ["nw.as.6", "DDoS Protection"]
   ]},
   "Wireless Networking": { path: "Network Engineering", tag: "WL", lessons: [
-    ["nw.wl.1", "Wireless Networking Fundamentals"], ["nw.wl.2", "Wi-Fi Standards"], ["nw.wl.3", "Wireless Security"], ["nw.wl.4", "Enterprise Wireless Architecture"], ["nw.wl.5", "Wireless Network Design"], ["nw.wl.6", "Wireless Troubleshooting"]
+    ["nw.wl.1", "Wireless Networking Fundamentals"], ["nw.wl.2", "Wi-Fi Standards"], ["nw.wl.3", "Wireless Security"], ["nw.wl.4", "Enterprise Wireless Architecture"], ["nw.wl.5", "Wireless Network Design"], ["nw.wl.6", "Wireless Troubleshooting"], ["nw.wl.7", "Wireless Controllers and Access Points"]
   ]},
   "Cloud Networking": { path: "Network Engineering", tag: "CN", lessons: [
     ["nw.cn.1", "Cloud Networking Fundamentals"], ["nw.cn.2", "AWS Networking"], ["nw.cn.3", "Microsoft Azure Networking"], ["nw.cn.4", "Hybrid Cloud Networking"], ["nw.cn.5", "Cloud Connectivity"], ["nw.cn.6", "Cloud Network Security"]
@@ -269,7 +272,10 @@ const SPEC_LESSONS = {
     ["nw.au.1", "Network Automation Fundamentals"], ["nw.au.2", "Python for Network Engineers"], ["nw.au.3", "Network APIs"], ["nw.au.4", "Ansible for Network Automation"], ["nw.au.5", "Network Monitoring and Telemetry"]
   ]},
   "Service Provider and Telecom Networking": { path: "Network Engineering", tag: "SP", lessons: [
-    ["nw.sp.1", "Internet Service Provider Architecture"], ["nw.sp.2", "MPLS Networking"], ["nw.sp.3", "WAN Technologies"], ["nw.sp.4", "SD-WAN"], ["nw.sp.5", "5G and Mobile Networking Fundamentals"]
+    ["nw.sp.1", "Internet Service Provider Architecture"], ["nw.sp.2", "MPLS Networking"], ["nw.sp.3", "WAN Technologies"], ["nw.sp.4", "SD-WAN"], ["nw.sp.5", "5G and Mobile Networking Fundamentals"], ["nw.sp.6", "BGP for Internet Service Providers"]
+  ]},
+  "Network Architecture and Design": { path: "Network Engineering", tag: "ARC", lessons: [
+    ["nw.ar.1", "Enterprise Network Architecture"], ["nw.ar.2", "Campus Network Design"], ["nw.ar.3", "Capacity Planning"], ["nw.ar.4", "Redundancy and Scalability Design"], ["nw.ar.5", "Network Documentation"]
   ]}
 };
 const SPEC_LESSON_KEYS = [];

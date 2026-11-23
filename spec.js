@@ -149,7 +149,7 @@
         { t: "Advanced Routing", href: anc("Routing Technologies"), sub: cnt("Routing Technologies") },
         { t: "Network Security", href: anc("Network Security"), sub: cnt("Network Security") },
         { t: "Troubleshooting", href: anc("Troubleshooting and Monitoring"), sub: cnt("Troubleshooting and Monitoring") },
-        { t: "High Availability", href: null, sub: "coming soon" }], true));
+        { t: "High Availability", href: anc("High Availability"), sub: cnt("High Availability") }], true));
       tree.appendChild(link());
       tree.appendChild(ntBox("Professional Specializations", null, "Choose the field you want. You do not need to study every one.")); tree.appendChild(link());
       tree.appendChild(nodeRow([
@@ -159,7 +159,8 @@
         { t: "Wireless Network Engineer", href: anc("Wireless Networking"), sub: cnt("Wireless Networking") },
         { t: "Data Center Engineer", href: anc("Data Center Networking"), sub: cnt("Data Center Networking") },
         { t: "Network Automation Engineer", href: anc("Network Automation and Programmability"), sub: cnt("Network Automation and Programmability") },
-        { t: "ISP / Telecom Engineer", href: anc("Service Provider and Telecom Networking"), sub: cnt("Service Provider and Telecom Networking") }], false));
+        { t: "ISP / Telecom Engineer", href: anc("Service Provider and Telecom Networking"), sub: cnt("Service Provider and Telecom Networking") },
+        { t: "Network Architect", href: anc("Network Architecture and Design"), sub: cnt("Network Architecture and Design") }], false));
       P.groups.forEach(function (g) {
         tree.appendChild(link()); tree.appendChild(stage(g.title + " · lessons", g.text));
         g.items.forEach(function (t) {
