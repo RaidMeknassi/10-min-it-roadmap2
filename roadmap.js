@@ -111,6 +111,7 @@ const INTERMEDIATE_LEVELS = [
       ["im3.2","Linux Users and Groups"],
       ["im3.3","Linux Permissions and Ownership"],["im3.4","Linux Processes and Services"],
       ["im3.5","Package Management"],
+      ["im3.13","Your First Steps in Linux"],
       ["im3.9","Bash Fundamentals"]
     ]},
   { id: "im5", name: "Module 5", title: "Active Directory Fundamentals", color: "#818cf8",
