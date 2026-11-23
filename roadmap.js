@@ -38,11 +38,12 @@ const LEVELS = [
     ["13", "Mobile and Other Operating Systems", 0]
   ]},
 
-  { id: "l3", desc: "Learn how devices talk: devices, IP and MAC addresses, and the OSI model.", name: "Level 3", title: "Networking Fundamentals", color: "#60a5fa", lessons: [
+  { id: "l3", desc: "Understand what networks are and learn the basic terminology: network types, devices, addressing and the OSI model.", name: "Level 3", title: "Networking Fundamentals", color: "#60a5fa", lessons: [
     ["15", "What Is a Network?", 0],
+    ["n3.2", "Types of Networks", 0],
     ["16", "Network Devices and Their Functions", 0],
     ["17", "IP Addresses and MAC Addresses", 1],
-    ["51", "The OSI Model", 0]
+    ["51", "Introduction to the OSI Model", 0]
   ]},
 
   { id: "l4", desc: "Threats, attacks, passwords and the basics of staying safe.", name: "Level 4", title: "Cybersecurity Fundamentals", color: "#f472b6", lessons: [
@@ -75,21 +76,23 @@ LEVEL55.lessons.forEach(function (r, k) { LBL[r[0]] = "5.1." + (k + 1); });
 LBL["1"] = "1"; LBL["2"] = "2"; LBL["3"] = "3"; LBL["4"] = "4"; LBL["5"] = "5"; LBL["58"] = "5.1";
 // Level 2 custom labels (6, 7, 8, 9)
 LBL["6"] = "6"; LBL["10"] = "7"; LBL["11"] = "8"; LBL["13"] = "9";
-// Level 3 custom labels (3.1–3.4)
-LBL["15"] = "3.1"; LBL["16"] = "3.2"; LBL["17"] = "3.3"; LBL["51"] = "3.4";
+// Level 3 custom labels (3.1–3.5)
+LBL["15"] = "3.1"; LBL["n3.2"] = "3.2"; LBL["16"] = "3.3"; LBL["17"] = "3.4"; LBL["51"] = "3.5";
 
 /* Intermediate Modules — full lesson data for the intermediate roadmap tree */
 const INTERMEDIATE_LEVELS = [
   { id: "im4", name: "Module 4", title: "Intermediate Networking", color: "#a78bfa",
-    desc: "Configure and troubleshoot real networks.",
+    desc: "Understand how devices communicate, exchange information and access network resources.",
     lessons: [
-      ["im4.1","IPv4 Address Structure"],["im4.2","Subnet Masks and CIDR"],
-      ["im4.3","Subnetting"],["im4.4","ARP and Default Gateway"],
-      ["im4.5","DNS and DNS Resolution"],["im4.6","DHCP and the DORA Process"],
-      ["im4.7","TCP and UDP"],["im4.8","Ports and Network Services"],
-      ["im4.9","Routing Fundamentals"],["im4.10","NAT and VLAN Fundamentals"],
-      ["im4.11","Network Troubleshooting"],
-      ["im4.12","The OSI Model — A Deeper Look at the 7 Layers"],["im4.13","IP Addressing"],["im4.14","MAC Addresses — How Devices Find Each Other"]
+      ["im4.14","MAC Addresses — How Devices Find Each Other"],["im4.13","IP Addressing"],
+      ["im4.2","Subnet Masks and CIDR"],["im4.3","Subnetting Fundamentals"],
+      ["im4.4","ARP — Finding Devices on a Local Network"],
+      ["im4.6","DHCP — How Devices Get IP Addresses"],["im4.5","DNS — How Domain Names Are Resolved"],
+      ["im4.7","TCP and UDP"],["im4.8","Network Ports"],
+      ["im4.15","ICMP — How Devices Test Connectivity"],
+      ["im4.16","Default Gateway"],["im4.10","NAT — Network Address Translation"],
+      ["im4.17","VLANs — Dividing a Network"],["im4.18","Network Topologies"],
+      ["im4.12","The OSI Model — A Deeper Look"]
     ]},
   { id: "im2", name: "Module 2", title: "Windows Administration", color: "#38bdf8",
     desc: "Manage, configure and automate Windows systems.",
@@ -190,7 +193,13 @@ const INTERMEDIATE = { id: "l6m", desc: "Learn how to work with IT technologies.
 /* Level 7 (id l6) - choose a specialization path */
 const PATHS = [
   { name: "Cybersecurity", color: "#f472b6", items: ["SIEM and Incident Response", "SOC Analyst", "Blue Team", "Penetration Testing", "Digital Forensics", "Threat Hunting", "Incident Response"] },
-  { name: "Network Engineering", color: "#60a5fa", items: ["Network Engineering", "Network Security", "Wireless Networking", "Advanced Routing and Switching"] },
+  { name: "Network Engineering", title: "Network Engineering · From Zero to Network Specialist", color: "#60a5fa",
+    items: ["Switching Technologies", "Routing Technologies", "Network Security", "Troubleshooting and Monitoring",
+            "Advanced Network Security", "Wireless Networking", "Cloud Networking", "Data Center Networking", "Network Automation and Programmability", "Service Provider and Telecom Networking"],
+    groups: [
+      { title: "Advanced Networking", text: "Configure, operate, troubleshoot and secure real-world networks (CCNA is the backbone).", items: ["Switching Technologies", "Routing Technologies", "Network Security", "Troubleshooting and Monitoring"] },
+      { title: "Specialized Networking", text: "Choose the professional field you want. You do not need to study every one.", items: ["Advanced Network Security", "Wireless Networking", "Cloud Networking", "Data Center Networking", "Network Automation and Programmability", "Service Provider and Telecom Networking"] }
+    ] },
   { name: "Systems Engineering", color: "#fb923c", items: ["Operating System Internals", "Windows Server", "Linux Server", "Active Directory", "Virtualization", "Enterprise Infrastructure"] },
   { name: "Cloud Computing", color: "#22d3ee", items: ["Microsoft Azure", "Amazon AWS", "Google Cloud", "Cloud Security", "Cloud Administration"] },
   { name: "DevOps and Automation", color: "#a78bfa", items: ["Git and GitHub", "CI/CD", "Docker and Containers", "Kubernetes", "Infrastructure as Code"] },
@@ -231,6 +240,36 @@ const SPEC_LESSONS = {
     ["im1.1", "Understanding the Kernel"], ["im1.2", "Understanding Processes"], ["im1.3", "Understanding Threads"],
     ["im1.4", "Memory Management"], ["im1.5", "CPU Scheduling"], ["im1.6", "File Systems and Storage Management"],
     ["im1.7", "System Calls"], ["im1.8", "User Mode vs Kernel Mode"]
+  ]},
+  "Switching Technologies": { path: "Network Engineering", tag: "SW", lessons: [
+    ["nw.sw.1", "How Ethernet Switching Works"], ["nw.sw.2", "VLAN Configuration and Management"], ["nw.sw.3", "Trunking and 802.1Q"], ["nw.sw.4", "Spanning Tree Protocol (STP)"], ["nw.sw.5", "Link Aggregation"]
+  ]},
+  "Routing Technologies": { path: "Network Engineering", tag: "RT", lessons: [
+    ["im4.9", "Routing Fundamentals"], ["nw.rt.2", "Static and Default Routing"], ["nw.rt.3", "Dynamic Routing"], ["nw.rt.4", "OSPF — Open Shortest Path First"], ["nw.rt.5", "BGP — Border Gateway Protocol"], ["nw.rt.6", "IPv6 Routing"]
+  ]},
+  "Network Security": { path: "Network Engineering", tag: "NS", lessons: [
+    ["nw.ns.1", "Network Firewalls"], ["nw.ns.2", "ACLs — Access Control Lists"], ["nw.ns.3", "VPN Fundamentals"], ["nw.ns.4", "Network Segmentation and Security"]
+  ]},
+  "Troubleshooting and Monitoring": { path: "Network Engineering", tag: "TR", lessons: [
+    ["im4.11", "Network Troubleshooting Methodology"], ["nw.tr.2", "Network Diagnostic Tools"], ["nw.tr.3", "Packet Analysis with Wireshark"]
+  ]},
+  "Advanced Network Security": { path: "Network Engineering", tag: "ANS", lessons: [
+    ["nw.as.1", "Next-Generation Firewalls (NGFW)"], ["nw.as.2", "IDS and IPS"], ["nw.as.3", "Network Access Control (NAC)"], ["nw.as.4", "Zero Trust Network Architecture"], ["nw.as.5", "Network Security Monitoring"], ["nw.as.6", "DDoS Protection"]
+  ]},
+  "Wireless Networking": { path: "Network Engineering", tag: "WL", lessons: [
+    ["nw.wl.1", "Wireless Networking Fundamentals"], ["nw.wl.2", "Wi-Fi Standards"], ["nw.wl.3", "Wireless Security"], ["nw.wl.4", "Enterprise Wireless Architecture"], ["nw.wl.5", "Wireless Network Design"], ["nw.wl.6", "Wireless Troubleshooting"]
+  ]},
+  "Cloud Networking": { path: "Network Engineering", tag: "CN", lessons: [
+    ["nw.cn.1", "Cloud Networking Fundamentals"], ["nw.cn.2", "AWS Networking"], ["nw.cn.3", "Microsoft Azure Networking"], ["nw.cn.4", "Hybrid Cloud Networking"], ["nw.cn.5", "Cloud Connectivity"], ["nw.cn.6", "Cloud Network Security"]
+  ]},
+  "Data Center Networking": { path: "Network Engineering", tag: "DC", lessons: [
+    ["nw.dc.1", "Data Center Network Architecture"], ["nw.dc.2", "Spine-Leaf Architecture"], ["nw.dc.3", "VXLAN and Network Overlays"], ["nw.dc.4", "Data Center Redundancy"], ["nw.dc.5", "Load Balancing"]
+  ]},
+  "Network Automation and Programmability": { path: "Network Engineering", tag: "AU", lessons: [
+    ["nw.au.1", "Network Automation Fundamentals"], ["nw.au.2", "Python for Network Engineers"], ["nw.au.3", "Network APIs"], ["nw.au.4", "Ansible for Network Automation"], ["nw.au.5", "Network Monitoring and Telemetry"]
+  ]},
+  "Service Provider and Telecom Networking": { path: "Network Engineering", tag: "SP", lessons: [
+    ["nw.sp.1", "Internet Service Provider Architecture"], ["nw.sp.2", "MPLS Networking"], ["nw.sp.3", "WAN Technologies"], ["nw.sp.4", "SD-WAN"], ["nw.sp.5", "5G and Mobile Networking Fundamentals"]
   ]}
 };
 const SPEC_LESSON_KEYS = [];
@@ -251,7 +290,7 @@ const CERTS = [
 /* Level 6: certifications for each specialization path */
 const PATH_CERTS = [
   ["Cybersecurity", "#f472b6", ["Microsoft SC-200", "CompTIA CySA+", "CompTIA PenTest+", "OffSec OSCP"]],
-  ["Network Engineering", "#60a5fa", ["Cisco CCNP Enterprise", "Cisco CCNP Security"]],
+  ["Network Engineering", "#60a5fa", ["CompTIA Network+", "Cisco CCNA", "Cisco CCNP Enterprise", "Cisco CCNP Security", "Cisco DevNet Associate / Professional", "AWS Advanced Networking", "Azure Network Engineer"]],
   ["Cloud Computing", "#22d3ee", ["Microsoft AZ-900 / AZ-104", "AWS Cloud Practitioner / Solutions Architect Associate", "Google Associate Cloud Engineer"]],
   ["DevOps and Automation", "#a78bfa", ["Certified Kubernetes Administrator (CKA)", "HashiCorp Terraform Associate", "GitHub Foundations"]],
   ["Systems Engineering", "#fb923c", ["Microsoft Windows Server Hybrid Administrator (AZ-800)", "Red Hat RHCSA", "VMware VCP"]],
@@ -420,7 +459,7 @@ const ICONS = {
   "0.1":"👋","0.2":"💡","0.3":"🧑‍💼","0.4":"🎯",
   "1":"💻","2":"🔩","3":"🪟","4":"⚙️","5":"🔢","58":"🧮",
   "6":"🖥️","7":"🗂️","8":"🧠","9":"🚀","10":"🟦","11":"🐧","12":"🍎","13":"📱","14":"⚖️",
-  "15":"🌐","16":"📡","17":"📍","51":"🗂️","18":"✂️","19":"🏷️","20":"📖","21":"🎫","22":"📦","23":"🚪","24":"🔀","25":"📶","26":"🛠️",
+  "15":"🌐","n3.2":"🧭","16":"📡","17":"📍","51":"🗂️","18":"✂️","19":"🏷️","20":"📖","21":"🎫","22":"📦","23":"🚪","24":"🔀","25":"📶","26":"🛠️",
   "27":"🛡️","28":"☠️","29":"🦠","30":"🎣","31":"🔑","32":"🪪","33":"🔺","34":"🧱","35":"🔐","36":"⚠️","37":"🚨",
   "38":"🏢","39":"👥","40":"🔒","41":"🗃️","42":"🧰","43":"🧑‍💻","44":"📜","45":"⬇️","46":"⌨️","47":"🤖","48":"📈","49":"💾","50":"🧊"
 };
