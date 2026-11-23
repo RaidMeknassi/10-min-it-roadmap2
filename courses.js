@@ -472,6 +472,7 @@ function levelToolsBox(levelId) {
   LEVELS[5].lbl = function (k) { return "5." + (k + 1); };
   var rst = LEVEL55.lessons.filter(function (r) { return r[0] === "5.5.3"; })[0];
   LEVEL55.lessons = LEVEL55.lessons.filter(function (r) { return r[0] !== "5.5.3"; });
+  LEVEL55.lessons.push(["57", "Understanding ITSM and ITIL", 0]);   // ITSM/ITIL basics before the ticketing tools
   ["servicenow", "jira"].forEach(function (id) { level0(id).forEach(function (r) { LEVEL55.lessons.push(r); }); });
   if (rst) LEVEL55.lessons.push(rst);   // Remote Support Tools comes right before the remote tools
   /* communication and remote-support tools: each tool's first lesson, with a short title in Level 5.1 */

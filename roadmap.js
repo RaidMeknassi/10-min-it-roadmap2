@@ -54,8 +54,7 @@ const LEVELS = [
 
   { id: "l5", desc: "Corporate IT, ticketing and getting your first IT job.", name: "Level 5", title: "IT Workplace and Career Preparation", color: "#4ade80", jobReady: "Ready to start applying for L1 Help Desk / IT Support", lessons: [
     ["54", "Finding Your First IT Job", 0],
-    ["55", "A Day Working in an IT Company", 0],
-    ["57", "Understanding ITSM and ITIL", 0]
+    ["55", "A Day Working in an IT Company", 0]
   ]}
 ];
 
