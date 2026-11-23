@@ -62,7 +62,7 @@ const LEVEL_OBJECTIVES = {
  ],
  "im4": [
   "Understand how devices communicate and exchange information",
-  "Work with IP addresses, subnet masks, CIDR and subnetting",
+  "Work with IP addresses (IPv4 and IPv6), subnet masks, CIDR and subnetting",
   "Explain DHCP, DNS, TCP/UDP, ports and ICMP",
   "Explain the default gateway, NAT, VLANs, topologies and the OSI model in depth"
  ],
@@ -242,6 +242,7 @@ const LESSON_OBJECTIVES = {
  "im4.5": "Explain and use these ideas: DNS records, recursive and authoritative servers, resolution.",
  "im4.7": "Explain and use these ideas: Connection-oriented vs connectionless, reliability, use cases.",
  "im4.8": "Explain and use these ideas: Port numbers, well-known ports, client and server ports.",
+ "im4.19": "Explain and use these ideas: IPv4 and IPv6 address formats, address space, why IPv6 exists, dual stack.",
  "im4.15": "Explain and use these ideas: Echo requests, replies, error messages, ping.",
  "im4.16": "Explain and use these ideas: Purpose, routing traffic outside the local network.",
  "im4.10": "Explain and use these ideas: Private and public addresses, SNAT, DNAT, PAT.",
