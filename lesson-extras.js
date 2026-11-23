@@ -206,14 +206,6 @@ const SUMMARIES = {
    "Resolve and close with a clear resolution"
   ]
  },
- "servicenow.0.3": {
-  "s": "The knowledge base stores solutions so problems get fixed faster. A free Personal Developer Instance (PDI) from the ServiceNow Developer site lets you practise in your own ServiceNow for free.",
-  "k": [
-   "Search knowledge before solving from scratch",
-   "Write articles for repeat issues",
-   "Get a free PDI at developer.servicenow.com"
-  ]
- },
  "jira.0.1": {
   "s": "Jira Service Management (JSM) is Atlassian's service desk tool. Customers raise requests through a portal or email, and agents work them in queues with SLAs, automation and a knowledge base.",
   "k": [
@@ -228,22 +220,6 @@ const SUMMARIES = {
    "Service project = your help desk space",
    "Request types shape the portal form",
    "Queues organise the work"
-  ]
- },
- "jira.0.3": {
-  "s": "Atlassian offers a free Jira Cloud plan. You sign up with an email, create a site name, add Jira Service Management and get a practice help desk where you can create projects, requests and queues.",
-  "k": [
-   "Free plan for small teams",
-   "Pick a site name: yourname.atlassian.net",
-   "Add JSM and create a service project"
-  ]
- },
- "jira.0.4": {
-  "s": "To handle a request: pick it from the queue, assign it to yourself, read the details, reply to the customer, add internal notes for your team, move the status forward and resolve it with a clear answer.",
-  "k": [
-   "Assign it to yourself",
-   "Public reply vs internal note",
-   "Move the status and resolve"
   ]
  },
  "slack.0.1": {
@@ -676,6 +652,14 @@ const SUMMARIES = {
    "8 bits = 1 byte",
    "KB, MB, GB, TB",
    "Everything becomes numbers"
+  ]
+ },
+ "jira.0.3": {
+  "s": "To handle a request: pick it from the queue, assign it to yourself, read the details, reply to the customer, add internal notes for your team, move the status forward and resolve it with a clear answer.",
+  "k": [
+   "Assign it to yourself",
+   "Public reply vs internal note",
+   "Move the status and resolve"
   ]
  }
 };
@@ -1348,43 +1332,6 @@ const SUMMARIES = {
    ]
   ]
  },
- "servicenow.0.3": {
-  "type": "mcq",
-  "color": "#a78bfa",
-  "title": "Knowledge and PDI",
-  "items": [
-   {
-    "q": "Why use a knowledge base?",
-    "o": [
-     "To fix known issues faster",
-     "To store passwords",
-     "To delete tickets",
-     "To slow users down"
-    ],
-    "a": 0
-   },
-   {
-    "q": "What is a PDI?",
-    "o": [
-     "A paid course",
-     "A free personal ServiceNow instance for practice",
-     "A ticket type",
-     "A report"
-    ],
-    "a": 1
-   },
-   {
-    "q": "Where do you request a PDI?",
-    "o": [
-     "ServiceNow Developer site",
-     "Microsoft Store",
-     "Google Play",
-     "Your company HR"
-    ],
-    "a": 0
-   }
-  ]
- },
  "jira.0.1": {
   "type": "tf",
   "color": "#2dd4bf",
@@ -1429,30 +1376,6 @@ const SUMMARIES = {
     "Customer portal",
     "Where users raise requests"
    ]
-  ]
- },
- "jira.0.3": {
-  "type": "order",
-  "color": "#60a5fa",
-  "title": "Order the steps to get a free Jira site",
-  "steps": [
-   "Go to Atlassian and choose the free plan",
-   "Sign up with your email",
-   "Choose your site name",
-   "Add Jira Service Management",
-   "Create your first service project"
-  ]
- },
- "jira.0.4": {
-  "type": "order",
-  "color": "#60a5fa",
-  "title": "Order the steps to handle a request",
-  "steps": [
-   "Open the request from the queue",
-   "Assign it to yourself",
-   "Reply to the customer",
-   "Fix the issue",
-   "Resolve the request with a summary"
   ]
  },
  "slack.0.1": {
@@ -2725,6 +2648,18 @@ const SUMMARIES = {
     "q": "The kernel manages memory and the CPU.",
     "a": true
    }
+  ]
+ },
+ "jira.0.3": {
+  "type": "order",
+  "color": "#60a5fa",
+  "title": "Order the steps to handle a request",
+  "steps": [
+   "Open the request from the queue",
+   "Assign it to yourself",
+   "Reply to the customer",
+   "Fix the issue",
+   "Resolve the request with a summary"
   ]
  }
 }; Object.keys(Q).forEach(function (k) { if (!QUIZZES[k]) QUIZZES[k] = Q[k]; }); })();

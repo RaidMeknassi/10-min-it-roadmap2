@@ -93,7 +93,7 @@
 
   var tabs = el("div", "lp-tabs");
   var SUM = (typeof SUMMARIES !== "undefined" && SUMMARIES[item.n]) || null;
-  [["lesson", "▶ Lesson", true], ["summary", "Summary", !!SUM], ["quiz", "Quiz", !!QUIZZES[item.n]], ["lab", (item.lab || LAB_PAGES[item.n] || LABS[item.n]) ? "🔒 Lab" : "Lab", true]].forEach(function (t) {
+  [["lesson", "▶ Lesson", true], ["summary", "Summary", !!SUM], ["quiz", "Quiz", !!QUIZZES[item.n]], ["lab", (LABS[item.n] && LABS[item.n].video) ? "Lab" : (item.lab || LAB_PAGES[item.n] || LABS[item.n]) ? "🔒 Lab" : "Lab", true]].forEach(function (t) {
     var b = el("button", "lp-tab", t[1]); b.type = "button"; b.dataset.t = t[0]; b.disabled = !t[2];
     b.onclick = function () { tab = t[0]; stage(); }; tabs.appendChild(b);
   });
@@ -127,7 +127,8 @@
       if (quiz) { var q = el("div"); box.appendChild(q); renderQuiz(item.n, q, function (s) { try { var k = JSON.parse(localStorage.getItem("itroadmap-v2-quiz") || "{}"); if (!k[item.n] || s > k[item.n]) k[item.n] = s; localStorage.setItem("itroadmap-v2-quiz", JSON.stringify(k)); } catch (e) {} }); }
       else box.appendChild(el("div", "lp-center", "No quiz for this lesson yet."));
     } else {
-      if (labPage && small()) { box.className = "lp-stage t-card"; box.appendChild(el("div", "lp-center")).appendChild(launch(labPage, "Start the lab")); }
+      if (lab && lab.video) { box.className = "lp-stage t-lesson"; box.appendChild(frame("https://www.youtube-nocookie.com/embed/" + encodeURIComponent(lab.video), lab.title)); note.textContent = "🧪 Lab: " + lab.title; }
+      else if (labPage && small()) { box.className = "lp-stage t-card"; box.appendChild(el("div", "lp-center")).appendChild(launch(labPage, "Start the lab")); }
       else if (labPage) { box.className = "lp-stage t-lab"; box.appendChild(frame(labPage, lab ? lab.title : "Lab")); var a2 = el("a", "", "Open full screen ↗"); a2.href = labPage; a2.target = "_blank"; a2.rel = "noopener"; note.appendChild(a2); }
       else { box.className = "lp-stage t-card"; var d = el("div", "lp-card"); d.innerHTML = "<h3></h3><p></p>"; d.querySelector("h3").textContent = lab ? "🔒 Lab: " + lab.title : item.lab ? "🔒 Lab available" : "No lab for this lesson"; d.querySelector("p").textContent = lab ? lab.text + " (Coming soon.)" : item.lab ? "A hands-on lab for this lesson is coming soon." : "Just watch the lesson and take the quiz."; box.appendChild(d); }
     }
