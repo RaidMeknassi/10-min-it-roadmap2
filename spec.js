@@ -101,7 +101,8 @@
       col.appendChild(el("span", "sp-bt")); col.appendChild(el("span", "sp-stub"));
       var CIMG = { "Security Analyst": "analyst", "Penetration Tester": "pentester", "Security Engineer": "engineer", "AI Security": "ai" };
       var gh = el("div", "sp-ghead");
-      if (CIMG[g.name]) { gh.classList.add("sp-gimg"); var gi2 = document.createElement("img"); gi2.src = "assets/career-icons/" + CIMG[g.name] + ".png?v=1"; gi2.alt = g.name; gi2.title = g.blurb; gh.appendChild(gi2); }
+      if (CIMG[g.name]) { gh.classList.add("sp-gimg"); var gi2 = document.createElement("img"); gi2.src = "assets/career-icons/" + CIMG[g.name] + ".png?v=2"; gi2.alt = ""; gi2.title = g.blurb; gh.appendChild(gi2);
+        var ws = g.name.split(" "), lt = el("div", "sp-gl"); lt.appendChild(el("span", "", ws.slice(0, -1).join(" "))); lt.appendChild(el("b", "", ws[ws.length - 1])); gh.appendChild(lt); gh.title = g.blurb; }
       else { gh.appendChild(el("h3", "", g.name)); gh.appendChild(el("p", "", g.blurb)); }
       col.appendChild(gh);
       g.paths.forEach(function (pt, pi) {
