@@ -432,7 +432,7 @@
     };
     var lab = (typeof LABS !== "undefined") ? LABS[l.n] : null;
     document.getElementById("p-lab").innerHTML = lab
-      && hasLab(l.n) ? "🧪 <b>Lab: " + lab.title + "</b><br>" + lab.text
+      && realLab(l.n) ? "🧪 <b>Lab: " + lab.title + "</b><br>" + lab.text
       : "This lesson has no lab. Just watch and learn.";
     var labPage = (typeof LAB_PAGES !== "undefined") ? LAB_PAGES[l.n] : "";
     if (labPage && lab) {

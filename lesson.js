@@ -93,7 +93,7 @@
 
   var tabs = el("div", "lp-tabs");
   var SUM = (typeof SUMMARIES !== "undefined" && SUMMARIES[item.n]) || null;
-  [["lesson", "▶ Lesson", true], ["summary", "Summary", !!SUM], ["quiz", "Quiz", !!QUIZZES[item.n]], ["lab", "Lab", hasLab(item.n)]].forEach(function (t) {
+  [["lesson", "▶ Lesson", true], ["summary", "Summary", !!SUM], ["quiz", "Quiz", !!QUIZZES[item.n]], ["lab", "Lab", realLab(item.n)]].forEach(function (t) {
     var b = el("button", "lp-tab", t[1]); b.type = "button"; b.dataset.t = t[0]; b.disabled = !t[2];
     b.onclick = function () { tab = t[0]; stage(); }; tabs.appendChild(b);
   });
