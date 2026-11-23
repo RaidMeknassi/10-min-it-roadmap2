@@ -10,7 +10,19 @@
 
   var IL = (typeof INTERMEDIATE_LEVELS !== "undefined") ? INTERMEDIATE_LEVELS : [];
   var AL = (typeof ADVANCED_LESSONS !== "undefined") ? ADVANCED_LESSONS : {};   // { "im4": [[key, title], ...] } filled in later
-  function lessonsOf(lv) { return AL[lv.id] || []; }
+  var SL = (typeof SPEC_LESSONS !== "undefined") ? SPEC_LESSONS : {};
+  /* the advanced lessons already published, placed under the matching module */
+  var ADV_MAP = {
+    im4: ["Switching Technologies", "Routing Technologies", "Network Security", "Troubleshooting and Monitoring", "High Availability", "Advanced Network Security", "Wireless Networking", "Cloud Networking", "Data Center Networking", "Network Automation and Programmability", "Service Provider and Telecom Networking", "Network Architecture and Design"],
+    im3: ["Linux Server", "Operating System Internals"],
+    im9: ["SIEM and Incident Response"]
+  };
+  function sectionsOf(lv) {
+    var out = (ADV_MAP[lv.id] || []).filter(function (n) { return SL[n]; }).map(function (n) { return { title: n, lessons: SL[n].lessons }; });
+    if (AL[lv.id] && AL[lv.id].length) out.push({ title: "More lessons", lessons: AL[lv.id] });
+    return out;
+  }
+  function lessonsOf(lv) { return sectionsOf(lv).reduce(function (a, x) { return a.concat(x.lessons); }, []); }
   var total = 0, doneN = 0;
   IL.forEach(function (lv) { lessonsOf(lv).forEach(function (r) { total++; if (done[r[0]]) doneN++; }); });
   document.getElementById("adv-progress-text").textContent = doneN + " / " + total + " lessons";
@@ -61,15 +73,21 @@
       var L = lessonsOf(lv); if (!L.length) return;
       root.appendChild(link());
       var box = el("div", "adv-mod"); box.id = "adv-" + lv.id; box.appendChild(el("h3", "", "Advanced · " + lv.title.replace(/^Intermediate /, "")));
-      var list = el("div", "lvlist sp-lessons");
-      L.forEach(function (r) {
-        var a = el("a", "lc" + (done[r[0]] ? " done" : "")); a.href = "lesson.html?n=" + encodeURIComponent(r[0]);
-        a.innerHTML = '<span class="cl-ico"></span><span class="lc-body"><b></b><small></small></span><span class="lc-tags"></span><span class="lc-check">\u2713</span>';
-        a.querySelector(".cl-ico").textContent = (typeof LBL !== "undefined" && LBL[r[0]]) || r[0]; a.querySelector("b").textContent = r[1];
-        a.querySelector("small").textContent = "Lesson \u00B7 10 min";
-        list.appendChild(a);
+      sectionsOf(lv).forEach(function (sec) {
+        if (sectionsOf(lv).length > 1) box.appendChild(el("h4", "adv-sec", sec.title));
+        var list = el("div", "lvlist sp-lessons");
+        sec.lessons.forEach(function (r) {
+          var a = el("a", "lc" + (done[r[0]] ? " done" : "")); a.href = "lesson.html?n=" + encodeURIComponent(r[0]);
+          a.innerHTML = '<span class="cl-ico"></span><span class="lc-body"><b></b><small></small></span><span class="lc-tags"></span><span class="lc-check">\u2713</span>';
+          a.querySelector(".cl-ico").textContent = (typeof LBL !== "undefined" && LBL[r[0]]) || r[0]; a.querySelector("b").textContent = r[1];
+          a.querySelector("small").textContent = "Lesson " + ((typeof LBL !== "undefined" && LBL[r[0]]) || "") + " \u00B7 10 min";
+          var tg = (typeof lessonTags === "function") ? lessonTags(r[0]) : [];
+          tg.forEach(function (x) { a.querySelector(".lc-tags").appendChild(el("span", "tg " + x[1], x[0])); });
+          list.appendChild(a);
+        });
+        box.appendChild(list);
       });
-      box.appendChild(list); root.appendChild(box);
+      root.appendChild(box);
     });
   }
 })();

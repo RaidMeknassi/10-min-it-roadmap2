@@ -1141,3 +1141,5 @@ a.nt-node:hover { transform: translateY(-2px); box-shadow: 0 0 22px -6px var(--c
 .adv-road .branches { display: grid; grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 18px; }
 .adv-road .branches > .trunk { min-width: 0; }
 .adv-road .lv { max-width: 290px; }
+.adv-sec{margin:16px 0 8px;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--c,#f472b6)}
+.adv-mod .cl-ico{color:#e2e8f0;background:none;box-shadow:none}
