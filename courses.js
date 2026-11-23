@@ -473,11 +473,11 @@ function levelToolsBox(levelId) {
   function level0(id) { var t = TOOLS.filter(function (x) { return x.id === id; })[0]; return t.levels[0].lessons.map(function (r) { return [r[0], r[1], 0, 1]; }); }
   ["linkedin", "glassdoor", "indeed"].forEach(function (id) { level0(id).forEach(function (r) { LEVELS[5].lessons.push(r); }); });
   LEVELS[5].lbl = function (k) { return "5." + (k + 1); };
-  var rst = LEVEL55.lessons.filter(function (r) { return r[0] === "5.5.3"; })[0];
+  var rst = LEVEL55.lessons.filter(function (r) { return r[0] === "5.5.3"; })[0];   // Remote Support Tools moves to Level 5.2 (first lesson)
   LEVEL55.lessons = LEVEL55.lessons.filter(function (r) { return r[0] !== "5.5.3"; });
   LEVEL55.lessons.push(["57", "Understanding ITSM and ITIL", 0]);   // ITSM/ITIL basics before the ticketing tools
   ["servicenow", "jira"].forEach(function (id) { level0(id).forEach(function (r) { LEVEL55.lessons.push(r); }); });
-  if (rst) LEVEL55.lessons.push(rst);   // Remote Support Tools comes right before the remote tools
+  if (rst) LEVEL54.lessons.push(rst);
   /* communication and remote-support tools: each tool's first lesson, with a short title (Level 5.2) */
   [["slack", "Slack"], ["zoom", "Zoom Meetings"], ["rdp", "Microsoft Remote Desktop (RDP)"], ["teamviewer", "TeamViewer"], ["anydesk", "AnyDesk"]].forEach(function (x) {
     var r = level0(x[0])[0]; LEVEL54.lessons.push([r[0], x[1], 0, 1]);
@@ -485,6 +485,7 @@ function levelToolsBox(levelId) {
   LEVEL54.lbl = function (k) { return "5.2." + (k + 1); };
   LEVEL55.lbl = function (k) { return "5.1." + (k + 1); };
   LEVEL55.lessons.forEach(function (r, k) { if (!/\./.test(r[0]) || /^5\.5\./.test(r[0])) LBL[r[0]] = "5.1." + (k + 1); });
+  LEVEL54.lessons.forEach(function (r, k) { if (/^5\.5\./.test(r[0])) LBL[r[0]] = "5.2." + (k + 1); });
 })();
 
 /* ---- Level 5.4: Google Workspace for Everyday Support (same lessons as Level 0 of the Google Workspace tool) ---- */
