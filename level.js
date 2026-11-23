@@ -48,12 +48,39 @@
     $("lv-meta").textContent = groups.length + " groups \u00B7 " + total + " paths";
   } else if (isPaths) {
     $("lv-bar").style.display = "none"; $("lv-meta").textContent = PATHS.length + " paths · choose one";
+    /* the specializations as a colour ring */
+    var NS = "http://www.w3.org/2000/svg", C = 450, RO = 430, RI = 185, N = PATHS.length;
+    var ICON = [
+      '<path d="M12 3l8 3v6c0 5-3.5 8-8 9-4.5-1-8-4-8-9V6z"/><path d="M8.5 12l2.5 2.5L15.5 9.5"/>',
+      '<rect x="9.5" y="3" width="5" height="4" rx="1"/><rect x="3" y="17" width="5" height="4" rx="1"/><rect x="16" y="17" width="5" height="4" rx="1"/><path d="M12 7v4M12 11l-6.5 6M12 11l6.5 6"/>',
+      '<rect x="4" y="4" width="16" height="6" rx="1.5"/><rect x="4" y="14" width="16" height="6" rx="1.5"/><path d="M7.5 7h.01M7.5 17h.01M12 10v4"/>',
+      '<path d="M7 18a4 4 0 0 1-.6-7.9 5.5 5.5 0 0 1 10.6-1.2A4.5 4.5 0 0 1 17 18z"/>',
+      '<path d="M6 9a3 3 0 1 0 0 6c4 0 6-6 12-6a3 3 0 1 1 0 6c-6 0-8-6-12-6z"/>',
+      '<path d="m8 7-5 5 5 5M16 7l5 5-5 5M14 5l-4 14"/>',
+      '<ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"/>',
+      '<path d="M4 14v-2a8 8 0 0 1 16 0v2"/><rect x="3" y="14" width="4" height="6" rx="1.5"/><rect x="17" y="14" width="4" height="6" rx="1.5"/><path d="M19 20c0 1.5-2 2-5 2"/>',
+      '<path d="M4 21V5l8-2v18M12 8h8v13M7 9h2M7 13h2M7 17h2M15 12h2M15 16h2M3 21h18"/>'];
+    var SHORT = { "Data and Artificial Intelligence": "Data and AI", "DevOps and Automation": "DevOps and Automation", "IT Support Engineering": "IT Support" };
+    function pt(r, deg) { var t = deg * Math.PI / 180; return [C + r * Math.cos(t), C + r * Math.sin(t)]; }
+    var svg = document.createElementNS(NS, "svg"); svg.setAttribute("viewBox", "0 0 900 900"); svg.setAttribute("class", "sp-ring"); svg.setAttribute("role", "list");
     PATHS.forEach(function (p, i) {
-      var a = el("a", "lc"); a.href = "spec.html?s=" + i; a.style.setProperty("--c", p.color);
-      a.innerHTML = '<span class="lc-dot"></span><span class="lc-body"><b></b><small></small></span>';
-      a.querySelector("b").textContent = p.name; a.querySelector("small").textContent = p.items.length + " topics";
-      list.appendChild(a);
+      var a0 = -90 + i * 360 / N, a1 = a0 + 360 / N, mid = (a0 + a1) / 2, o0 = pt(RO, a0), o1 = pt(RO, a1), i1 = pt(RI, a1), i0 = pt(RI, a0);
+      var g = document.createElementNS(NS, "a"); g.setAttribute("href", "spec.html?s=" + i); g.setAttribute("class", "sp-seg"); g.style.setProperty("--c", p.color); g.setAttribute("role", "listitem");
+      var d = "M" + o0 + " A" + RO + " " + RO + " 0 0 1 " + o1 + " L" + i1 + " A" + RI + " " + RI + " 0 0 0 " + i0 + " Z";
+      var path = document.createElementNS(NS, "path"); path.setAttribute("d", d); g.appendChild(path);
+      var m = pt((RO + RI) / 2, mid), label = SHORT[p.name] || p.name, words = label.split(" "), lines = [], cur = "";
+      words.forEach(function (w) { if ((cur + " " + w).trim().length > 13 && cur) { lines.push(cur); cur = w; } else cur = (cur + " " + w).trim(); }); lines.push(cur);
+      var ic = document.createElementNS(NS, "g"); ic.setAttribute("class", "sp-ico"); ic.setAttribute("transform", "translate(" + (m[0] - 21) + " " + (m[1] - 38 - lines.length * 11) + ") scale(1.75)"); ic.innerHTML = ICON[i] || ICON[0]; g.appendChild(ic);
+      var tx = document.createElementNS(NS, "text"); tx.setAttribute("x", m[0]); tx.setAttribute("text-anchor", "middle");
+      lines.forEach(function (ln, k) { var ts = document.createElementNS(NS, "tspan"); ts.setAttribute("x", m[0]); ts.setAttribute("y", m[1] + 28 - lines.length * 11 + k * 24); ts.textContent = ln; tx.appendChild(ts); });
+      g.appendChild(tx);
+      var ti = document.createElementNS(NS, "title"); ti.textContent = p.name; g.appendChild(ti);
+      svg.appendChild(g);
     });
+    var ct = document.createElementNS(NS, "text"); ct.setAttribute("class", "sp-center"); ct.setAttribute("text-anchor", "middle");
+    [["Specializations", 450, 440, "sp-c1"], ["Choose one path", 450, 480, "sp-c2"]].forEach(function (r) { var ts = document.createElementNS(NS, "tspan"); ts.setAttribute("x", r[1]); ts.setAttribute("y", r[2]); ts.setAttribute("class", r[3]); ts.textContent = r[0]; ct.appendChild(ts); });
+    svg.appendChild(ct);
+    var wrap = el("div", "sp-ring-wrap"); wrap.appendChild(svg); list.appendChild(wrap);
   } else {
     var c = 0;
     lv.lessons.forEach(function (row, rk) {

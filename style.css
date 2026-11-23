@@ -1143,3 +1143,12 @@ a.nt-node:hover { transform: translateY(-2px); box-shadow: 0 0 22px -6px var(--c
 .adv-road .lv { max-width: 290px; }
 .adv-sec{margin:16px 0 8px;font-size:13px;letter-spacing:.04em;text-transform:uppercase;color:var(--c,#f472b6)}
 .adv-mod .cl-ico{color:#e2e8f0;background:none;box-shadow:none}
+/* Specializations ring */
+.sp-ring-wrap { grid-column: 1 / -1; width: 100%; max-width: 680px; margin: 0 auto; }
+.sp-ring { width: 100%; height: auto; display: block; }
+.sp-seg > path { fill: color-mix(in srgb, var(--c) 82%, #000); stroke: #0b0b16; stroke-width: 5; transition: filter .15s, transform .15s; transform-origin: 450px 450px; }
+.sp-seg:hover > path, .sp-seg:focus > path { filter: brightness(1.15); transform: scale(1.025); }
+.sp-seg text { fill: #fff; font: 600 21px Poppins, sans-serif; pointer-events: none; }
+.sp-seg .sp-ico { fill: none; stroke: #fff; stroke-width: 1.4; stroke-linecap: round; stroke-linejoin: round; pointer-events: none; }
+.sp-center .sp-c1 { fill: #fff; font: 800 30px Poppins, sans-serif; }
+.sp-center .sp-c2 { fill: #94a3b8; font: 500 18px Poppins, sans-serif; }
