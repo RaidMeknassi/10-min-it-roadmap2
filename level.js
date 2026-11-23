@@ -57,7 +57,7 @@
       var tg = a.querySelector(".lc-tags"), has = LESSON_PAGES[n] || VIDEOS[n];
       if (has) tg.appendChild(tag("Lesson", "t-les"));
       if (QUIZZES[n]) tg.appendChild(tag("Quiz", "t-quiz"));
-      if (LAB_PAGES[n] || (LABS[n] && LABS[n].video)) tg.appendChild(tag("Lab", "t-lab")); else if (row[2] || LABS[n]) tg.appendChild(tag("🔒 Lab", "t-lock"));
+      if (hasLab(n)) tg.appendChild(tag("Lab", "t-lab"));
       if (!has && !QUIZZES[n]) tg.appendChild(tag("Coming soon", "t-soon"));
       list.appendChild(a);
     });

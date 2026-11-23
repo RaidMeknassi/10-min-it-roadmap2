@@ -121,7 +121,7 @@
       var b = document.createElement("button");
       b.type = "button";
       b.className = "fl-item";
-      b.innerHTML = '<span class="ico"></span><span class="fl-num"></span><span class="fl-title"></span>' + (lesson.lab ? '<span class="fl-lock" title="Has a lab">🔒</span>' : "");
+      b.innerHTML = '<span class="ico"></span><span class="fl-num"></span><span class="fl-title"></span>' + (hasLab(lesson.n) ? '<span class="fl-lock" title="Has a lab">🧪</span>' : "");
       b.querySelector(".fl-num").textContent = lv.lbl ? lv.lbl(rk) : (LBL[lesson.n] || lesson.n);
       var ic = b.querySelector(".ico"); ic.style.setProperty("--c", lv.color);
       ic.innerHTML = '<img src="assets/lesson-icons/' + lesson.n + '.png" alt="" width="28" height="28" style="border-radius:8px;vertical-align:middle;">';
@@ -174,7 +174,7 @@
       total++;
       var b = document.createElement("button");
       b.type = "button"; b.className = "fl-item";
-      b.innerHTML = '<span class="ico"></span><span class="fl-num"></span><span class="fl-title"></span>' + (lesson.lab ? '<span class="fl-lock" title="Has a lab">🔒</span>' : "");
+      b.innerHTML = '<span class="ico"></span><span class="fl-num"></span><span class="fl-title"></span>' + (hasLab(lesson.n) ? '<span class="fl-lock" title="Has a lab">🧪</span>' : "");
       b.querySelector(".fl-num").textContent = lv.lbl ? lv.lbl(rk) : (LBL[lesson.n] || lesson.n);
       var ic = b.querySelector(".ico"); ic.style.setProperty("--c", lv.color);
       ic.innerHTML = '<img src="assets/lesson-icons/' + lesson.n + '.png" alt="" width="28" height="28" style="border-radius:8px;vertical-align:middle;">';
@@ -197,7 +197,7 @@
       total++;
       var b = document.createElement("button");
       b.type = "button"; b.className = "fl-item";
-      b.innerHTML = '<span class="ico"></span><span class="fl-num"></span><span class="fl-title"></span>' + (lesson.lab ? '<span class="fl-lock" title="Has a lab">🔒</span>' : "");
+      b.innerHTML = '<span class="ico"></span><span class="fl-num"></span><span class="fl-title"></span>' + (hasLab(lesson.n) ? '<span class="fl-lock" title="Has a lab">🧪</span>' : "");
       b.querySelector(".fl-num").textContent = lv.lbl(rk);
       var ic = b.querySelector(".ico"); ic.style.setProperty("--c", lv.color);
       b.querySelector(".fl-title").textContent = lesson.title;
@@ -218,7 +218,7 @@
       total++;
       var b = document.createElement("button");
       b.type = "button"; b.className = "fl-item";
-      b.innerHTML = '<span class="ico"></span><span class="fl-num"></span><span class="fl-title"></span>' + (lesson.lab ? '<span class="fl-lock" title="Has a lab">🔒</span>' : "");
+      b.innerHTML = '<span class="ico"></span><span class="fl-num"></span><span class="fl-title"></span>' + (hasLab(lesson.n) ? '<span class="fl-lock" title="Has a lab">🧪</span>' : "");
       b.querySelector(".fl-num").textContent = lv.lbl(rk);
       var ic = b.querySelector(".ico"); ic.style.setProperty("--c", lv.color);
       b.querySelector(".fl-title").textContent = lesson.title;
@@ -411,8 +411,7 @@
     };
     var lab = (typeof LABS !== "undefined") ? LABS[l.n] : null;
     document.getElementById("p-lab").innerHTML = lab
-      ? "🔒 <b>Lab: " + lab.title + "</b><br>" + lab.text + "<br><small>Labs are for subscribers (coming soon).</small>"
-      : l.lab ? "🔒 <b>Lab available.</b> Practise this lesson hands-on. Labs are for subscribers (coming soon)."
+      && hasLab(l.n) ? "🧪 <b>Lab: " + lab.title + "</b><br>" + lab.text
       : "This lesson has no lab. Just watch and learn.";
     var labPage = (typeof LAB_PAGES !== "undefined") ? LAB_PAGES[l.n] : "";
     if (labPage && lab) {
