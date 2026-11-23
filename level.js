@@ -5,7 +5,7 @@
 (function () {
   var $ = function (i) { return document.getElementById(i); };
   var imLevels = (typeof INTERMEDIATE_LEVELS !== "undefined") ? INTERMEDIATE_LEVELS : [];
-  var ALL = LEVELS.concat([LEVEL55, LEVEL54, LEVEL52, LEVEL53]).concat(imLevels).concat([{ id: "l6m", name: INTERMEDIATE.name, title: INTERMEDIATE.title, color: INTERMEDIATE.color }, { id: "l6", name: "Level 7", title: "Advanced Specializations", color: "#f472b6" }]);
+  var ALL = LEVELS.concat([LEVEL55, LEVEL54, LEVEL52, LEVEL53]).concat(imLevels).concat((typeof ADVANCED_LEVELS !== "undefined") ? ADVANCED_LEVELS : []).concat([{ id: "l6m", name: INTERMEDIATE.name, title: INTERMEDIATE.title, color: INTERMEDIATE.color }, { id: "l6", name: "Level 7", title: "Advanced Specializations", color: "#f472b6" }]);
   var done = {}; try { done = JSON.parse(localStorage.getItem("itroadmap-v2-done") || "{}"); } catch (e) { done = {}; }
   var idx = -1, id = new URLSearchParams(location.search).get("l");
   ALL.forEach(function (x, i) { if (x.id === id) idx = i; });
@@ -89,6 +89,7 @@
       a.innerHTML = '<span class="ico"></span><span class="lc-body"><b></b><small></small></span><span class="lc-tags"></span><span class="lc-check">✓</span>';
       var iconSrc = /^im\d+\./.test(n) ? "assets/lesson-icons/" + n + ".png" : "assets/lesson-icons/" + n + ".png";
       a.querySelector(".ico").innerHTML = '<img src="' + iconSrc + '" alt="" width="28" height="28" style="border-radius:8px;vertical-align:middle;">';
+      (function (ic, lab) { var im = ic.querySelector("img"); if (im) im.onerror = function () { ic.textContent = lab; ic.style.fontWeight = "800"; ic.style.fontSize = "12px"; }; })(a.querySelector(".ico"), (lv.lbl ? lv.lbl(rk) : (LBL[n] || n)));
       a.querySelector("b").textContent = row[1]; a.querySelector("small").textContent = "Lesson " + (lv.lbl ? lv.lbl(rk) : (LBL[n] || n)) + " · 10 min";
       var tg = a.querySelector(".lc-tags"), has = LESSON_PAGES[n] || VIDEOS[n];
       if (has) tg.appendChild(tag("Lesson", "t-les"));

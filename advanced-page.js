@@ -8,21 +8,8 @@
   var done = {}; try { done = JSON.parse(localStorage.getItem("itroadmap-v2-done") || "{}"); } catch (e) { done = {}; }
   var yr = document.getElementById("adv-year"); if (yr) yr.textContent = new Date().getFullYear();
 
-  var IL = (typeof INTERMEDIATE_LEVELS !== "undefined") ? INTERMEDIATE_LEVELS : [];
-  var AL = (typeof ADVANCED_LESSONS !== "undefined") ? ADVANCED_LESSONS : {};   // { "im4": [[key, title], ...] } filled in later
-  var SL = (typeof SPEC_LESSONS !== "undefined") ? SPEC_LESSONS : {};
-  /* the advanced lessons already published, placed under the matching module */
-  var ADV_MAP = {
-    im4: ["Switching Technologies", "Routing Technologies", "Network Security", "Troubleshooting and Monitoring", "High Availability", "Advanced Network Security", "Wireless Networking", "Cloud Networking", "Data Center Networking", "Network Automation and Programmability", "Service Provider and Telecom Networking", "Network Architecture and Design"],
-    im3: ["Linux Server", "Operating System Internals"],
-    im9: ["SIEM and Incident Response"]
-  };
-  function sectionsOf(lv) {
-    var out = (ADV_MAP[lv.id] || []).filter(function (n) { return SL[n]; }).map(function (n) { return { title: n, lessons: SL[n].lessons }; });
-    if (AL[lv.id] && AL[lv.id].length) out.push({ title: "More lessons", lessons: AL[lv.id] });
-    return out;
-  }
-  function lessonsOf(lv) { return sectionsOf(lv).reduce(function (a, x) { return a.concat(x.lessons); }, []); }
+  var IL = (typeof ADVANCED_LEVELS !== "undefined") ? ADVANCED_LEVELS : [];
+  function lessonsOf(lv) { return lv.lessons || []; }
   var total = 0, doneN = 0;
   IL.forEach(function (lv) { lessonsOf(lv).forEach(function (r) { total++; if (done[r[0]]) doneN++; }); });
   document.getElementById("adv-progress-text").textContent = doneN + " / " + total + " lessons";
@@ -31,7 +18,7 @@
   function link() { return el("div", "adv-link"); }
   function stage(title, text) { var s = el("div", "adv-stage"); s.appendChild(el("h2", "", title)); if (text) s.appendChild(el("p", "", text)); return s; }
 
-  root.appendChild(stage("Advanced modules", "The same modules as the Intermediate level, one level deeper. Hover or tap a module to see its lessons."));
+  root.appendChild(stage("Advanced modules", "The same modules as the Intermediate level, one level deeper. Click a module to open its lessons."));
   root.appendChild(link());
   var road = el("div", "road adv-road"); var svg = document.createElementNS("http://www.w3.org/2000/svg", "svg"); svg.setAttribute("class", "road-lines"); road.appendChild(svg);
   var lev = el("div", "levels"); road.appendChild(lev);
@@ -40,29 +27,11 @@
     var lv = IL[i], L = lessonsOf(lv), dn = 0; L.forEach(function (r) { if (done[r[0]]) dn++; });
     var w = el("div", "lv"); w.style.setProperty("--c", lv.color);
     w.innerHTML = '<a class="lv-card" style="text-decoration:none"><span class="badge"></span><h2></h2><div class="lv-meta"></div><div class="lv-bar"><i></i></div></a>';
-    var c = w.querySelector(".lv-card"); c.style.cursor = "default";
-    w.querySelector(".badge").textContent = "Module " + (i + 1);
-    w.querySelector("h2").textContent = lv.title.replace(/^Intermediate /, "");
+    var c = w.querySelector(".lv-card"); c.href = "level.html?l=" + lv.id;
+    w.querySelector(".badge").textContent = "Advanced " + (i + 1);
+    w.querySelector("h2").textContent = lv.title;
     w.querySelector(".lv-meta").textContent = L.length ? L.length + " lessons \u00B7 " + dn + " / " + L.length + " done" : "Lessons coming soon";
     w.querySelector(".lv-bar i").style.width = (L.length ? dn / L.length * 100 : 0) + "%";
-    if (L.length) {
-      if (i === 1 || i === 3) w.classList.add("flip");
-      var fo = el("div", "flyout"); fo.innerHTML = '<div class="flyout-card"><div class="fl-head"></div><div class="fl-list"></div></div>';
-      fo.querySelector(".fl-head").textContent = "Advanced \u00B7 " + lv.title.replace(/^Intermediate /, "");
-      var fl = fo.querySelector(".fl-list"), secs = sectionsOf(lv);
-      secs.forEach(function (sec) {
-        if (secs.length > 1) { var h = el("div", "fl-head", sec.title); h.style.fontSize = "11px"; h.style.opacity = ".85"; fl.appendChild(h); }
-        sec.lessons.forEach(function (r) {
-          var b = el("button", "fl-item"); b.type = "button"; b.style.setProperty("--c", lv.color);
-          b.innerHTML = '<span class="fl-num"></span><span class="fl-title"></span>';
-          b.querySelector(".fl-num").textContent = (typeof LBL !== "undefined" && LBL[r[0]]) || ""; b.querySelector(".fl-title").textContent = r[1];
-          if (done[r[0]]) b.classList.add("done");
-          b.addEventListener("click", function () { location.href = "lesson.html?n=" + encodeURIComponent(r[0]); });
-          fl.appendChild(b);
-        });
-      });
-      w.appendChild(fo);
-    }
     parent.appendChild(w); cards[i] = { el: c, color: lv.color }; return w;
   }
   function single(i) { var d = el("div", "final"); d.style.marginTop = "56px"; lev.appendChild(d); card(i, d); }

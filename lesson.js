@@ -9,7 +9,7 @@
   try { done = JSON.parse(localStorage.getItem(KEY) || "{}"); } catch (e) { done = {}; }
   function save() { try { localStorage.setItem(KEY, JSON.stringify(done)); } catch (e) {} }
   var flat = [];
-  var allLevels = LEVELS.concat([LEVEL55]).concat((typeof LEVEL54 !== "undefined") ? [LEVEL54] : []).concat((typeof LEVEL52 !== "undefined") ? [LEVEL52] : []).concat((typeof LEVEL53 !== "undefined") ? [LEVEL53] : []).concat((typeof INTERMEDIATE_LEVELS !== "undefined") ? INTERMEDIATE_LEVELS : []).concat((typeof COURSE_LEVELS !== "undefined") ? COURSE_LEVELS : []);
+  var allLevels = LEVELS.concat([LEVEL55]).concat((typeof LEVEL54 !== "undefined") ? [LEVEL54] : []).concat((typeof LEVEL52 !== "undefined") ? [LEVEL52] : []).concat((typeof LEVEL53 !== "undefined") ? [LEVEL53] : []).concat((typeof INTERMEDIATE_LEVELS !== "undefined") ? INTERMEDIATE_LEVELS : []).concat((typeof ADVANCED_LEVELS !== "undefined") ? ADVANCED_LEVELS : []).concat((typeof COURSE_LEVELS !== "undefined") ? COURSE_LEVELS : []);
   allLevels.forEach(function (lv) { lv.lessons.forEach(function (r) { flat.push({ n: r[0], title: r[1], lab: !!r[2], level: lv }); }); });
   var qs = new URLSearchParams(location.search), main = $("lp"), tab = "lesson";
   function el(tag, cls, txt) { var e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; }

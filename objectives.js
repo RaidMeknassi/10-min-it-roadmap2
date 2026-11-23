@@ -106,6 +106,49 @@ const LEVEL_OBJECTIVES = {
   "Explain the CIA triad and basic security principles",
   "Understand authentication, access control, encryption and firewalls",
   "Find vulnerabilities and watch systems with logs and monitoring"
+ ],
+ "adv-im4": [
+  "Configure and troubleshoot switching, routing and network security",
+  "Monitor, protect and design enterprise networks",
+  "Choose a networking specialization such as wireless, cloud, data center or automation"
+ ],
+ "adv-im2": [
+  "Manage Windows Server roles, DNS and DHCP",
+  "Automate administration with advanced PowerShell",
+  "Monitor, secure, back up and troubleshoot Windows systems"
+ ],
+ "adv-im3": [
+  "Administer Linux servers, networking, logs and SSH",
+  "Explain how the kernel, processes, memory and file systems work"
+ ],
+ "adv-im5": [
+  "Explain how Active Directory replicates and who holds the FSMO roles",
+  "Design and troubleshoot Group Policy and Kerberos",
+  "Secure, back up and recover Active Directory, and connect it to the cloud"
+ ],
+ "adv-im8": [
+  "Configure HTTPS, web servers, proxies and caching",
+  "Explain the main web vulnerabilities and how to prevent them",
+  "Measure and fix web performance problems"
+ ],
+ "adv-im10": [
+  "Administer virtualization platforms and keep virtual machines available",
+  "Build and run multi-container applications with Docker",
+  "Explain Kubernetes basics and secure containers"
+ ],
+ "adv-im7": [
+  "Write advanced SQL and optimize slow queries",
+  "Explain transactions, locking, replication and high availability",
+  "Secure, back up and restore databases"
+ ],
+ "adv-im11": [
+  "Manage identities, monitoring and recovery in the cloud",
+  "Deploy cloud resources as code",
+  "Control cloud cost and security posture"
+ ],
+ "adv-im9": [
+  "Use a SIEM to detect incidents",
+  "Follow incident detection and response steps"
  ]
 };
 const LESSON_OBJECTIVES = {
@@ -271,5 +314,49 @@ const LESSON_OBJECTIVES = {
  "nw.ar.3": "Explain and use these ideas: Traffic estimates, growth planning, oversubscription, upgrade timing.",
  "nw.ar.4": "Explain and use these ideas: Redundant design, scaling up and out, avoiding bottlenecks.",
  "nw.ar.5": "Explain and use these ideas: Network diagrams, IP address records, configuration and change documentation.",
- "nw.sp.5": "Explain and use these ideas: Cellular architecture, radio access networks, core network."
+ "nw.sp.5": "Explain and use these ideas: Cellular architecture, radio access networks, core network.",
+ "av.im2.1": "Install and manage server roles such as file, print, DNS and DHCP.",
+ "av.im2.2": "Set up zones, records, scopes and reservations, and fix common problems.",
+ "av.im2.3": "Write functions, loops, error handling and reusable scripts.",
+ "av.im2.4": "Run commands on many computers and automate daily admin tasks.",
+ "av.im2.5": "Use Performance Monitor, Resource Monitor and counters to find bottlenecks.",
+ "av.im2.6": "Apply security baselines, Defender, firewall rules and least privilege.",
+ "av.im2.7": "Back up a server, restore files and systems, and plan recovery.",
+ "av.im2.8": "Diagnose boot failures, safe mode, recovery tools and startup items.",
+ "av.im5.1": "How domain controllers copy changes between sites and how to control it.",
+ "av.im5.2": "The five special roles of a domain, where they live and how to move them.",
+ "av.im5.3": "Design GPO structure, filtering and inheritance, and fix policy problems.",
+ "av.im5.4": "Tickets, the KDC, SPNs, delegation and common Kerberos errors.",
+ "av.im5.5": "Protect privileged accounts and reduce attack paths in a domain.",
+ "av.im5.6": "Sync on-premises identities with the cloud and choose sign-in methods.",
+ "av.im5.7": "Back up system state, restore objects and recover a failed domain controller.",
+ "av.im8.1": "Handshakes, certificate chains, renewal and common HTTPS errors.",
+ "av.im8.2": "Configure virtual hosts, redirects, logging and static content.",
+ "av.im8.3": "Spread traffic across servers and protect back-end applications.",
+ "av.im8.4": "Browser, server and CDN caching, headers and cache invalidation.",
+ "av.im8.5": "The most common web vulnerabilities and how they are prevented.",
+ "av.im8.6": "How newer HTTP versions speed up the web and what changes for admins.",
+ "av.im8.7": "Measure page speed, read server logs and fix slow or failing sites.",
+ "av.im10.1": "Manage hosts, virtual machines, templates and snapshots.",
+ "av.im10.2": "Move running VMs, cluster hosts and survive host failures.",
+ "av.im10.3": "Build, tag and publish images, and keep them small and clean.",
+ "av.im10.4": "Connect containers and store data safely outside them.",
+ "av.im10.5": "Describe and run multi-container applications with one file.",
+ "av.im10.6": "Pods, deployments, services and how Kubernetes runs containers.",
+ "av.im10.7": "Secure images, registries, runtime settings and secrets.",
+ "av.im7.1": "Combine tables, nest queries and calculate across rows.",
+ "av.im7.2": "Read execution plans and speed up slow queries.",
+ "av.im7.3": "Keep data correct when many users change it at once.",
+ "av.im7.4": "Copy data to other servers and fail over safely.",
+ "av.im7.5": "Control access, encrypt data and track who changed what.",
+ "av.im7.6": "Document, key-value and graph databases and when to use them.",
+ "av.im7.7": "Full, differential and log backups, and restoring to an exact moment.",
+ "av.im11.1": "Users, roles, policies and least privilege in the cloud.",
+ "av.im11.2": "Describe cloud resources in code and deploy them repeatably.",
+ "av.im11.3": "Collect metrics and logs, build alerts and investigate incidents.",
+ "av.im11.4": "Regions, zones, backups and recovery plans.",
+ "av.im11.5": "Run code without servers: functions, triggers and limits.",
+ "av.im11.6": "Run Docker and Kubernetes workloads on managed cloud services.",
+ "av.im11.7": "Understand cloud bills, tag resources and cut waste.",
+ "av.im11.8": "Find misconfigurations and keep cloud accounts compliant."
 };

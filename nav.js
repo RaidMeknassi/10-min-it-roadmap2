@@ -17,6 +17,7 @@
   if (/languages?\.html$/.test(p) || (/lesson\.html$/.test(p) && (/^lang\./.test(n) || (typeof LANGS !== "undefined" && LANGS.some(function (L) { return L.lv.some(function (rows) { return rows.some(function (r) { return r[0] === n; }); }); }))))) k = "g";
   if (/certs\.html$/.test(p)) k = "c";
   if (/plans\.html$/.test(p)) k = "p";
+  if ((/level\.html$/.test(p) && /^adv-/.test(q.get("l") || "")) || (/lesson\.html$/.test(p) && /^adv-/.test(q.get("from") || ""))) k = "a";
   var a = document.querySelector('.top-nav a[data-nav="' + k + '"]'); if (a) a.classList.add("on");
 })();
 
