@@ -427,7 +427,7 @@ QUIZZES["servicenow.1.x4"] = { type: "mcq", color: "#62d84e", title: "CSA full m
 
 /* tags shown on a lesson card in the lists: video lesson, quiz-only (quiz + locked lab), or coming soon */
 function lessonTags(key) {
-  if (VIDEOS[key] || LESSON_PAGES[key]) return [["Lesson", "t-les"]].concat(QUIZZES[key] ? [["Quiz", "t-quiz"]] : []);
+  if (VIDEOS[key] || LESSON_PAGES[key]) return [["Lesson", "t-les"]].concat(QUIZZES[key] ? [["Quiz", "t-quiz"]] : [], (typeof LABS !== "undefined" && LABS[key]) ? [["\uD83D\uDD12 Lab", "t-lock"]] : []);
   if (QUIZZES[key]) return [["Quiz", "t-quiz"], ["\uD83D\uDD12 Lab", "t-lock"]];
   return [["Coming soon", "t-soon"]];
 }

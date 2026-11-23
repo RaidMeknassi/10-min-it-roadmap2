@@ -396,6 +396,7 @@ const QUIZZES = {
 
 /* LABS - hands-on lab description per lesson (labs are for subscribers later) */
 const LABS = {
+  "servicenow.0.2": { title: "ServiceNow Knowledge Base + Free Developer Instance (PDI) Lab", text: "Get your own free ServiceNow Personal Developer Instance (PDI), then practise in it: create, update and resolve incidents and service requests, and use the Knowledge Base to find and share solutions." },
   "5.5.2": { title: "Practical troubleshooting scenarios", text: "Real support cases step by step: a user can't print, Wi-Fi drops, Outlook won't open, a PC is slow. Find the cause, fix it and write the ticket." },
   "5.5.4": { title: "Practical troubleshooting scenarios", text: "Work a ticket from start to finish: talk to the user, decide when to escalate, write clear notes and close it the right way." },
   "56": { title: "Real-World IT Scenarios", text: "Practical support cases and workplace situations: handle tickets, talk to users and decide priorities like a real IT team." },
