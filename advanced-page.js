@@ -24,7 +24,7 @@ var road = el("div", "road adv-road"); var svg = document.createElementNS("http:
   function card(i, parent) {
     var lv = IL[i], L = lessonsOf(lv), dn = 0; L.forEach(function (r) { if (done[r[0]]) dn++; });
     var w = el("div", "lv"); w.style.setProperty("--c", lv.color);
-    w.innerHTML = '<a class="lv-card" style="text-decoration:none"><span class="badge"></span><h2></h2><div class="lv-meta"></div><div class="lv-bar"><i></i></div></a>';
+    w.innerHTML = '<a class="lv-card" style="text-decoration:none"><span class="badge"></span><img class="im-icon" src="assets/int-icons/' + lv.id.replace(/^adv-/, "") + '.png" alt="" aria-hidden="true" width="72" height="72" onerror="this.remove()"><h2></h2><div class="lv-meta"></div><div class="lv-bar"><i></i></div></a>';
     var c = w.querySelector(".lv-card"); c.href = "level.html?l=" + lv.id;
     w.querySelector(".badge").textContent = "Advanced " + (i + 1);
     w.querySelector("h2").textContent = lv.title;
