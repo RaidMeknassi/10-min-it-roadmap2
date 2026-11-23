@@ -434,11 +434,14 @@ function lessonTags(key) {
   return [["Coming soon", "t-soon"]];
 }
 
-/* ---- Level 5.2: Microsoft 365 for Everyday Support (the same lessons stay as Level 0 of the Microsoft 365 tool) ---- */
+/* ---- Level 5.2: Communication & Remote Support Tools (lessons are added below from the Slack, Zoom, RDP, TeamViewer and AnyDesk tools) ---- */
+var LEVEL54 = { id: "l54", name: "Level 5.2", title: "Communication & Remote Support Tools", desc: "Talk to users and fix their computers from far away.", color: "#8b5cf6", lessons: [] };
+
+/* ---- Level 5.3: Microsoft 365 for Everyday Support (the same lessons stay as Level 0 of the Microsoft 365 tool) ---- */
 var LEVEL52 = (function () {
   var m = TOOLS.filter(function (t) { return t.id === "microsoft365"; })[0];
-  return { id: "l52", name: "Level 5.2", title: "Microsoft 365 for Everyday Support", desc: "1st Line Support: the skills you need on the job.", color: m.color,
-    lessons: m.levels[0].lessons.map(function (r) { return [r[0], r[1], 0, 1]; }), lbl: function (k) { return "5.2." + (k + 1); } };
+  return { id: "l52", name: "Level 5.3", title: "Microsoft 365 for Everyday Support", desc: "1st Line Support: the skills you need on the job.", color: m.color,
+    lessons: m.levels[0].lessons.map(function (r) { return [r[0], r[1], 0, 1]; }), lbl: function (k) { return "5.3." + (k + 1); } };
 })();
 /* tools shown under a level (they also stay in the Tools section) */
 var LEVEL_TOOLS = {};
@@ -475,19 +478,20 @@ function levelToolsBox(levelId) {
   LEVEL55.lessons.push(["57", "Understanding ITSM and ITIL", 0]);   // ITSM/ITIL basics before the ticketing tools
   ["servicenow", "jira"].forEach(function (id) { level0(id).forEach(function (r) { LEVEL55.lessons.push(r); }); });
   if (rst) LEVEL55.lessons.push(rst);   // Remote Support Tools comes right before the remote tools
-  /* communication and remote-support tools: each tool's first lesson, with a short title in Level 5.1 */
+  /* communication and remote-support tools: each tool's first lesson, with a short title (Level 5.2) */
   [["slack", "Slack"], ["zoom", "Zoom Meetings"], ["rdp", "Microsoft Remote Desktop (RDP)"], ["teamviewer", "TeamViewer"], ["anydesk", "AnyDesk"]].forEach(function (x) {
-    var r = level0(x[0])[0]; LEVEL55.lessons.push([r[0], x[1], 0, 1]);
+    var r = level0(x[0])[0]; LEVEL54.lessons.push([r[0], x[1], 0, 1]);
   });
+  LEVEL54.lbl = function (k) { return "5.2." + (k + 1); };
   LEVEL55.lbl = function (k) { return "5.1." + (k + 1); };
   LEVEL55.lessons.forEach(function (r, k) { if (!/\./.test(r[0]) || /^5\.5\./.test(r[0])) LBL[r[0]] = "5.1." + (k + 1); });
 })();
 
-/* ---- Level 5.3: Google Workspace for Everyday Support (same lessons as Level 0 of the Google Workspace tool) ---- */
+/* ---- Level 5.4: Google Workspace for Everyday Support (same lessons as Level 0 of the Google Workspace tool) ---- */
 var LEVEL53 = (function () {
   var g = TOOLS.filter(function (t) { return t.id === "googleworkspace"; })[0];
-  return { id: "l53", name: "Level 5.3", title: "Google Workspace for Everyday Support", desc: "1st Line Support: help users with Gmail, Drive, Meet and their Google account.", color: g.color,
-    lessons: g.levels[0].lessons.map(function (r) { return [r[0], r[1], 0, 1]; }), lbl: function (k) { return "5.3." + (k + 1); } };
+  return { id: "l53", name: "Level 5.4", title: "Google Workspace for Everyday Support", desc: "1st Line Support: help users with Gmail, Drive, Meet and their Google account.", color: g.color,
+    lessons: g.levels[0].lessons.map(function (r) { return [r[0], r[1], 0, 1]; }), lbl: function (k) { return "5.4." + (k + 1); } };
 })();
 
 /* ---- certification badge pictures for tool levels (assets/cert-badges/<tool>-<level>.png) ---- */
