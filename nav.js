@@ -5,6 +5,7 @@
 (function () {
   var q = new URLSearchParams(location.search), p = location.pathname, k = "b", n = q.get("n") || "";
   if (/intermediate\.html$/.test(p)) k = "i";
+  if (/advanced\.html$/.test(p)) k = "a";
   else if (/spec\.html$/.test(p) && q.get("m") === "1") k = "i";
   else if (/level\.html$/.test(p) && /^im\d+$/.test(q.get("l") || "")) k = "i";
   else if (/lesson\.html$/.test(p) && /^im\d+\./.test(n)) k = "i";
