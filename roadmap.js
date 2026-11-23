@@ -106,13 +106,13 @@ const INTERMEDIATE_LEVELS = [
   { id: "im3", name: "Module 3", title: "Linux Administration", color: "#34d399",
     desc: "Manage Linux systems, servers, users and services.",
     lessons: [
+      ["im3.13","Your First Steps in Linux"],
+      ["im3.9","Bash Fundamentals"],
       ["im3.1","Linux File System Structure"],
       ["im3.12","Linux Folders Made Simple"],
       ["im3.2","Linux Users and Groups"],
       ["im3.3","Linux Permissions and Ownership"],["im3.4","Linux Processes and Services"],
-      ["im3.5","Package Management"],
-      ["im3.13","Your First Steps in Linux"],
-      ["im3.9","Bash Fundamentals"]
+      ["im3.5","Package Management"]
     ]},
   { id: "im5", name: "Module 5", title: "Active Directory Fundamentals", color: "#818cf8",
     desc: "Understand centralized identity and Windows domain management.",
