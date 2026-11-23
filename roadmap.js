@@ -291,6 +291,7 @@ const VIDEOS = {
   "5.5.4": "SSTCBHDDtp8", // Professional IT Support Practices
   "servicenow.0.1": "TM3_vAdGZnA", // What Is ServiceNow?
   "servicenow.0.2": "wKNf6ootoZo", // Incidents vs Service Requests
+  "servicenow.0.3": "YVxOj4NwIIc", // Knowledge Base + PDI Lab
   "servicenow.1.1": "K-vS398IRXU", // CSA 1.1
   "servicenow.1.2": "1JaGR57fjvE", // CSA 1.2
   "servicenow.1.3": "RBCjQf83c0M", // CSA 1.3
@@ -321,8 +322,9 @@ const VIDEOS = {
   "slack.0.1": "08tCIiXc8Z8",      // Slack (Level 5.1)
   "microsoft365.0.1": "PLcNq2KzEFA", // What Is Microsoft 365? / Admin Center (Level 5.2)
   "microsoft365.0.3": "5Hg7GuQCYvA", // Microsoft Teams: Chat, Meetings & Devices (Level 5.2)
-  "jira.0.3": "8iFVbAuMB8M",         // Jira Service Management: Handling Your First Request (Level 5.1)
+  "jira.0.4": "8iFVbAuMB8M",         // Jira Service Management: Handling Your First Request (Level 5.1)
   "jira.0.2": "7xUB-mSc-AQ",         // Jira: Service Projects, Queues & Requests (Level 5.1)
+  "jira.0.3": "_Ujdr1p9Uu0",         // How to Get a FREE Jira Cloud Site (Level 5.1)
   "jira.0.1": "Cjdh9ZMLVSo",         // What Is Jira Service Management? (Level 5.1)
   "im2.1":  "B5bl2iICzkc", // What a Windows Admin Does
   "im2.2":  "nhuogqgvBgU", // Managing Users and Groups
@@ -393,8 +395,6 @@ const QUIZZES = {
 
 /* LABS - hands-on lab description per lesson (labs are for subscribers later) */
 const LABS = {
-  "servicenow.0.2": { title: "ServiceNow Knowledge Base + Free Developer Instance (PDI) Lab", video: "YVxOj4NwIIc", text: "Get your own free ServiceNow Personal Developer Instance (PDI) and practise with the Knowledge Base." },
-  "jira.0.2": { title: "Getting a Free Jira Cloud Site", video: "_Ujdr1p9Uu0", text: "Create your own free Jira Cloud site so you can practise with service projects, queues and requests." },
   "5.5.2": { title: "Practical troubleshooting scenarios", text: "Real support cases step by step: a user can't print, Wi-Fi drops, Outlook won't open, a PC is slow. Find the cause, fix it and write the ticket." },
   "5.5.4": { title: "Practical troubleshooting scenarios", text: "Work a ticket from start to finish: talk to the user, decide when to escalate, write clear notes and close it the right way." },
   "56": { title: "Real-World IT Scenarios", text: "Practical support cases and workplace situations: handle tickets, talk to users and decide priorities like a real IT team." },

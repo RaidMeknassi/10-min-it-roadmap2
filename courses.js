@@ -93,7 +93,7 @@ const TOOLS = [
     desc: "The leading enterprise IT service management platform. Most big companies run their service desk on it.",
     note: "ServiceNow certifications build on each other like a pyramid: CSA first, then CAD, then CIS, Suite and finally the expert architect exams.",
     levels: [
-      { title: "ServiceNow Basics for the Service Desk", role: "Fulfiller / Agent", color: "#60a5fa", lessons: ["What Is ServiceNow? Beginner Introduction for IT Support", "ServiceNow for Beginners: Incidents vs Service Requests (Create, Update, Resolve)"] },
+      { title: "ServiceNow Basics for the Service Desk", role: "Fulfiller / Agent", color: "#60a5fa", lessons: ["What Is ServiceNow? Beginner Introduction for IT Support", "ServiceNow for Beginners: Incidents vs Service Requests (Create, Update, Resolve)", "ServiceNow Knowledge Base + Free Developer Instance (PDI) Lab"] },
       { title: "Certified System Administrator", role: "Systems Administrator", color: "#34d399", cert: ["CSA", "ServiceNow Certified System Administrator", "ServiceNow"],
         groups: [["Domain 1: Platform Overview and Navigation — 7%", 1], ["Domain 2: Instance Configuration — 10%", 2], ["Domain 3: Configuring Applications for Collaboration — 20%", 5], ["Domain 4: Self-Service and Automation — 20%", 3], ["Domain 5: Database Management and Platform Security — 30%", 4], ["Domain 6: Data Migration and Integration — 13%", 2]],
         lessons: ["ServiceNow Platform Overview and Capabilities", "Applications, Plugins and Instance Configuration", "Personalization, Customization and User Interfaces", "Lists, Filters, Tags and Forms", "Form Configuration, Templates and Advanced Configuration", "Task Management and Visual Task Boards", "Reports, Dashboards and Platform Analytics", "Notifications", "Knowledge Management", "Service Catalog and Catalog Items", "Workflow Studio and Virtual Agent", "Tables, Fields and Data Schema", "Users, Groups, Roles and Access Control", "Importing Data, CMDB and CSDM", "Security Center and Shared Responsibility Model", "UI Policies and Business Rules", "Update Sets and Scripting Fundamentals"],
@@ -115,7 +115,7 @@ const TOOLS = [
     desc: "Atlassian's service desk tool, used by many tech companies and start-ups.",
     note: "Atlassian certifications go from Associate (agent level) to Professional (admin level).",
     levels: [
-      { title: "Jira Service Management Basics", role: "Getting started", color: "#8aa4c8", lessons: ["What Is Jira Service Management?", "Service Projects, Queues and Requests", "Handling Your First Request"] },
+      { title: "Jira Service Management Basics", role: "Getting started", color: "#8aa4c8", lessons: ["What Is Jira Service Management?", "Service Projects, Queues and Requests", "Getting a Free Jira Cloud Site", "Handling Your First Request"] },
       { title: "JSM Agent Essentials", role: "Service Desk Agent", color: "#4c9aff", cert: ["ACA-925", "Jira Service Management Agent Essentials", "Atlassian"],
         lessons: ["Working Requests in Queues", "Comments, Internal Notes and Customers", "SLAs for Agents", "Linking Knowledge Articles", "ACA-925 Exam Preparation"] },
       { title: "JSM with AI Fundamentals", role: "ITSM Practitioner", color: "#2684ff", cert: ["ACH-815", "Jira Service Management with AI Fundamentals (replaces ACA-910)", "Atlassian"],
