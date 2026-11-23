@@ -1137,3 +1137,7 @@ a.nt-node:hover { transform: translateY(-2px); box-shadow: 0 0 22px -6px var(--c
 .im-map .im-link.im-dash { height: 34px; }
 .im-map .itil-rec-card { background: rgba(15,23,42,.85); }
 .im-map .itil-rec-gt { color: #e2e8f0; }
+.adv-road { width: 100%; max-width: 980px; align-self: stretch; padding: 0; }
+.adv-road .branches { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 18px; }
+.adv-road .branches > .trunk { min-width: 0; }
+.adv-road .lv { max-width: 290px; }
