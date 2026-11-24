@@ -1161,3 +1161,5 @@ a.nt-node:hover { transform: translateY(-2px); box-shadow: 0 0 22px -6px var(--c
 .sp-gl span, .sp-gl b { display: block; }
 .sp-gl b { color: var(--pc); }
 .lvlist > .adv-sec { grid-column: 1 / -1; margin: 14px 0 2px; font-size: 14px; letter-spacing: .04em; text-transform: uppercase; color: var(--c, #a78bfa); }
+.lvhero .back.back-icon { display: inline-grid; place-items: center; width: 44px; height: 44px; border-radius: 50%; border: 1px solid var(--c); color: var(--text); padding: 0; margin: 0 10px 0 0; vertical-align: middle; text-decoration: none; }
+.lvhero .back.back-icon:hover { background: var(--c); color: #07070d; }
