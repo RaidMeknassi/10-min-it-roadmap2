@@ -19,6 +19,9 @@
   if (/plans\.html$/.test(p)) k = "p";
   if ((/level\.html$/.test(p) && /^adv-/.test(q.get("l") || "")) || (/lesson\.html$/.test(p) && /^adv-/.test(q.get("from") || ""))) k = "a";
   var a = document.querySelector('.top-nav a[data-nav="' + k + '"]'); if (a) a.classList.add("on");
+  /* on narrow phones the menu scrolls sideways: bring the current section into view so you can see where you are */
+  function showOn() { var on = document.querySelector(".top-nav a.on"), nav = on && on.parentNode; if (!nav || nav.scrollWidth <= nav.clientWidth) return; nav.scrollLeft = on.offsetLeft - (nav.clientWidth - on.offsetWidth) / 2; }
+  showOn(); window.addEventListener("load", showOn); window.addEventListener("resize", showOn); setTimeout(showOn, 300);
 })();
 
 /* keep progress in sync: when you come back to a page (Back button, another tab),
