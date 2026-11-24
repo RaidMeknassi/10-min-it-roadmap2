@@ -677,6 +677,87 @@ const SUMMARIES = {
    "KB, MB, GB, TB",
    "Everything becomes numbers"
   ]
+ },
+ "im3.14": {
+  "s": "Linux is a free, open-source operating system that runs most of the world's servers, cloud systems, phones (Android) and many devices. Distributions such as Ubuntu, Debian and Fedora package the Linux kernel with tools and software.",
+  "k": [
+   "Linux = a kernel plus tools, packaged as distributions",
+   "Open source: free to use, study and change",
+   "Runs servers, the cloud, Android and embedded devices",
+   "Popular distributions: Ubuntu, Debian, Fedora, Red Hat"
+  ]
+ },
+ "im3.13": {
+  "s": "The terminal lets you control Linux by typing commands. Bash is the program (the shell) that reads your commands and runs them. Learning a few basic commands is the first step to working on any Linux server.",
+  "k": [
+   "Terminal = the window, Bash = the shell that runs commands",
+   "A command is a program name plus options and arguments",
+   "The prompt shows your user, computer and current folder",
+   "You can do almost everything on a server from the terminal"
+  ]
+ },
+ "im3.9": {
+  "s": "Bash commands follow the pattern command, options, arguments. You can get help with man and --help, save typing with the Tab key and history, and store values in variables such as NAME=Linux that you read with $NAME.",
+  "k": [
+   "Pattern: command [options] [arguments]",
+   "man <command> and <command> --help show help",
+   "Tab completes names; press it twice to see choices",
+   "Variables: NAME=value, read with $NAME"
+  ]
+ },
+ "im3.1": {
+  "s": "Linux has one single tree that starts at the root, written /. Everything, including disks and devices, hangs somewhere below it. pwd shows where you are, ls lists what is in a folder and cd moves you to another folder.",
+  "k": [
+   "One tree starting at / (root)",
+   "pwd = print working directory",
+   "ls = list files and folders",
+   "cd = change directory (cd .. goes up)"
+  ]
+ },
+ "im3.12": {
+  "s": "Linux folders are organised by purpose: /home holds user files, /etc holds configuration, /var holds logs and changing data, /bin and /usr hold programs. Unlike Windows there are no drive letters such as C:, only one tree.",
+  "k": [
+   "/home = user files, /etc = settings, /var = logs",
+   "/bin and /usr = programs",
+   "No drive letters: disks are mounted into the tree",
+   "Paths use / and names are case-sensitive"
+  ]
+ },
+ "im3.2": {
+  "s": "Every Linux account is a user, and users can belong to groups. useradd creates a user, passwd sets a password, and sudo lets an allowed user run a command as the administrator (root).",
+  "k": [
+   "useradd creates a user",
+   "passwd sets or changes a password",
+   "Groups give permissions to many users at once",
+   "sudo runs one command with admin rights"
+  ]
+ },
+ "im3.3": {
+  "s": "Linux permissions say who can read (r), write (w) or execute (x) a file. They are set for three classes: the owner, the group and everyone else. chmod changes permissions and chown changes the owner.",
+  "k": [
+   "r = read (4), w = write (2), x = execute (1)",
+   "Three classes: owner, group, others",
+   "chmod changes permissions, chown changes owner",
+   "Example: chmod 755 script.sh"
+  ]
+ },
+ "im3.5": {
+  "s": "Package managers install, update and remove software from trusted repositories. Debian and Ubuntu use apt, Fedora and Red Hat use dnf, and snap is a universal format that works across distributions.",
+  "k": [
+   "apt = Debian/Ubuntu, dnf = Fedora/Red Hat",
+   "snap works on many distributions",
+   "Typical steps: update the list, install, remove",
+   "Packages come from trusted repositories"
+  ]
+ },
+ "im3.4": {
+  "s": "A process is a running program. ps lists processes and top shows them live, kill stops one by its ID, and systemctl starts, stops and checks services (background programs managed by systemd).",
+  "k": [
+   "ps lists processes, top shows them live",
+   "kill <PID> stops a process",
+   "systemctl start/stop/status manages services",
+   "A service is a process that runs in the background"
+  ]
  }
 };
 (function () { var Q = {
@@ -2723,6 +2804,299 @@ const SUMMARIES = {
    },
    {
     "q": "The kernel manages memory and the CPU.",
+    "a": true
+   }
+  ]
+ },
+ "im3.14": {
+  "type": "tf",
+  "color": "#2dd4bf",
+  "title": "True or false: Linux basics",
+  "items": [
+   {
+    "q": "Linux is an operating system.",
+    "a": true
+   },
+   {
+    "q": "Linux is only for programmers.",
+    "a": false
+   },
+   {
+    "q": "Ubuntu and Fedora are Linux distributions.",
+    "a": true
+   },
+   {
+    "q": "Most web servers and cloud systems run Linux.",
+    "a": true
+   },
+   {
+    "q": "You must pay a licence fee to use Linux.",
+    "a": false
+   }
+  ]
+ },
+ "im3.13": {
+  "type": "mcq",
+  "color": "#a78bfa",
+  "title": "Your first steps in Linux",
+  "items": [
+   {
+    "q": "What is Bash?",
+    "o": [
+     "A text editor",
+     "A shell that runs your commands",
+     "A web browser",
+     "A file system"
+    ],
+    "a": 1,
+    "e": "Bash is the shell: it reads what you type and runs it."
+   },
+   {
+    "q": "What is the terminal?",
+    "o": [
+     "The window where you type commands",
+     "The Linux kernel",
+     "A hard disk",
+     "A package manager"
+    ],
+    "a": 0
+   },
+   {
+    "q": "Why do admins use the terminal?",
+    "o": [
+     "It is faster and works on remote servers",
+     "Linux has no other way",
+     "It looks nicer",
+     "Mouse is forbidden"
+    ],
+    "a": 0
+   },
+   {
+    "q": "What does the prompt usually show?",
+    "o": [
+     "The weather",
+     "Your user, computer and current folder",
+     "Your password",
+     "Installed packages"
+    ],
+    "a": 1
+   }
+  ]
+ },
+ "im3.9": {
+  "type": "fill",
+  "color": "#4ade80",
+  "title": "Complete the Bash fundamentals",
+  "items": [
+   {
+    "q": "The key that completes a command or file name is ___.",
+    "a": [
+     "tab"
+    ]
+   },
+   {
+    "q": "To read a variable called NAME you write $___.",
+    "a": [
+     "name"
+    ]
+   },
+   {
+    "q": "The command ___ shows the manual page of a command.",
+    "a": [
+     "man"
+    ]
+   },
+   {
+    "q": "Most commands print short help with the option --___.",
+    "a": [
+     "help"
+    ]
+   }
+  ]
+ },
+ "im3.1": {
+  "type": "match",
+  "color": "#fb923c",
+  "title": "Match the command with its job",
+  "pairs": [
+   [
+    "pwd",
+    "Shows the folder you are in"
+   ],
+   [
+    "ls",
+    "Lists files and folders"
+   ],
+   [
+    "cd",
+    "Moves to another folder"
+   ],
+   [
+    "cd ..",
+    "Goes up one folder"
+   ],
+   [
+    "/",
+    "The root of the file system"
+   ]
+  ]
+ },
+ "im3.12": {
+  "type": "mcq",
+  "color": "#a78bfa",
+  "title": "Linux folders",
+  "items": [
+   {
+    "q": "Where do user files live?",
+    "o": [
+     "/home",
+     "/etc",
+     "/var",
+     "/bin"
+    ],
+    "a": 0
+   },
+   {
+    "q": "Where are most configuration files?",
+    "o": [
+     "/etc",
+     "/home",
+     "/tmp",
+     "/media"
+    ],
+    "a": 0
+   },
+   {
+    "q": "Where do system logs usually live?",
+    "o": [
+     "/var/log",
+     "/home/log",
+     "/etc/log",
+     "/bin"
+    ],
+    "a": 0
+   },
+   {
+    "q": "How is Linux different from Windows here?",
+    "o": [
+     "It has one tree and no drive letters",
+     "It uses C: and D:",
+     "It has no folders",
+     "It stores everything in the registry"
+    ],
+    "a": 0
+   }
+  ]
+ },
+ "im3.2": {
+  "type": "order",
+  "color": "#60a5fa",
+  "title": "Put the steps in order to add a new admin user",
+  "steps": [
+   "Create the user with useradd",
+   "Set a password with passwd",
+   "Add the user to the sudo group",
+   "Log in as the new user and test sudo"
+  ]
+ },
+ "im3.3": {
+  "type": "mcq",
+  "color": "#a78bfa",
+  "title": "Permissions and ownership",
+  "items": [
+   {
+    "q": "What does chmod do?",
+    "o": [
+     "Changes permissions",
+     "Changes the owner",
+     "Creates a user",
+     "Deletes a file"
+    ],
+    "a": 0
+   },
+   {
+    "q": "What does chown do?",
+    "o": [
+     "Changes the owner",
+     "Changes permissions",
+     "Shows files",
+     "Moves a file"
+    ],
+    "a": 0
+   },
+   {
+    "q": "What does x mean on a file?",
+    "o": [
+     "Execute",
+     "Extra",
+     "Exit",
+     "Export"
+    ],
+    "a": 0
+   },
+   {
+    "q": "rwx for the owner, r-x for the group and others is written as:",
+    "o": [
+     "755",
+     "644",
+     "777",
+     "600"
+    ],
+    "a": 0,
+    "e": "4+2+1 = 7 for the owner, 4+1 = 5 for the others."
+   }
+  ]
+ },
+ "im3.5": {
+  "type": "match",
+  "color": "#fb923c",
+  "title": "Match the package tool with its family",
+  "pairs": [
+   [
+    "apt",
+    "Debian and Ubuntu"
+   ],
+   [
+    "dnf",
+    "Fedora and Red Hat"
+   ],
+   [
+    "snap",
+    "Works across many distributions"
+   ],
+   [
+    "sudo apt update",
+    "Refreshes the package list"
+   ],
+   [
+    "sudo apt install",
+    "Installs a package"
+   ]
+  ]
+ },
+ "im3.4": {
+  "type": "tf",
+  "color": "#2dd4bf",
+  "title": "True or false: processes and services",
+  "items": [
+   {
+    "q": "ps shows running processes.",
+    "a": true
+   },
+   {
+    "q": "kill is used to start a service.",
+    "a": false
+   },
+   {
+    "q": "systemctl status shows if a service is running.",
+    "a": true
+   },
+   {
+    "q": "top shows CPU and memory use live.",
+    "a": true
+   },
+   {
+    "q": "Every process has a unique ID (PID).",
     "a": true
    }
   ]

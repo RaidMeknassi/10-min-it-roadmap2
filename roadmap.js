@@ -109,6 +109,7 @@ const INTERMEDIATE_LEVELS = [
   { id: "im3", name: "Module 3", title: "Linux Administration", color: "#34d399",
     desc: "Manage Linux systems, servers, users and services.",
     lessons: [
+      ["im3.14","Linux Explained for Beginners"],
       ["im3.13","Your First Steps in Linux"],
       ["im3.9","Bash Fundamentals"],
       ["im3.1","Linux File System Structure"],
@@ -391,6 +392,15 @@ const VIDEOS = {
   "im1.1": "0VVAza-8CUY", // Understanding the Kernel
   "im4.12": "qOhK8otyr2Q", // The OSI Model — A Deeper Look at the 7 Layers
   "im4.13": "HXJjk7_T0qk", // IP Addressing
+  "im3.14": "xM5UZDypWmA", // Linux Explained for Beginners
+  "im3.13": "5paBuSF4d7I", // Your First Steps in Linux
+  "im3.12": "gfmTXPaEIhI", // Linux Folders Made Simple
+  "im3.1": "5FYXR-LvSTg", // Linux File System Structure
+  "im3.9": "768ePDvHTFs", // Bash Fundamentals
+  "im3.2": "cV5paWUustQ", // Linux Users and Groups
+  "im3.3": "uQVB6t2ITxU", // Linux Permissions and Ownership
+  "im3.5": "oJ3SoqrAVqg", // Package Management
+  "im3.4": "PBNc2-gj4xc", // Linux Processes and Services
 };
 
 /* Web-version lessons (HTML pages inside the "lessons" folder), by lesson number.
