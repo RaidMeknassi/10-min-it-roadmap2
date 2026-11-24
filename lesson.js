@@ -79,7 +79,7 @@
   var grp = level.group || "", sib = flat.filter(function (l) { return (l.level.group || "") === grp; }), si = sib.indexOf(item);
   document.title = "Lesson " + lblOf(item) + " · " + item.title + " · 10-Minute IT Roadmap";
   main.style.setProperty("--c", level.color);
-  main.appendChild(crumbs((level.crumbs || [["Road map", "index.html#map"]]).concat([[level.name + " · " + level.title, lvHref], ["Lesson " + lblOf(item)]])));
+  main.appendChild(crumbs((level.crumbs || (/^im\d+$/.test(level.id) ? [["Intermediate", "intermediate.html"]] : /^adv-/.test(level.id) ? [["Advanced", "advanced.html"]] : [["Road map", "index.html#map"]])).concat([[level.name + " · " + level.title, lvHref], ["Lesson " + lblOf(item)]])));
 
   var head = el("div", "lp-head");
   head.innerHTML = '<span class="ico"></span><div class="lp-title"><p class="lp-track"></p><h1></h1></div><button type="button" class="lp-done"></button>';

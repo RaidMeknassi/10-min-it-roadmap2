@@ -105,7 +105,12 @@
     var tbx = levelToolsBox(lv.id);
     if (tbx) { var th = el("h3", "cert-rec-title", "\uD83D\uDEE0 Tools for this level"); var wrap = el("div", "lv-toolsbox"); wrap.appendChild(th); wrap.appendChild(tbx); list.parentNode.insertBefore(wrap, list.nextSibling); }
   }
-  var nav = $("lv-nav"), prev = ALL[idx - 1], next = ALL[idx + 1];
+  /* previous / next level stay inside the same section (Beginner, Intermediate or Advanced) and the back link goes to that section */
+  var section = /^im\d+$/.test(lv.id) ? imLevels : /^adv-/.test(lv.id) ? ((typeof ADVANCED_LEVELS !== "undefined") ? ADVANCED_LEVELS : []) : LEVELS.concat([LEVEL55, LEVEL54, LEVEL52, LEVEL53]);
+  var si = section.indexOf(lv); if (si < 0) section = [lv], si = 0;
+  var backEl = document.querySelector(".lvhero .back");
+  if (backEl) { if (/^im\d+$/.test(lv.id)) { backEl.href = "intermediate.html"; backEl.textContent = "\u2190 Back to Intermediate"; } else if (/^adv-/.test(lv.id)) { backEl.href = "advanced.html"; backEl.textContent = "\u2190 Back to Advanced"; } }
+  var nav = $("lv-nav"), prev = section[si - 1], next = section[si + 1];
   function nl(x, txt, cls) { var a = el("a", "lv-nl " + cls, txt); a.href = "level.html?l=" + x.id; a.style.setProperty("--c", x.color); nav.appendChild(a); }
   if (prev) nl(prev, "← " + prev.name + " · " + prev.title, "prev"); else nav.appendChild(el("span"));
   if (next) nl(next, next.name + " · " + next.title + " →", "next");
