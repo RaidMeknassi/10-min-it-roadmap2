@@ -84,7 +84,7 @@ const INTERMEDIATE_LEVELS = [
   { id: "im4", name: "Module 4", title: "Intermediate Networking", color: "#a78bfa",
     desc: "Understand how devices communicate, exchange information and access network resources.",
     lessons: [
-      ["im4.14","MAC Addresses — How Devices Find Each Other"],["im4.13","IP Addressing"],["im4.19","IPv4 vs IPv6"],
+      ["im4.14","MAC Addresses — How Devices Find Each Other"],["im4.13","IP Addressing"],["im4.20","Public vs Private IP Address"],["im4.19","IPv4 vs IPv6"],
       ["im4.2","Subnet Masks and CIDR"],["im4.3","Subnetting Fundamentals"],
       ["im4.4","ARP — Finding Devices on a Local Network"],
       ["im4.6","DHCP — How Devices Get IP Addresses"],["im4.5","DNS — How Domain Names Are Resolved"],

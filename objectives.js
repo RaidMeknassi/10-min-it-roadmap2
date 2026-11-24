@@ -242,6 +242,7 @@ const LESSON_OBJECTIVES = {
  "im4.5": "Explain and use these ideas: DNS records, recursive and authoritative servers, resolution.",
  "im4.7": "Explain and use these ideas: Connection-oriented vs connectionless, reliability, use cases.",
  "im4.8": "Explain and use these ideas: Port numbers, well-known ports, client and server ports.",
+ "im4.20": "Explain and use these ideas: Public and private address ranges, why private addresses exist, how NAT connects them to the internet.",
  "im4.19": "Explain and use these ideas: IPv4 and IPv6 address formats, address space, why IPv6 exists, dual stack.",
  "im4.15": "Explain and use these ideas: Echo requests, replies, error messages, ping.",
  "im4.16": "Explain and use these ideas: Purpose, routing traffic outside the local network.",
