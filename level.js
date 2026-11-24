@@ -111,8 +111,16 @@
   var backEl = document.querySelector(".lvhero .back");
   if (backEl) { if (/^im\d+$/.test(lv.id)) { backEl.href = "intermediate.html"; backEl.textContent = "\u2190 Back to Intermediate"; } else if (/^adv-/.test(lv.id)) { backEl.href = "advanced.html"; backEl.textContent = "\u2190 Back to Advanced"; } }
   var nav = $("lv-nav"), prev = section[si - 1], next = section[si + 1];
-  function nl(x, txt, cls) { var a = el("a", "lv-nl " + cls, txt); a.href = "level.html?l=" + x.id; a.style.setProperty("--c", x.color); nav.appendChild(a); }
-  if (prev) nl(prev, "← " + prev.name + " · " + prev.title, "prev"); else nav.appendChild(el("span"));
-  if (next) nl(next, next.name + " · " + next.title + " →", "next");
+  nav.classList.add("lp-foot");
+  var ICON_PREV = '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>';
+  var ICON_NEXT = '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M9 5l7 7-7 7"/></svg>';
+  function nl(x, dir) {
+    var a = el("a", "lp-btn lp-arrow lp-" + dir); a.href = "level.html?l=" + x.id; a.innerHTML = dir === "prev" ? ICON_PREV : ICON_NEXT;
+    var lbl = (dir === "prev" ? "Previous: " : "Next: ") + x.name + " \u00B7 " + x.title; a.title = lbl; a.setAttribute("aria-label", lbl); a.style.setProperty("--c", x.color); nav.appendChild(a);
+  }
+  if (prev) nl(prev, "prev"); else nav.appendChild(el("span", "lp-arrow-gap"));
+  var midTxt = /^im\d+$/.test(lv.id) ? ["All Intermediate modules", "intermediate.html"] : /^adv-/.test(lv.id) ? ["All Advanced modules", "advanced.html"] : ["Road map", "index.html#map"];
+  var mid = el("a", "lp-btn lp-mid", midTxt[0]); mid.href = midTxt[1]; mid.style.setProperty("--c", lv.color); nav.appendChild(mid);
+  if (next) nl(next, "next"); else nav.appendChild(el("span", "lp-arrow-gap"));
   var y = $("year"); if (y) y.textContent = new Date().getFullYear();
 })();
