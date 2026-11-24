@@ -86,7 +86,7 @@ const INTERMEDIATE_LEVELS = [
     desc: "Understand how devices communicate, exchange information and access network resources.",
     lessons: [
       ["im4.14","MAC Addresses — How Devices Find Each Other"],["im4.13","IP Addressing"],["im4.20","Public vs Private IP Address"],["im4.19","IPv4 vs IPv6"],
-      ["im4.2","Subnet Masks and CIDR"],["im4.3","Subnetting Fundamentals"],
+      ["im4.2","Subnet Masks and CIDR"],["im4.3","Subnetting Fundamentals"],["im4.21","Subnetting Practice"],
       ["im4.4","ARP — Finding Devices on a Local Network"],
       ["im4.6","DHCP — How Devices Get IP Addresses"],["im4.5","DNS — How Domain Names Are Resolved"],
       ["im4.7","TCP and UDP"],["im4.8","Network Ports"],
