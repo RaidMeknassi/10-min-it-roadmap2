@@ -23,7 +23,7 @@ const LEVEL_OBJECTIVES = {
  ],
  "l3": [
   "Understand what networks are and learn the basic terminology",
-  "Recognise network types (LAN, WAN, WLAN, PAN, MAN) and common network devices",
+  "Recognise network types (LAN, WAN, WLAN, PAN, MAN), common network devices and topologies",
   "Understand basic addressing with IP and MAC addresses and the OSI model"
  ],
  "l4": [
@@ -64,7 +64,7 @@ const LEVEL_OBJECTIVES = {
   "Understand how devices communicate and exchange information",
   "Work with IP addresses (IPv4 and IPv6), subnet masks, CIDR and subnetting",
   "Explain DHCP, DNS, TCP/UDP, ports and ICMP",
-  "Explain the default gateway, NAT, VLANs, topologies and the OSI model in depth"
+  "Explain the default gateway, NAT, VLANs and the OSI model in depth"
  ],
  "im2": [
   "Manage users, groups, permissions and file sharing in Windows",
@@ -248,7 +248,7 @@ const LESSON_OBJECTIVES = {
  "im4.16": "Explain and use these ideas: Purpose, routing traffic outside the local network.",
  "im4.10": "Explain and use these ideas: Private and public addresses, SNAT, DNAT, PAT.",
  "im4.17": "Explain and use these ideas: VLAN concepts, access ports, trunk ports, segmentation.",
- "im4.18": "Explain and use these ideas: Star, bus, ring, mesh, hybrid.",
+ "n3.6": "Explain and use these ideas: Star, bus, ring, mesh, hybrid.",
  "nw.sw.1": "Explain and use these ideas: Frame forwarding, MAC address tables, switching decisions.",
  "nw.sw.2": "Explain and use these ideas: Creating VLANs, assigning ports, VLAN databases.",
  "nw.sw.3": "Explain and use these ideas: VLAN tagging, native VLANs, trunk configuration.",

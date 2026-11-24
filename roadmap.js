@@ -42,6 +42,7 @@ const LEVELS = [
     ["15", "What Is a Network?", 0],
     ["n3.2", "Types of Networks", 0],
     ["16", "Network Devices and Their Functions", 0],
+    ["n3.6", "Network Topologies", 0],
     ["17", "IP Addresses and MAC Addresses", 1],
     ["51", "Introduction to the OSI Model", 0]
   ]},
@@ -77,7 +78,7 @@ LBL["1"] = "1"; LBL["2"] = "2"; LBL["3"] = "3"; LBL["4"] = "4"; LBL["5"] = "5"; 
 // Level 2 custom labels (6, 7, 8, 9)
 LBL["6"] = "6"; LBL["10"] = "7"; LBL["11"] = "8"; LBL["13"] = "9";
 // Level 3 custom labels (3.1–3.5)
-LBL["15"] = "3.1"; LBL["n3.2"] = "3.2"; LBL["16"] = "3.3"; LBL["17"] = "3.4"; LBL["51"] = "3.5";
+LBL["15"] = "3.1"; LBL["n3.2"] = "3.2"; LBL["16"] = "3.3"; LBL["n3.6"] = "3.4"; LBL["17"] = "3.5"; LBL["51"] = "3.6";
 
 /* Intermediate Modules — full lesson data for the intermediate roadmap tree */
 const INTERMEDIATE_LEVELS = [
@@ -91,7 +92,7 @@ const INTERMEDIATE_LEVELS = [
       ["im4.7","TCP and UDP"],["im4.8","Network Ports"],
       ["im4.15","ICMP — How Devices Test Connectivity"],
       ["im4.16","Default Gateway"],["im4.10","NAT — Network Address Translation"],
-      ["im4.17","VLANs — Dividing a Network"],["im4.18","Network Topologies"],
+      ["im4.17","VLANs — Dividing a Network"],
       ["im4.12","The OSI Model — A Deeper Look"]
     ]},
   { id: "im2", name: "Module 2", title: "Windows Administration", color: "#38bdf8",
@@ -465,7 +466,7 @@ const ICONS = {
   "0.1":"👋","0.2":"💡","0.3":"🧑‍💼","0.4":"🎯",
   "1":"💻","2":"🔩","3":"🪟","4":"⚙️","5":"🔢","58":"🧮",
   "6":"🖥️","7":"🗂️","8":"🧠","9":"🚀","10":"🟦","11":"🐧","12":"🍎","13":"📱","14":"⚖️",
-  "15":"🌐","n3.2":"🧭","16":"📡","17":"📍","51":"🗂️","18":"✂️","19":"🏷️","20":"📖","21":"🎫","22":"📦","23":"🚪","24":"🔀","25":"📶","26":"🛠️",
+  "15":"🌐","n3.2":"🧭","n3.6":"🕸️","16":"📡","17":"📍","51":"🗂️","18":"✂️","19":"🏷️","20":"📖","21":"🎫","22":"📦","23":"🚪","24":"🔀","25":"📶","26":"🛠️",
   "27":"🛡️","28":"☠️","29":"🦠","30":"🎣","31":"🔑","32":"🪪","33":"🔺","34":"🧱","35":"🔐","36":"⚠️","37":"🚨",
   "38":"🏢","39":"👥","40":"🔒","41":"🗃️","42":"🧰","43":"🧑‍💻","44":"📜","45":"⬇️","46":"⌨️","47":"🤖","48":"📈","49":"💾","50":"🧊"
 };
