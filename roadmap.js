@@ -392,6 +392,7 @@ const VIDEOS = {
   "im2.6":  "m-DRuyJQYgc", // Windows Event Logs
   "im2.7":  "GWsHB4EgjTc", // Windows Updates and Troubleshooting
   "im2.14": "GCOOZXDblYM", // CMD vs PowerShell
+  "im2.15": "StAlwPxXEzo", // CMD vs PowerShell Practice (The Real Difference Between CMD and PowerShell: Text vs Objects)
   "im2.8":  "5r3unso1fo4", // CMD Fundamentals
   "im2.10": "9aGTvgEiA10", // PowerShell Fundamentals
   "linkedin.0.1": "1haDfgG7waE", // LinkedIn for IT Jobs
