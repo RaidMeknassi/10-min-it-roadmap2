@@ -179,7 +179,7 @@ const SPEC_LANGS = {
 function langSuggestBox(levelId) {
   var ids = Array.isArray(levelId) ? levelId : LANG_SUGGEST[levelId]; if (!ids) return null;
   var box = document.createElement("div"); box.className = "lang-sugg";
-  box.innerHTML = '<span class="lang-sugg-t">Languages to learn</span><p class="lang-sugg-h">Like automating tasks or reading logs and configs? Pick one and start with a short lesson.</p><div class="lang-sugg-icons"></div>';
+  box.innerHTML = '<span class="lang-sugg-t">Languages to learn</span><div class="lang-sugg-icons"></div>';
   ids.forEach(function (id) {
     var L = langById(id); if (!L) return;
     var a = document.createElement("a"); a.href = "language.html?l=" + L.id; a.title = L.name; a.setAttribute("aria-label", L.name); a.className = "lang-sugg-a";
