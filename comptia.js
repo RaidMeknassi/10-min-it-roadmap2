@@ -6,7 +6,6 @@
     a: ["A+", "Beginner", "IT support, hardware, operating systems and troubleshooting. The classic first job certificate for help desk.", "Recommended after Beginner Level 5: IT Workplace and Career Preparation"],
     network: ["Network+", "Beginner", "Networking basics: IP addressing, DNS, DHCP, routing, switching, VLANs and network troubleshooting.", "Recommended after Intermediate Module 1: Networking"],
     security: ["Security+", "Practitioner", "Core cybersecurity concepts and defence: threats, identity, network security, risk and incident response.", "Fits Intermediate Module 9: Cybersecurity"],
-    cloudess: ["Cloud Essentials+", "Beginner", "Cloud concepts and the business side of cloud: costs, models and migration decisions.", ""],
     cysa: ["CySA+", "Advanced", "SOC analyst skills: threat detection, log analysis, vulnerability management and incident response.", "Fits the Cybersecurity specialization"],
     pentest: ["PenTest+", "Advanced", "Ethical hacking and penetration testing: planning, scanning, exploiting and reporting.", "Fits the Cybersecurity specialization"],
     securityx: ["SecurityX", "Expert", "Enterprise security architecture, engineering and strategy for senior security roles.", ""],
@@ -21,14 +20,14 @@
     dataai: ["DataAI", "Advanced", "Data and AI: preparing data and working with machine-learning systems.", ""],
     project: ["Project+", "Practitioner", "IT project management fundamentals: planning, scheduling, budgets and teams.", ""]
   };
-  var CORE = ["tech", "a", "network", "security", "cloudess"];
+  var CORE = ["tech", "a", "network", "security"];
   var SPEC = [
     { name: "Cybersecurity", color: "#22c55e", bg: "#123d2c", icon: '<path d="M12 3 4 6v6c0 5 3.4 8.4 8 9 4.6-.6 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/>', certs: ["cysa", "pentest", "securityx", "secai", "secot"] },
     { name: "Infrastructure", color: "#60a5fa", bg: "#183459", icon: '<circle cx="12" cy="5" r="2"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/><path d="M12 7v4M6 16v-2h12v2"/>', certs: ["server", "linux", "cloud", "cloudnetx"] },
     { name: "Data & AI", color: "#fbbf24", bg: "#45321a", icon: '<ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"/>', certs: ["data", "datasys", "dataai"] },
     { name: "Management", color: "#c4b5fd", bg: "#33255a", icon: '<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/>', certs: ["project"] }
   ];
-  var IMG = ["cloudess","tech","a","network","security","cysa","pentest","securityx","secai","secot","server","linux","cloud","cloudnetx","data","datasys","dataai","project"];
+  var IMG = ["tech","a","network","security","cysa","pentest","securityx","secai","secot","server","linux","cloud","cloudnetx","data","datasys","dataai","project"];
   function badge(id, size) { return IMG.indexOf(id) >= 0 ? '<img class="cr-badge" src="assets/comptia/' + id + '.png" alt="" width="' + size + '" height="' + size + '">' : '<span class="ct-badge cr-fb"><small>CompTIA</small><b>' + C[id][0].replace(" Essentials", " Ess.") + '</b></span>'; }
   var LVC = { Beginner: "#22c55e", Practitioner: "#eab308", Advanced: "#f97316", Expert: "#ef4444" };
   var detail = document.getElementById("cr-detail"), chips = {};
