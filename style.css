@@ -153,7 +153,7 @@ h1 span { background: var(--grad); -webkit-background-clip: text; background-cli
   color: inherit; font: inherit;
   transition: box-shadow .2s, border-color .2s, transform .15s;
 }
-.lv:hover .lv-card, .lv.open .lv-card, .lv-card:focus-visible {
+.lv-card:hover, .lv:has(> .flyout:hover) .lv-card, .lv.open .lv-card, .lv-card:focus-visible {
   border-color: var(--c); box-shadow: 0 0 28px -6px var(--c); outline: none;
 }
 .lv-card h2 { margin: 9px 0 4px; font-size: 18px; line-height: 1.25; }
@@ -164,7 +164,7 @@ h1 span { background: var(--grad); -webkit-background-clip: text; background-cli
 /* side list of lessons, shown on hover / tap */
 .flyout { display: none; position: absolute; top: -8px; left: 100%; width: 350px; padding-left: 14px; z-index: 30; }
 .lv.flip .flyout { left: auto; right: 100%; padding-left: 0; padding-right: 14px; }
-.lv:hover .flyout, .lv:has(:focus-visible) .flyout, .lv.open .flyout { display: block; }
+.lv:has(> .lv-card:hover) .flyout, .lv > .flyout:hover, .cert-lv:hover .flyout, .lv:has(> .lv-card:focus-visible) .flyout, .lv.open .flyout { display: block; }
 /* only one lesson list at a time: while any level is hovered, the others close */
 .levels:has(.lv:hover) .lv:not(:hover) .flyout { display: none; }
 .flyout-card {
@@ -644,7 +644,7 @@ a.sp-path:hover { transform: translateY(-2px); box-shadow: 0 0 22px -6px var(--p
 .lv-card .lv-meta { color: rgba(255,255,255,.82); }
 .lv-card .lv-bar { background: rgba(0,0,0,.28); border-color: rgba(255,255,255,.18); }
 .lv-card .lv-bar i { background: #fff; }
-.lv:hover .lv-card, .lv.open .lv-card, .lv-card:focus-visible { box-shadow: 0 0 34px -4px var(--c), inset 0 1px 0 rgba(255,255,255,.35); }
+.lv-card:hover, .lv:has(> .flyout:hover) .lv-card, .lv.open .lv-card, .lv-card:focus-visible { box-shadow: 0 0 34px -4px var(--c), inset 0 1px 0 rgba(255,255,255,.35); }
 
 /* ---- three stages at the top ---- */
 .stages { display: grid; grid-template-columns: repeat(3, 1fr); gap: 12px; margin: 22px auto 26px; max-width: 820px; }
@@ -1248,3 +1248,17 @@ a.cert-node-card.ct-tree:hover { box-shadow: 0 0 24px -6px #ef4444; transform: t
 .cr-tile .cr-fb b { font-size: 10px; }
 .cr-tile span.cr-tname { font-size: 12px; }
 @media (max-width: 480px) { .cr-tile .cr-fb { width: 46px; height: 46px; } .cr-tile span.cr-tname { font-size: 11px; } }
+
+/* hover popup for language / tool / certificate icons on the trees */
+.hov-pop { position: fixed; z-index: 200; width: 320px; max-height: 70vh; overflow: auto; display: none; }
+.hov-pop.on { display: block; }
+.hov-pop .hp-desc { margin: 0; padding: 10px 14px 12px; font-size: 13.5px; color: #c6cadb; line-height: 1.45; }
+@media (min-width: 900px) {
+  .cr { max-width: 1000px; }
+  .cr-hero, .cr-core { max-width: 720px; }
+  .cr-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); }
+  .cr-core .cr-tile .cr-badge { width: 84px; height: 84px; }
+  .cr-core .cr-tile span.cr-tname { font-size: 14px; }
+  .cr-spec .cr-tile .cr-badge { width: 66px; height: 66px; }
+  .cr-detail { max-width: 720px; margin-left: auto; margin-right: auto; }
+}

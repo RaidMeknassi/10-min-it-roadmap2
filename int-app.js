@@ -90,7 +90,7 @@
     });
 
     var en = {
-      info: info, lv: lv, card: card, sugg: sugg,
+      info: info, lv: lv, card: card, sugg: lv.querySelector(".ct-tree") || sugg,
       metaEl: lv.querySelector(".lv-meta"),
       barEl:  lv.querySelector(".lv-bar i"),
       barWrap: lv.querySelector(".lv-bar"),
