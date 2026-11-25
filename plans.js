@@ -8,7 +8,7 @@
   function li(t) { return "<li>" + t + "</li>"; }
   root.innerHTML =
     
-    '<div class="pl-head"><h2>Learn for free, or buy me a coffee</h2><p>Everything you need to learn IT is free. A coffee unlocks the extra practice.</p></div>' +
+    '<div class="pl-head"><h2>Learn for free, or buy us a coffee</h2><p>Everything on this site is free. If it helps you, a coffee helps us keep it that way.</p></div>' +
     '<div class="pl-grid">' +
       '<article class="pl-card pl-free">' +
         '<h3>FREE</h3><div class="pl-line"></div>' +
@@ -18,17 +18,18 @@
         '<p class="pl-msg">Just good luck! Stay strong, keep going, and never give up. Every expert was once a beginner. You got this! 💪</p>' +
         '<a class="pl-btn pl-btn-soft" href="index.html#map">START LEARNING</a>' +
       '</article>' +
-      '<article class="pl-card pl-pro">' +
+      '<article class="pl-card pl-pro pl-donate">' +
         '<span class="pl-ribbon">SUPPORT THE PROJECT</span>' +
-        '<h3>STARBUCKS COFFEE ☕</h3><div class="pl-line"></div>' +
-        '<p class="pl-sub">€2.50 / month</p>' +
-        '<div class="pl-price"><b>\u20AC29.99</b><span> / Year</span></div>' +
-        '<p class="pl-title">Buy me a Starbucks coffee</p>' +
-        '<p class="pl-sub">Your support unlocks:</p>' +
-        '<ul>' + li("Hands-on labs") + li("Interactive quizzes") + li("Practical challenges") + li("Certification preparation") + '</ul>' +
-        '<p class="pl-msg">You’re helping me keep IT education free for everyone. Thank you!</p>' +
-        '<a class="pl-btn pl-btn-main" href="#" id="subscribe-btn">COMING SOON</a>' +
+        '<h3>BUY US A COFFEE ☕</h3><div class="pl-line"></div>' +
+        '<p class="pl-title">Did our lessons help you?</p>' +
+        '<p class="pl-msg">If you learned something here, or we were part of the reason you got your first IT job, please consider a small donation.</p>' +
+        '<p class="pl-msg">We are a small team working on a personal budget. Our only income is YouTube, and your support helps us keep every lesson free for everyone.</p>' +
+        '<p class="pl-msg"><b>Any amount helps. Thank you! 🙏</b></p>' +
+        '<a class="pl-btn pl-btn-main" href="#" id="subscribe-btn">☕ DONATE</a>' +
+        '<p class="pl-soon" id="donate-soon" hidden>The donation link is coming soon. Thank you for wanting to help!</p>' +
       '</article>' +
     '</div>';
-  var b = document.getElementById("subscribe-btn"); if (b) b.addEventListener("click", function (e) { e.preventDefault(); });
+  var DONATE_URL = "";   // put your donation link here (Buy Me a Coffee, Ko-fi, PayPal...)
+  var b = document.getElementById("subscribe-btn");
+  if (b) { if (DONATE_URL) { b.href = DONATE_URL; b.target = "_blank"; b.rel = "noopener"; } else b.addEventListener("click", function (e) { e.preventDefault(); var n = document.getElementById("donate-soon"); if (n) n.hidden = false; }); }
 })();

@@ -1290,3 +1290,5 @@ a.cert-node-card.ct-tree:hover { box-shadow: 0 0 24px -6px #ef4444; transform: t
 /* selected certificate: same look as the others, just a light outline */
 .cr-chip.on, .cr-spec .cr-chip.on { color: #fff; background: rgba(255,255,255,.08); border-color: rgba(255,255,255,.75); box-shadow: 0 0 0 1px rgba(255,255,255,.35); }
 .cr-spec .cr-chip.on { color: var(--c); background: rgba(0,0,0,.22); border-color: var(--c); box-shadow: 0 0 0 1px var(--c); }
+.pl-donate .pl-msg { margin: 10px 0; }
+.pl-soon { margin: 10px 0 0; font-size: 13px; color: #a3e635; text-align: center; }
