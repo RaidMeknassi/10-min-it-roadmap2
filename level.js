@@ -103,7 +103,7 @@
     document.querySelector("#lv-bar i").style.width = (c / lv.lessons.length * 100) + "%";
 
     var tbx = levelToolsBox(lv.id);
-    if (tbx) { var th = el("h3", "cert-rec-title", "\uD83D\uDEE0 Tools for this level"); var wrap = el("div", "lv-toolsbox"); wrap.appendChild(th); wrap.appendChild(tbx); list.parentNode.insertBefore(wrap, list.nextSibling); }
+    if (tbx) { var th = el("h3", "cert-rec-title", (lv.id === "adv-im4" ? "\uD83E\uDD88 Recommended tool to learn" : "\uD83D\uDEE0 Tools for this level")); var wrap = el("div", "lv-toolsbox"); wrap.appendChild(th); wrap.appendChild(tbx); list.parentNode.insertBefore(wrap, list.nextSibling); }
   }
   /* previous / next level stay inside the same section (Beginner, Intermediate or Advanced) and the back link goes to that section */
   var section = /^im\d+$/.test(lv.id) ? imLevels : /^adv-/.test(lv.id) ? ((typeof ADVANCED_LEVELS !== "undefined") ? ADVANCED_LEVELS : []) : LEVELS.concat([LEVEL55, LEVEL54, LEVEL52, LEVEL53]);

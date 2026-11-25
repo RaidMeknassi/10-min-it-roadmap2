@@ -63,7 +63,8 @@ const ITIL_COURSE = {
 const TOOL_GROUPS = [
   { id: "jobs", name: "Job-Search Platforms", emoji: "🧰" },
   { id: "ticketing", name: "Ticketing Systems", emoji: "🎫" },
-  { id: "collab", name: "IT Communication, Collaboration & Remote Access", emoji: "🖥️" }
+  { id: "collab", name: "IT Communication, Collaboration & Remote Access", emoji: "🖥️" },
+  { id: "network", name: "Networking Tools", emoji: "🦈" }
 ];
 
 const TOOLS = [
@@ -203,6 +204,15 @@ const TOOLS = [
     levels: [
       { title: "AnyDesk Basics", role: "1st Line Support", color: "#f5938e", lessons: ["What Is AnyDesk?", "Connecting to a User's Computer", "Permissions and Session Controls"] },
       { title: "AnyDesk for IT Teams", role: "Support Team", color: "#ef443b", lessons: ["Unattended Access and Address Book", "Spotting Remote Support Scams", "Security Settings"] }
+    ]},
+  { id: "wireshark", name: "Wireshark", group: "network", color: "#1679a7", tags: ["Packet Analysis", "Troubleshooting", "Security"],
+    desc: "The standard free tool for capturing and reading network traffic. Used by network engineers and SOC analysts every day.",
+    note: "Wireshark Certified Analyst (WCA) is the official certification. Practise on sample capture files, never on networks you do not own or have permission to test.",
+    levels: [
+      { title: "Wireshark Basics", role: "Getting started", color: "#5eb8e0", lessons: ["What Is Wireshark and Why Use It?", "Installing Wireshark and Choosing an Interface", "Your First Packet Capture", "The Wireshark Window: Packet List, Details and Bytes", "Saving, Opening and Sharing Capture Files"] },
+      { title: "Filtering and Reading Traffic", role: "Network Support", color: "#1679a7", lessons: ["Capture Filters vs Display Filters", "Display Filters for IP, Ports and Protocols", "Following TCP and UDP Streams", "Colouring Rules and Columns", "Reading DNS, DHCP and ARP Traffic", "Reading HTTP and TLS Traffic"] },
+      { title: "Troubleshooting with Wireshark", role: "Network and SOC Analyst", color: "#0e4f73", cert: ["WCA", "Wireshark Certified Analyst", "Wireshark Foundation"],
+        lessons: ["The TCP Handshake and Connection Problems", "Retransmissions, Resets and Slow Networks", "Expert Information and Statistics", "Finding Suspicious Traffic and Exporting Objects", "Decrypting TLS and Working with Large Captures", "A Packet Analysis Workflow"] }
     ]}
 ];
 
@@ -447,7 +457,7 @@ var LEVEL52 = (function () {
     lessons: m.levels[0].lessons.map(function (r) { return [r[0], r[1], 0, 1]; }), lbl: function (k) { return "5.3." + (k + 1); } };
 })();
 /* tools shown under a level (they also stay in the Tools section) */
-var LEVEL_TOOLS = {};
+var LEVEL_TOOLS = { "adv-im4": ["network"] };
 function levelToolsBox(levelId) {
   var ids = LEVEL_TOOLS[levelId]; if (!ids) return null;
   var box = document.createElement("div"); box.className = "node-tools";
