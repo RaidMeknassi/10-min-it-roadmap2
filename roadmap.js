@@ -89,7 +89,7 @@ const INTERMEDIATE_LEVELS = [
       ["im4.3","Subnetting Fundamentals"],
       ["im4.4","What Is ARP and the Default Gateway?"],
       ["im4.6","DHCP — How Devices Get IP Addresses"],["im4.5","DNS — How Domain Names Are Resolved"],
-      ["im4.7","TCP and UDP"],["im4.8","Network Ports"],["im4.23","Ports and Network Services"],["im4.24","Routing"],
+      ["im4.7","TCP and UDP"],["im4.8","Network Ports"],["im4.23","Ports and Network Services"],["im4.24","Routing"],["im4.9","Routing Fundamentals"],
       ["im4.15","ICMP — How Devices Test Connectivity"],
       ["im4.10","NAT — Network Address Translation"],
       ["im4.17","VLANs — Dividing a Network"],
@@ -177,6 +177,9 @@ INTERMEDIATE_LEVELS.forEach(function(lv, mi) {
     if (SUB_LESSONS.indexOf(r[0]) >= 0) { subn++; LBL[r[0]] = "M" + (mi + 1) + "." + k + "." + subn; }
     else { k++; subn = 0; LBL[r[0]] = "M" + (mi + 1) + "." + k; }
   });
+  /* the module numbers its own lessons (a lesson shared with an Advanced section keeps its own label there) */
+  var own = lv.lessons.map(function (r) { return LBL[r[0]]; });
+  lv.lbl = function (i) { return own[i]; };
 });
 
 /* Level 6 - Intermediate (a path tree on its own page) */
