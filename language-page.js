@@ -31,7 +31,13 @@
   function pick(i, user) {
     sel = i; var lvl = LANG_LEVELS[i], rows = L.lv[i], c = 0;
     rows.forEach(function (r) { if (done[r[0]]) c++; });
-    gWrap.innerHTML = langGauge(langProgress(L), { sel: i, labels: true, cls: "big" });
+    var prev = pick.last; pick.last = i;
+    gWrap.innerHTML = langGauge(i, { sel: i, labels: true, cls: "big" });   // the needle points at the level you clicked
+    var nd = gWrap.querySelector(".g-needle");
+    if (nd && prev != null && prev !== i) {   // swing from the previous level to the new one
+      nd.style.transformOrigin = "100px 100px"; nd.style.transformBox = "view-box"; nd.style.transform = "rotate(" + ((prev - i) * 60) + "deg)";
+      nd.getBoundingClientRect(); nd.style.transition = "transform .45s cubic-bezier(.3,1.4,.5,1)"; nd.style.transform = "rotate(0deg)";
+    }
     gWrap.querySelectorAll(".g-seg").forEach(function (s) { s.addEventListener("click", function () { pick(parseInt(s.getAttribute("data-i"), 10), true); }); });
     document.body.style.setProperty("--c", lvl.color); main.style.setProperty("--c", lvl.color); panel.style.setProperty("--c", lvl.color);
     if (user) history.replaceState(null, "", "language.html?l=" + L.id + "&v=" + (i + 1));
