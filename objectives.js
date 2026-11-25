@@ -259,6 +259,7 @@ const LESSON_OBJECTIVES = {
  "im4.15": "Explain and use these ideas: Echo requests, replies, error messages, ping.",
  "im4.22": "Explain and use these ideas: ARP cache, proxy and gratuitous ARP, ARP spoofing, gateway selection and troubleshooting.",
  "av.im4.dhcp": "Explain and use these ideas: the DORA steps (Discover, Offer, Request, Acknowledge), leases and renewal, DHCP relay, reservations and scopes, and troubleshooting with packet captures.",
+ "nw.tr.tcp": "Explain and use these ideas: the TCP three-way handshake, sequence and acknowledgement numbers, windowing and retransmission, UDP and when it is used, and how to see both in a packet capture.",
  "av.im4.dns": "Explain and use these ideas: recursive vs iterative queries, resolver and authoritative servers, caching and TTL, record types, and troubleshooting resolution with nslookup and dig.",
  "av.im4.ttl": "Explain and use these ideas: what TTL means, resolver and browser caching, negative caching, lowering TTL before a change, and why DNS changes take time to propagate.",
  "av.im4.rec": "Explain and use these ideas: A, AAAA, CNAME, MX, TXT, NS, SOA and PTR records, SPF/DKIM/DMARC in TXT, and how to query records with nslookup and dig.",

@@ -253,7 +253,7 @@ const SPEC_LESSONS = {
     ["nw.ns.5", "Network Security Fundamentals"], ["nw.ns.1", "Network Firewalls"], ["nw.ns.2", "ACLs — Access Control Lists"], ["nw.ns.3", "VPN Fundamentals"], ["nw.ns.4", "Network Segmentation and Security"], ["nw.ns.6", "Secure Network Management"]
   ]},
   "Troubleshooting and Monitoring": { path: "Network Engineering", tag: "TR", lessons: [
-    ["im4.11", "Network Troubleshooting Methodology"], ["nw.tr.2", "Network Diagnostic Tools"], ["nw.tr.3", "Packet Analysis with Wireshark"], ["nw.tr.4", "SNMP and Syslog"], ["nw.tr.5", "Network Performance Monitoring"]
+    ["im4.11", "Network Troubleshooting Methodology"], ["nw.tr.2", "Network Diagnostic Tools"], ["nw.tr.3", "Packet Analysis with Wireshark"], ["nw.tr.tcp", "TCP and UDP in Action"], ["nw.tr.4", "SNMP and Syslog"], ["nw.tr.5", "Network Performance Monitoring"]
   ]},
   "High Availability": { path: "Network Engineering", tag: "HA", lessons: [
     ["nw.ha.1", "HSRP and VRRP"], ["nw.ha.2", "Redundant Links"], ["nw.ha.3", "Failover and Recovery"]
