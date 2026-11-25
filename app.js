@@ -59,14 +59,16 @@
 
   // Essential tools: every tool opens its own page
   var toolsEl = document.createElement("div"); toolsEl.className = "final tools-rec-node";
-  toolsEl.innerHTML = '<div class="tools-node-card tools-icons-only"><a class="tools-node-header" href="tools.html"><b>Advanced paths you can pursue</b></a><div class="tool-icons"></div></div>';
+  toolsEl.innerHTML = '<div class="tools-node-card tools-icons-only"><a class="tools-node-header" href="tools.html"><b>Advanced paths you can pursue</b></a><p class="tool-hint">Like ITIL, ITSM or service desk work? Pick the platform you enjoy most and follow its path from certification to senior administrator.</p><div class="tool-icons"></div></div>';
   (function () {
     var box = toolsEl.querySelector(".tool-icons");
     ["servicenow", "jira", "microsoft365", "googleworkspace", "slack"].forEach(function (id) {   // tools with advanced certification paths
       var t = TOOLS.filter(function (x) { return x.id === id; })[0]; if (!t) return;
       var a = document.createElement("a"); a.className = "tool-icon"; a.href = "tool.html?t=" + t.id; a.title = t.name; a.setAttribute("aria-label", t.name); a.style.setProperty("--tc", t.color);
       a.innerHTML = '<img src="assets/tool-icons/' + t.id + '.png" alt="" width="52" height="52">';
-      box.appendChild(a);
+      var nm = { servicenow: "ServiceNow Admin", jira: "Jira Service Mgmt", microsoft365: "Microsoft 365 Admin", googleworkspace: "Google Workspace Admin", slack: "Slack Admin" }[t.id] || t.name;
+      var wr = document.createElement("div"); wr.className = "tool-wrap"; wr.appendChild(a); var lb = document.createElement("span"); lb.className = "tool-label"; lb.textContent = nm; wr.appendChild(lb);
+      box.appendChild(wr);
     });
   })();
   var toolsCard = toolsEl.querySelector(".tools-node-card");
