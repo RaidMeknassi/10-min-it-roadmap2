@@ -258,6 +258,7 @@ const LESSON_OBJECTIVES = {
  "im4.19": "Explain and use these ideas: IPv4 and IPv6 address formats, address space, why IPv6 exists, dual stack.",
  "im4.15": "Explain and use these ideas: Echo requests, replies, error messages, ping.",
  "im4.22": "Explain and use these ideas: ARP cache, proxy and gratuitous ARP, ARP spoofing, gateway selection and troubleshooting.",
+ "av.im4.dns": "Explain and use these ideas: recursive vs iterative queries, resolver and authoritative servers, caching and TTL, record types, and troubleshooting resolution with nslookup and dig.",
  "im4.10": "Explain and use these ideas: Private and public addresses, SNAT, DNAT, PAT.",
  "im4.17": "Explain and use these ideas: VLAN concepts, access ports, trunk ports, segmentation.",
  "n3.6": "Explain and use these ideas: Star, bus, ring, mesh, hybrid.",
