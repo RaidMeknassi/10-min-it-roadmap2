@@ -30,6 +30,10 @@ var road = el("div", "road adv-road"); var svg = document.createElementNS("http:
     w.querySelector("h2").textContent = lv.title;
     w.querySelector(".lv-meta").textContent = L.length ? L.length + " lessons \u00B7 " + dn + " / " + L.length + " done" : "Lessons coming soon";
     w.querySelector(".lv-bar i").style.width = (L.length ? dn / L.length * 100 : 0) + "%";
+    var im = lv.id.replace(/^adv-/, "");
+    var sg = (typeof langSuggestBox === "function") ? langSuggestBox(im) : null; if (sg) w.appendChild(sg);
+    var tb = (typeof levelToolsBox === "function") ? levelToolsBox(lv.id) : null;
+    if (tb) { var tt = el("div", "lang-sugg-t", "Recommended tool to learn"); tb.insertBefore(tt, tb.firstChild); var tg = tb.querySelector(".tools-group-title"); if (tg) tg.remove(); w.appendChild(tb); }
     parent.appendChild(w); cards[i] = { el: c, color: lv.color }; return w;
   }
   function single(i) { var d = el("div", "final"); d.style.marginTop = "56px"; lev.appendChild(d); card(i, d); }
@@ -43,7 +47,7 @@ var road = el("div", "road adv-road"); var svg = document.createElementNS("http:
   function draw() {
     var base = road.getBoundingClientRect(), out = "";
     svg.setAttribute("viewBox", "0 0 " + base.width + " " + base.height);
-    function pt(i, bottom) { var r = cards[i].el.getBoundingClientRect(); return [r.left + r.width / 2 - base.left, (bottom ? r.bottom : r.top) - base.top]; }
+    function pt(i, bottom) { var r = (bottom ? cards[i].el.parentNode : cards[i].el).getBoundingClientRect(); return [r.left + r.width / 2 - base.left, (bottom ? r.bottom : r.top) - base.top]; }
     function ln(i, j) { var a = pt(i, true), b = pt(j, false), my = (a[1] + b[1]) / 2;
       out += '<path stroke="' + cards[j].color + '" d="M' + a[0] + " " + a[1] + (Math.abs(a[0] - b[0]) < 1 ? " L" + b[0] + " " + b[1] : " C" + a[0] + " " + my + "," + b[0] + " " + my + "," + b[0] + " " + b[1]) + '"/>'; }
     [[0, 1], [0, 2], [1, 3], [2, 4], [3, 5], [4, 5], [5, 6], [6, 7], [7, 8]].forEach(function (e) { ln(e[0], e[1]); });
