@@ -122,6 +122,7 @@
     backEl.innerHTML = '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>';
     backEl.title = bl; backEl.setAttribute("aria-label", bl); backEl.classList.add("back-icon"); backEl.style.setProperty("--c", lv.color);
   }
+  if (isPaths) { if (backEl) backEl.style.display = "none"; $("lv-badge").style.display = "none"; }   // Specializations is a top-menu page: no back button, no level number
   var nav = $("lv-nav"), prev = section[si - 1], next = section[si + 1];
   nav.classList.add("lp-foot");
   var ICON_PREV = '<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.6" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M15 5l-7 7 7 7"/></svg>';
