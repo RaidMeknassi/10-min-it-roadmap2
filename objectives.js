@@ -63,8 +63,8 @@ const LEVEL_OBJECTIVES = {
  "im4": [
   "Understand how devices communicate and exchange information",
   "Work with IP addresses (IPv4 and IPv6) and understand subnetting fundamentals",
-  "Explain DHCP, DNS, TCP/UDP, ports and ICMP",
-  "Explain the default gateway, NAT, VLANs and the OSI model in depth"
+  "Explain ARP and the default gateway, DHCP, DNS, TCP/UDP, ports and ICMP",
+  "Explain NAT, VLANs and the OSI model in depth"
  ],
  "im2": [
   "Manage users, groups, permissions and file sharing in Windows",
@@ -109,6 +109,7 @@ const LEVEL_OBJECTIVES = {
  ],
  "adv-im4": [
   "Use subnet masks and CIDR to plan and calculate subnets",
+  "Troubleshoot ARP and default gateway problems",
   "Configure and troubleshoot VLANs, trunks, STP, OSPF, EIGRP and BGP",
   "Secure, monitor and troubleshoot a real network",
   "Keep networks available with HSRP/VRRP, redundant links and failover"
@@ -238,7 +239,7 @@ const LESSON_OBJECTIVES = {
  "n3.2": "Explain and use these ideas: LAN, WAN, WLAN, PAN, MAN.",
  "im4.2": "Explain and use these ideas: Subnet masks, prefix notation, network and host portions.",
  "im4.3": "Explain and use these ideas: Network IDs, broadcast addresses, usable hosts, subnet calculations.",
- "im4.4": "Explain and use these ideas: ARP requests, replies, ARP tables, IP-to-MAC resolution.",
+ "im4.4": "Explain and use these ideas: How ARP finds a MAC address from an IP address, ARP tables, and how the default gateway sends traffic outside the local network.",
  "im4.6": "Explain and use these ideas: DHCP Discover, Offer, Request, Acknowledge (DORA), leases.",
  "im4.5": "Explain and use these ideas: DNS records, recursive and authoritative servers, resolution.",
  "im4.7": "Explain and use these ideas: Connection-oriented vs connectionless, reliability, use cases.",
@@ -256,7 +257,7 @@ const LESSON_OBJECTIVES = {
  "im4.20": "Explain and use these ideas: Public and private address ranges, why private addresses exist, how NAT connects them to the internet.",
  "im4.19": "Explain and use these ideas: IPv4 and IPv6 address formats, address space, why IPv6 exists, dual stack.",
  "im4.15": "Explain and use these ideas: Echo requests, replies, error messages, ping.",
- "im4.16": "Explain and use these ideas: Purpose, routing traffic outside the local network.",
+ "im4.22": "Explain and use these ideas: ARP cache, proxy and gratuitous ARP, ARP spoofing, gateway selection and troubleshooting.",
  "im4.10": "Explain and use these ideas: Private and public addresses, SNAT, DNAT, PAT.",
  "im4.17": "Explain and use these ideas: VLAN concepts, access ports, trunk ports, segmentation.",
  "n3.6": "Explain and use these ideas: Star, bus, ring, mesh, hybrid.",
