@@ -21,7 +21,7 @@
     dataai: ["DataAI", "Advanced", "Data and AI: preparing data and working with machine-learning systems.", ""],
     project: ["Project+", "Practitioner", "IT project management fundamentals: planning, scheduling, budgets and teams.", ""]
   };
-  var CORE = ["tech", "a", "network", "security"];
+  var CORE = ["tech", "a", "network", "security", "cloudess"];
   var SPEC = [
     { name: "Cybersecurity", color: "#22c55e", bg: "#123d2c", icon: '<path d="M12 3 4 6v6c0 5 3.4 8.4 8 9 4.6-.6 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/>', certs: ["cysa", "pentest", "securityx", "secai", "secot"] },
     { name: "Infrastructure", color: "#60a5fa", bg: "#183459", icon: '<circle cx="12" cy="5" r="2"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/><path d="M12 7v4M6 16v-2h12v2"/>', certs: ["server", "linux", "cloud", "cloudnetx"] },
@@ -49,7 +49,7 @@
   }
   var core = document.getElementById("cr-core");
   CORE.forEach(function (id, i) { if (i) { var a = document.createElement("span"); a.className = "cr-to"; a.textContent = "→"; core.appendChild(a); } core.appendChild(chip(id, "cr-chip")); });
-  var also = document.getElementById("cr-also"); also.appendChild(document.createTextNode("Optional: ")); also.appendChild(chip("cloudess", "cr-chip cr-chip-s"));
+
   var grid = document.getElementById("cr-grid");
   SPEC.forEach(function (s) {
     var d = document.createElement("div"); d.className = "cr-spec"; d.style.setProperty("--c", s.color); d.style.setProperty("--bg", s.bg);

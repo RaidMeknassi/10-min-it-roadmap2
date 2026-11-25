@@ -1286,3 +1286,4 @@ a.cert-node-card.ct-tree:hover { box-shadow: 0 0 24px -6px #ef4444; transform: t
 .cx-hero { text-align: left; }
 .cx .cx-search { max-width: none; margin-left: 0; margin-right: 0; }
 .cx .cx-count { text-align: left; }
+.cr-core { max-width: 860px; }
