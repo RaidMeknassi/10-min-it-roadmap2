@@ -86,7 +86,7 @@ const INTERMEDIATE_LEVELS = [
     desc: "Understand how devices communicate, exchange information and access network resources.",
     lessons: [
       ["im4.14","MAC Addresses — How Devices Find Each Other"],["im4.13","IP Addressing"],["im4.20","Public vs Private IP Address"],["im4.19","IPv4 vs IPv6"],
-      ["im4.2","Subnet Masks and CIDR"],["im4.3","Subnetting Fundamentals"],["im4.21","Subnetting Practice"],
+      ["im4.3","Subnetting Fundamentals"],
       ["im4.4","ARP — Finding Devices on a Local Network"],
       ["im4.6","DHCP — How Devices Get IP Addresses"],["im4.5","DNS — How Domain Names Are Resolved"],
       ["im4.7","TCP and UDP"],["im4.8","Network Ports"],
@@ -540,8 +540,11 @@ const ADV_FROM_SPEC = {
 };
 const ADV_SEC_NAME = { "Switching Technologies": "Advanced Switching", "Routing Technologies": "Advanced Routing", "Troubleshooting and Monitoring": "Troubleshooting" };
 const ADV_TITLE = { im4: "Advanced Networking" };
+/* lessons moved here from the Intermediate level (keys unchanged, so videos, quizzes and progress stay) */
+const ADV_EXTRA = { im4: { title: "Subnetting", tag: "SN", rows: [["im4.2", "Subnet Masks and CIDR"], ["im4.21", "Subnetting Practice"]] } };
 const ADVANCED_LEVELS = INTERMEDIATE_LEVELS.map(function (lv) {
   var rows = [], sections = [];
+  if (ADV_EXTRA[lv.id]) { var ex = ADV_EXTRA[lv.id]; sections.push({ title: ex.title, from: 0 }); ex.rows.forEach(function (r, k) { LBL[r[0]] = ex.tag + "." + (k + 1); rows.push(r); }); }
   (ADV_FROM_SPEC[lv.id] || []).forEach(function (n) { if (SPEC_LESSONS[n]) { sections.push({ title: ADV_SEC_NAME[n] || n, from: rows.length }); SPEC_LESSONS[n].lessons.forEach(function (r) { rows.push(r); }); } });
   if (ADV_NEW[lv.id]) ADV_NEW[lv.id].lessons.forEach(function (r) { var key = "av." + lv.id + "." + r[0]; LBL[key] = ADV_NEW[lv.id].tag + "." + r[0]; rows.push([key, r[1]]); });
   var t = ADV_TITLE[lv.id] || lv.title.replace(/^Intermediate /, "");

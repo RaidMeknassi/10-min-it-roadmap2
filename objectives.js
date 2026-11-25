@@ -62,7 +62,7 @@ const LEVEL_OBJECTIVES = {
  ],
  "im4": [
   "Understand how devices communicate and exchange information",
-  "Work with IP addresses (IPv4 and IPv6), subnet masks, CIDR and subnetting",
+  "Work with IP addresses (IPv4 and IPv6) and understand subnetting fundamentals",
   "Explain DHCP, DNS, TCP/UDP, ports and ICMP",
   "Explain the default gateway, NAT, VLANs and the OSI model in depth"
  ],
@@ -108,6 +108,7 @@ const LEVEL_OBJECTIVES = {
   "Find vulnerabilities and watch systems with logs and monitoring"
  ],
  "adv-im4": [
+  "Use subnet masks and CIDR to plan and calculate subnets",
   "Configure and troubleshoot VLANs, trunks, STP, OSPF, EIGRP and BGP",
   "Secure, monitor and troubleshoot a real network",
   "Keep networks available with HSRP/VRRP, redundant links and failover"
