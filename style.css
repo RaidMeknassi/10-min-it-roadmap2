@@ -1169,3 +1169,6 @@ a.nt-node:hover { transform: translateY(-2px); box-shadow: 0 0 22px -6px var(--c
 .tool-wrap { display: flex; flex-direction: column; align-items: center; gap: 6px; width: 84px; }
 .tool-label { font-size: 11px; font-weight: 600; line-height: 1.25; text-align: center; color: #d6d9e6; }
 @media (max-width: 480px) { .tool-wrap { width: 64px; } .tool-label { font-size: 10px; } }
+.lang-sugg-h { margin: 0 auto 10px; max-width: 420px; font-size: 12px; line-height: 1.4; color: #aab0c4; text-align: center; }
+.lang-sugg-a { flex-direction: column; align-items: center; gap: 5px; width: 72px; }
+.lang-sugg-n { font-size: 11px; font-weight: 600; line-height: 1.2; text-align: center; color: #d6d9e6; }

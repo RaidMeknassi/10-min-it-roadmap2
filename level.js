@@ -105,7 +105,7 @@
     var tbx = levelToolsBox(lv.id);
     if (tbx) { var th = el("h3", "cert-rec-title", (lv.id === "adv-im4" ? "\uD83E\uDD88 Recommended tool to learn" : "\uD83D\uDEE0 Tools for this level")); var wrap = el("div", "lv-toolsbox"); wrap.appendChild(th); wrap.appendChild(tbx); list.parentNode.insertBefore(wrap, list.nextSibling); }
     var lgb = (/^im\d+$/.test(lv.id) && typeof langSuggestBox === "function") ? langSuggestBox(lv.id) : null;
-    if (lgb) { var lt = lgb.querySelector(".lang-sugg-t"); if (lt) lt.remove(); lgb.className = "lang-sugg lv-langbox"; var lh = el("h3", "cert-rec-title", "\uD83D\uDCBB Languages to learn"); var lw = el("div", "lv-toolsbox"); lw.appendChild(lh); lw.appendChild(lgb); list.parentNode.insertBefore(lw, list.nextSibling); }
+    if (lgb) { var lt = lgb.querySelector(".lang-sugg-t"); if (lt) lt.remove(); var lhh = lgb.querySelector(".lang-sugg-h"); if (lhh) lhh.style.textAlign = "left"; lgb.className = "lang-sugg lv-langbox"; var lh = el("h3", "cert-rec-title", "\uD83D\uDCBB Languages to learn"); var lw = el("div", "lv-toolsbox"); lw.appendChild(lh); lw.appendChild(lgb); list.parentNode.insertBefore(lw, list.nextSibling); }
   }
   /* previous / next level stay inside the same section (Beginner, Intermediate or Advanced) and the back link goes to that section */
   var section = /^im\d+$/.test(lv.id) ? imLevels : /^adv-/.test(lv.id) ? ((typeof ADVANCED_LEVELS !== "undefined") ? ADVANCED_LEVELS : []) : LEVELS.concat([LEVEL55, LEVEL54, LEVEL52, LEVEL53]);
