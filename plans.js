@@ -7,7 +7,7 @@
   var page = document.body.getAttribute("data-page") === "plans";
   function li(t) { return "<li>" + t + "</li>"; }
   root.innerHTML =
-    (page ? '<a class="back" href="index.html#map">← Back to the road map</a>' : "") +
+    
     '<div class="pl-head"><h2>Learn for free, or buy me a coffee</h2><p>Everything you need to learn IT is free. A coffee unlocks the extra practice.</p></div>' +
     '<div class="pl-grid">' +
       '<article class="pl-card pl-free">' +
