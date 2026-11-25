@@ -1264,3 +1264,20 @@ a.cert-node-card.ct-tree:hover { box-shadow: 0 0 24px -6px #ef4444; transform: t
 }
 .cert-pair { display: flex; flex-direction: column; align-items: center; gap: 12px; }
 .cert-pair a.cert-node-card.ct-tree { margin: 0; width: 100%; max-width: 340px; box-sizing: border-box; }
+/* dropdown filters (Languages, Tools, Certifications) */
+.dd-bar { display: flex; flex-wrap: wrap; gap: 26px; margin: 14px 0 6px; text-align: left; }
+.cx-filter.dd { position: relative; display: block; margin: 0; }
+.dd-btn { font: inherit; cursor: pointer; background: none; border: 0; padding: 4px 0; text-align: left; color: inherit; }
+.dd-btn small { display: block; font-size: 11px; font-weight: 700; letter-spacing: .08em; text-transform: uppercase; color: #94a3b8; }
+.dd-btn b { display: inline-block; font-size: 16px; font-weight: 600; color: #38bdf8; }
+.dd-btn b::after { content: ""; display: inline-block; margin-left: 8px; border: 5px solid transparent; border-top-color: #64748b; border-bottom-width: 0; vertical-align: middle; transition: transform .15s; }
+.cx-filter.dd.open .dd-btn b::after { transform: rotate(180deg); }
+.dd-btn.set b { color: #a3e635; }
+.dd-btn:hover b { text-decoration: underline; }
+.cx-filter.dd .dd-panel { display: none; position: absolute; z-index: 60; top: calc(100% + 6px); left: 0; min-width: 240px; max-width: 320px; max-height: 250px; overflow-y: auto; flex-direction: column; flex-wrap: nowrap; gap: 0; padding: 6px; border-radius: 12px; background: #141427; border: 1px solid rgba(255,255,255,.14); box-shadow: 0 18px 44px rgba(0,0,0,.6); }
+.cx-filter.dd.open .dd-panel { display: flex; }
+.cx-filter.dd .cx-chip { display: flex; align-items: center; gap: 10px; width: 100%; text-align: left; padding: 9px 10px; border: 0; border-radius: 8px; background: none; color: #dbe1ee; font-size: 14px; font-weight: 500; }
+.cx-filter.dd .cx-chip::before { content: ""; flex: none; width: 16px; height: 16px; border-radius: 4px; border: 1.5px solid #64748b; background: transparent; }
+.cx-filter.dd .cx-chip:hover { background: rgba(255,255,255,.07); }
+.cx-filter.dd .cx-chip.on { color: #fff; font-weight: 600; background: rgba(163,230,53,.08); }
+.cx-filter.dd .cx-chip.on::before { border-color: #a3e635; background: #a3e635 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 8.5l3 3 6-7' fill='none' stroke='%2307070d' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/14px no-repeat; }
