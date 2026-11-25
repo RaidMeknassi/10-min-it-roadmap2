@@ -1237,3 +1237,14 @@ a.cert-node-card.ct-tree:hover { box-shadow: 0 0 24px -6px #ef4444; transform: t
 .cr-lvl { font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--c); }
 .cr .ct-advice { text-align: left; }
 @media (max-width: 480px) { .cr-grid { gap: 10px; } .cr-spec { padding: 14px 8px; } .cr-spec h3 { font-size: 17px; } }
+.cr-badge { flex: none; object-fit: contain; filter: drop-shadow(0 4px 10px rgba(0,0,0,.35)); }
+.cr-tile { display: inline-flex; flex-direction: column; align-items: center; gap: 4px; padding: 8px 8px 6px; border-radius: 14px; min-width: 78px; }
+.cr-tile .cr-badge { width: 56px; height: 56px; }
+.cr-tile span { font-size: 12px; }
+.cr-tile .ct-badge { width: 56px; padding: 8px 2px; }
+.cr-chain { gap: 4px; }
+@media (max-width: 480px) { .cr-tile { min-width: 66px; padding: 6px 5px 5px; } .cr-tile .cr-badge { width: 46px; height: 46px; } .cr-tile span { font-size: 11px; } .cr-to { font-size: 12px; } }
+.cr-tile .cr-fb { width: 56px; height: 56px; display: flex; flex-direction: column; justify-content: center; padding: 2px; }
+.cr-tile .cr-fb b { font-size: 10px; }
+.cr-tile span.cr-tname { font-size: 12px; }
+@media (max-width: 480px) { .cr-tile .cr-fb { width: 46px; height: 46px; } .cr-tile span.cr-tname { font-size: 11px; } }

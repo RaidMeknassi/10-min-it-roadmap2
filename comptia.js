@@ -28,18 +28,20 @@
     { name: "Data & AI", color: "#fbbf24", bg: "#45321a", icon: '<ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"/>', certs: ["data", "datasys", "dataai"] },
     { name: "Management", color: "#c4b5fd", bg: "#33255a", icon: '<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/>', certs: ["project"] }
   ];
+  var IMG = ["tech","a","network","security","cysa","pentest","securityx","secai","secot","server","linux","cloud","cloudnetx","data","datasys","dataai","project"];
+  function badge(id, size) { return IMG.indexOf(id) >= 0 ? '<img class="cr-badge" src="assets/comptia/' + id + '.png" alt="" width="' + size + '" height="' + size + '">' : '<span class="ct-badge cr-fb"><small>CompTIA</small><b>' + C[id][0].replace(" Essentials", " Ess.") + '</b></span>'; }
   var LVC = { Beginner: "#22c55e", Practitioner: "#eab308", Advanced: "#f97316", Expert: "#ef4444" };
   var detail = document.getElementById("cr-detail"), chips = {};
   function chip(id, cls) {
-    var b = document.createElement("button"); b.type = "button"; b.className = cls; b.textContent = C[id][0]; b.dataset.id = id;
+    var b = document.createElement("button"); b.type = "button"; b.className = cls + " cr-tile"; b.innerHTML = badge(id, 64) + '<span class="cr-tname"></span>'; b.querySelector(".cr-tname").textContent = C[id][0]; b.dataset.id = id;
     b.onclick = function () { show(id, true); }; (chips[id] = chips[id] || []).push(b); return b;
   }
   function show(id, scroll) {
     var c = C[id]; if (!c) return;
     Object.keys(chips).forEach(function (k) { chips[k].forEach(function (b) { b.classList.toggle("on", k === id); }); });
     detail.hidden = false; detail.style.setProperty("--c", LVC[c[1]]);
-    detail.innerHTML = '<span class="ct-badge"><small>CompTIA</small><b></b></span><div class="cr-dinfo"><span class="cr-lvl"></span><h3></h3><p></p></div>';
-    detail.querySelector(".ct-badge b").textContent = c[0]; detail.querySelector("h3").textContent = "CompTIA " + c[0];
+    detail.innerHTML = badge(id, 96) + '<div class="cr-dinfo"><span class="cr-lvl"></span><h3></h3><p></p></div>';
+    detail.querySelector("h3").textContent = "CompTIA " + c[0];
     detail.querySelector(".cr-lvl").textContent = c[1] + " level"; detail.querySelector("p").textContent = c[2];
     if (c[3]) { var f = document.createElement("em"); f.textContent = "📍 " + c[3]; detail.querySelector(".cr-dinfo").appendChild(f); }
     try { history.replaceState(null, "", "#" + id); } catch (e) {}

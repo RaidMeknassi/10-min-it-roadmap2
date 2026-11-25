@@ -79,8 +79,8 @@
     if (sugg) lv.insertBefore(sugg, lv.querySelector(".flyout"));
     var CERT_TREE = { im4: ["network", "Network+"] }, ct = CERT_TREE[info.id];
     if (ct) { var cn = document.createElement("a"); cn.className = "cert-node-card ct-tree"; cn.href = "comptia.html#" + ct[0];
-      cn.innerHTML = '<span class="ct-badge"><small>CompTIA</small><b></b></span><div class="cert-node-text"><b></b><span>Recommended Certification</span></div>';
-      cn.querySelector(".ct-badge b").textContent = ct[1]; cn.querySelector(".cert-node-text b").textContent = "CompTIA " + ct[1];
+      cn.innerHTML = '<img class="cr-badge" src="assets/comptia/' + ct[0] + '.png" alt="" width="58" height="58"><div class="cert-node-text"><b></b><span>Recommended Certification</span></div>';
+      cn.querySelector(".cert-node-text b").textContent = "CompTIA " + ct[1];
       cn.addEventListener("click", function (e) { e.stopPropagation(); }); lv.insertBefore(cn, lv.querySelector(".flyout")); }
 
     var card = lv.querySelector(".lv-card");
