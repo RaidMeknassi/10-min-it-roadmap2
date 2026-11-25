@@ -1,47 +1,62 @@
 /* © 10-Minute IT Roadmap. All rights reserved. */
-/* CompTIA certifications page: four levels, each exam with its main subject. */
+/* CompTIA certification roadmap: core foundation, then four specializations. Click a cert to see its details. */
 (function () {
-  var LV = [
-    { name: "Beginner", sub: "Start your IT journey", color: "#22c55e", certs: [
-      ["tech", "Tech+", "Perfect for absolute beginners in tech"],
-      ["a", "A+", "IT support, hardware and troubleshooting"],
-      ["network", "Network+", "Networking basics, DNS, routing and switching"],
-      ["cloudess", "Cloud Essentials+", "Cloud concepts and business use"] ] },
-    { name: "Practitioner", sub: "Build real skills", color: "#eab308", certs: [
-      ["security", "Security+", "Core cybersecurity concepts and defence"],
-      ["linux", "Linux+", "Linux administration and scripting"],
-      ["server", "Server+", "Servers, virtualization and infrastructure"],
-      ["cloud", "Cloud+", "Cloud operations and security"],
-      ["project", "Project+", "IT project management fundamentals"] ] },
-    { name: "Advanced", sub: "Specialize your career", color: "#f97316", certs: [
-      ["cysa", "CySA+", "SOC analyst and threat detection"],
-      ["pentest", "PenTest+", "Ethical hacking and penetration testing"],
-      ["secai", "SecAI+", "AI security and protecting AI systems"],
-      ["secot", "SecOT+", "Operational technology (OT) security"],
-      ["data", "Data+", "Data analytics and visualization"],
-      ["datasys", "DataSys+", "Database administration and data systems"],
-      ["dataai", "DataAI", "Data and AI"] ] },
-    { name: "Expert", sub: "Senior and leadership roles", color: "#ef4444", certs: [
-      ["securityx", "SecurityX", "Enterprise security architecture and strategy"],
-      ["datax", "DataX", "Advanced data science, governance and leadership"],
-      ["cloudnetx", "CloudNetX", "Advanced cloud networking and hybrid architecture"] ] }
+  var C = {
+    tech: ["Tech+", "Beginner", "Perfect for absolute beginners in tech: basic IT concepts, devices, software and security.", "Fits the Beginner levels"],
+    a: ["A+", "Beginner", "IT support, hardware, operating systems and troubleshooting. The classic first job certificate for help desk.", "Fits the Beginner levels"],
+    network: ["Network+", "Beginner", "Networking basics: IP addressing, DNS, DHCP, routing, switching, VLANs and network troubleshooting.", "Recommended after Intermediate Module 1: Networking"],
+    security: ["Security+", "Practitioner", "Core cybersecurity concepts and defence: threats, identity, network security, risk and incident response.", "Fits Intermediate Module 9: Cybersecurity"],
+    cloudess: ["Cloud Essentials+", "Beginner", "Cloud concepts and the business side of cloud: costs, models and migration decisions.", ""],
+    cysa: ["CySA+", "Advanced", "SOC analyst skills: threat detection, log analysis, vulnerability management and incident response.", "Fits the Cybersecurity specialization"],
+    pentest: ["PenTest+", "Advanced", "Ethical hacking and penetration testing: planning, scanning, exploiting and reporting.", "Fits the Cybersecurity specialization"],
+    securityx: ["SecurityX", "Expert", "Enterprise security architecture, engineering and strategy for senior security roles.", ""],
+    secai: ["SecAI+", "Advanced", "AI security: protecting AI systems and using AI safely in security work.", ""],
+    secot: ["SecOT+", "Advanced", "Operational technology (OT) and industrial control system security.", ""],
+    server: ["Server+", "Practitioner", "Servers, storage, virtualization and data center infrastructure.", "Fits Intermediate Module 6: Virtualization"],
+    linux: ["Linux+", "Practitioner", "Linux administration, permissions, services, scripting and troubleshooting.", "Fits Intermediate Module 3: Linux"],
+    cloud: ["Cloud+", "Practitioner", "Cloud operations and security: deploying, managing and troubleshooting cloud systems.", "Fits Intermediate Module 8: Cloud"],
+    cloudnetx: ["CloudNetX", "Expert", "Advanced cloud networking and hybrid network architecture.", ""],
+    data: ["Data+", "Advanced", "Data analytics and visualization: mining, analysing and reporting on data.", ""],
+    datasys: ["DataSys+", "Advanced", "Database administration and data systems: deploy, maintain and secure databases.", "Fits Intermediate Module 7: Databases"],
+    dataai: ["DataAI", "Advanced", "Data and AI: preparing data and working with machine-learning systems.", ""],
+    project: ["Project+", "Practitioner", "IT project management fundamentals: planning, scheduling, budgets and teams.", ""]
+  };
+  var CORE = ["tech", "a", "network", "security"];
+  var SPEC = [
+    { name: "Cybersecurity", color: "#22c55e", bg: "#123d2c", icon: '<path d="M12 3 4 6v6c0 5 3.4 8.4 8 9 4.6-.6 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/>', certs: ["cysa", "pentest", "securityx", "secai", "secot"] },
+    { name: "Infrastructure", color: "#60a5fa", bg: "#183459", icon: '<circle cx="12" cy="5" r="2"/><circle cx="6" cy="18" r="2"/><circle cx="18" cy="18" r="2"/><path d="M12 7v4M6 16v-2h12v2"/>', certs: ["server", "linux", "cloud", "cloudnetx"] },
+    { name: "Data & AI", color: "#fbbf24", bg: "#45321a", icon: '<ellipse cx="12" cy="6" rx="7" ry="3"/><path d="M5 6v12c0 1.7 3.1 3 7 3s7-1.3 7-3V6M5 12c0 1.7 3.1 3 7 3s7-1.3 7-3"/>', certs: ["data", "datasys", "dataai"] },
+    { name: "Management", color: "#c4b5fd", bg: "#33255a", icon: '<rect x="3" y="7" width="18" height="13" rx="2"/><path d="M9 7V5a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2M3 13h18"/>', certs: ["project"] }
   ];
-  var FOR = { network: "Recommended after Intermediate Module 1: Networking", linux: "Fits Intermediate Module 3: Linux", security: "Fits Intermediate Module 9: Cybersecurity", cysa: "Fits the Cybersecurity specialization", a: "Fits the Beginner levels", cloud: "Fits Intermediate Module 8: Cloud" };
-  var root = document.getElementById("ct-levels"); if (!root) return;
-  var hash = (location.hash || "").slice(1);
-  LV.forEach(function (lv, i) {
-    var col = document.createElement("section"); col.className = "ct-col"; col.style.setProperty("--c", lv.color);
-    col.innerHTML = '<div class="ct-head"><span class="ct-step">' + (i + 1) + '</span><div><h3></h3><p></p></div></div><div class="ct-list"></div>';
-    col.querySelector("h3").textContent = lv.name + " level"; col.querySelector("p").textContent = lv.sub;
-    lv.certs.forEach(function (c) {
-      var d = document.createElement("div"); d.className = "ct-card" + (c[0] === hash ? " on" : ""); d.id = c[0];
-      d.innerHTML = '<span class="ct-badge"><small>CompTIA</small><b></b></span><div class="ct-info"><b></b><span></span></div>';
-      d.querySelector(".ct-badge b").textContent = c[1]; d.querySelector(".ct-info b").textContent = "CompTIA " + c[1]; d.querySelector(".ct-info span").textContent = c[2];
-      if (FOR[c[0]]) { var f = document.createElement("em"); f.textContent = FOR[c[0]]; d.querySelector(".ct-info").appendChild(f); }
-      col.querySelector(".ct-list").appendChild(d);
-    });
-    root.appendChild(col);
+  var LVC = { Beginner: "#22c55e", Practitioner: "#eab308", Advanced: "#f97316", Expert: "#ef4444" };
+  var detail = document.getElementById("cr-detail"), chips = {};
+  function chip(id, cls) {
+    var b = document.createElement("button"); b.type = "button"; b.className = cls; b.textContent = C[id][0]; b.dataset.id = id;
+    b.onclick = function () { show(id, true); }; (chips[id] = chips[id] || []).push(b); return b;
+  }
+  function show(id, scroll) {
+    var c = C[id]; if (!c) return;
+    Object.keys(chips).forEach(function (k) { chips[k].forEach(function (b) { b.classList.toggle("on", k === id); }); });
+    detail.hidden = false; detail.style.setProperty("--c", LVC[c[1]]);
+    detail.innerHTML = '<span class="ct-badge"><small>CompTIA</small><b></b></span><div class="cr-dinfo"><span class="cr-lvl"></span><h3></h3><p></p></div>';
+    detail.querySelector(".ct-badge b").textContent = c[0]; detail.querySelector("h3").textContent = "CompTIA " + c[0];
+    detail.querySelector(".cr-lvl").textContent = c[1] + " level"; detail.querySelector("p").textContent = c[2];
+    if (c[3]) { var f = document.createElement("em"); f.textContent = "📍 " + c[3]; detail.querySelector(".cr-dinfo").appendChild(f); }
+    try { history.replaceState(null, "", "#" + id); } catch (e) {}
+    if (scroll) detail.scrollIntoView({ block: "nearest", behavior: "smooth" });
+  }
+  var core = document.getElementById("cr-core");
+  CORE.forEach(function (id, i) { if (i) { var a = document.createElement("span"); a.className = "cr-to"; a.textContent = "→"; core.appendChild(a); } core.appendChild(chip(id, "cr-chip")); });
+  var also = document.getElementById("cr-also"); also.appendChild(document.createTextNode("Optional: ")); also.appendChild(chip("cloudess", "cr-chip cr-chip-s"));
+  var grid = document.getElementById("cr-grid");
+  SPEC.forEach(function (s) {
+    var d = document.createElement("div"); d.className = "cr-spec"; d.style.setProperty("--c", s.color); d.style.setProperty("--bg", s.bg);
+    d.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + s.icon + '</svg><h3></h3><div class="cr-specchips"></div>';
+    d.querySelector("h3").textContent = s.name;
+    s.certs.forEach(function (id) { d.querySelector(".cr-specchips").appendChild(chip(id, "cr-chip cr-chip-s")); });
+    grid.appendChild(d);
   });
-  if (hash) { var t = document.getElementById(hash); if (t) setTimeout(function () { t.scrollIntoView({ block: "center", behavior: "smooth" }); }, 200); }
+  var h = (location.hash || "").slice(1);
+  if (C[h]) setTimeout(function () { show(h, false); detail.scrollIntoView({ block: "center" }); }, 150);
   var y = document.getElementById("year"); if (y) y.textContent = new Date().getFullYear();
 })();

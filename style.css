@@ -1201,3 +1201,39 @@ a.nt-node:hover { transform: translateY(-2px); box-shadow: 0 0 22px -6px var(--c
 .ct-badge b { font-size: 11px; display: block; }
 .ct-advice { text-align: left; }
 .ct-card { padding: 10px; }
+a.cert-node-card.ct-tree { margin: 10px auto 0; border-color: #ef4444; background: rgba(239,68,68,.07); text-decoration: none; color: inherit; padding: 10px 14px; }
+a.cert-node-card.ct-tree .cert-node-text span { color: #f87171; }
+a.cert-node-card.ct-tree:hover { box-shadow: 0 0 24px -6px #ef4444; transform: translateY(-2px); }
+/* CompTIA roadmap page */
+.cr { max-width: 760px; margin: 0 auto; text-align: center; }
+.cr-hero { display: flex; flex-direction: column; gap: 10px; max-width: 560px; margin: 8px auto 0; padding: 26px 20px; border-radius: 22px; background: linear-gradient(135deg, #1d3f73, #16335e); box-shadow: 0 20px 50px -24px #3b82f6; }
+.cr-hero b { font-size: clamp(30px, 7vw, 44px); letter-spacing: .06em; text-transform: uppercase; color: #fff; }
+.cr-hero span { font-size: 15px; letter-spacing: .06em; text-transform: uppercase; color: #cfe0ff; }
+.cr-intro { color: #aab0c4; font-size: 14px; margin: 16px auto 0; max-width: 520px; }
+.cr-arrow { font-size: 24px; color: #8b90a6; margin: 10px 0; }
+.cr-core { max-width: 560px; margin: 0 auto; padding: 18px 16px; border: 1px solid rgba(255,255,255,.22); border-radius: 18px; background: rgba(255,255,255,.03); }
+.cr-core h3 { margin: 0 0 12px; font-size: 20px; letter-spacing: .04em; text-transform: uppercase; color: #fff; }
+.cr-chain { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 6px; }
+.cr-to { color: #8b90a6; }
+.cr-chip { font: inherit; font-size: 14px; font-weight: 600; color: #fff; background: rgba(255,255,255,.08); border: 1px solid rgba(255,255,255,.18); border-radius: 999px; padding: 6px 14px; cursor: pointer; transition: transform .15s, background .15s, border-color .15s; }
+.cr-chip:hover { transform: translateY(-2px); border-color: rgba(255,255,255,.5); }
+.cr-chip.on { background: #d61f2c; border-color: #fff; }
+.cr-also { margin: 12px 0 0; font-size: 12px; color: #8b90a6; }
+.cr-chip-s { font-size: 13px; padding: 5px 11px; }
+.cr-choose { margin: 4px 0 16px; font-size: clamp(22px, 5vw, 30px); color: #fff; }
+.cr-grid { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; }
+.cr-spec { padding: 18px 12px; border-radius: 18px; background: var(--bg); color: var(--c); }
+.cr-spec svg { width: 34px; height: 34px; }
+.cr-spec h3 { margin: 8px 0 12px; font-size: 20px; color: #fff; }
+.cr-specchips { display: flex; flex-wrap: wrap; justify-content: center; gap: 6px; }
+.cr-spec .cr-chip { color: var(--c); background: rgba(0,0,0,.22); border-color: color-mix(in srgb, var(--c) 45%, transparent); }
+.cr-spec .cr-chip.on { color: #fff; background: #d61f2c; border-color: #fff; }
+.cr-detail { display: flex; gap: 16px; align-items: center; text-align: left; margin: 18px 0 0; padding: 16px 18px; border: 2px solid var(--c); border-radius: 18px; background: color-mix(in srgb, var(--c) 8%, transparent); scroll-margin: 120px; }
+.cr-detail .ct-badge { width: 84px; }
+.cr-detail .ct-badge b { font-size: 13px; }
+.cr-dinfo h3 { margin: 2px 0 4px; font-size: 18px; color: #fff; }
+.cr-dinfo p { margin: 0; font-size: 14px; color: #c6cadb; line-height: 1.45; }
+.cr-dinfo em { display: block; margin-top: 6px; font-style: normal; font-size: 12px; font-weight: 600; color: var(--c); }
+.cr-lvl { font-size: 11px; font-weight: 700; letter-spacing: .06em; text-transform: uppercase; color: var(--c); }
+.cr .ct-advice { text-align: left; }
+@media (max-width: 480px) { .cr-grid { gap: 10px; } .cr-spec { padding: 14px 8px; } .cr-spec h3 { font-size: 17px; } }
