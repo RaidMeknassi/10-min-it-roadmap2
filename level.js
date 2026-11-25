@@ -104,6 +104,11 @@
 
     var tbx = levelToolsBox(lv.id);
     if (tbx) { var th = el("h3", "cert-rec-title", (lv.id === "adv-im4" ? "\uD83E\uDD88 Recommended tool to learn" : "\uD83D\uDEE0 Tools for this level")); var wrap = el("div", "lv-toolsbox"); wrap.appendChild(th); wrap.appendChild(tbx); list.parentNode.insertBefore(wrap, list.nextSibling); }
+    var CERT_SUGG = { im4: ["network", "Network+", "Networking basics, DNS, routing and switching. See all CompTIA certifications \u2192"] };
+    var cs = CERT_SUGG[lv.id];
+    if (cs) { var cw = el("div", "lv-toolsbox"); cw.appendChild(el("h3", "cert-rec-title", "\uD83C\uDF93 Suggested certificate")); var ca = el("a", "lv-cert"); ca.href = "comptia.html#" + cs[0];
+      ca.innerHTML = '<span class="ct-badge"><small>CompTIA</small><b></b></span><div class="ct-info"><b></b><span></span></div>'; ca.querySelector(".ct-badge b").textContent = cs[1]; ca.querySelector(".ct-info b").textContent = "CompTIA " + cs[1]; ca.querySelector(".ct-info span").textContent = cs[2];
+      cw.appendChild(ca); list.parentNode.insertBefore(cw, list.nextSibling); }
     var lgb = (/^im\d+$/.test(lv.id) && typeof langSuggestBox === "function") ? langSuggestBox(lv.id) : null;
     if (lgb) { var lt = lgb.querySelector(".lang-sugg-t"); if (lt) lt.remove(); var lhh = lgb.querySelector(".lang-sugg-h"); if (lhh) lhh.style.textAlign = "left"; lgb.className = "lang-sugg lv-langbox"; var lh = el("h3", "cert-rec-title", "\uD83D\uDCBB Languages to learn"); var lw = el("div", "lv-toolsbox"); lw.appendChild(lh); lw.appendChild(lgb); list.parentNode.insertBefore(lw, list.nextSibling); }
   }
