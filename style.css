@@ -1283,3 +1283,6 @@ a.cert-node-card.ct-tree:hover { box-shadow: 0 0 24px -6px #ef4444; transform: t
 .cx-filter.dd .cx-chip.on::before { border-color: #a3e635; background: #a3e635 url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M3.5 8.5l3 3 6-7' fill='none' stroke='%2307070d' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/14px no-repeat; }
 /* level jump pills are not shown any more (the top menu and the trees do the job) */
 #chips, #int-chips { display: none !important; }
+.cx-hero { text-align: left; }
+.cx .cx-search { max-width: none; margin-left: 0; margin-right: 0; }
+.cx .cx-count { text-align: left; }
