@@ -261,6 +261,7 @@ const LESSON_OBJECTIVES = {
  "im4.23": "Explain and use these ideas: common services and their ports (HTTP, HTTPS, SSH, DNS, DHCP, SMTP, RDP), how a port maps to a service, and checking open ports on a computer.",
  "im4.24": "Explain and use these ideas: what a router does, routing tables, next hop and default route, how a packet travels between networks, and reading a route with tracert/traceroute.",
  "av.im4.dhcp": "Explain and use these ideas: the DORA steps (Discover, Offer, Request, Acknowledge), leases and renewal, DHCP relay, reservations and scopes, and troubleshooting with packet captures.",
+ "av.im4.natvlan": "Explain and use these ideas: static NAT, dynamic NAT and PAT, VLAN IDs, access and trunk ports, inter-VLAN routing, and how NAT and VLANs work together in a network design.",
  "nw.tr.tcp": "Explain and use these ideas: the TCP three-way handshake, sequence and acknowledgement numbers, windowing and retransmission, UDP and when it is used, and how to see both in a packet capture.",
  "av.im4.dns": "Explain and use these ideas: recursive vs iterative queries, resolver and authoritative servers, caching and TTL, record types, and troubleshooting resolution with nslookup and dig.",
  "av.im4.ttl": "Explain and use these ideas: what TTL means, resolver and browser caching, negative caching, lowering TTL before a change, and why DNS changes take time to propagate.",
