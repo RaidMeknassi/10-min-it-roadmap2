@@ -135,5 +135,6 @@
   var midTxt = /^im\d+$/.test(lv.id) ? ["All Intermediate modules", "intermediate.html"] : /^adv-/.test(lv.id) ? ["All Advanced modules", "advanced.html"] : ["Road map", "index.html#map"];
   var mid = el("a", "lp-btn lp-mid", midTxt[0]); mid.href = midTxt[1]; mid.style.setProperty("--c", lv.color); nav.appendChild(mid);
   if (next) nl(next, "next"); else nav.appendChild(el("span", "lp-arrow-gap"));
+  if (isPaths) nav.style.display = "none";   // Specializations page: no "Road map" button under the ring
   var y = $("year"); if (y) y.textContent = new Date().getFullYear();
 })();
