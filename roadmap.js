@@ -541,7 +541,7 @@ const ADV_FROM_SPEC = {
 const ADV_SEC_NAME = { "Switching Technologies": "Advanced Switching", "Routing Technologies": "Advanced Routing", "Troubleshooting and Monitoring": "Troubleshooting" };
 const ADV_TITLE = { im4: "Advanced Networking" };
 /* lessons moved here from the Intermediate level (keys unchanged, so videos, quizzes and progress stay) */
-const ADV_EXTRA = { im4: { title: "Subnetting and Addressing", tag: "SN", rows: [["im4.2", "Subnet Masks and CIDR"], ["im4.21", "Subnetting Practice"], ["im4.22", "ARP and Default Gateway"], ["av.im4.dns", "DNS Resolution"], ["av.im4.ttl", "DNS TTL and Caching"], ["av.im4.rec", "DNS Records"]] } };
+const ADV_EXTRA = { im4: { title: "Subnetting and Addressing", tag: "SN", rows: [["im4.2", "Subnet Masks and CIDR"], ["im4.21", "Subnetting Practice"], ["im4.22", "ARP and Default Gateway"], ["av.im4.dhcp", "DHCP and the DORA Process"], ["av.im4.dns", "DNS Resolution"], ["av.im4.ttl", "DNS TTL and Caching"], ["av.im4.rec", "DNS Records"]] } };
 const ADVANCED_LEVELS = INTERMEDIATE_LEVELS.map(function (lv) {
   var rows = [], sections = [];
   if (ADV_EXTRA[lv.id]) { var ex = ADV_EXTRA[lv.id]; sections.push({ title: ex.title, from: 0 }); ex.rows.forEach(function (r, k) { LBL[r[0]] = ex.tag + "." + (k + 1); rows.push(r); }); }
