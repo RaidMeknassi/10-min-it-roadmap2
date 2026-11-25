@@ -1262,3 +1262,5 @@ a.cert-node-card.ct-tree:hover { box-shadow: 0 0 24px -6px #ef4444; transform: t
   .cr-spec .cr-tile .cr-badge { width: 66px; height: 66px; }
   .cr-detail { max-width: 720px; margin-left: auto; margin-right: auto; }
 }
+.cert-pair { display: flex; flex-direction: column; align-items: center; gap: 12px; }
+.cert-pair a.cert-node-card.ct-tree { margin: 0; width: 100%; max-width: 340px; box-sizing: border-box; }

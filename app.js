@@ -54,8 +54,16 @@
     });
   })();
   (function () { var r = []; ITIL_COURSE.levels.forEach(function (l) { r = r.concat(l.lessons); }); if (rowsDone(r)) certLv.querySelector(".cert-node-card").classList.add("is-done"); })();
-  certEl.appendChild(certLv);
-  var certCard = certLv.querySelector(".cert-node-card");
+  function comptiaCard(id, name) {   // recommended CompTIA certificate card (opens the CompTIA roadmap)
+    var a = document.createElement("a"); a.className = "cert-node-card ct-tree"; a.href = "comptia.html#" + id;
+    a.innerHTML = '<img class="cr-badge" src="assets/comptia/' + id + '.png" alt="" width="58" height="58"><div class="cert-node-text"><b></b><span>Recommended Certification</span></div>';
+    a.querySelector("b").textContent = "CompTIA " + name; a.addEventListener("click", function (e) { e.stopPropagation(); }); return a;
+  }
+  var certPair = document.createElement("div"); certPair.className = "cert-pair";
+  certPair.appendChild(certLv); certPair.appendChild(comptiaCard("a", "A+"));
+  certEl.appendChild(certPair);
+  var certCard = certPair;   // the lines go to / from the whole pair (ITIL Foundation + CompTIA A+)
+  var certLink = certLv.querySelector(".cert-node-card");
 
   // Essential tools: every tool opens its own page
   var toolsEl = document.createElement("div"); toolsEl.className = "final tools-rec-node";
@@ -110,6 +118,7 @@
 
     var en = { info: info, lv: lv, card: card, metaEl: lv.querySelector(".lv-meta"),
                barEl: lv.querySelector(".lv-bar i"), barWrap: lv.querySelector(".lv-bar"), items: [] };
+    if (info.id === "l2") { en.tail = comptiaCard("tech", "Tech+"); lv.insertBefore(en.tail, lv.querySelector(".flyout")); }   // Tech+ fits after Levels 0-2
     entries.push(en);
     return en;
   }
@@ -300,7 +309,7 @@
     var out = "";
 
     function link(i, j, colorIdx) {
-      var a = entries[i].card.getBoundingClientRect();
+      var a = (entries[i].tail || entries[i].card).getBoundingClientRect();
       var b = entries[j].card.getBoundingClientRect();
       var x1 = a.left + a.width / 2 - base.left, y1 = a.bottom - base.top;
       var x2 = b.left + b.width / 2 - base.left, y2 = b.top - base.top;

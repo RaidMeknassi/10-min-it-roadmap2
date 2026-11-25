@@ -2,8 +2,8 @@
 /* CompTIA certification roadmap: core foundation, then four specializations. Click a cert to see its details. */
 (function () {
   var C = {
-    tech: ["Tech+", "Beginner", "Perfect for absolute beginners in tech: basic IT concepts, devices, software and security.", "Fits the Beginner levels"],
-    a: ["A+", "Beginner", "IT support, hardware, operating systems and troubleshooting. The classic first job certificate for help desk.", "Fits the Beginner levels"],
+    tech: ["Tech+", "Beginner", "Perfect for absolute beginners in tech: basic IT concepts, devices, software and security.", "Recommended after Beginner Levels 0 to 2"],
+    a: ["A+", "Beginner", "IT support, hardware, operating systems and troubleshooting. The classic first job certificate for help desk.", "Recommended after Beginner Level 5: IT Workplace and Career Preparation"],
     network: ["Network+", "Beginner", "Networking basics: IP addressing, DNS, DHCP, routing, switching, VLANs and network troubleshooting.", "Recommended after Intermediate Module 1: Networking"],
     security: ["Security+", "Practitioner", "Core cybersecurity concepts and defence: threats, identity, network security, risk and incident response.", "Fits Intermediate Module 9: Cybersecurity"],
     cloudess: ["Cloud Essentials+", "Beginner", "Cloud concepts and the business side of cloud: costs, models and migration decisions.", ""],

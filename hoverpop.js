@@ -2,7 +2,10 @@
 /* Hover popup: each language, tool or certificate icon on the trees shows ITS OWN lessons (not the module's). */
 (function () {
   if (!window.matchMedia || !matchMedia("(hover: hover)").matches) return;
-  var CERT_INFO = { network: ["CompTIA Network+", "#ef4444", "Recommended certification after this module.", ["Networking concepts: OSI, ports and protocols", "IP addressing and subnetting", "Switching, VLANs and wireless", "Routing basics", "DNS, DHCP and network services", "Network security basics", "Network troubleshooting"]] };
+  var CERT_INFO = {
+    tech: ["CompTIA Tech+", "#ef4444", "A first certificate for absolute beginners. A good check after Levels 0 to 2.", ["IT concepts and terminology", "Hardware, devices and infrastructure", "Applications and software", "Software development basics", "Data and database basics", "Security basics"]],
+    a: ["CompTIA A+", "#ef4444", "The classic first-job certificate for help desk and IT support.", ["Hardware and mobile devices", "Operating systems: Windows, Linux, macOS", "Networking basics", "Security basics", "Software and hardware troubleshooting", "Operational procedures and ticketing"]],
+    network: ["CompTIA Network+", "#ef4444", "Recommended certification after this module.", ["Networking concepts: OSI, ports and protocols", "IP addressing and subnetting", "Switching, VLANs and wireless", "Routing basics", "DNS, DHCP and network services", "Network security basics", "Network troubleshooting"]] };
   var pop = document.createElement("div"); pop.className = "flyout-card hov-pop"; document.body.appendChild(pop);
   var cur = null, timer = null;
   function q(href, k) { var m = new RegExp("[?&]" + k + "=([^&#]+)").exec(href || ""); return m ? decodeURIComponent(m[1]) : null; }
