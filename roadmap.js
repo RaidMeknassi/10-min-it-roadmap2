@@ -102,7 +102,7 @@ const INTERMEDIATE_LEVELS = [
       ["im2.13","What Is the Windows Registry?"],
       ["im2.5","Windows Registry and System Configuration"],["im2.6","Windows Event Logs"],
       ["im2.7","Windows Updates and Troubleshooting"],
-      ["im2.14","CMD vs PowerShell"],
+      ["im2.14","CMD vs PowerShell"],["im2.15","CMD vs PowerShell Practice"],
       ["im2.8","CMD Fundamentals"],["im2.10","PowerShell Fundamentals"]
     ]},
   { id: "im3", name: "Module 3", title: "Linux Administration", color: "#34d399",
@@ -167,7 +167,7 @@ const INTERMEDIATE_LEVELS = [
     ]},
 ];
 /* extra lessons that sit between two numbered lessons (shown as M1.4.1, M1.7.1 ...) */
-const SUB_LESSONS = ["im2.13", "im2.14"];
+const SUB_LESSONS = ["im2.13", "im2.14", "im2.15"];
 /* Build lesson labels for intermediate modules: M1.1, M1.2, … */
 INTERMEDIATE_LEVELS.forEach(function(lv, mi) {
   lv.name = "Module " + (mi + 1);   // modules are numbered by their position

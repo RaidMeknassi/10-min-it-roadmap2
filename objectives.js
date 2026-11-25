@@ -230,6 +230,7 @@ const LESSON_OBJECTIVES = {
  "im2.6": "Open Event Viewer and find the cause of a problem in the logs.",
  "im2.7": "Fix common Windows Update problems step by step.",
  "im2.14": "Explain the difference between CMD and PowerShell and when to use each.",
+ "im2.15": "Practise the same everyday tasks in CMD and in PowerShell side by side: navigating folders, listing and copying files, checking network settings, viewing processes and services.",
  "im2.8": "Move around the file system and manage files with CMD commands.",
  "im2.10": "Use PowerShell cmdlets and the pipeline to find and manage things.",
  "im4.12": "Describe what each OSI layer does and which protocols and devices belong to it.",
