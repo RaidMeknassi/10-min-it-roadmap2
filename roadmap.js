@@ -358,6 +358,14 @@ const VIDEOS = {
   "servicenow.1.17": "etPzSpcHtec", // CSA 1.17
   "servicenow.1.x1": "F6T60AyT3tU", // CSA 1.E1 exam explained
   "servicenow.1.x2": "3u2caY3y3io", // CSA 1.E2 objectives checklist
+  "googleworkspace.0.1": "bL555LNDh3k", // Introduction to Google Workspace
+  "googleworkspace.0.2": "t5xWGLne2tM", // Gmail Support
+  "googleworkspace.0.3": "BDOq3WNDaV4", // Google Drive Support
+  "googleworkspace.0.4": "eLrysLrCj_0", // Google Meet & Chat
+  "googleworkspace.0.5": "qejZOv7v82k", // Docs, Sheets & Slides
+  "googleworkspace.0.6": "LT14dnWmRi4", // Account & Password Support
+  "googleworkspace.0.7": "DbtTFs6Oubs", // Common Problems & Fixes
+  "googleworkspace.0.8": "oBM7F-PsZ9w", // Real Support Scenarios
   "zoom.0.1": "JR_r2w0pONY",       // Zoom Meetings for IT Support (Level 5.1)
   "rdp.0.1": "1RHpe7gc_Po",        // Microsoft Remote Desktop (RDP) (Level 5.1)
   "teamviewer.0.1": "aMg-MOJWcoo", // TeamViewer for IT Support (Level 5.1)
