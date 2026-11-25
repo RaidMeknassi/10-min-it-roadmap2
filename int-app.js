@@ -75,7 +75,7 @@
     var dEl = lv.querySelector(".lv-desc");
     if (info.desc) dEl.textContent = info.desc; else dEl.remove();
     container.appendChild(lv);
-    var sugg = (typeof langSuggestBox === "function") ? langSuggestBox(info.id) : null;
+    var sugg = (typeof langSuggestBox === "function" && info.id !== "im4") ? langSuggestBox(info.id) : null;   // Networking: no languages box on the tree
     if (sugg) lv.insertBefore(sugg, lv.querySelector(".flyout"));
     var CERT_TREE = { im4: ["network", "Network+"] }, ct = CERT_TREE[info.id];
     if (ct) { var cn = document.createElement("a"); cn.className = "cert-node-card ct-tree"; cn.href = "comptia.html#" + ct[0];
