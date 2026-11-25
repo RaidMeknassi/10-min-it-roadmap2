@@ -1172,3 +1172,6 @@ a.nt-node:hover { transform: translateY(-2px); box-shadow: 0 0 22px -6px var(--c
 .lang-sugg-h { margin: 0 auto 10px; max-width: 420px; font-size: 12px; line-height: 1.4; color: #aab0c4; text-align: center; }
 .lang-sugg-a { flex-direction: column; align-items: center; gap: 5px; width: 72px; }
 .lang-sugg-n { font-size: 11px; font-weight: 600; line-height: 1.2; text-align: center; color: #d6d9e6; }
+.lp-report-wrap { text-align: center; margin: 18px 0 6px; }
+.lp-report { font-size: 12px; color: #8b90a6; text-decoration: none; padding: 5px 12px; border-radius: 999px; border: 1px solid rgba(255,255,255,.1); }
+.lp-report:hover, .lp-report:focus-visible { color: #fff; border-color: rgba(255,255,255,.35); }

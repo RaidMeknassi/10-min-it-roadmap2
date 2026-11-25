@@ -153,5 +153,11 @@
   var mid = el("a", "lp-btn lp-mid", "All " + level.name + " lessons"); mid.href = lvHref; foot.appendChild(mid);
   foot.appendChild(si < sib.length - 1 ? nb(sib[si + 1], "next") : el("span", "lp-arrow-gap"));
   main.appendChild(foot);
+  /* "Report an issue" link: opens the visitor's mail app (change REPORT_EMAIL to your real address) */
+  var REPORT_EMAIL = "test@example.com";
+  var rp = el("a", "lp-report", "\u26A0 Report an issue or mistake");
+  rp.href = "mailto:" + REPORT_EMAIL + "?subject=" + encodeURIComponent("Issue in lesson " + lblOf(item) + ": " + item.title) +
+    "&body=" + encodeURIComponent("Lesson: " + lblOf(item) + " " + item.title + "\nPage: " + location.href + "\n\nWhat is wrong?\n");
+  var rw = el("div", "lp-report-wrap"); rw.appendChild(rp); main.appendChild(rw);
   var y = $("year"); if (y) y.textContent = new Date().getFullYear();
 })();
