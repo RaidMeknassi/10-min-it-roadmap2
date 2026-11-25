@@ -265,7 +265,7 @@ const LESSON_OBJECTIVES = {
  "av.im4.dns": "Explain and use these ideas: recursive vs iterative queries, resolver and authoritative servers, caching and TTL, record types, and troubleshooting resolution with nslookup and dig.",
  "av.im4.ttl": "Explain and use these ideas: what TTL means, resolver and browser caching, negative caching, lowering TTL before a change, and why DNS changes take time to propagate.",
  "av.im4.rec": "Explain and use these ideas: A, AAAA, CNAME, MX, TXT, NS, SOA and PTR records, SPF/DKIM/DMARC in TXT, and how to query records with nslookup and dig.",
- "im4.10": "Explain and use these ideas: Private and public addresses, SNAT, DNAT, PAT.",
+ "im4.10": "Explain and use these ideas: Private and public addresses, SNAT, DNAT, PAT, VLAN concepts, access ports, trunk ports and segmentation.",
  "im4.17": "Explain and use these ideas: VLAN concepts, access ports, trunk ports, segmentation.",
  "n3.6": "Explain and use these ideas: Star, bus, ring, mesh, hybrid.",
  "nw.sw.1": "Explain and use these ideas: Frame forwarding, MAC address tables, switching decisions.",

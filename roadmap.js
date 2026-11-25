@@ -91,8 +91,7 @@ const INTERMEDIATE_LEVELS = [
       ["im4.6","DHCP — How Devices Get IP Addresses"],["im4.5","DNS — How Domain Names Are Resolved"],
       ["im4.7","TCP and UDP"],["im4.8","Network Ports"],["im4.23","Ports and Network Services"],["im4.24","Routing"],
       ["im4.15","ICMP — How Devices Test Connectivity"],
-      ["im4.10","NAT — Network Address Translation"],
-      ["im4.17","VLANs — Dividing a Network"],
+      ["im4.10","NAT and VLANs"],
       ["im4.12","The OSI Model — A Deeper Look"]
     ]},
   { id: "im2", name: "Module 2", title: "Windows Administration", color: "#38bdf8",
