@@ -312,7 +312,7 @@ const PATH_CERTS = [
   ["Network Engineering", "#60a5fa", ["CompTIA Network+", "Cisco CCNA", "Cisco CCNP Enterprise", "Cisco CCNP Security", "Cisco DevNet Associate / Professional", "AWS Advanced Networking", "Azure Network Engineer"]],
   ["Cloud Computing", "#22d3ee", ["Microsoft AZ-900 / AZ-104", "AWS Cloud Practitioner / Solutions Architect Associate", "Google Associate Cloud Engineer"]],
   ["DevOps and Automation", "#a78bfa", ["Certified Kubernetes Administrator (CKA)", "HashiCorp Terraform Associate", "GitHub Foundations"]],
-  ["Systems Engineering", "#fb923c", ["Microsoft Windows Server Hybrid Administrator (AZ-800)", "Red Hat RHCSA", "VMware VCP"]],
+  ["Systems Engineering", "#fb923c", ["Microsoft Windows Server Administrator (AZ-802)", "Red Hat RHCSA", "VMware VCP"]],
   ["Software Development", "#4ade80", ["Python Institute PCEP / PCAP", "Microsoft Azure AI Cloud Developer (AI-200)"]],
   ["Data and Artificial Intelligence", "#fbbf24", ["Microsoft DP-900 / AI-900", "Google Data Analytics Certificate"]],
   ["IT Support Engineering", "#2dd4bf", ["CompTIA A+", "ITIL Foundation", "Microsoft Endpoint Administrator (MD-102)"]],

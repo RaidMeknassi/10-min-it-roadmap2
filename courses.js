@@ -67,7 +67,12 @@ const TOOL_GROUPS = [
   { id: "collab", name: "IT Communication, Collaboration & Remote Access", emoji: "🖥️" },
   { id: "network", name: "Networking Tools", emoji: "🦈" },
   { id: "webserver", name: "Web Servers", emoji: "🌐" },
-  { id: "virtual", name: "Virtualization Tools", emoji: "🖥️" }
+  { id: "virtual", name: "Virtualization Tools", emoji: "🖥️" },
+  { id: "containers", name: "Containers", emoji: "🐳" },
+  { id: "wintools", name: "Windows Admin Tools", emoji: "🪟" },
+  { id: "apitools", name: "API Tools", emoji: "🔌" },
+  { id: "dbtools", name: "Database Tools", emoji: "🗄️" },
+  { id: "sectools", name: "Security Tools", emoji: "🔍" }
 ];
 
 const TOOLS = [
@@ -232,6 +237,41 @@ const TOOLS = [
     levels: [
       { title: "VirtualBox Basics", role: "Getting started", color: "#6d93d6", lessons: ["What Is VirtualBox and Why Use It?", "Installing VirtualBox", "Creating Your First Virtual Machine", "Installing Windows or Linux in a VM", "Guest Additions, Shared Folders and Clipboard"] },
       { title: "Building a Home Lab", role: "IT Support and Admin", color: "#2f61b4", lessons: ["Snapshots and Clones", "VirtualBox Network Modes: NAT, Bridged, Host-Only and Internal", "Building a Small Lab Network of VMs", "Importing and Exporting Appliances (OVA)", "Fixing Common VirtualBox Problems"] }
+    ]},
+  { id: "sysinternals", name: "Sysinternals Suite", group: "wintools", color: "#0078d4", tags: ["Windows", "Troubleshooting", "Free"],
+    desc: "Free Microsoft tools that show what really happens inside Windows: processes, startup programs, files and network connections.",
+    note: "Sysinternals has no certification. It is a daily tool for Windows admins, support engineers and security analysts.",
+    levels: [
+      { title: "Sysinternals Basics", role: "IT Support", color: "#4aa3ea", lessons: ["What Is Sysinternals?", "Process Explorer: A Better Task Manager", "Autoruns: What Starts with Windows", "TCPView: Who Is Connected to the Network"] },
+      { title: "Deeper Troubleshooting", role: "Windows Admin", color: "#0078d4", lessons: ["Process Monitor: Watching Files and Registry", "PsExec and PsTools for Remote Work", "Sysmon: Better Logs for Security", "Finding Malware with Sysinternals"] }
+    ]},
+  { id: "docker", name: "Docker", group: "containers", color: "#1d63ed", tags: ["Containers", "DevOps", "Linux"],
+    desc: "Package an application with everything it needs and run it the same way on any computer or server.",
+    note: "Docker has no current entry certification. Practise on your own computer; Kubernetes (CKA) is the next step.",
+    levels: [
+      { title: "Docker Basics", role: "Getting started", color: "#5b8cf5", lessons: ["What Is a Container?", "Installing Docker", "Running Your First Container", "Images, Containers and Docker Hub", "Basic Docker Commands"] },
+      { title: "Working with Docker", role: "Admin and DevOps", color: "#1d63ed", lessons: ["Writing a Dockerfile", "Volumes: Keeping Your Data", "Docker Networks and Ports", "Docker Compose: Many Containers Together", "Container Security Basics"] }
+    ]},
+  { id: "postman", name: "Postman", group: "apitools", color: "#ff6c37", tags: ["APIs", "REST", "Testing"],
+    desc: "The popular tool to send requests to APIs, read the answers and test that web services work.",
+    note: "Postman offers free learning badges. It is used by developers, testers and support engineers who work with APIs.",
+    levels: [
+      { title: "Postman Basics", role: "Getting started", color: "#ff9a73", lessons: ["What Is Postman?", "Sending Your First GET Request", "POST, PUT and DELETE Requests", "Headers, Status Codes and JSON Answers"] },
+      { title: "Testing APIs", role: "Support and Developer", color: "#ff6c37", lessons: ["API Keys and Authentication", "Collections and Environments", "Writing Simple Tests", "Troubleshooting a Failing API"] }
+    ]},
+  { id: "mysqlworkbench", name: "MySQL Workbench", group: "dbtools", color: "#00758f", tags: ["Databases", "SQL", "Free"],
+    desc: "A free visual tool to connect to MySQL databases, design tables and run SQL queries.",
+    note: "MySQL Workbench has no certification. Oracle offers MySQL certifications if you want to go further.",
+    levels: [
+      { title: "Workbench Basics", role: "Getting started", color: "#3aa7bf", lessons: ["What Is MySQL Workbench?", "Installing MySQL and Workbench", "Connecting to a Database", "Creating Tables and Adding Data", "Running Your First Queries"] },
+      { title: "Working with Databases", role: "Database Support", color: "#00758f", lessons: ["Designing a Database with Diagrams", "Users and Permissions", "Backup and Restore", "Finding Slow Queries"] }
+    ]},
+  { id: "nmap", name: "Nmap", group: "sectools", color: "#4b5563", tags: ["Scanning", "Security", "Free"],
+    desc: "The classic free network scanner. Find devices on a network, see which ports are open and which services run on them.",
+    note: "Only scan networks you own or have written permission to test. Nmap has no certification of its own; it is used in Security+, CySA+ and PenTest+.",
+    levels: [
+      { title: "Nmap Basics", role: "Getting started", color: "#9ca3af", lessons: ["What Is Nmap and Is It Legal?", "Installing Nmap and Zenmap", "Finding Devices on Your Network", "Scanning Open Ports"] },
+      { title: "Using Nmap for Security", role: "Security Analyst", color: "#4b5563", lessons: ["Finding Services and Versions", "Detecting the Operating System", "Nmap Scripts (NSE)", "Reading Results and Writing a Short Report"] }
     ]},
   { id: "apache", name: "Apache HTTP Server", group: "webserver", color: "#d22128", tags: ["Web Server", "Linux", "HTTPS"],
     desc: "One of the most used web servers in the world. Admins install it, host websites on it, secure it with HTTPS and read its logs.",
@@ -486,7 +526,7 @@ var LEVEL52 = (function () {
     lessons: m.levels[0].lessons.map(function (r) { return [r[0], r[1], 0, 1]; }), lbl: function (k) { return "5.3." + (k + 1); } };
 })();
 /* tools shown under a level (they also stay in the Tools section) */
-var LEVEL_TOOLS = { "adv-im4": ["network"], "im8": ["webserver"], "im10": ["virtual"] };
+var LEVEL_TOOLS = { "adv-im4": ["network"], "im2": ["wintools"], "im8": ["webserver", "apitools"], "im10": ["virtual", "containers"], "im7": ["dbtools"], "im9": ["sectools"] };
 function levelToolsBox(levelId) {
   var ids = LEVEL_TOOLS[levelId]; if (!ids) return null;
   var box = document.createElement("div"); box.className = "node-tools";

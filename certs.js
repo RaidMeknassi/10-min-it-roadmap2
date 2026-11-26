@@ -30,7 +30,7 @@
     ["OffSec OSCP", "OffSec", "OSCP", ["l7"], ["Cybersecurity"]],
     ["Cisco CCNP Enterprise", "Cisco", "CCNP", ["l7"], ["Network Engineering"]],
     ["Cisco CCNP Security", "Cisco", "CCNP SEC", ["l7"], ["Network Engineering", "Cybersecurity"]],
-    ["Microsoft AZ-800 Windows Server Hybrid Administrator", "Microsoft", "AZ-800", ["l7"], ["Systems Engineering"]],
+    ["Microsoft AZ-802 Windows Server Administrator", "Microsoft", "AZ-802", ["l6", "l7"], ["Systems Engineering"]],
     ["VMware VCP", "VMware", "VCP", ["l7"], ["Systems Engineering"]],
     ["Microsoft AZ-104 Azure Administrator", "Microsoft", "AZ-104", ["l7"], ["Cloud Computing"]],
     ["AWS Solutions Architect Associate", "AWS", "SAA", ["l7"], ["Cloud Computing"]],
