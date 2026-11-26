@@ -134,7 +134,7 @@ const TOOLS = [
     note: "Microsoft changes its exams often. MS-900 retired on 31 March 2026 (replaced by AB-900). MS-102 is retiring and is replaced by AB-650. Always check Microsoft Learn before you book.",
     levels: [
       { title: "Microsoft 365 for IT Support", role: "Beginner", desc: "Outlook, Teams, OneDrive, SharePoint, accounts, licensing basics and troubleshooting.", color: "#f2a07b", lessons: ["What Is Microsoft 365?", "Outlook: Mail, Calendar and Common Problems", "Teams: Chat, Meetings and Calls", "OneDrive: Sync and Sharing", "SharePoint: Sites and Libraries", "Fixing the Top 10 User Issues"] },
-      { title: "Microsoft 365 Fundamentals", role: "Fundamentals", color: "#ff8c4c", cert: ["AB-900", "Microsoft 365 Fundamentals", "Microsoft"],
+      { title: "Microsoft 365 Fundamentals", role: "Fundamentals", color: "#ff8c4c", cert: ["AB-900", "Microsoft 365 Copilot and Agent Administration Fundamentals", "Microsoft"],
         desc: "Microsoft 365 ecosystem, cloud concepts, productivity, security and AI fundamentals.",
         lessons: ["Microsoft 365 Services Overview", "Microsoft 365 Admin Center", "Licences and Subscriptions", "Copilot and Agents Basics", "Security and Compliance Basics"] },
       { title: "Endpoint Administrator Associate", role: "Endpoint specialization", color: "#f59e0b", cert: ["MD-102", "Endpoint Administrator Associate", "Microsoft"],

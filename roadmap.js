@@ -304,7 +304,7 @@ const PATH_CERTS = [
   ["Cloud Computing", "#22d3ee", ["Microsoft AZ-900 / AZ-104", "AWS Cloud Practitioner / Solutions Architect Associate", "Google Associate Cloud Engineer"]],
   ["DevOps and Automation", "#a78bfa", ["Certified Kubernetes Administrator (CKA)", "HashiCorp Terraform Associate", "GitHub Foundations"]],
   ["Systems Engineering", "#fb923c", ["Microsoft Windows Server Hybrid Administrator (AZ-800)", "Red Hat RHCSA", "VMware VCP"]],
-  ["Software Development", "#4ade80", ["Python Institute PCEP / PCAP", "Microsoft Azure Developer (AZ-204)"]],
+  ["Software Development", "#4ade80", ["Python Institute PCEP / PCAP", "Microsoft Azure AI Cloud Developer (AI-200)"]],
   ["Data and Artificial Intelligence", "#fbbf24", ["Microsoft DP-900 / AI-900", "Google Data Analytics Certificate"]],
   ["IT Support Engineering", "#2dd4bf", ["CompTIA A+", "ITIL Foundation", "Microsoft Endpoint Administrator (MD-102)"]],
   ["Enterprise Systems", "#1b90ff", ["SAP Financial Accounting on S/4HANA (C_TS4FI)", "SAP Sourcing and Procurement (C_TS452)", "SAP Sales (C_TS462)", "SAP SuccessFactors Employee Central (C_THR81)", "SAP HANA Database Administration (C_DBADM)", "SAP System Security and Authorizations (C_SEC)", "SAP Back-End Developer: ABAP Cloud (C_ABAPD)", "SAP BTP Developer (C_ADBTP)", "Salesforce Certified Associate", "Salesforce Certified Platform Administrator", "Salesforce Certified Platform App Builder", "Salesforce Certified Platform Developer", "Salesforce Certified Sales Cloud Consultant", "Salesforce Certified Service Cloud Consultant"]]

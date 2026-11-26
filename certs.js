@@ -39,7 +39,7 @@
     ["HashiCorp Terraform Associate", "HashiCorp", "TF", ["l7"], ["DevOps and Automation"]],
     ["GitHub Foundations", "GitHub", "GH", ["l7"], ["DevOps and Automation", "Software Development"]],
     ["Python Institute PCAP", "Python Institute", "PCAP", ["l7"], ["Software Development"]],
-    ["Microsoft AZ-204 Azure Developer", "Microsoft", "AZ-204", ["l7"], ["Software Development"]],
+    ["Microsoft AI-200 Azure AI Cloud Developer", "Microsoft", "AI-200", ["l7"], ["Software Development"]],
     ["Microsoft AI-900 Azure AI Fundamentals", "Microsoft", "AI-900", ["l7"], ["Data and Artificial Intelligence"]],
     ["Google Data Analytics Certificate", "Google", "DATA", ["l7"], ["Data and Artificial Intelligence"]]
   ];
