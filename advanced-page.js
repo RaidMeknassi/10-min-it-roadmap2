@@ -33,6 +33,7 @@ var road = el("div", "road adv-road"); var svg = document.createElementNS("http:
     var im = lv.id.replace(/^adv-/, "");
     var tb = (typeof levelToolsBox === "function") ? levelToolsBox(lv.id) : null;
     if (tb) { var tt = el("div", "lang-sugg-t", "Recommended tool to learn"); tb.insertBefore(tt, tb.firstChild); var tg = tb.querySelector(".tools-group-title"); if (tg) tg.remove(); w.appendChild(tb); }
+    var cr = (typeof comptiaRecNode === "function") ? comptiaRecNode(lv.id) : null; if (cr) w.appendChild(cr);
     parent.appendChild(w); cards[i] = { el: c, color: lv.color }; return w;
   }
   function single(i) { var d = el("div", "final"); d.style.marginTop = "56px"; lev.appendChild(d); card(i, d); }

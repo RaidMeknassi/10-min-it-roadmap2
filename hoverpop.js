@@ -24,7 +24,9 @@
       return true;
     }
     if (/comptia\.html#/.test(href)) {
-      var c = CERT_INFO[href.split("#")[1]]; if (!c) return false; pop.style.setProperty("--c", c[1]); add("fl-head", c[0] + " · What it covers");
+      var cid = href.split("#")[1], c = CERT_INFO[cid];
+      if (!c && typeof COMPTIA !== "undefined" && COMPTIA[cid]) c = ["CompTIA " + COMPTIA[cid][0], "#ef4444", COMPTIA[cid][1] + " level. " + COMPTIA[cid][3] + ".", [COMPTIA[cid][2]]];
+      if (!c) return false; pop.style.setProperty("--c", c[1]); add("fl-head", c[0] + " · What it covers");
       var p = document.createElement("p"); p.className = "hp-desc"; p.textContent = c[2]; pop.appendChild(p);
       c[3].forEach(function (t) { var d = document.createElement("div"); d.className = "fl-item fl-sub"; d.innerHTML = '<span class="fl-dot"></span><span class="fl-title"></span>'; d.querySelector(".fl-title").textContent = t; pop.appendChild(d); });
       add("fl-group fl-group-link", "Open the CompTIA roadmap →", href);
@@ -39,7 +41,7 @@
   }
   function hide() { pop.classList.remove("on"); cur = null; }
   document.addEventListener("mouseover", function (e) {
-    var el = e.target.closest && e.target.closest(".lang-sugg-a, .tool-chip, .tool-icon, .ct-tree");
+    var el = e.target.closest && e.target.closest(".lang-sugg-a, .tool-chip, .tool-icon, .ct-tree, .ct-tile");
     if (el) { clearTimeout(timer); if (el !== cur) { if (build(el)) { cur = el; place(el); } else hide(); } return; }
     if (e.target.closest && e.target.closest(".hov-pop")) { clearTimeout(timer); return; }
     if (cur) { clearTimeout(timer); timer = setTimeout(hide, 220); }

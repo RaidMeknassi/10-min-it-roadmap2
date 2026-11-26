@@ -1,25 +1,8 @@
 /* © 10-Minute IT Roadmap. All rights reserved. */
 /* CompTIA certification roadmap: core foundation, then four specializations. Click a cert to see its details. */
 (function () {
-  var C = {
-    tech: ["Tech+", "Beginner", "Perfect for absolute beginners in tech: basic IT concepts, devices, software and security.", "Recommended after Beginner Levels 0 to 2"],
-    a: ["A+", "Beginner", "IT support, hardware, operating systems and troubleshooting. The classic first job certificate for help desk.", "Recommended after Beginner Level 5: IT Workplace and Career Preparation"],
-    network: ["Network+", "Beginner", "Networking basics: IP addressing, DNS, DHCP, routing, switching, VLANs and network troubleshooting.", "Recommended after Intermediate Module 1: Networking"],
-    security: ["Security+", "Practitioner", "Core cybersecurity concepts and defence: threats, identity, network security, risk and incident response.", "Fits Intermediate Module 9: Cybersecurity"],
-    cysa: ["CySA+", "Advanced", "SOC analyst skills: threat detection, log analysis, vulnerability management and incident response.", "Fits the Cybersecurity specialization"],
-    pentest: ["PenTest+", "Advanced", "Ethical hacking and penetration testing: planning, scanning, exploiting and reporting.", "Fits the Cybersecurity specialization"],
-    securityx: ["SecurityX", "Expert", "Enterprise security architecture, engineering and strategy for senior security roles.", ""],
-    secai: ["SecAI+", "Advanced", "AI security: protecting AI systems and using AI safely in security work.", ""],
-    secot: ["SecOT+", "Advanced", "Operational technology (OT) and industrial control system security.", ""],
-    server: ["Server+", "Practitioner", "Servers, storage, virtualization and data center infrastructure.", "Fits Intermediate Module 6: Virtualization"],
-    linux: ["Linux+", "Practitioner", "Linux administration, permissions, services, scripting and troubleshooting.", "Fits Intermediate Module 3: Linux"],
-    cloud: ["Cloud+", "Practitioner", "Cloud operations and security: deploying, managing and troubleshooting cloud systems.", "Fits Intermediate Module 8: Cloud"],
-    cloudnetx: ["CloudNetX", "Expert", "Advanced cloud networking and hybrid network architecture.", ""],
-    data: ["Data+", "Advanced", "Data analytics and visualization: mining, analysing and reporting on data.", ""],
-    datasys: ["DataSys+", "Advanced", "Database administration and data systems: deploy, maintain and secure databases.", "Fits Intermediate Module 7: Databases"],
-    dataai: ["DataAI", "Advanced", "Data and AI: preparing data and working with machine-learning systems.", ""],
-    project: ["Project+", "Practitioner", "IT project management fundamentals: planning, scheduling, budgets and teams.", ""]
-  };
+  var C = COMPTIA;
+
   var CORE = ["tech", "a", "network", "security"];
   var SPEC = [
     { name: "Cybersecurity", color: "#22c55e", bg: "#123d2c", icon: '<path d="M12 3 4 6v6c0 5 3.4 8.4 8 9 4.6-.6 8-4 8-9V6z"/><path d="m9 12 2 2 4-4"/>', certs: ["cysa", "pentest", "securityx", "secai", "secot"] },

@@ -60,7 +60,7 @@
     a.querySelector("b").textContent = "CompTIA " + name; a.addEventListener("click", function (e) { e.stopPropagation(); }); return a;
   }
   var certPair = document.createElement("div"); certPair.className = "cert-pair";
-  certPair.appendChild(certLv); certPair.appendChild(comptiaCard("a", "A+"));
+  certPair.appendChild(certLv); if (typeof comptiaRecNode === "function") certPair.appendChild(comptiaRecNode("l5"));
   certEl.appendChild(certPair);
   var certCard = certPair;   // the lines go to / from the whole pair (ITIL Foundation + CompTIA A+)
   var certLink = certLv.querySelector(".cert-node-card");
@@ -118,7 +118,7 @@
 
     var en = { info: info, lv: lv, card: card, metaEl: lv.querySelector(".lv-meta"),
                barEl: lv.querySelector(".lv-bar i"), barWrap: lv.querySelector(".lv-bar"), items: [] };
-    if (info.id === "l2") { en.tail = comptiaCard("tech", "Tech+"); lv.insertBefore(en.tail, lv.querySelector(".flyout")); }   // Tech+ fits after Levels 0-2
+    if (info.id === "l2" && typeof comptiaRecNode === "function") { en.tail = comptiaRecNode("l2"); lv.insertBefore(en.tail, lv.querySelector(".flyout")); }   // Tech+ fits after Levels 0-2
     entries.push(en);
     return en;
   }
