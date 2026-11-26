@@ -539,7 +539,7 @@ const LABS = {
   "5.5.4": { title: "Practical troubleshooting scenarios", text: "Work a ticket from start to finish: talk to the user, decide when to escalate, write clear notes and close it the right way." },
   "56": { title: "Real-World IT Scenarios", text: "Practical support cases and workplace situations: handle tickets, talk to users and decide priorities like a real IT team." },
   "1": { title: "Input, Process, Output", text: "Type any number into the input box, watch the processor work, and see which emoji comes out. Then find the secret rule." },
-  "2": { title: "3D hardware teardown", text: "Click a part (CPU, RAM, CPU cooler) and see it float in 3D. Turn it around and learn what it does." },
+  "2": { title: "3D hardware teardown", text: "Explore 20 computer parts in 3D: inside the PC, storage and peripherals. Click a part, turn it around and learn what it does." },
   "3": { title: "Build the software stack", text: "Drag the layers into place: hardware, BIOS/UEFI, drivers, operating system, applications. Then press Power On and watch the layers work together." },
   "4": { title: "Build your PC", text: "Drag the CPU, fan, RAM, SSD and graphics card onto the motherboard, then mount the board and power supply in the case and power on." },
   "5": { title: "Binary name tag", text: "Use an ASCII table to turn your name into binary, then decode a friend's message back into letters." }

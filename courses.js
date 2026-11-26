@@ -439,14 +439,16 @@ QUIZZES["servicenow.1.x4"] = { type: "mcq", color: "#62d84e", title: "CSA full m
 
 /* tags shown on a lesson card in the lists: video lesson, quiz-only (quiz + locked lab), or coming soon */
 /* realLab: the lesson has a lab (video or page) that opens in its Lab tab.
-   hasLab: the lesson shows the Lab tag in lists. Only the two lab lessons below carry it. */
+   hasLab: the lesson shows the Lab tag in lists (every real lab, plus the lessons listed below). */
 function realLab(key) { return !!((typeof LABS !== "undefined" && LABS[key] && LABS[key].video) || (typeof LAB_PAGES !== "undefined" && LAB_PAGES[key])); }
 var LAB_LESSONS = ["servicenow.0.3", "jira.0.3"];
-function hasLab(key) { return LAB_LESSONS.indexOf(key) >= 0; }
+function hasLab(key) { return LAB_LESSONS.indexOf(key) >= 0 || realLab(key); }   // every lesson with a working lab shows the Lab tag
 function lessonTags(key) {
-  if (VIDEOS[key] || LESSON_PAGES[key]) return [["Lesson", "t-les"]].concat(QUIZZES[key] ? [["Quiz", "t-quiz"]] : [], hasLab(key) ? [["Lab", "t-lab"]] : []);
-  if (QUIZZES[key]) return [["Quiz", "t-quiz"]];
-  return [["Coming soon", "t-soon"]];
+  var t = [];
+  if (VIDEOS[key] || LESSON_PAGES[key]) t.push(["Lesson", "t-les"]);
+  if (QUIZZES[key]) t.push(["Quiz", "t-quiz"]);
+  if (hasLab(key)) t.push(["Lab", "t-lab"]);
+  return t.length ? t : [["Coming soon", "t-soon"]];
 }
 
 /* ---- Level 5.2: Communication & Remote Support Tools (lessons are added below from the Slack, Zoom, RDP, TeamViewer and AnyDesk tools) ---- */
