@@ -118,7 +118,7 @@
 
     var en = { info: info, lv: lv, card: card, metaEl: lv.querySelector(".lv-meta"),
                barEl: lv.querySelector(".lv-bar i"), barWrap: lv.querySelector(".lv-bar"), items: [] };
-    if (info.id === "l2" && typeof comptiaRecNode === "function") { en.tail = comptiaRecNode("l2"); lv.insertBefore(en.tail, lv.querySelector(".flyout")); }   // Tech+ fits after Levels 0-2
+    if ((info.id === "l2" || info.id === "l4") && typeof comptiaRecNode === "function") { en.tail = comptiaRecNode(info.id); lv.insertBefore(en.tail, lv.querySelector(".flyout")); }   // Tech+ fits after Levels 0-2
     entries.push(en);
     return en;
   }

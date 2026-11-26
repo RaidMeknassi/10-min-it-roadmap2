@@ -23,9 +23,10 @@
       T.levels.forEach(function (lv, i) { add("fl-group fl-group-link", (T.single ? "" : "Level " + i + " · ") + lv.title, "tool.html?t=" + T.id + "&l=" + i); lv.lessons.forEach(item); });
       return true;
     }
-    if (/comptia\.html#/.test(href)) {
-      var cid = href.split("#")[1], c = CERT_INFO[cid];
-      if (!c && typeof COMPTIA !== "undefined" && COMPTIA[cid]) c = ["CompTIA " + COMPTIA[cid][0], "#ef4444", COMPTIA[cid][1] + " level. " + COMPTIA[cid][3] + ".", [COMPTIA[cid][2]]];
+    var cidQ = null; if (typeof COMPTIA !== "undefined") Object.keys(COMPTIA).forEach(function (k) { if (COMPTIA[k][4] && COMPTIA[k][4].href === href) cidQ = k; });
+    if (/comptia\.html#/.test(href) || cidQ) {
+      var cid = cidQ || href.split("#")[1], c = CERT_INFO[cid];
+      if (!c && typeof COMPTIA !== "undefined" && COMPTIA[cid]) c = [certFull(cid), "#ef4444", COMPTIA[cid][1] + " level. " + COMPTIA[cid][3] + ".", [COMPTIA[cid][2]]];
       if (!c) return false; pop.style.setProperty("--c", c[1]); add("fl-head", c[0] + " · What it covers");
       var p = document.createElement("p"); p.className = "hp-desc"; p.textContent = c[2]; pop.appendChild(p);
       c[3].forEach(function (t) { var d = document.createElement("div"); d.className = "fl-item fl-sub"; d.innerHTML = '<span class="fl-dot"></span><span class="fl-title"></span>'; d.querySelector(".fl-title").textContent = t; pop.appendChild(d); });

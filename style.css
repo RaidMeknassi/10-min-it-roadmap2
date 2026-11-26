@@ -1317,3 +1317,10 @@ a.cert-node-card.ct-tree:hover { box-shadow: 0 0 24px -6px #ef4444; transform: t
 .cx-retired { display: inline-block; margin-bottom: 4px; padding: 2px 8px; border-radius: 999px; background: #ef4444; color: #fff; font-size: 10px; font-weight: 800; letter-spacing: .06em; }
 .cx-card.is-retired > .cx-img, .cx-card.is-retired > .cx-badge { filter: grayscale(.8); opacity: .7; }
 .cr-dinfo .cx-life { text-align: left; margin-top: 6px; }
+.ct-vbadge { display: flex !important; flex-direction: column; justify-content: center; align-items: center; border-radius: 14px; background: var(--vb) !important; padding: 2px; box-sizing: border-box; }
+.ct-vbadge small { font-size: 9px; color: #0b1020; font-weight: 800; }
+.ct-vbadge b { font-size: 13px; color: #0b1020; }
+.ct-tile .ct-vbadge { width: 48px !important; height: 48px !important; }
+.cert-node-card .ct-vbadge, .lv-cert .ct-vbadge { flex: none; }
+.ct-vbadge small { font-size: 7.5px; white-space: nowrap; letter-spacing: 0; }
+.ct-vbadge b { font-size: 11px; white-space: nowrap; }

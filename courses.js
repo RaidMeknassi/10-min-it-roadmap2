@@ -66,7 +66,8 @@ const TOOL_GROUPS = [
   { id: "ticketing", name: "Ticketing Systems", emoji: "🎫" },
   { id: "collab", name: "IT Communication, Collaboration & Remote Access", emoji: "🖥️" },
   { id: "network", name: "Networking Tools", emoji: "🦈" },
-  { id: "webserver", name: "Web Servers", emoji: "🌐" }
+  { id: "webserver", name: "Web Servers", emoji: "🌐" },
+  { id: "virtual", name: "Virtualization Tools", emoji: "🖥️" }
 ];
 
 const TOOLS = [
@@ -208,6 +209,14 @@ const TOOLS = [
       { title: "AnyDesk Basics", role: "1st Line Support", color: "#f5938e", lessons: ["What Is AnyDesk?", "Connecting to a User's Computer", "Permissions and Session Controls"] },
       { title: "AnyDesk for IT Teams", role: "Support Team", color: "#ef443b", lessons: ["Unattended Access and Address Book", "Spotting Remote Support Scams", "Security Settings"] }
     ]},
+  { id: "packettracer", name: "Cisco Packet Tracer", group: "network", color: "#049fd9", tags: ["Network Simulator", "Free", "CCNA Practice"],
+    desc: "Cisco's free network simulator. Build networks with routers, switches and PCs, configure them and test them, all on your laptop.",
+    note: "Packet Tracer is free with a Cisco Networking Academy account. It has no exam of its own, but it is the main practice tool for Cisco CCNA.",
+    levels: [
+      { title: "Packet Tracer Basics", role: "Getting started", color: "#5fc4ec", lessons: ["What Is Cisco Packet Tracer?", "Installing Packet Tracer and Getting a Free Account", "Your First Network: Two PCs and a Switch", "Giving Devices IP Addresses and Testing with Ping"] },
+      { title: "Building Real Networks", role: "Network Support", color: "#049fd9", lessons: ["Connecting Two Networks with a Router", "DHCP and DNS Servers in Packet Tracer", "VLANs and Trunks", "Static and Dynamic Routing (OSPF)", "Wireless Networks in Packet Tracer"] },
+      { title: "Troubleshooting and CCNA Practice", role: "Junior Network Engineer", color: "#036c94", lessons: ["ACLs and Basic Network Security", "NAT and Internet Access", "Simulation Mode: Watching Packets Move", "Troubleshooting a Broken Network", "CCNA Practice Labs"] }
+    ]},
   { id: "wireshark", name: "Wireshark", group: "network", color: "#1679a7", tags: ["Packet Analysis", "Troubleshooting", "Security"],
     desc: "The standard free tool for capturing and reading network traffic. Used by network engineers and SOC analysts every day.",
     note: "Wireshark Certified Analyst (WCA) is the official certification. Practise on sample capture files, never on networks you do not own or have permission to test.",
@@ -216,6 +225,13 @@ const TOOLS = [
       { title: "Filtering and Reading Traffic", role: "Network Support", color: "#1679a7", lessons: ["Capture Filters vs Display Filters", "Display Filters for IP, Ports and Protocols", "Following TCP and UDP Streams", "Colouring Rules and Columns", "Reading DNS, DHCP and ARP Traffic", "Reading HTTP and TLS Traffic"] },
       { title: "Troubleshooting with Wireshark", role: "Network and SOC Analyst", color: "#0e4f73", cert: ["WCA", "Wireshark Certified Analyst", "Wireshark Foundation"],
         lessons: ["The TCP Handshake and Connection Problems", "Retransmissions, Resets and Slow Networks", "Expert Information and Statistics", "Finding Suspicious Traffic and Exporting Objects", "Decrypting TLS and Working with Large Captures", "A Packet Analysis Workflow"] }
+    ]},
+  { id: "virtualbox", name: "Oracle VirtualBox", group: "virtual", color: "#2f61b4", tags: ["Virtual Machines", "Free", "Home Lab"],
+    desc: "Free software that runs other operating systems as virtual machines on your own computer. The easiest way to build a home lab.",
+    note: "VirtualBox has no certification. It is the tool you use to practise Windows, Linux, Active Directory and security labs safely.",
+    levels: [
+      { title: "VirtualBox Basics", role: "Getting started", color: "#6d93d6", lessons: ["What Is VirtualBox and Why Use It?", "Installing VirtualBox", "Creating Your First Virtual Machine", "Installing Windows or Linux in a VM", "Guest Additions, Shared Folders and Clipboard"] },
+      { title: "Building a Home Lab", role: "IT Support and Admin", color: "#2f61b4", lessons: ["Snapshots and Clones", "VirtualBox Network Modes: NAT, Bridged, Host-Only and Internal", "Building a Small Lab Network of VMs", "Importing and Exporting Appliances (OVA)", "Fixing Common VirtualBox Problems"] }
     ]},
   { id: "apache", name: "Apache HTTP Server", group: "webserver", color: "#d22128", tags: ["Web Server", "Linux", "HTTPS"],
     desc: "One of the most used web servers in the world. Admins install it, host websites on it, secure it with HTTPS and read its logs.",
@@ -470,7 +486,7 @@ var LEVEL52 = (function () {
     lessons: m.levels[0].lessons.map(function (r) { return [r[0], r[1], 0, 1]; }), lbl: function (k) { return "5.3." + (k + 1); } };
 })();
 /* tools shown under a level (they also stay in the Tools section) */
-var LEVEL_TOOLS = { "adv-im4": ["network"], "im8": ["webserver"] };
+var LEVEL_TOOLS = { "adv-im4": ["network"], "im8": ["webserver"], "im10": ["virtual"] };
 function levelToolsBox(levelId) {
   var ids = LEVEL_TOOLS[levelId]; if (!ids) return null;
   var box = document.createElement("div"); box.className = "node-tools";
