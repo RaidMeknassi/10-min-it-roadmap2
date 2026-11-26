@@ -92,7 +92,8 @@ const INTERMEDIATE_LEVELS = [
       ["im4.7","TCP and UDP"],["im4.8","Network Ports"],["im4.24","Routing"],
       ["im4.15","ICMP — How Devices Test Connectivity"],
       ["im4.10","NAT and VLANs"],
-      ["im4.12","The OSI Model — A Deeper Look"]
+      ["im4.12","The OSI Model — A Deeper Look"],
+      ["im4.lab","Lab: Build and Test Your Own Small Network"]
     ]},
   { id: "im2", name: "Module 2", title: "Windows Administration", color: "#38bdf8",
     desc: "Manage, configure and automate Windows systems.",
@@ -103,7 +104,8 @@ const INTERMEDIATE_LEVELS = [
       ["im2.5","Windows Registry and System Configuration"],["im2.6","Windows Event Logs"],
       ["im2.7","Windows Updates and Troubleshooting"],
       ["im2.14","CMD vs PowerShell"],["im2.15","CMD vs PowerShell Practice"],
-      ["im2.8","CMD Fundamentals"],["im2.10","PowerShell Fundamentals"]
+      ["im2.8","CMD Fundamentals"],["im2.10","PowerShell Fundamentals"],
+      ["im2.lab","Lab: Install Windows and Set It Up Like an Admin"]
     ]},
   { id: "im3", name: "Module 3", title: "Linux Administration", color: "#34d399",
     desc: "Manage Linux systems, servers, users and services.",
@@ -115,7 +117,8 @@ const INTERMEDIATE_LEVELS = [
       ["im3.12","Linux Folders Made Simple"],
       ["im3.2","Linux Users and Groups"],
       ["im3.3","Linux Permissions and Ownership"],["im3.4","Linux Processes and Services"],
-      ["im3.5","Package Management"]
+      ["im3.5","Package Management"],
+      ["im3.lab","Lab: Install Linux and Manage Your First Server"]
     ]},
   { id: "im5", name: "Module 5", title: "Active Directory Fundamentals", color: "#818cf8",
     desc: "Understand centralized identity and Windows domain management.",
@@ -123,7 +126,8 @@ const INTERMEDIATE_LEVELS = [
       ["im5.1","Understanding Active Directory"],["im5.2","Domains, Forests and Domain Controllers"],
       ["im5.3","Users, Groups and Organizational Units"],["im5.4","Group Policy Objects (GPO)"],
       ["im5.5","Authentication and Kerberos"],["im5.6","LDAP and Directory Services"],
-      ["im5.7","Active Directory Administration"]
+      ["im5.7","Active Directory Administration"],
+      ["im5.lab","Lab: Install Active Directory and Build Your First Domain"]
     ]},
   { id: "im8", name: "Module 8", title: "Web Fundamentals", color: "#f472b6",
     desc: "Understand how websites and web applications work.",
@@ -131,7 +135,8 @@ const INTERMEDIATE_LEVELS = [
       ["im8.1","How the Web Works"],["im8.2","HTML Fundamentals"],
       ["im8.3","CSS Fundamentals"],["im8.4","JavaScript Fundamentals"],
       ["im8.5","HTTP and HTTPS"],["im8.6","Understanding Web Servers"],
-      ["im8.7","APIs and REST Fundamentals"],["im8.8","How Web Applications Communicate with Databases"]
+      ["im8.7","APIs and REST Fundamentals"],["im8.8","How Web Applications Communicate with Databases"],
+      ["im8.lab","Lab: Create Your Own Website and Put It Online"]
     ]},
   { id: "im10", name: "Module 10", title: "Virtualization and Containers", color: "#4ade80",
     desc: "Create and manage virtual environments.",
@@ -139,7 +144,8 @@ const INTERMEDIATE_LEVELS = [
       ["im10.1","Understanding Virtualization"],["im10.2","Virtual Machines and Hypervisors"],
       ["im10.3","VirtualBox, VMware and Hyper-V"],["im10.4","Virtual Networks and Virtual Storage"],
       ["im10.5","Understanding Containers"],["im10.6","Docker Fundamentals"],
-      ["im10.7","Containers vs Virtual Machines"]
+      ["im10.7","Containers vs Virtual Machines"],
+      ["im10.lab","Lab: Create Your First Virtual Machine and Container"]
     ]},
   { id: "im7", name: "Module 7", title: "Database Fundamentals", color: "#fb923c",
     desc: "Understand how applications store and manage data.",
@@ -147,7 +153,8 @@ const INTERMEDIATE_LEVELS = [
       ["im7.1","Understanding Databases"],["im7.2","Relational vs Non-Relational Databases"],
       ["im7.3","Tables, Rows and Columns"],["im7.4","SQL Fundamentals"],
       ["im7.6","Primary Keys and Foreign Keys"],
-      ["im7.7","Database Relationships"],["im7.8","Database Backup and Recovery"]
+      ["im7.7","Database Relationships"],["im7.8","Database Backup and Recovery"],
+      ["im7.lab","Lab: Create Your First Database and Run SQL Queries"]
     ]},
   { id: "im11", name: "Module 11", title: "Cloud Computing Fundamentals", color: "#22d3ee",
     desc: "Understand cloud infrastructure and services.",
@@ -156,14 +163,16 @@ const INTERMEDIATE_LEVELS = [
       ["im11.3","Public, Private and Hybrid Cloud"],["im11.4","Cloud Infrastructure and Virtual Networks"],
       ["im11.5","Cloud Storage and Compute"],["im11.6","Microsoft Azure Fundamentals"],
       ["im11.7","AWS Fundamentals"],
-      ["im11.9","Google Cloud Platform (GCP) Fundamentals"],["im11.8","Cloud Security and Identity Basics"]
+      ["im11.9","Google Cloud Platform (GCP) Fundamentals"],["im11.8","Cloud Security and Identity Basics"],
+      ["im11.lab","Lab: Create Your First Cloud Resources"]
     ]},
   { id: "im9", name: "Module 9", title: "Cybersecurity Practices", color: "#f87171",
     desc: "Apply security concepts and understand defensive tools.",
     lessons: [
       ["im9.1","Security Principles and CIA Triad"],["im9.2","Authentication and Access Control"],
       ["im9.3","Encryption and Hashing"],["im9.4","Firewalls and Endpoint Security"],
-      ["im9.5","Vulnerabilities and Vulnerability Assessment"],["im9.6","Security Monitoring and Logging"]
+      ["im9.5","Vulnerabilities and Vulnerability Assessment"],["im9.6","Security Monitoring and Logging"],
+      ["im9.lab","Lab: Secure a Computer and Investigate an Alert"]
     ]},
 ];
 /* extra lessons that sit between two numbered lessons (shown as M1.4.1, M1.7.1 ...) */
@@ -545,6 +554,15 @@ const QUIZZES = {
 
 /* LABS - hands-on lab description per lesson (labs are for subscribers later) */
 const LABS = {
+  "im4.lab": { title: "Lab: Build and Test Your Own Small Network", text: "Set up a small network with Cisco Packet Tracer or two virtual machines: give each device an IP address, check it with ipconfig/ip a, test with ping and tracert, look at the ARP table and watch DHCP and DNS at work." },
+  "im2.lab": { title: "Lab: Install Windows and Set It Up Like an Admin", text: "Install Windows in a virtual machine, create local users and groups, share a folder with the right NTFS permissions, check services and Event Viewer, and run your first CMD and PowerShell commands." },
+  "im3.lab": { title: "Lab: Install Linux and Manage Your First Server", text: "Install Ubuntu or another Linux in a virtual machine, move around the file system, create users and set permissions, install software with the package manager and manage running processes." },
+  "im5.lab": { title: "Lab: Install Active Directory and Build Your First Domain", text: "Install Windows Server, promote it to a domain controller, create OUs, users and groups, join a Windows PC to the domain and apply a simple Group Policy." },
+  "im8.lab": { title: "Lab: Create Your Own Website and Put It Online", text: "Build a simple page with HTML, CSS and JavaScript, host it on a web server (or a free hosting service), turn on HTTPS and check the requests with your browser's developer tools." },
+  "im10.lab": { title: "Lab: Create Your First Virtual Machine and Container", text: "Install VirtualBox or Hyper-V, create a virtual machine with its own virtual network and disk, take a snapshot, then install Docker and run your first container." },
+  "im7.lab": { title: "Lab: Create Your First Database and Run SQL Queries", text: "Install a database (for example MySQL or SQLite), create tables, insert data, run SELECT queries with WHERE, JOIN and ORDER BY, and make a backup." },
+  "im11.lab": { title: "Lab: Create Your First Cloud Resources", text: "Open a free cloud account (Azure, AWS or Google Cloud), create a virtual machine and a storage bucket, set access permissions, check the costs and delete everything at the end." },
+  "im9.lab": { title: "Lab: Secure a Computer and Investigate an Alert", text: "Harden a Windows or Linux virtual machine (updates, firewall, strong passwords, MFA), then look through its logs to find failed logins and write a short incident note." },
   "5.5.2": { title: "Practical troubleshooting scenarios", text: "Real support cases step by step: a user can't print, Wi-Fi drops, Outlook won't open, a PC is slow. Find the cause, fix it and write the ticket." },
   "5.5.4": { title: "Practical troubleshooting scenarios", text: "Work a ticket from start to finish: talk to the user, decide when to escalate, write clear notes and close it the right way." },
   "56": { title: "Real-World IT Scenarios", text: "Practical support cases and workplace situations: handle tickets, talk to users and decide priorities like a real IT team." },

@@ -450,7 +450,7 @@ QUIZZES["servicenow.1.x4"] = { type: "mcq", color: "#62d84e", title: "CSA full m
 /* realLab: the lesson has a lab (video or page) that opens in its Lab tab.
    hasLab: the lesson shows the Lab tag in lists (every real lab, plus the lessons listed below). */
 function realLab(key) { return !!((typeof LABS !== "undefined" && LABS[key] && LABS[key].video) || (typeof LAB_PAGES !== "undefined" && LAB_PAGES[key])); }
-var LAB_LESSONS = ["servicenow.0.3", "jira.0.3"];
+var LAB_LESSONS = ["servicenow.0.3", "jira.0.3", "im4.lab", "im2.lab", "im3.lab", "im5.lab", "im8.lab", "im10.lab", "im7.lab", "im11.lab", "im9.lab"];   // the practical lab at the end of each Intermediate module
 function hasLab(key) { return LAB_LESSONS.indexOf(key) >= 0 || realLab(key); }   // every lesson with a working lab shows the Lab tag
 function lessonTags(key) {
   var t = [];
