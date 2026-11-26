@@ -441,6 +441,14 @@ const VIDEOS = {
   "itil.e.5": "5HOj_MvRHzE", // ITIL 2.E5
   "itil.e.6": "83rxotT4Dh8", // ITIL 2.E6
   "itil.e.8": "7OW-fBQW350", // ITIL 2.E8
+  "im8.1": "AqCOvcC05Zg", // How the Web Works
+  "im8.2": "XyYoTcyDv9Y", // HTML Fundamentals
+  "im8.3": "4-nRU3UecGE", // CSS Fundamentals
+  "im8.4": "HVm4ABNDacQ", // JavaScript Fundamentals
+  "im8.5": "X-N9ryKwso0", // HTTP and HTTPS
+  "im8.6": "6H8WJ4z3lSA", // Web Servers
+  "im8.7": "KGI4T7W59-A", // APIs and REST
+  "im8.8": "tlQS3Z5l-2A", // Web Apps and Databases
   "zoom.0.1": "JR_r2w0pONY",       // Zoom Meetings for IT Support (Level 5.1)
   "rdp.0.1": "1RHpe7gc_Po",        // Microsoft Remote Desktop (RDP) (Level 5.1)
   "teamviewer.0.1": "aMg-MOJWcoo", // TeamViewer for IT Support (Level 5.1)
