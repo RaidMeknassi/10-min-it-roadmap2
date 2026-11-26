@@ -1302,3 +1302,10 @@ a.cert-node-card.ct-tree:hover { box-shadow: 0 0 24px -6px #ef4444; transform: t
 .lv-certs { display: flex; flex-direction: column; gap: 10px; }
 .q-pass { font-size: 18px; font-weight: 800; margin: 6px 0; }
 .q-pass.ok { color: #4ade80; } .q-pass.no { color: #f87171; }
+/* certification validity + official links */
+.cx-valid { width: 100%; margin-top: 4px; padding-top: 8px; border-top: 1px dashed rgba(255,255,255,.12); text-align: center; }
+.cx-valid p { margin: 0 0 6px; font-size: 11.5px; line-height: 1.4; color: #c6cadb; }
+.cx-src { display: flex; flex-wrap: wrap; justify-content: center; gap: 4px 10px; }
+.cx-srcl { font-size: 11.5px; font-weight: 700; color: #38bdf8; cursor: pointer; text-decoration: underline; text-underline-offset: 2px; }
+.cx-srcl:hover, .cx-srcl:focus-visible { color: #7dd3fc; outline: none; }
+.cr-dinfo .cx-valid { text-align: left; } .cr-dinfo .cx-src { justify-content: flex-start; }

@@ -25,6 +25,7 @@
     detail.innerHTML = badge(id, 96) + '<div class="cr-dinfo"><span class="cr-lvl"></span><h3></h3><p></p></div>';
     detail.querySelector("h3").textContent = "CompTIA " + c[0];
     detail.querySelector(".cr-lvl").textContent = c[1] + " level"; detail.querySelector("p").textContent = c[2];
+    var vd = (typeof certValidityEl === "function") ? certValidityEl("CompTIA " + c[0]) : null; if (vd) detail.querySelector(".cr-dinfo").appendChild(vd);
     if (c[3]) { var f = document.createElement("em"); f.textContent = "📍 " + c[3]; detail.querySelector(".cr-dinfo").appendChild(f); }
     try { history.replaceState(null, "", "#" + id); } catch (e) {}
     if (scroll) detail.scrollIntoView({ block: "nearest", behavior: "smooth" });
