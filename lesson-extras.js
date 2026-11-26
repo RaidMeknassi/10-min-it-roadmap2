@@ -3103,7 +3103,7 @@ const SUMMARIES = {
  }
 }; Object.keys(Q).forEach(function (k) { if (!QUIZZES[k]) QUIZZES[k] = Q[k]; }); })();
 /* ITIL Foundation full mock exam (40 questions, pass mark 26/40) */
-QUIZZES["itil.7.5"] = {
+QUIZZES["itil.e.7"] = {
 "type": "mcq",
 "color": "#a78bfa",
 "title": "ITIL Foundation (Version 5) · Full Mock Exam · 40 questions · 60 minutes · pass mark 26/40",

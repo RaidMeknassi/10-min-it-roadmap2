@@ -386,6 +386,61 @@ const VIDEOS = {
   "servicenow.2.x1": "8DfjAi7wH0k", // CAD exam explained
   "servicenow.2.x2": "xvB9sjEY-zY", // CAD objectives checklist
   "servicenow.2.x5": "9xb2IG5cTx8", // CAD booking & exam day tips
+  /* ITIL V5 Foundation videos */
+  "itil.0.1": "LW1eGJ-kKwM", // ITIL 0.1
+  "itil.0.2": "pgRkDDI7vsw", // ITIL 0.2
+  "itil.0.3": "1FPYMs4oZWQ", // ITIL 0.3
+  "itil.0.4": "VvlycJ6qVA0", // ITIL 0.4
+  "itil.1.1": "yHKuQGkWIBQ", // ITIL 1.1
+  "itil.1.2": "YI1PsLQkFb0", // ITIL 1.2
+  "itil.1.3": "4w7VFm4cVYs", // ITIL 1.3
+  "itil.1.4": "x19jIOLcf_I", // ITIL 1.4
+  "itil.1.5": "FRccdbVLlto", // ITIL 1.5
+  "itil.1.6": "X7Rzfd4Yok8", // ITIL 1.6
+  "itil.1.7": "qdRLnUU18Rc", // ITIL 1.7
+  "itil.1.8": "_EdcjKmeQFE", // ITIL 1.8
+  "itil.2.1": "DR-JpLWDnwg", // ITIL 2.1
+  "itil.2.2": "58UMLdcoRgs", // ITIL 2.2
+  "itil.2.3": "FA0BORaExEk", // ITIL 2.3
+  "itil.2.4": "GfB180VTJWM", // ITIL 2.4
+  "itil.2.5": "zBKcB6s_aUM", // ITIL 2.5
+  "itil.3.1": "ss6CJ_k-kaA", // ITIL 3.1
+  "itil.3.2": "uUrUw_z3k6M", // ITIL 3.2
+  "itil.3.3": "SsUswOES86I", // ITIL 3.3
+  "itil.3.4": "uyf0triYP8g", // ITIL 3.4
+  "itil.3.5": "zibTekw1Ly4", // ITIL 3.5
+  "itil.3.6": "9ziF-UIK3ew", // ITIL 3.6
+  "itil.4.1": "aqunk8e0cjI", // ITIL 4.1
+  "itil.4.2": "kc5SUBanSs8", // ITIL 4.2
+  "itil.4.3": "i-N1cm9ebiM", // ITIL 4.3
+  "itil.4.4": "strF-cvsiek", // ITIL 4.4
+  "itil.4.5": "ANvrTP7H_wk", // ITIL 4.5
+  "itil.4.6": "G53eYa_tQn8", // ITIL 4.6
+  "itil.4.7": "t-IYjjlbqzA", // ITIL 4.7
+  "itil.4.8": "8Hg2CqLLvwI", // ITIL 4.8
+  "itil.4.9": "iYfZMtw2W_8", // ITIL 4.9
+  "itil.4.10": "CfAWKSN4ixQ", // ITIL 4.10
+  "itil.4.11": "0czIA0Srhqk", // ITIL 4.11
+  "itil.4.12": "1DIRrtv0k0s", // ITIL 4.12
+  "itil.5.1": "2LNIQlMSzg4", // ITIL 5.1
+  "itil.5.2": "3894unIZh7U", // ITIL 5.2
+  "itil.5.3": "g-1K70GPJuQ", // ITIL 5.3
+  "itil.5.4": "8YDtIadBC04", // ITIL 5.4
+  "itil.6.1": "4XH1vdDA2Qc", // ITIL 6.1
+  "itil.6.2": "02AUW9Jx8Cc", // ITIL 6.2
+  "itil.6.3": "GaVxhaDW3V4", // ITIL 6.3
+  "itil.6.4": "_graBUgi_Sk", // ITIL 6.4
+  "itil.7.1": "9M3ezt__QQA", // ITIL 7.1
+  "itil.7.2": "tUiLNj9oU4w", // ITIL 7.2
+  "itil.7.3": "EvMjPQHhfOM", // ITIL 7.3
+  "itil.7.4": "yazaApvDTgQ", // ITIL 7.4
+  "itil.e.1": "psQ0XpfvDXE", // ITIL 2.E1
+  "itil.e.2": "bLZ7GDLcEC0", // ITIL 2.E2
+  "itil.e.3": "ywbH0GLN4hM", // ITIL 2.E3
+  "itil.e.4": "457dQc5kHHU", // ITIL 2.E4
+  "itil.e.5": "5HOj_MvRHzE", // ITIL 2.E5
+  "itil.e.6": "83rxotT4Dh8", // ITIL 2.E6
+  "itil.e.8": "7OW-fBQW350", // ITIL 2.E8
   "zoom.0.1": "JR_r2w0pONY",       // Zoom Meetings for IT Support (Level 5.1)
   "rdp.0.1": "1RHpe7gc_Po",        // Microsoft Remote Desktop (RDP) (Level 5.1)
   "teamviewer.0.1": "aMg-MOJWcoo", // TeamViewer for IT Support (Level 5.1)

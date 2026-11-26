@@ -46,14 +46,15 @@ const ITIL_COURSE = {
     { id: "sl", name: "Strategic Leader", color: "#f472b6", desc: "For IT directors and senior decision-makers.", rule: "ONE required", modules: ["strategy"] }
   ],
   levels: [
-    { title: "Introduction to IT Service Management", lessons: ["What Is IT Service Management?", "What Is ITIL?", "Why Companies Use ITIL", "ITIL History and Evolution"] },
-    { title: "ITIL Key Concepts", lessons: ["Services and Service Management", "Value and Value Co-creation", "Customers, Users and Sponsors", "Outcomes, Outputs and Costs", "Utility and Warranty", "Service Relationships"] },
-    { title: "The Seven Guiding Principles", lessons: ["Focus on Value", "Start Where You Are", "Progress Iteratively with Feedback", "Collaborate and Promote Visibility", "Think and Work Holistically", "Keep It Simple and Practical", "Optimize and Automate"] },
-    { title: "Four Dimensions of Service Management", lessons: ["Organizations and People", "Information and Technology", "Partners and Suppliers", "Value Streams and Processes"] },
-    { title: "The Service Value System", lessons: ["The ITIL Service Value System", "Opportunity, Demand and Value", "Governance", "The Continual Improvement Model"] },
-    { title: "The Service Value Chain", lessons: ["What Is the Service Value Chain?", "Plan and Improve", "Engage", "Design and Transition", "Obtain/Build", "Deliver and Support", "Value Streams in Action"] },
-    { title: "Key ITIL Practices", lessons: ["Incident Management", "Problem Management", "Service Request Management", "Service Desk", "Change Enablement", "Service Level Management", "Continual Improvement", "Relationship Management", "IT Asset Management", "Monitoring and Event Management", "Release Management", "Service Configuration Management", "Deployment Management", "Information Security Management", "Supplier Management"] },
-    { title: "Exam Preparation", exam: true, lessons: ["How the ITIL Foundation Exam Works", "Exam Objectives Checklist", "Key Terms to Remember", "Practice Questions", "Full Mock Exam and Review", "Booking the Exam and Exam Day Tips"] }
+    { title: "Getting Started", lessons: ["What Is IT Service Management", "What Is ITIL", "Why Companies Use ITIL", "ITIL Evolution"] },
+    { title: "Key Concepts", lessons: ["Products and Services", "Service Offerings", "Value and Value Co-Creation", "Service Consumers and Stakeholders", "Outcomes, Outputs, Costs and Risks", "Utility and Warranty", "Service Relationships", "Key ITIL Terminology Review"] },
+    { title: "The Four Dimensions", lessons: ["Introduction to the Four Dimensions", "Organizations and People", "Information and Technology", "Partners and Suppliers", "Value Streams and Processes"] },
+    { title: "Product and Service Lifecycle", lessons: ["Understanding the Product and Service Lifecycle", "Discover", "Design", "Acquire and Build", "Transition", "Operate, Deliver and Support"] },
+    { title: "Value System and Guiding Principles", lessons: ["Introduction to the ITIL Value System", "The Seven Guiding Principles", "Focus on Value", "Start Where You Are", "Progress Iteratively with Feedback", "Collaborate and Promote Visibility", "Think and Work Holistically", "Keep It Simple and Practical", "Optimize and Automate", "Governance", "The Service Value Chain", "Management Practices and Continual Improvement"] },
+    { title: "Value Streams", lessons: ["What Is a Value Stream", "Value Stream Mapping", "Identifying Waste and Bottlenecks", "Improving Value Streams"] },
+    { title: "AI in ITSM", lessons: ["Introduction to AI in IT Service Management", "AI in the Product and Service Lifecycle", "AI in the ITIL Value Chain", "AI Governance"] },
+    { title: "ITIL with Other Frameworks", lessons: ["Understanding DevOps", "ITIL and DevOps Together", "Understanding PRINCE2", "ITIL and PRINCE2 Together"] },
+    { title: "Exam Preparation", exam: true, lbl: "2.E", lessons: [["itil.e.1", "Understanding the ITIL Exam"], ["itil.e.2", "Official Exam Objectives Checklist"], ["itil.e.3", "Key Terms and Definitions Revision"], ["itil.e.4", "Understanding ITIL Exam Questions"], ["itil.e.5", "Exam Strategy and Time Management"], ["itil.e.6", "Topic-Based Practice Questions"], ["itil.e.7", "Full Mock Exam (40 Questions)"], ["itil.e.8", "Mock Exam Review and Booking"]] }
   ]
 };
 
@@ -222,8 +223,8 @@ const COURSE_LEVELS = [];
 (function () {
   ITIL_COURSE.levels.forEach(function (lv, i) {
     lv.lessons = lv.lessons.map(function (t, k) { return Array.isArray(t) ? t : ["itil." + i + "." + (k + 1), t]; });
-    lv.lessons.forEach(function (r, k) { LBL[r[0]] = i + "." + (k + 1); });
-    COURSE_LEVELS.push({ id: "itil-" + i, name: "ITIL Level " + i, title: lv.title, color: ITIL_COURSE.color, lessons: lv.lessons,
+    lv.lessons.forEach(function (r, k) { LBL[r[0]] = (lv.lbl || i + ".") + (k + 1); });   // exam lessons: 2.E1, 2.E2 ... (as in the videos)
+    COURSE_LEVELS.push({ id: "itil-" + i, name: lv.exam ? "ITIL Exam Preparation" : "ITIL Level " + i, title: lv.title, color: ITIL_COURSE.color, lessons: lv.lessons,
       href: "course.html?c=itil#lv" + i, group: "itil", crumbs: [["Road map", "index.html#map"], ["ITIL Foundation", "course.html?c=itil"]] });
   });
   /* every level with a certification gets an Exam Preparation section (lessons x1, x2 ...) */
