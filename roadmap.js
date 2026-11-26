@@ -325,6 +325,8 @@ const VIDEOS = {
   "13":  "XID0Vgtylt8", // Mobile and Other Operating Systems
   "15":  "CRYJtPPXak0", // What Is a Network?
   "16":  "WETARwhb1RM", // Network Devices and Their Functions
+  "n3.2": "w5ZdvINekC8", // Types of Networks (PAN, LAN, WLAN, CAN, MAN, WAN, SAN)
+  "n3.6": "niJKvLDVBDw", // Network Topologies (Bus, Ring, Star, Mesh, Wireless)
   "17":  "-6vIzRJt2vk", // MAC Address and IP Address Explained
   "27":  "JSanFqS5_nM", // What Is Cybersecurity?
   "28":  "-S4RcR5zM6s", // Common Cyber Threats and Attacks
