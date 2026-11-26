@@ -85,11 +85,11 @@ const INTERMEDIATE_LEVELS = [
   { id: "im4", name: "Module 4", title: "Intermediate Networking", color: "#a78bfa",
     desc: "Understand how devices communicate, exchange information and access network resources.",
     lessons: [
-      ["im4.14","MAC Addresses — How Devices Find Each Other"],["im4.13","IP Addressing"],["im4.20","Public vs Private IP Address"],["im4.19","IPv4 vs IPv6"],
+      ["im4.14","MAC Addresses — How Devices Find Each Other"],["im4.13","IP Addressing"],["im4.19","IPv4 vs IPv6"],
       ["im4.3","Subnetting Fundamentals"],
       ["im4.4","What Is ARP and the Default Gateway?"],
       ["im4.6","DHCP — How Devices Get IP Addresses"],["im4.5","DNS — How Domain Names Are Resolved"],
-      ["im4.7","TCP and UDP"],["im4.8","Network Ports"],["im4.23","Ports and Network Services"],["im4.24","Routing"],
+      ["im4.7","TCP and UDP"],["im4.8","Network Ports"],["im4.24","Routing"],
       ["im4.15","ICMP — How Devices Test Connectivity"],
       ["im4.10","NAT and VLANs"],
       ["im4.12","The OSI Model — A Deeper Look"]
@@ -255,7 +255,7 @@ const SPEC_LESSONS = {
     ["nw.ns.5", "Network Security Fundamentals"], ["nw.ns.1", "Network Firewalls"], ["nw.ns.2", "ACLs — Access Control Lists"], ["nw.ns.3", "VPN Fundamentals"], ["nw.ns.4", "Network Segmentation and Security"], ["nw.ns.6", "Secure Network Management"]
   ]},
   "Troubleshooting and Monitoring": { path: "Network Engineering", tag: "TR", lessons: [
-    ["im4.11", "Network Troubleshooting Methodology"], ["nw.tr.2", "Network Diagnostic Tools"], ["nw.tr.3", "Packet Analysis with Wireshark"], ["nw.tr.tcp", "TCP and UDP in Action"], ["nw.tr.4", "SNMP and Syslog"], ["nw.tr.5", "Network Performance Monitoring"]
+    ["im4.11", "Network Troubleshooting Methodology"], ["nw.tr.2", "Network Diagnostic Tools"], ["nw.tr.3", "Packet Analysis with Wireshark"], ["nw.tr.tcp", "TCP and UDP in Action"], ["im4.23", "Ports and Network Services"], ["nw.tr.4", "SNMP and Syslog"], ["nw.tr.5", "Network Performance Monitoring"]
   ]},
   "High Availability": { path: "Network Engineering", tag: "HA", lessons: [
     ["nw.ha.1", "HSRP and VRRP"], ["nw.ha.2", "Redundant Links"], ["nw.ha.3", "Failover and Recovery"]
