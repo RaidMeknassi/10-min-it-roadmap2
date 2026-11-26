@@ -368,6 +368,24 @@ const VIDEOS = {
   "googleworkspace.0.6": "LT14dnWmRi4", // Account & Password Support
   "googleworkspace.0.7": "DbtTFs6Oubs", // Common Problems & Fixes
   "googleworkspace.0.8": "oBM7F-PsZ9w", // Real Support Scenarios
+  "servicenow.2.1": "5uM5fVw2n3M", // CAD 2.1 Application Design, Scope & Modules
+  "servicenow.2.2": "eCI5jcQrS1Y", // CAD 2.2 Data Models, Tables & Relationships
+  "servicenow.2.3": "sHSMiGsucuI", // CAD 2.3 Forms, Lists, UI Actions & Record Producers
+  "servicenow.2.4": "h8DTiOEWo70", // CAD 2.4 Client Scripts, g_form & g_user Explained
+  "servicenow.2.5": "fG-ISfsJwTU", // CAD 2.5 Business Rules & GlideRecord for Beginners
+  "servicenow.2.6": "rgPTQrz0Bbw", // CAD 2.6 Application Security & Access Control Lists (ACLs)
+  "servicenow.2.7": "dXmWXIUBiFo", // CAD 2.7 Scope, Cross-Scope Access & GlideSystem
+  "servicenow.2.8": "A6wROkYwtg4", // CAD 2.8 Flow Designer & Workflow Automation
+  "servicenow.2.9": "boWfAxsDUOk", // CAD 2.9 Application Properties, Events & Scheduled Jobs
+  "servicenow.2.10": "jTWOSaJ4H7M", // CAD 2.10 Script Includes & Reusable Utilities
+  "servicenow.2.11": "5T5K9vlHPwc", // CAD 2.11 Sending & Receiving Email
+  "servicenow.2.12": "drT_zvpYcV8", // CAD 2.12 Importing CSV & Excel Data
+  "servicenow.2.13": "sPjpH1L6ozU", // CAD 2.13 REST APIs & External Integrations
+  "servicenow.2.14": "j7eM_Zcfrmo", // CAD 2.14 Testing, Debugging & Troubleshooting
+  "servicenow.2.15": "NRIuDd5PDxU", // CAD 2.15 Managing, Reviewing & Delivering Applications
+  "servicenow.2.x1": "8DfjAi7wH0k", // CAD exam explained
+  "servicenow.2.x2": "xvB9sjEY-zY", // CAD objectives checklist
+  "servicenow.2.x5": "9xb2IG5cTx8", // CAD booking & exam day tips
   "zoom.0.1": "JR_r2w0pONY",       // Zoom Meetings for IT Support (Level 5.1)
   "rdp.0.1": "1RHpe7gc_Po",        // Microsoft Remote Desktop (RDP) (Level 5.1)
   "teamviewer.0.1": "aMg-MOJWcoo", // TeamViewer for IT Support (Level 5.1)
