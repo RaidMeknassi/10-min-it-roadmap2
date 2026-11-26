@@ -1300,3 +1300,5 @@ a.cert-node-card.ct-tree:hover { box-shadow: 0 0 24px -6px #ef4444; transform: t
 .ct-tile:hover { transform: translateY(-3px); }
 .ct-tile .cr-badge { width: 48px; height: 48px; }
 .lv-certs { display: flex; flex-direction: column; gap: 10px; }
+.q-pass { font-size: 18px; font-weight: 800; margin: 6px 0; }
+.q-pass.ok { color: #4ade80; } .q-pass.no { color: #f87171; }

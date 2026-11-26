@@ -5,10 +5,11 @@
 (function () {
   function el(tag, cls, txt) { var e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; }
   function shuffle(a) { a = a.slice(); for (var i = a.length - 1; i > 0; i--) { var j = Math.floor(Math.random() * (i + 1)); var t = a[i]; a[i] = a[j]; a[j] = t; } return a; }
-  function result(box, score, total, again) {
+  function result(box, score, total, again, q) {
     box.innerHTML = "";
     var r = el("div", "q-result");
     r.appendChild(el("div", "q-score", score + " / " + total));
+    if (q && q.pass) { var ok = score >= q.pass; r.appendChild(el("p", "q-pass " + (ok ? "ok" : "no"), (ok ? "\u2705 PASS" : "\u274C Not yet a pass") + " \u00B7 pass mark " + q.pass + "/" + total + " (" + Math.round(q.pass / total * 100) + "%)")); }
     r.appendChild(el("p", "", score === total ? "Perfect! Well done." : score >= total / 2 ? "Good job. Try again for a perfect score." : "Keep going. Watch the lesson again and retry."));
     var b = el("button", "btn", "Try again"); b.type = "button"; b.onclick = again; r.appendChild(b);
     box.appendChild(r);
@@ -20,7 +21,7 @@
     (function show() {
       if (i >= q.items.length) return done(score, q.items.length);
       var it = q.items[i]; box.innerHTML = "";
-      box.appendChild(el("div", "q-step", "Question " + (i + 1) + " of " + q.items.length));
+      box.appendChild(el("div", "q-step", "Question " + (i + 1) + " of " + q.items.length + (it.t ? " \u00B7 " + it.t : "") + (q.pass ? " \u00B7 score " + score : "")));
       box.appendChild(el("h4", "q-q", it.q));
       var locked = false;
       it.o.forEach(function (t, k) {
@@ -136,7 +137,7 @@
     function start() {
       box.className = "quiz quiz-" + q.type; box.style.setProperty("--qc", q.color);
       var wrap = el("div", "q-inner"); box.innerHTML = ""; box.appendChild(el("h4", "q-title", q.title)); box.appendChild(wrap);
-      TYPES[q.type](wrap, q, function (s, t) { onScore(s, t); result(wrap, s, t, start); });
+      TYPES[q.type](wrap, q, function (s, t) { onScore(s, t); result(wrap, s, t, start, q); });
     }
     start(); return true;
   };

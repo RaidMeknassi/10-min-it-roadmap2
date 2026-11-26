@@ -3102,3 +3102,492 @@ const SUMMARIES = {
   ]
  }
 }; Object.keys(Q).forEach(function (k) { if (!QUIZZES[k]) QUIZZES[k] = Q[k]; }); })();
+/* ITIL Foundation full mock exam (40 questions, pass mark 26/40) */
+QUIZZES["itil.7.5"] = {
+"type": "mcq",
+"color": "#a78bfa",
+"title": "ITIL Foundation (Version 5) · Full Mock Exam · 40 questions · 60 minutes · pass mark 26/40",
+"pass": 26,
+"items": [
+{
+"q": "What is a service?",
+"o": [
+"A means of enabling value co-creation by facilitating outcomes that customers want, without the customer managing specific costs and risks",
+"A configuration of an organization's resources designed to offer value for a consumer",
+"A tangible or intangible deliverable of an activity",
+"A possible event that could cause harm or loss"
+],
+"a": 0,
+"e": "B is a product, C is an output, D is a risk.",
+"t": "Key terms"
+},
+{
+"q": "Which term means a tangible or intangible deliverable of an activity?",
+"o": [
+"Outcome",
+"Output",
+"Value",
+"Utility"
+],
+"a": 1,
+"e": "An outcome is a result for a stakeholder; an output is what an activity delivers.",
+"t": "Key terms"
+},
+{
+"q": "Which role defines the requirements for a service and is responsible for its outcomes?",
+"o": [
+"User",
+"Sponsor",
+"Customer",
+"Supplier"
+],
+"a": 2,
+"e": "The user uses the service; the sponsor authorizes the budget.",
+"t": "Key terms"
+},
+{
+"q": "Which role authorizes the budget for service consumption?",
+"o": [
+"Customer",
+"User",
+"Service provider",
+"Sponsor"
+],
+"a": 3,
+"e": "The sponsor authorizes budget; the customer defines requirements.",
+"t": "Key terms"
+},
+{
+"q": "Fill the gap: ______ is the functionality offered by a product or service to meet a particular need.",
+"o": [
+"Warranty",
+"Utility",
+"Value",
+"Output"
+],
+"a": 1,
+"e": "Utility is fit for purpose: what the service does.",
+"t": "Key terms"
+},
+{
+"q": "Which statement describes warranty?",
+"o": [
+"Assurance that a product or service will meet agreed requirements",
+"The functionality a service offers",
+"The perceived benefits of something",
+"A result for a stakeholder"
+],
+"a": 0,
+"e": "Warranty is fit for use: how well it performs.",
+"t": "Key terms"
+},
+{
+"q": "Which two are examples of warranty? 1. Availability 2. Capacity 3. The features a service offers 4. The price of a service",
+"o": [
+"1 and 2",
+"2 and 3",
+"3 and 4",
+"1 and 4"
+],
+"a": 0,
+"e": "Availability and capacity describe how well a service performs.",
+"t": "Key terms"
+},
+{
+"q": "Which of these is NOT part of a service offering?",
+"o": [
+"Goods",
+"Access to resources",
+"Service actions",
+"Service consumers"
+],
+"a": 3,
+"e": "A service offering includes goods, access to resources and service actions.",
+"t": "Key terms"
+},
+{
+"q": "What is a service relationship?",
+"o": [
+"A contract that removes all risks",
+"A cooperation between a service provider and a service consumer",
+"A list of services in a catalogue",
+"A meeting between two suppliers"
+],
+"a": 1,
+"e": "It includes service provision, service consumption and relationship management.",
+"t": "Key terms"
+},
+{
+"q": "How is value created in ITIL?",
+"o": [
+"By the service provider alone",
+"By the consumer alone",
+"Through collaboration between providers and consumers",
+"By suppliers only"
+],
+"a": 2,
+"e": "Value is co-created by providers and consumers working together.",
+"t": "Key terms"
+},
+{
+"q": "A company moves to a cloud payroll service and no longer needs its own payroll servers. What is this for the company?",
+"o": [
+"A cost imposed",
+"A risk imposed",
+"An output",
+"A cost removed"
+],
+"a": 3,
+"e": "The servers are a cost the consumer no longer has.",
+"t": "Key terms"
+},
+{
+"q": "Which of these is an example of an outcome?",
+"o": [
+"A report is delivered",
+"Staff can work securely from home",
+"A new account is created",
+"A server is installed"
+],
+"a": 1,
+"e": "The others are outputs; the outcome is the result the consumer wants.",
+"t": "Key terms"
+},
+{
+"q": "Which dimension covers contracts and relationships with other organizations?",
+"o": [
+"Organizations and people",
+"Information and technology",
+"Partners and suppliers",
+"Value streams and processes"
+],
+"a": 2,
+"e": "Partners and suppliers covers external providers and contracts.",
+"t": "Four dimensions"
+},
+{
+"q": "Which dimension includes data, applications and infrastructure?",
+"o": [
+"Information and technology",
+"Organizations and people",
+"Partners and suppliers",
+"Value streams and processes"
+],
+"a": 0,
+"e": "Information and technology covers data, applications and infrastructure.",
+"t": "Four dimensions"
+},
+{
+"q": "Which of these is NOT one of the four dimensions?",
+"o": [
+"Organizations and people",
+"Information and technology",
+"Partners and suppliers",
+"Governance and compliance"
+],
+"a": 3,
+"e": "The fourth dimension is value streams and processes.",
+"t": "Four dimensions"
+},
+{
+"q": "Which model helps to analyse the external factors that affect the four dimensions?",
+"o": [
+"RACI",
+"PESTLE",
+"The continual improvement model",
+"A service level agreement"
+],
+"a": 1,
+"e": "PESTLE: political, economic, social, technological, legal and environmental.",
+"t": "Four dimensions"
+},
+{
+"q": "Which lifecycle activity identifies opportunities, needs and requirements?",
+"o": [
+"Design",
+"Build",
+"Support",
+"Discover"
+],
+"a": 3,
+"e": "Discover finds what consumers need.",
+"t": "Product and service lifecycle"
+},
+{
+"q": "Which lifecycle activity obtains resources, such as buying components or services from suppliers?",
+"o": [
+"Acquire",
+"Deliver",
+"Transition",
+"Operate"
+],
+"a": 0,
+"e": "Acquire obtains the resources that are needed.",
+"t": "Product and service lifecycle"
+},
+{
+"q": "Which lifecycle activity helps users when they have issues or questions?",
+"o": [
+"Design",
+"Support",
+"Discover",
+"Build"
+],
+"a": 1,
+"e": "Support helps users with issues and questions.",
+"t": "Product and service lifecycle"
+},
+{
+"q": "Which lifecycle activity creates and tests the components of a product or service?",
+"o": [
+"Discover",
+"Operate",
+"Build",
+"Deliver"
+],
+"a": 2,
+"e": "Build develops and tests the components.",
+"t": "Product and service lifecycle"
+},
+{
+"q": "What is the purpose of the service value system?",
+"o": [
+"To list all IT services",
+"To replace management practices",
+"To manage supplier contracts",
+"To show how all components and activities work together to create value"
+],
+"a": 3,
+"e": "The value system turns opportunity and demand into value.",
+"t": "Value system"
+},
+{
+"q": "What are the inputs to the service value system?",
+"o": [
+"Opportunity and demand",
+"Value and outcomes",
+"Practices and governance",
+"Products and services"
+],
+"a": 0,
+"e": "Opportunity and demand go in; value comes out.",
+"t": "Value system"
+},
+{
+"q": "Which guiding principle says to use existing services, processes and tools before building something new?",
+"o": [
+"Focus on value",
+"Optimize and automate",
+"Start where you are",
+"Keep it simple and practical"
+],
+"a": 2,
+"e": "Start where you are: assess what already exists.",
+"t": "Value system"
+},
+{
+"q": "Which guiding principle recommends working in small steps and checking results after each one?",
+"o": [
+"Progress iteratively with feedback",
+"Think and work holistically",
+"Collaborate and promote visibility",
+"Focus on value"
+],
+"a": 0,
+"e": "Small steps with feedback reduce risk.",
+"t": "Value system"
+},
+{
+"q": "Which guiding principle encourages teams to share information and work together?",
+"o": [
+"Keep it simple and practical",
+"Collaborate and promote visibility",
+"Start where you are",
+"Optimize and automate"
+],
+"a": 1,
+"e": "Collaboration and visibility build trust and better decisions.",
+"t": "Value system"
+},
+{
+"q": "Which guiding principle says to understand how the whole system works, not just one part?",
+"o": [
+"Focus on value",
+"Progress iteratively with feedback",
+"Optimize and automate",
+"Think and work holistically"
+],
+"a": 3,
+"e": "No part of a service works on its own.",
+"t": "Value system"
+},
+{
+"q": "Which guiding principle says to remove steps that do not add value?",
+"o": [
+"Keep it simple and practical",
+"Start where you are",
+"Think and work holistically",
+"Collaborate and promote visibility"
+],
+"a": 0,
+"e": "If a step adds no value, remove it.",
+"t": "Value system"
+},
+{
+"q": "Which guiding principle says to improve a process before you automate it?",
+"o": [
+"Focus on value",
+"Start where you are",
+"Optimize and automate",
+"Progress iteratively with feedback"
+],
+"a": 2,
+"e": "Optimize first, then automate.",
+"t": "Value system"
+},
+{
+"q": "Which guiding principle says that everything an organization does should link back to value for stakeholders?",
+"o": [
+"Keep it simple and practical",
+"Focus on value",
+"Think and work holistically",
+"Optimize and automate"
+],
+"a": 1,
+"e": "Focus on value is the first guiding principle.",
+"t": "Value system"
+},
+{
+"q": "How many guiding principles does ITIL have?",
+"o": [
+"Four",
+"Five",
+"Eight",
+"Seven"
+],
+"a": 3,
+"e": "There are seven guiding principles.",
+"t": "Value system"
+},
+{
+"q": "Which are activities of governance? 1. Evaluate 2. Direct 3. Monitor 4. Acquire",
+"o": [
+"1, 2 and 3",
+"1, 2 and 4",
+"2, 3 and 4",
+"1, 3 and 4"
+],
+"a": 0,
+"e": "Governance evaluates, directs and monitors. Acquire is a lifecycle activity.",
+"t": "Value system"
+},
+{
+"q": "In ITIL Version 5, what makes up the value chain?",
+"o": [
+"The four dimensions",
+"The seven guiding principles",
+"The eight activities of the product and service lifecycle",
+"The governance activities"
+],
+"a": 2,
+"e": "Discover, design, acquire, build, transition, operate, deliver and support.",
+"t": "Value system"
+},
+{
+"q": "What is a practice?",
+"o": [
+"A set of organizational resources designed for performing work or accomplishing an objective",
+"A one-time project",
+"A rule set by a regulator",
+"A type of service level agreement"
+],
+"a": 0,
+"e": "Practices are toolkits the value chain activities use.",
+"t": "Value system"
+},
+{
+"q": "Which is the first step of the continual improvement model?",
+"o": [
+"Where are we now?",
+"Take action",
+"What is the vision?",
+"Did we get there?"
+],
+"a": 2,
+"e": "The model starts with the vision.",
+"t": "Value system"
+},
+{
+"q": "In the continual improvement model, which step comes right after take action?",
+"o": [
+"Where do we want to be?",
+"Did we get there?",
+"How do we get there?",
+"What is the vision?"
+],
+"a": 1,
+"e": "After acting, check the results.",
+"t": "Value system"
+},
+{
+"q": "Which statement about continual improvement is NOT correct?",
+"o": [
+"It happens at every level of the organization",
+"It applies to the whole value system",
+"It is only done once a year",
+"It uses a seven-step model"
+],
+"a": 2,
+"e": "Continual improvement happens all the time.",
+"t": "Value system"
+},
+{
+"q": "What is a value stream?",
+"o": [
+"A list of all IT assets",
+"A series of steps an organization takes to create and deliver products and services to consumers",
+"A team's reporting lines",
+"A budget for a project"
+],
+"a": 1,
+"e": "A value stream is a path through the activities for one type of demand.",
+"t": "Value stream mapping"
+},
+{
+"q": "In a value stream map, a long wait between two steps is an example of what?",
+"o": [
+"Value",
+"Utility",
+"Waste",
+"Warranty"
+],
+"a": 2,
+"e": "Delays are waste that value stream mapping helps to remove.",
+"t": "Value stream mapping"
+},
+{
+"q": "Which of these is NOT a good practice for responsible AI?",
+"o": [
+"Human oversight of important decisions",
+"Being transparent about how AI is used",
+"Protecting personal data",
+"Letting AI make all decisions without review"
+],
+"a": 3,
+"e": "People must stay accountable for important decisions.",
+"t": "ITIL and AI"
+},
+{
+"q": "How do DevOps and ITIL work together?",
+"o": [
+"DevOps replaces ITIL",
+"DevOps speeds up delivery, while ITIL practices such as change enablement keep it controlled",
+"ITIL replaces DevOps",
+"They cannot be used together"
+],
+"a": 1,
+"e": "The two frameworks complement each other.",
+"t": "Other frameworks"
+}
+]
+};
