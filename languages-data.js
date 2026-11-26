@@ -117,10 +117,9 @@ const LANGS = [
              ["Remote State and Locking", "Terraform in CI/CD", "Policy and Security Checks", "Importing Existing Infrastructure", "Terraform Best Practices"]] }
 ];
 /* languages suggested after each Intermediate module */
-const LANG_SUGGEST = {
-  im2: ["powershell", "cmd"], im3: ["bash"], im4: ["python", "bash"], im5: ["powershell", "kql"],
-  im7: ["sql", "kql"], im8: ["html", "css", "javascript", "php", "json"], im9: ["kql", "spl", "python", "regex"],
-  im10: ["bash", "yaml", "go"], im11: ["yaml", "json", "terraform", "python", "powershell"]
+const LANG_SUGGEST = {   // each language is recommended once, under the module where it fits best
+  im2: ["powershell", "cmd"], im3: ["bash"], im7: ["sql"], im8: ["html", "css", "javascript", "php", "json"],
+  im9: ["python", "kql", "spl", "regex"], im10: ["yaml", "go"], im11: ["terraform"]
 };
 
 /* build lesson rows, labels and lesson-page levels */
