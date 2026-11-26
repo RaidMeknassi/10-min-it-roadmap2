@@ -103,7 +103,7 @@
     document.querySelector("#lv-bar i").style.width = (c / lv.lessons.length * 100) + "%";
 
     var tbx = levelToolsBox(lv.id);
-    if (tbx) { var th = el("h3", "cert-rec-title", (lv.id === "adv-im4" ? "\uD83E\uDD88 Recommended tool to learn" : "\uD83D\uDEE0 Tools for this level")); var wrap = el("div", "lv-toolsbox"); wrap.appendChild(th); wrap.appendChild(tbx); list.parentNode.insertBefore(wrap, list.nextSibling); }
+    if (tbx) { var th = el("h3", "cert-rec-title", (lv.id === "adv-im4" ? "\uD83E\uDD88 Recommended tool to learn" : lv.id === "im8" ? "\uD83C\uDF10 Recommended tool to learn" : "\uD83D\uDEE0 Tools for this level")); var wrap = el("div", "lv-toolsbox"); wrap.appendChild(th); wrap.appendChild(tbx); list.parentNode.insertBefore(wrap, list.nextSibling); }
     var cw = (typeof comptiaLevelBox === "function") ? comptiaLevelBox(lv.id) : null;   // CompTIA certificate(s) recommended for this level / module
     if (cw) list.parentNode.insertBefore(cw, list.nextSibling);
     var lgb = (/^im\d+$/.test(lv.id) && typeof langSuggestBox === "function") ? langSuggestBox(lv.id) : null;

@@ -77,6 +77,8 @@
     container.appendChild(lv);
     var sugg = (typeof langSuggestBox === "function" && info.id !== "im4") ? langSuggestBox(info.id) : null;   // Networking: no languages box on the tree
     if (sugg) lv.insertBefore(sugg, lv.querySelector(".flyout"));
+    var tb = (typeof levelToolsBox === "function") ? levelToolsBox(info.id) : null;   // recommended tool(s) under the module
+    if (tb) { var tt = document.createElement("div"); tt.className = "lang-sugg-t"; tt.textContent = "Recommended tool to learn"; tb.insertBefore(tt, tb.firstChild); var tg = tb.querySelector(".tools-group-title"); if (tg) tg.remove(); tb.classList.add("ct-rec"); lv.insertBefore(tb, lv.querySelector(".flyout")); }
     var cn = (typeof comptiaRecNode === "function") ? comptiaRecNode(info.id) : null;   // recommended CompTIA certificate(s)
     if (cn) lv.insertBefore(cn, lv.querySelector(".flyout"));
 

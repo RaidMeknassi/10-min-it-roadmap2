@@ -65,7 +65,8 @@ const TOOL_GROUPS = [
   { id: "jobs", name: "Job-Search Platforms", emoji: "🧰" },
   { id: "ticketing", name: "Ticketing Systems", emoji: "🎫" },
   { id: "collab", name: "IT Communication, Collaboration & Remote Access", emoji: "🖥️" },
-  { id: "network", name: "Networking Tools", emoji: "🦈" }
+  { id: "network", name: "Networking Tools", emoji: "🦈" },
+  { id: "webserver", name: "Web Servers", emoji: "🌐" }
 ];
 
 const TOOLS = [
@@ -215,6 +216,14 @@ const TOOLS = [
       { title: "Filtering and Reading Traffic", role: "Network Support", color: "#1679a7", lessons: ["Capture Filters vs Display Filters", "Display Filters for IP, Ports and Protocols", "Following TCP and UDP Streams", "Colouring Rules and Columns", "Reading DNS, DHCP and ARP Traffic", "Reading HTTP and TLS Traffic"] },
       { title: "Troubleshooting with Wireshark", role: "Network and SOC Analyst", color: "#0e4f73", cert: ["WCA", "Wireshark Certified Analyst", "Wireshark Foundation"],
         lessons: ["The TCP Handshake and Connection Problems", "Retransmissions, Resets and Slow Networks", "Expert Information and Statistics", "Finding Suspicious Traffic and Exporting Objects", "Decrypting TLS and Working with Large Captures", "A Packet Analysis Workflow"] }
+    ]},
+  { id: "apache", name: "Apache HTTP Server", group: "webserver", color: "#d22128", tags: ["Web Server", "Linux", "HTTPS"],
+    desc: "One of the most used web servers in the world. Admins install it, host websites on it, secure it with HTTPS and read its logs.",
+    note: "Apache has no official certification. It is a hands-on skill: practise on your own Linux virtual machine. Linux certifications such as Linux+ and RHCSA cover parts of it.",
+    levels: [
+      { title: "Apache Basics", role: "Getting started", color: "#f87171", lessons: ["What Is a Web Server and What Is Apache?", "Installing Apache on Linux", "Starting, Stopping and Checking the Apache Service", "Apache Folders and Configuration Files", "Hosting Your First Web Page"] },
+      { title: "Apache Administration", role: "Web and Linux Admin", color: "#d22128", lessons: ["Virtual Hosts: Many Websites on One Server", "Enabling HTTPS with TLS Certificates", "Apache Modules (mod_rewrite, mod_ssl and More)", "The .htaccess File and Redirects", "File Permissions and Users for Websites", "Reading Access and Error Logs"] },
+      { title: "Advanced Apache", role: "Senior Admin", color: "#991b1b", lessons: ["Apache as a Reverse Proxy", "Load Balancing with Apache", "Performance Tuning and Caching", "Hardening and Securing Apache", "Troubleshooting a Broken Website", "Apache vs Nginx: When to Use Which"] }
     ]}
 ];
 
@@ -461,7 +470,7 @@ var LEVEL52 = (function () {
     lessons: m.levels[0].lessons.map(function (r) { return [r[0], r[1], 0, 1]; }), lbl: function (k) { return "5.3." + (k + 1); } };
 })();
 /* tools shown under a level (they also stay in the Tools section) */
-var LEVEL_TOOLS = { "adv-im4": ["network"] };
+var LEVEL_TOOLS = { "adv-im4": ["network"], "im8": ["webserver"] };
 function levelToolsBox(levelId) {
   var ids = LEVEL_TOOLS[levelId]; if (!ids) return null;
   var box = document.createElement("div"); box.className = "node-tools";
