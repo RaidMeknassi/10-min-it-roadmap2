@@ -9,7 +9,7 @@
   var V = { CompTIA: "#ef4444", Cisco: "#0ea5e9", Microsoft: "#38bdf8", Google: "#34a853", AWS: "#f59e0b", "Red Hat": "#f43f5e", ISC2: "#84cc16", PeopleCert: "#a855f7", "Scrum.org": "#38bdf8", "Scrum Alliance": "#fb923c", PMI: "#a78bfa", "Scaled Agile": "#22d3ee", ServiceNow: "#62d84e", Atlassian: "#2684ff", Salesforce: "#c084fc", HashiCorp: "#8b5cf6", GitHub: "#94a3b8", VMware: "#2dd4bf", "Python Institute": "#facc15", CNCF: "#3b82f6", OffSec: "#fb923c" };
   /* [name, vendor, badge text, levels, specializations] */
   var C = [
-    ["CompTIA IT Fundamentals (ITF+)", "CompTIA", "ITF+", ["l02"], []],
+    ["CompTIA Tech+", "CompTIA", "Tech+", ["l02"], ["IT Support Engineering"]],
     ["CompTIA A+", "CompTIA", "A+", ["l02", "l5"], ["IT Support Engineering"]],
     ["Google IT Support Professional Certificate", "Google", "IT", ["l02"], ["IT Support Engineering"]],
     ["CompTIA Network+", "CompTIA", "N+", ["l3"], ["Network Engineering"]],
@@ -43,6 +43,14 @@
     ["Microsoft AI-900 Azure AI Fundamentals", "Microsoft", "AI-900", ["l7"], ["Data and Artificial Intelligence"]],
     ["Google Data Analytics Certificate", "Google", "DATA", ["l7"], ["Data and Artificial Intelligence"]]
   ];
+  /* the other CompTIA certifications (all CompTIA ones get their badge picture and open the CompTIA roadmap) */
+  [["CompTIA Server+", "Server+", "i", ["Systems Engineering"]], ["CompTIA Cloud+", "Cloud+", "i", ["Cloud Computing"]], ["CompTIA Project+", "Project+", "i", ["IT Support Engineering"]],
+   ["CompTIA DataSys+", "DataSys+", "i", ["Data and Artificial Intelligence"]], ["CompTIA Data+", "Data+", "a", ["Data and Artificial Intelligence"]], ["CompTIA DataAI", "DataAI", "a", ["Data and Artificial Intelligence"]],
+   ["CompTIA SecAI+", "SecAI+", "a", ["Cybersecurity", "Data and Artificial Intelligence"]], ["CompTIA SecOT+", "SecOT+", "a", ["Cybersecurity"]], ["CompTIA SecurityX", "SecurityX", "a", ["Cybersecurity"]],
+   ["CompTIA CloudNetX", "CloudNetX", "a", ["Cloud Computing", "Network Engineering"]]].forEach(function (x) { C.push([x[0], "CompTIA", x[1], [x[2]], x[3]]); });
+  var CT_ID = { "Tech+": "tech", "A+": "a", "N+": "network", "SEC+": "security", "LNX+": "linux", "CySA+": "cysa", "PT+": "pentest", "Server+": "server", "Cloud+": "cloud", "Project+": "project",
+    "DataSys+": "datasys", "Data+": "data", "DataAI": "dataai", "SecAI+": "secai", "SecOT+": "secot", "SecurityX": "securityx", "CloudNetX": "cloudnetx" };
+  C.forEach(function (c) { var id = c[1] === "CompTIA" && CT_ID[c[2]]; if (id) { c[5] = c[5] || "comptia.html#" + id; c[8] = "assets/comptia/" + id + ".png"; } });
   /* certifications from the tool pages (courses.js): each one links to its level on the tool page */
   if (typeof ITIL_COURSE !== "undefined") {
     var IM = ITIL_COURSE.modules;
@@ -96,7 +104,7 @@
       var tags = el("div", "cx-tags");
       c[3].forEach(function (l) { tags.appendChild(el("span", "cx-tag", lname[l])); });
       c[4].forEach(function (s) { tags.appendChild(el("span", "cx-tag cx-tag-s", s)); });
-      card.appendChild(tags); if (c[5]) card.appendChild(el("span", "cx-go", certDone ? "✓ Completed" : c[5].indexOf("course") === 0 ? "Start the course →" : "See the lessons →")); grid.appendChild(card);
+      card.appendChild(tags); if (c[5]) card.appendChild(el("span", "cx-go", certDone ? "✓ Completed" : c[5].indexOf("course") === 0 ? "Start the course →" : c[5].indexOf("comptia") === 0 ? "See the CompTIA roadmap →" : "See the lessons →")); grid.appendChild(card);
     });
     $("cx-count").textContent = n ? n + " certification" + (n === 1 ? "" : "s") : "No certification found. Try another name or clear a filter.";
   }
