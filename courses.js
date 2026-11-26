@@ -72,7 +72,11 @@ const TOOL_GROUPS = [
   { id: "wintools", name: "Windows Admin Tools", emoji: "🪟" },
   { id: "apitools", name: "API Tools", emoji: "🔌" },
   { id: "dbtools", name: "Database Tools", emoji: "🗄️" },
-  { id: "sectools", name: "Security Tools", emoji: "🔍" }
+  { id: "sectools", name: "Security Tools", emoji: "🔍" },
+  { id: "endpoint", name: "Device Management", emoji: "💻" },
+  { id: "automation", name: "Automation Tools", emoji: "⚙️" },
+  { id: "analytics", name: "Data & Analytics Tools", emoji: "📊" },
+  { id: "siem", name: "SIEM Tools", emoji: "🛡️" }
 ];
 
 const TOOLS = [
@@ -272,6 +276,69 @@ const TOOLS = [
     levels: [
       { title: "Nmap Basics", role: "Getting started", color: "#9ca3af", lessons: ["What Is Nmap and Is It Legal?", "Installing Nmap and Zenmap", "Finding Devices on Your Network", "Scanning Open Ports"] },
       { title: "Using Nmap for Security", role: "Security Analyst", color: "#4b5563", lessons: ["Finding Services and Versions", "Detecting the Operating System", "Nmap Scripts (NSE)", "Reading Results and Writing a Short Report"] }
+    ]},
+  { id: "intune", name: "Microsoft Intune", group: "endpoint", color: "#0078d4", tags: ["Devices", "Cloud", "Security"],
+    desc: "Microsoft's cloud tool to manage and secure company laptops and phones: apps, updates, policies and compliance.",
+    note: "Intune is covered by the MD-102 Endpoint Administrator certification.",
+    levels: [
+      { title: "Intune Basics", role: "Endpoint Support", color: "#4aa3ea", lessons: ["What Is Microsoft Intune?", "Enrolling Windows Devices", "Device Configuration Profiles", "Deploying Apps with Intune"] },
+      { title: "Managing and Securing Devices", role: "Endpoint Administrator", color: "#0078d4", lessons: ["Compliance Policies and Conditional Access", "Windows Update Rings", "Autopilot: Setting Up New Laptops", "Managing Phones (iOS and Android)", "Troubleshooting Intune"] }
+    ]},
+  { id: "ansible", name: "Ansible", group: "automation", color: "#ee0000", tags: ["Automation", "Linux", "DevOps"],
+    desc: "Free automation tool to configure many servers at once with simple YAML playbooks, without installing agents.",
+    note: "Red Hat offers the RHCE certification, which is built around Ansible. Learn RHCSA first.",
+    levels: [
+      { title: "Ansible Basics", role: "Linux Admin", color: "#f87171", lessons: ["What Is Ansible?", "Installing Ansible and Your Inventory", "Ad-Hoc Commands", "Your First Playbook"] },
+      { title: "Automating Servers", role: "Automation Engineer", color: "#ee0000", lessons: ["Variables and Facts", "Handlers and Templates", "Roles and Ansible Galaxy", "Ansible Vault for Secrets", "Automating a Web Server Setup"] }
+    ]},
+  { id: "nginx", name: "Nginx", group: "webserver", color: "#009639", tags: ["Web Server", "Reverse Proxy", "Linux"],
+    desc: "Fast web server used by many of the biggest websites, often as a reverse proxy and load balancer in front of apps.",
+    note: "Nginx has no common entry certification. Practise on a Linux virtual machine.",
+    levels: [
+      { title: "Nginx Basics", role: "Web and Linux Admin", color: "#4cc27a", lessons: ["What Is Nginx?", "Installing Nginx on Linux", "Server Blocks: Hosting Websites", "HTTPS with TLS Certificates"] },
+      { title: "Advanced Nginx", role: "Senior Admin", color: "#009639", lessons: ["Nginx as a Reverse Proxy", "Load Balancing", "Caching and Performance", "Securing Nginx", "Reading Nginx Logs"] }
+    ]},
+  { id: "kubernetes", name: "Kubernetes", group: "containers", color: "#326ce5", tags: ["Containers", "Orchestration", "DevOps"],
+    desc: "The system that runs and manages many containers across many servers: it starts, scales and heals your applications.",
+    note: "The Certified Kubernetes Administrator (CKA) exam tests these skills. Learn Docker first.",
+    levels: [
+      { title: "Kubernetes Basics", role: "Getting started", color: "#6f97ec", lessons: ["What Is Kubernetes?", "Clusters, Nodes and Pods", "Running Kubernetes on Your Computer (minikube)", "kubectl: Your First Commands", "Deployments and ReplicaSets"] },
+      { title: "Running Apps on Kubernetes", role: "Kubernetes Administrator", color: "#326ce5", lessons: ["Services and Networking", "ConfigMaps and Secrets", "Storage: Volumes and PersistentVolumes", "Scaling and Rolling Updates", "Troubleshooting Pods", "CKA Exam Tips"] }
+    ]},
+  { id: "powerbi", name: "Power BI", group: "analytics", color: "#f2c811", tags: ["Reports", "Dashboards", "Data"],
+    desc: "Microsoft's tool to turn data into reports and dashboards that anyone can read.",
+    note: "Microsoft's PL-300 Power BI Data Analyst certification tests these skills.",
+    levels: [
+      { title: "Power BI Basics", role: "Getting started", color: "#f7dc5c", lessons: ["What Is Power BI?", "Getting Data from Excel and Databases", "Cleaning Data with Power Query", "Your First Report"] },
+      { title: "Reports and Dashboards", role: "Data Analyst", color: "#d4a900", lessons: ["Data Models and Relationships", "DAX Basics", "Building a Dashboard", "Sharing Reports Safely"] }
+    ]},
+  { id: "sentinel", name: "Microsoft Sentinel", group: "siem", color: "#0078d4", tags: ["SIEM", "KQL", "SOC"],
+    desc: "Microsoft's cloud SIEM: it collects logs, finds threats with KQL rules and helps the SOC investigate and respond.",
+    note: "Covered by the Microsoft SC-200 Security Operations Analyst certification.",
+    levels: [
+      { title: "Sentinel Basics", role: "SOC Analyst", color: "#4aa3ea", lessons: ["What Is a SIEM and Microsoft Sentinel?", "Connecting Data Sources", "Searching Logs with KQL", "Workbooks and Dashboards"] },
+      { title: "Detection and Response", role: "Senior SOC Analyst", color: "#0078d4", lessons: ["Analytics Rules: Finding Threats", "Incidents and Investigation", "Threat Hunting", "Automation with Playbooks", "Tuning Rules to Reduce False Positives"] }
+    ]},
+  { id: "splunk", name: "Splunk", group: "siem", color: "#65a637", tags: ["SIEM", "SPL", "Logs"],
+    desc: "Popular platform to search, analyse and alert on log data, used by many SOC teams.",
+    note: "Splunk offers its own certifications, starting with Splunk Core Certified User.",
+    levels: [
+      { title: "Splunk Basics", role: "SOC Analyst", color: "#8fc56a", lessons: ["What Is Splunk?", "Adding Data to Splunk", "Searching with SPL", "Fields, Filters and Time Ranges"] },
+      { title: "Security with Splunk", role: "Senior SOC Analyst", color: "#65a637", lessons: ["Reports and Dashboards", "Alerts", "Investigating a Security Incident", "Splunk for Threat Hunting"] }
+    ]},
+  { id: "kali", name: "Kali Linux", group: "sectools", color: "#367bf0", tags: ["Penetration Testing", "Linux", "Ethical Hacking"],
+    desc: "A Linux system full of security testing tools, used by penetration testers and security students.",
+    note: "Use Kali only on your own lab or with written permission. OffSec's OSCP is the best-known exam built on it.",
+    levels: [
+      { title: "Kali Basics", role: "Getting started", color: "#6fa2f4", lessons: ["What Is Kali Linux and Is It Legal?", "Installing Kali in a Virtual Machine", "The Kali Desktop and Terminal", "Building a Safe Practice Lab"] },
+      { title: "Testing a Lab", role: "Penetration Tester", color: "#367bf0", lessons: ["Information Gathering", "Vulnerability Scanning", "Password Attacks in a Lab", "Exploiting a Practice Machine", "Writing a Penetration Test Report"] }
+    ]},
+  { id: "burp", name: "Burp Suite", group: "sectools", color: "#ff6633", tags: ["Web Security", "Testing", "Proxy"],
+    desc: "The standard tool to test the security of websites: it sits between your browser and the site so you can see and change requests.",
+    note: "Use it only on sites you own or have permission to test. PortSwigger offers the Burp Suite Certified Practitioner exam.",
+    levels: [
+      { title: "Burp Basics", role: "Getting started", color: "#ff9473", lessons: ["What Is Burp Suite?", "Setting Up the Proxy and Browser", "Reading Requests and Responses", "Repeater: Changing Requests"] },
+      { title: "Testing Web Apps", role: "Web Security Tester", color: "#ff6633", lessons: ["Finding SQL Injection in a Lab", "Finding Cross-Site Scripting (XSS)", "Intruder and Automated Tests", "Writing Up a Web Vulnerability"] }
     ]},
   { id: "apache", name: "Apache HTTP Server", group: "webserver", color: "#d22128", tags: ["Web Server", "Linux", "HTTPS"],
     desc: "One of the most used web servers in the world. Admins install it, host websites on it, secure it with HTTPS and read its logs.",
@@ -526,23 +593,26 @@ var LEVEL52 = (function () {
     lessons: m.levels[0].lessons.map(function (r) { return [r[0], r[1], 0, 1]; }), lbl: function (k) { return "5.3." + (k + 1); } };
 })();
 /* tools shown under a level (they also stay in the Tools section) */
-var LEVEL_TOOLS = { "adv-im4": ["network"], "im2": ["wintools"], "im8": ["webserver", "apitools"], "im10": ["virtual", "containers"], "im7": ["dbtools"], "im9": ["sectools"] };
+var LEVEL_TOOLS = { "im2": ["wintools"], "im8": ["apache", "postman"], "im10": ["virtual", "docker"], "im7": ["dbtools"], "im9": ["nmap"],
+  "adv-im4": ["network"], "adv-im2": ["intune"], "adv-im3": ["ansible"], "adv-im8": ["nginx"], "adv-im10": ["kubernetes"], "adv-im7": ["powerbi"], "adv-im9": ["sentinel", "splunk", "kali", "burp"] };
 function levelToolsBox(levelId) {
   var ids = LEVEL_TOOLS[levelId]; if (!ids) return null;
   var box = document.createElement("div"); box.className = "node-tools";
   ids.forEach(function (gid) {
-    var g = TOOL_GROUPS.filter(function (x) { return x.id === gid; })[0]; if (!g) return;
-    var grp = document.createElement("div"); grp.className = "tools-group";
-    grp.innerHTML = '<div class="tools-group-title"></div><div class="tools-chips"></div>';
-    grp.querySelector(".tools-group-title").textContent = g.emoji + " " + g.name;
+    var one = TOOLS.filter(function (x) { return x.id === gid; })[0];   // a single tool id (not a whole group)
+    var g = TOOL_GROUPS.filter(function (x) { return x.id === (one ? one.group : gid); })[0]; if (!g) return;
+    var grp = box.querySelector('.tools-group[data-g="' + g.id + '"]'), isNew = !grp;   // tools of the same group share one row
+    if (isNew) { grp = document.createElement("div"); grp.className = "tools-group"; grp.setAttribute("data-g", g.id);
+      grp.innerHTML = '<div class="tools-group-title"></div><div class="tools-chips"></div>';
+      grp.querySelector(".tools-group-title").textContent = g.emoji + " " + g.name; }
     TOOLS.forEach(function (t) {
-      if (t.group !== gid) return;
+      if (one ? t !== one : t.group !== gid) return;
       var a = document.createElement("a"); a.className = "tool-chip"; a.href = "tool.html?t=" + t.id; a.style.setProperty("--tc", t.color);
       a.innerHTML = '<img src="assets/tool-icons/' + t.id + '.png" alt="" width="18" height="18"><span></span>'; a.querySelector("span").textContent = t.name;
       a.addEventListener("click", function (e) { e.stopPropagation(); });
       grp.querySelector(".tools-chips").appendChild(a);
     });
-    box.appendChild(grp);
+    if (isNew) box.appendChild(grp);
   });
   return box;
 }

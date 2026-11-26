@@ -1324,3 +1324,5 @@ a.cert-node-card.ct-tree:hover { box-shadow: 0 0 24px -6px #ef4444; transform: t
 .cert-node-card .ct-vbadge, .lv-cert .ct-vbadge { flex: none; }
 .ct-vbadge small { font-size: 7.5px; white-space: nowrap; letter-spacing: 0; }
 .ct-vbadge b { font-size: 11px; white-space: nowrap; }
+.adv-road .node-tools .tools-group + .tools-group, .levels .node-tools .tools-group + .tools-group { margin-top: 6px; }
+.levels .node-tools .tools-chips { justify-content: center; }

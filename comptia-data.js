@@ -27,12 +27,20 @@ COMPTIA.md102 = ["MD-102", "Associate", "Microsoft Endpoint Administrator: deplo
 COMPTIA.az802 = ["AZ-802", "Associate", "Microsoft Windows Server Administrator: Active Directory, DNS, DHCP, storage and hybrid servers.", "Recommended after Intermediate Module 4: Active Directory", { full: "Microsoft AZ-802 Windows Server Administrator", href: "certs.html?q=AZ-802", vendor: "Microsoft", color: "#38bdf8" }];
 COMPTIA.az900 = ["AZ-900", "Fundamentals", "Microsoft Azure Fundamentals: cloud concepts, Azure services, pricing and security basics.", "Recommended after Intermediate Module 8: Cloud", { full: "Microsoft AZ-900 Azure Fundamentals", href: "certs.html?q=AZ-900", vendor: "Microsoft", color: "#38bdf8" }];
 COMPTIA.awsccp = ["CCP", "Foundational", "AWS Certified Cloud Practitioner: AWS cloud concepts, core services, security and billing.", "Recommended after Intermediate Module 8: Cloud", { full: "AWS Certified Cloud Practitioner", href: "certs.html?q=AWS Cloud", vendor: "AWS", color: "#f59e0b" }];
+COMPTIA.ccna = ["CCNA", "Associate", "Cisco Certified Network Associate: routing, switching, IP services, security and automation basics.", "Recommended in Advanced Module 1: Networking", { full: "Cisco CCNA", href: "certs.html?q=CCNA", vendor: "Cisco", color: "#0ea5e9" }];
+COMPTIA.rhcsa = ["RHCSA", "Associate", "Red Hat Certified System Administrator: a hands-on exam on real Linux administration tasks.", "Recommended in Advanced Module 3: Linux", { full: "Red Hat RHCSA", href: "certs.html?q=RHCSA", vendor: "Red Hat", color: "#f43f5e" }];
+COMPTIA.sc300 = ["SC-300", "Associate", "Microsoft Identity and Access Administrator: Entra ID, single sign-on, MFA, Conditional Access and identity governance.", "Recommended in Advanced Module 4: Active Directory", { full: "Microsoft SC-300 Identity and Access Administrator", href: "certs.html?q=SC-300", vendor: "Microsoft", color: "#38bdf8" }];
+COMPTIA.cka = ["CKA", "Professional", "Certified Kubernetes Administrator: a hands-on exam on running and fixing Kubernetes clusters.", "Recommended in Advanced Module 6: Virtualization and Containers", { full: "Certified Kubernetes Administrator (CKA)", href: "certs.html?q=Kubernetes", vendor: "CNCF", color: "#326ce5" }];
+COMPTIA.az104 = ["AZ-104", "Associate", "Microsoft Azure Administrator: identities, storage, compute, networking and monitoring in Azure.", "Recommended in Advanced Module 8: Cloud", { full: "Microsoft AZ-104 Azure Administrator", href: "certs.html?q=AZ-104", vendor: "Microsoft", color: "#38bdf8" }];
+COMPTIA.awssaa = ["SAA", "Associate", "AWS Solutions Architect Associate: designing secure, reliable and cost-effective systems on AWS.", "Recommended in Advanced Module 8: Cloud", { full: "AWS Solutions Architect Associate", href: "certs.html?q=Solutions Architect", vendor: "AWS", color: "#f59e0b" }];
+COMPTIA.sc200 = ["SC-200", "Associate", "Microsoft Security Operations Analyst: Defender XDR, Microsoft Sentinel, KQL hunting and incident response.", "Recommended in Advanced Module 9: Cybersecurity", { full: "Microsoft SC-200 Security Operations Analyst", href: "certs.html?q=SC-200", vendor: "Microsoft", color: "#38bdf8" }];
 function certFull(id) { var c = COMPTIA[id]; return c[4] ? c[4].full : "CompTIA " + c[0]; }
 function certHref(id) { var c = COMPTIA[id]; return c[4] ? c[4].href : "comptia.html#" + id; }
 var COMPTIA_REC = {
   l2: ["tech"], l4: ["isc2cc"], l5: ["a"],
   im4: ["network"], im2: ["md102"], im3: ["linux"], im5: ["az802"], im10: ["server"], im7: ["datasys"], im11: ["cloud", "az900", "awsccp"], im9: ["security"],
-  "adv-im9": ["cysa", "pentest", "securityx", "secai", "secot", "sc900"], "adv-im7": ["data", "dataai"], "adv-im11": ["cloudnetx"]
+  "adv-im4": ["ccna"], "adv-im3": ["rhcsa"], "adv-im5": ["sc300"], "adv-im10": ["cka"],
+  "adv-im9": ["cysa", "pentest", "securityx", "secai", "secot", "sc900", "sc200"], "adv-im7": ["data", "dataai"], "adv-im11": ["cloudnetx", "az104", "awssaa"]
 };
 function comptiaBadge(id, size) {
   var x = COMPTIA[id] && COMPTIA[id][4];

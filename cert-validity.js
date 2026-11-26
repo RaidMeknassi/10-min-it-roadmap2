@@ -61,6 +61,7 @@ var CERT_VALIDITY = {
   "Microsoft AZ-900 Azure Fundamentals": [MSF, MSC + "azure-fundamentals/", "ms"],
   "Microsoft DP-900 Data Fundamentals": [MSF, MSC + "azure-data-fundamentals/", "ms"],
   "Microsoft AI-900 Azure AI Fundamentals": [MSF, MSC + "azure-ai-fundamentals/", "ms"],
+  "Microsoft SC-300 Identity and Access Administrator": [MSY, "https://learn.microsoft.com/en-us/credentials/certifications/identity-and-access-administrator/", "ms"],
   "Microsoft SC-200": [MSY, MSC + "security-operations-analyst/", "ms"],
   "Microsoft AZ-802 Windows Server Administrator": [MSY, MSC + "windows-server-hybrid-administrator/", "ms"],
   "Microsoft AZ-104 Azure Administrator": [MSY, MSC + "azure-administrator/", "ms"],

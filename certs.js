@@ -25,6 +25,7 @@
     ["Microsoft DP-900 Data Fundamentals", "Microsoft", "DP-900", ["l6", "l7"], ["Data and Artificial Intelligence"]],
     ["Python Institute PCEP", "Python Institute", "PCEP", ["l6", "l7"], ["Software Development"]],
     ["Microsoft SC-200", "Microsoft", "SC-200", ["l7"], ["Cybersecurity"]],
+    ["Microsoft SC-300 Identity and Access Administrator", "Microsoft", "SC-300", ["l7"], ["Cybersecurity", "Systems Engineering"]],
     ["CompTIA CySA+", "CompTIA", "CySA+", ["l7"], ["Cybersecurity"]],
     ["CompTIA PenTest+", "CompTIA", "PT+", ["l7"], ["Cybersecurity"]],
     ["OffSec OSCP", "OffSec", "OSCP", ["l7"], ["Cybersecurity"]],
