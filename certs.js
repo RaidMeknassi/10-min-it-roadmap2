@@ -105,7 +105,8 @@
       c[3].forEach(function (l) { tags.appendChild(el("span", "cx-tag", lname[l])); });
       c[4].forEach(function (s) { tags.appendChild(el("span", "cx-tag cx-tag-s", s)); });
       card.appendChild(tags);
-      var vd = (typeof certValidityEl === "function") ? certValidityEl(c[0]) : null; if (vd) card.appendChild(vd);   // how long it stays valid + official links
+      var vd = (typeof certValidityEl === "function") ? certValidityEl(c[0]) : null; if (vd) card.appendChild(vd);
+      if (typeof certLifeEl === "function") { var lf = certLifeEl(c[0]); card.appendChild(lf); if (/st-retired/.test(lf.className)) card.classList.add("is-retired"); }   // exam version, retirement date   // how long it stays valid + official links
       if (c[5]) card.appendChild(el("span", "cx-go", certDone ? "✓ Completed" : c[5].indexOf("course") === 0 ? "Start the course →" : c[5].indexOf("comptia") === 0 ? "See the CompTIA roadmap →" : "See the lessons →")); grid.appendChild(card);
     });
     $("cx-count").textContent = n ? n + " certification" + (n === 1 ? "" : "s") : "No certification found. Try another name or clear a filter.";

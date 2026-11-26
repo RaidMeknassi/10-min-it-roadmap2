@@ -126,3 +126,47 @@ function certValidityEl(name) {
   lk("Official page ↗", v[1]); if (v[2] && CERT_RULES[v[2]]) lk("Renewal rules ↗", CERT_RULES[v[2]]);
   box.appendChild(links); return box;
 }
+
+/* Exam version, when it came out, and announced retirements (checked November 2026).
+   [current exam (and since when), retirement / change note or "", status: "ok" | "soon" | "retired"]
+   "Expected" dates are the vendor's usual 3-year cycle, not a fixed date: check the official page before booking. */
+var CERT_CHECKED = "November 2026";
+var CERT_LIFE = {
+  "CompTIA Tech+": ["FC0-U71, since 16 July 2024", "", "ok"],
+  "CompTIA A+": ["220-1201 and 220-1202 (V15), since 25 March 2025", "Next version expected around 2028.", "ok"],
+  "CompTIA Network+": ["N10-009, since 20 June 2024", "Expected to retire in 2027; Network+ V10 is in development.", "soon"],
+  "CompTIA Security+": ["SY0-701; new SY0-801 from about 17 November 2026", "SY0-701 retires 11 June 2027 (English) and 13 August 2027 (other languages).", "soon"],
+  "CompTIA Linux+": ["XK0-006, since 15 July 2025", "Next version expected around 2028.", "ok"],
+  "CompTIA CySA+": ["CS0-004, since 23 June 2026", "Old CS0-003 retires 22 December 2026 (English).", "ok"],
+  "CompTIA PenTest+": ["PT0-003, since 17 December 2024", "Expected to retire in 2027; PenTest+ V4 is in development.", "soon"],
+  "CompTIA Server+": ["SK0-005, since 18 May 2021", "No retirement date yet; Server+ V6 is in development.", "ok"],
+  "CompTIA Cloud+": ["CV0-004, since 24 September 2024", "Expected to retire in 2027; Cloud+ V5 is in development.", "soon"],
+  "CompTIA Project+": ["PK0-005, since 8 November 2022", "No retirement date published.", "ok"],
+  "CompTIA Data+": ["DA0-002, since 14 October 2025", "Next version expected around 2028.", "ok"],
+  "CompTIA DataSys+": ["DS0-001, since 18 July 2023", "At the end of its usual 3-year cycle: a new version may come soon.", "soon"],
+  "CompTIA SecurityX": ["CAS-005, since 17 December 2024", "Expected to retire in 2027; SecurityX V6 is in development.", "soon"],
+  "CompTIA SecAI+": ["CY0-001, since 17 February 2026", "", "ok"],
+  "CompTIA SecOT+": ["SOT-001, launches 1 December 2026", "", "ok"],
+  "CompTIA DataAI": ["DY0-001", "Expected to retire in 2027.", "soon"],
+  "Cisco CCNA": ["200-301 v1.1", "v1.1 ends 2 February 2027. The new CCNA v2.0 exam starts 3 February 2027.", "soon"],
+  "Cisco CCNP Enterprise": ["Core exam ENCOR 350-401 (v1.2, wireless moved to the new WLCOR exam)", "", "ok"],
+  "Microsoft AI-900 Azure AI Fundamentals": ["AI-901 (the AI-900 exam retired 30 June 2026)", "The certification continues with the new AI-901 exam.", "ok"],
+  "Microsoft AZ-204 Azure Developer": ["Retired 31 July 2026", "Replaced by AI-200 Azure AI Cloud Developer Associate. If you already hold it, it stays valid until it expires.", "retired"],
+  "Microsoft AZ-800 Windows Server Hybrid Administrator": ["AZ-802 (AZ-800 and AZ-801 retired 30 September 2026)", "Now called Windows Server Administrator Associate, with the new AZ-802 exam.", "ok"],
+  "Microsoft 365 Fundamentals (Microsoft 365)": ["MS-900 retired 31 March 2026", "No replacement planned.", "retired"],
+  "Microsoft 365 and AI Services Administrator Associate (Microsoft 365)": ["AB-650", "Replaces Microsoft 365 Administrator Expert (MS-102 retires 30 November 2026).", "ok"],
+  "Endpoint Administrator Associate (Microsoft 365)": ["MD-102 (updated 27 October 2026)", "", "ok"],
+  "ITIL Foundation": ["ITIL (Version 5) Foundation, since February 2026", "ITIL 4 exams are planned to be retired by PeopleCert on 31 December 2027.", "ok"],
+  "Project Management Professional (PMP)": ["New PMP exam, since 9 July 2026", "", "ok"],
+  "AWS Cloud Practitioner": ["CLF-C02", "", "ok"],
+  "AWS Solutions Architect Associate": ["SAA-C03", "", "ok"]
+};
+function certLifeEl(name) {
+  var l = CERT_LIFE[name], box = document.createElement("div"); box.className = "cx-life" + (l ? " st-" + l[2] : "");
+  if (l && l[2] === "retired") { var b = document.createElement("span"); b.className = "cx-retired"; b.textContent = "RETIRED"; box.appendChild(b); }
+  var p = document.createElement("p");
+  p.textContent = l ? "📅 Exam: " + l[0] + "." + (l[1] ? " " + (l[2] === "soon" ? "⚠️ " : "") + l[1] : "") : "📅 No retirement announced.";
+  box.appendChild(p);
+  var c = document.createElement("small"); c.textContent = "Last checked: " + CERT_CHECKED; box.appendChild(c);
+  return box;
+}

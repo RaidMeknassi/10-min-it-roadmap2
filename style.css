@@ -1309,3 +1309,11 @@ a.cert-node-card.ct-tree:hover { box-shadow: 0 0 24px -6px #ef4444; transform: t
 .cx-srcl { font-size: 11.5px; font-weight: 700; color: #38bdf8; cursor: pointer; text-decoration: underline; text-underline-offset: 2px; }
 .cx-srcl:hover, .cx-srcl:focus-visible { color: #7dd3fc; outline: none; }
 .cr-dinfo .cx-valid { text-align: left; } .cr-dinfo .cx-src { justify-content: flex-start; }
+.cx-life { width: 100%; text-align: center; }
+.cx-life p { margin: 0 0 3px; font-size: 11.5px; line-height: 1.4; color: #aab0c4; }
+.cx-life small { font-size: 10.5px; color: #6b7280; }
+.cx-life.st-soon p { color: #fbbf24; }
+.cx-life.st-retired p { color: #f87171; }
+.cx-retired { display: inline-block; margin-bottom: 4px; padding: 2px 8px; border-radius: 999px; background: #ef4444; color: #fff; font-size: 10px; font-weight: 800; letter-spacing: .06em; }
+.cx-card.is-retired > .cx-img, .cx-card.is-retired > .cx-badge { filter: grayscale(.8); opacity: .7; }
+.cr-dinfo .cx-life { text-align: left; margin-top: 6px; }
