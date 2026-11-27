@@ -20,6 +20,7 @@
     ["ITIL Foundation", "PeopleCert", "ITIL", ["l5"], ["IT Support Engineering"], "course.html?c=itil", "foundation"],
     ["CompTIA Linux+", "CompTIA", "LNX+", ["l6"], ["Systems Engineering"]],
     ["Red Hat RHCSA", "Red Hat", "RHCSA", ["l6", "l7"], ["Systems Engineering"]],
+    ["Google Cloud Digital Leader (CDL)", "Google", "CDL", ["l6"], ["Cloud Computing"]],
     ["Microsoft AZ-900 Azure Fundamentals", "Microsoft", "AZ-900", ["l6", "l7"], ["Cloud Computing"]],
     ["AWS Cloud Practitioner", "AWS", "CLF", ["l6", "l7"], ["Cloud Computing"]],
     ["Microsoft DP-900 Data Fundamentals", "Microsoft", "DP-900", ["l6", "l7"], ["Data and Artificial Intelligence"]],

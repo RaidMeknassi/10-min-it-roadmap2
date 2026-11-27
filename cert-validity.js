@@ -74,6 +74,7 @@ var CERT_VALIDITY = {
   "Red Hat RHCSA": ["Current for 3 years. Renew by passing a newer Red Hat exam (or the same one again).", "https://www.redhat.com/en/services/certification/rhcsa", "redhat"],
   "AWS Cloud Practitioner": ["Valid 3 years. Renew by passing the current exam (or a higher AWS exam).", "https://aws.amazon.com/certification/certified-cloud-practitioner/", "aws"],
   "AWS Solutions Architect Associate": ["Valid 3 years. Renew by passing the current exam (or a higher AWS exam).", "https://aws.amazon.com/certification/certified-solutions-architect-associate/", "aws"],
+  "Google Cloud Digital Leader (CDL)": ["Valid 3 years. Renew with Google's shorter renewal exam (adds 3 years) or continuing education (adds 1 year).", "https://cloud.google.com/learn/certification/cloud-digital-leader", "google"],
   "Google Associate Cloud Engineer": ["Valid 3 years. Renew with Google's shorter renewal exam or continuing education.", "https://cloud.google.com/learn/certification/cloud-engineer", "google"],
   "Associate Google Workspace Administrator (Google Workspace)": ["About 3 years (Google's rule for associate certifications). Renew by exam before it becomes inactive.", "https://cloud.google.com/learn/certification/google-workspace-administrator?hl=en", "google"],
   "Python Institute PCEP": ["Valid 5 years (Python Institute credential validity).", "https://pythoninstitute.org/pcep"],

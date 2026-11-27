@@ -34,11 +34,12 @@ COMPTIA.cka = ["CKA", "Professional", "Certified Kubernetes Administrator: a han
 COMPTIA.az104 = ["AZ-104", "Associate", "Microsoft Azure Administrator: identities, storage, compute, networking and monitoring in Azure.", "Recommended in Advanced Module 8: Cloud", { full: "Microsoft AZ-104 Azure Administrator", href: "certs.html?q=AZ-104", vendor: "Microsoft", color: "#38bdf8" }];
 COMPTIA.awssaa = ["SAA", "Associate", "AWS Solutions Architect Associate: designing secure, reliable and cost-effective systems on AWS.", "Recommended in Advanced Module 8: Cloud", { full: "AWS Solutions Architect Associate", href: "certs.html?q=Solutions Architect", vendor: "AWS", color: "#f59e0b" }];
 COMPTIA.sc200 = ["SC-200", "Associate", "Microsoft Security Operations Analyst: Defender XDR, Microsoft Sentinel, KQL hunting and incident response.", "Recommended in Advanced Module 9: Cybersecurity", { full: "Microsoft SC-200 Security Operations Analyst", href: "certs.html?q=SC-200", vendor: "Microsoft", color: "#38bdf8" }];
+COMPTIA.gcdl = ["CDL", "Foundational", "Google Cloud Digital Leader: cloud concepts, Google Cloud products, data and AI, security and cost basics.", "Recommended after Intermediate Module 8: Cloud", { full: "Google Cloud Digital Leader (CDL)", href: "certs.html?q=Digital Leader", vendor: "Google", color: "#34a853" }];
 function certFull(id) { var c = COMPTIA[id]; return c[4] ? c[4].full : "CompTIA " + c[0]; }
 function certHref(id) { var c = COMPTIA[id]; return c[4] ? c[4].href : "comptia.html#" + id; }
 var COMPTIA_REC = {
   l2: ["tech"], l4: ["isc2cc"], l5: ["a"],
-  im4: ["network"], im2: ["md102"], im3: ["linux"], im5: ["az802"], im10: ["server"], im7: ["datasys"], im11: ["cloud", "az900", "awsccp"], im9: ["security"],
+  im4: ["network"], im2: ["md102"], im3: ["linux"], im5: ["az802"], im10: ["server"], im7: ["datasys"], im11: ["cloud", "az900", "awsccp", "gcdl"], im9: ["security"],
   "adv-im4": ["ccna"], "adv-im3": ["rhcsa"], "adv-im5": ["sc300"], "adv-im10": ["cka"],
   "adv-im9": ["cysa", "pentest", "securityx", "secai", "secot", "sc900", "sc200"], "adv-im7": ["data", "dataai"], "adv-im11": ["cloudnetx", "az104", "awssaa"]
 };
