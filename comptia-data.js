@@ -22,7 +22,7 @@ var COMPTIA = {
 };
 /* certificates from other vendors shown with the same cards: [short name, level, what it covers, fit, {full, href, vendor, color}] */
 COMPTIA.isc2cc = ["CC", "Beginner", "ISC2's entry-level security certificate: security principles, access control, network security, incident response and security operations.", "Recommended after Beginner Level 4: Cybersecurity Fundamentals", { full: "ISC2 Certified in Cybersecurity (CC)", href: "isc2.html#cc", vendor: "ISC2", color: "#84cc16" }];
-COMPTIA.sc900 = ["SC-900", "Fundamentals", "Microsoft security, compliance and identity basics: Entra ID, Defender, Sentinel and Purview.", "Recommended in Advanced Module 9: Cybersecurity", { full: "Microsoft SC-900 Security, Compliance and Identity Fundamentals", href: "microsoft.html#sc-900", vendor: "Microsoft", color: "#38bdf8" }];
+COMPTIA.sc900 = ["SC-900", "Fundamentals", "Microsoft security, compliance and identity basics: Entra ID, Defender, Sentinel and Purview.", "Start of the Microsoft security path", { full: "Microsoft SC-900 Security, Compliance and Identity Fundamentals", href: "microsoft.html#sc-900", vendor: "Microsoft", color: "#38bdf8" }];
 COMPTIA.md102 = ["MD-102", "Associate", "Microsoft Endpoint Administrator: deploy, configure and secure Windows devices with Intune.", "Recommended after Intermediate Module 2: Windows", { full: "Microsoft MD-102 Endpoint Administrator", href: "microsoft.html#md-102", vendor: "Microsoft", color: "#38bdf8" }];
 COMPTIA.az802 = ["AZ-802", "Associate", "Microsoft Windows Server Administrator: Active Directory, DNS, DHCP, storage and hybrid servers.", "Recommended after Intermediate Module 4: Active Directory", { full: "Microsoft AZ-802 Windows Server Administrator", href: "microsoft.html#az-802", vendor: "Microsoft", color: "#38bdf8" }];
 COMPTIA.az900 = ["AZ-900", "Fundamentals", "Microsoft Azure Fundamentals: cloud concepts, Azure services, pricing and security basics.", "Recommended after Intermediate Module 8: Cloud", { full: "Microsoft AZ-900 Azure Fundamentals", href: "microsoft.html#az-900", vendor: "Microsoft", color: "#38bdf8" }];
@@ -48,6 +48,7 @@ COMPTIA.sscp = ["SSCP", "Practitioner", "ISC2 Systems Security Certified Practit
    ["ai901", "AI-901", "Fundamentals", "Microsoft Azure AI Fundamentals: AI and machine learning concepts and Azure AI services.", "Microsoft Azure AI Fundamentals", "AI-900", "Microsoft", "#38bdf8"],
    ["vcp", "VCP", "Professional", "VMware Certified Professional: install, configure and manage VMware vSphere.", "VMware VCP", "VMware", "VMware", "#84cc16"]
   ].forEach(function (x) { COMPTIA[x[0]] = [x[1], x[2], x[3], "", { full: x[4], href: x[6] === "Microsoft" ? "microsoft.html#" + x[1].toLowerCase() : x[0] === "ghf" ? "microsoft.html#gh-900" : x[0] === "gace" ? "gcloud.html#ace" : "certs.html?q=" + encodeURIComponent(x[5]), vendor: x[6], color: x[7] }]; });
+  COMPTIA.ab900 = ["AB-900", "Fundamentals", "Microsoft 365 Copilot and Agent Administration Fundamentals: the start of the Microsoft 365 administrator path.", "Start of the Microsoft 365 path", { full: "Microsoft AB-900 Microsoft 365 Fundamentals", href: "microsoft.html#ab-900", vendor: "Microsoft", color: "#38bdf8" }];
   COMPTIA.pl300 = ["PL-300", "Associate", "Microsoft Power BI Data Analyst: model data and build reports and dashboards.", "", { full: "Microsoft PL-300 Power BI Data Analyst", href: "microsoft.html#pl-300", vendor: "Microsoft", color: "#38bdf8" }];
   COMPTIA.dp300 = ["DP-300", "Associate", "Microsoft Azure Database Administrator: run SQL databases on Azure.", "", { full: "Microsoft DP-300 Azure Database Administrator", href: "microsoft.html#dp-300", vendor: "Microsoft", color: "#38bdf8" }];
   COMPTIA.az700 = ["AZ-700", "Associate", "Microsoft Azure Network Engineer: design and run Azure networking.", "", { full: "Microsoft AZ-700 Azure Network Engineer", href: "microsoft.html#az-700", vendor: "Microsoft", color: "#38bdf8" }];
@@ -59,11 +60,12 @@ function certFull(id) { var c = COMPTIA[id]; return c[4] ? c[4].full : "CompTIA 
 function certHref(id) { var c = COMPTIA[id]; return c[4] ? c[4].href : "comptia.html#" + id; }
 var COMPTIA_REC = {
   l2: ["tech"], l3: ["ccstnet"], l4: ["isc2cc"], l5: ["a"],
-  im4: ["network"], im2: ["md102"], im3: ["linux"], im5: ["az802"], im10: ["server"], im7: ["datasys"], im11: ["cloud", "az900", "awsccp", "gcdl"], im9: ["security", "ccnacyber"],
-  "adv-im4": ["ccna"], "adv-im3": ["rhcsa"], "adv-im5": ["sc300"], "adv-im10": ["cka"],
+  l52: ["ab900"],
+  im4: ["network"], im3: ["linux"], im10: ["server"], im7: ["datasys"], im11: ["cloud", "az900", "awsccp", "gcdl"], im9: ["security", "ccnacyber"],
+  "adv-im4": ["ccna"], "adv-im3": ["rhcsa"], "adv-im10": ["cka"],
   "adv-im9": ["securityx", "sscp"],
   /* Cybersecurity specialization: certificates for each career */
-  "spec-analyst": ["cysa", "sc200", "sc900"], "spec-pentester": ["pentest"], "spec-engineer": ["secot"], "spec-ai": ["secai"], "adv-im7": ["data", "dataai"], "adv-im11": ["cloudnetx", "az104", "awssaa"]
+  "spec-analyst": ["cysa", "sc900"], "spec-pentester": ["pentest"], "spec-engineer": ["secot"], "spec-ai": ["secai"], "adv-im7": ["data", "dataai"], "adv-im11": ["cloudnetx", "awssaa"]
 };
 function comptiaBadge(id, size) {
   var x = COMPTIA[id] && COMPTIA[id][4];

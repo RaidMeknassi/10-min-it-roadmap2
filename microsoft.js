@@ -5,22 +5,22 @@
   var TR = [
     { id: "azure", name: "Azure and Infrastructure", sub: "Cloud and server administration", color: "#38bdf8", certs: [
       ["AZ-900", "Azure Fundamentals", "F", "Cloud concepts, core Azure services, pricing and security basics.", "Recommended after Intermediate Module 8: Cloud"],
-      ["AZ-104", "Azure Administrator", "A", "Manage Azure identities, storage, virtual machines, networks and monitoring.", "Recommended in Advanced Module 8: Cloud"],
+      ["AZ-104", "Azure Administrator", "A", "Manage Azure identities, storage, virtual machines, networks and monitoring.", ""],
       ["AZ-700", "Azure Network Engineer", "A", "Design and run Azure networking: virtual networks, VPN, load balancing and private access.", "Network Engineering specialization"],
-      ["AZ-802", "Windows Server Administrator", "A", "Active Directory, DNS, DHCP, storage and hybrid Windows Server. Replaced AZ-800 and AZ-801.", "Recommended after Intermediate Module 4: Active Directory"],
+      ["AZ-802", "Windows Server Administrator", "A", "Active Directory, DNS, DHCP, storage and hybrid Windows Server. Replaced AZ-800 and AZ-801.", ""],
       ["AZ-305", "Azure Solutions Architect", "E", "Design complete Azure solutions: identity, data, compute, networking and business continuity.", "Long-term goal for the Cloud specialization"],
       ["AZ-140", "Azure Virtual Desktop", "S", "Plan, deliver and manage virtual desktops and remote apps on Azure.", "Remote Desktop tool path"],
       ["AZ-120", "Azure for SAP Workloads", "S", "Plan and run SAP systems on Azure.", "Enterprise Systems specialization"] ] },
     { id: "security", name: "Security and Identity", sub: "Protect identities, devices, data and cloud", color: "#f472b6", certs: [
       ["SC-900", "Security, Compliance and Identity Fundamentals", "F", "Security, compliance and identity basics: Entra ID, Defender, Sentinel and Purview.", "Cybersecurity specialization: Security Analyst"],
       ["SC-200", "Security Operations Analyst", "A", "SOC work with Defender XDR and Microsoft Sentinel: KQL hunting, incidents and response.", "Cybersecurity specialization: Security Analyst"],
-      ["SC-300", "Identity and Access Administrator", "A", "Entra ID, single sign-on, MFA, Conditional Access and identity governance.", "Recommended in Advanced Module 4: Active Directory"],
+      ["SC-300", "Identity and Access Administrator", "A", "Entra ID, single sign-on, MFA, Conditional Access and identity governance.", ""],
       ["SC-401", "Information Security Administrator", "A", "Protect data with Microsoft Purview: labels, data loss prevention and retention. Replaced SC-400.", ""],
       ["SC-500", "Cloud and AI Security Engineer", "A", "Secure Azure and AI workloads: identity, network, compute, data and posture. Replaced AZ-500.", "Cloud specialization: Cloud Security Engineer"],
       ["SC-100", "Cybersecurity Architect", "E", "Design a full zero trust security strategy across identity, devices, apps and data.", "Long-term goal for the Cybersecurity specialization"] ] },
     { id: "m365", name: "Microsoft 365 and Devices", sub: "The workplace: users, laptops, Teams and Copilot", color: "#fb923c", certs: [
-      ["AB-900", "Microsoft 365 Copilot and Agent Administration Fundamentals", "F", "Microsoft 365 basics with Copilot and agents. Replaced MS-900.", "Microsoft 365 tool path"],
-      ["MD-102", "Endpoint Administrator", "A", "Deploy, configure and secure Windows devices with Intune.", "Recommended after Intermediate Module 2: Windows"],
+      ["AB-900", "Microsoft 365 Copilot and Agent Administration Fundamentals", "F", "Microsoft 365 basics with Copilot and agents. Replaced MS-900.", "Recommended at Beginner Level 5.3: Microsoft 365 for Everyday Support"],
+      ["MD-102", "Endpoint Administrator", "A", "Deploy, configure and secure Windows devices with Intune.", ""],
       ["MS-700", "Teams Administrator", "A", "Manage Microsoft Teams: chat, meetings, calling and governance.", "Microsoft 365 tool path"],
       ["MS-721", "Collaboration Communications Systems Engineer", "A", "Teams Phone, meeting rooms and voice systems.", ""],
       ["AB-650", "Microsoft 365 and AI Services Administrator", "A", "Run a Microsoft 365 tenant with its AI services. Replaces MS-102 (retires 30 November 2026).", "Microsoft 365 tool path"] ] },

@@ -52,7 +52,7 @@ TRACKS.sp1 = [
   { name: "Network Security Engineer", color: "#f472b6", icon: IC.shield, blurb: "Protect the network: firewalls, VPNs, access control and zero trust.", tools: ["nmap"], certs: ["security", "ccnacyber"], paths: [
     T("Network Security", "Security fundamentals", "Firewalls", "Access control lists", "VPN fundamentals", "Securing network devices"),
     T("Advanced Network Security", "Next-generation firewalls", "IDS and IPS", "Network access control", "Zero trust networking", "Segmentation") ] },
-  { name: "Cloud and Data Center Network Engineer", color: "#22d3ee", icon: IC.cloud, blurb: "Design the networks inside clouds, data centers and wireless campuses.", tools: [], certs: ["cloudnetx", "az700"], paths: [
+  { name: "Cloud and Data Center Network Engineer", color: "#22d3ee", icon: IC.cloud, blurb: "Design the networks inside clouds, data centers and wireless campuses.", tools: [], certs: ["cloudnetx"], paths: [
     T("Wireless Networking", "Wireless fundamentals", "Wi-Fi standards", "Wireless security", "Enterprise wireless design", "Site surveys"),
     T("Cloud Networking", "Cloud networking fundamentals", "AWS networking", "Azure networking", "Hybrid cloud networks", "Cloud load balancing"),
     T("Data Center Networking", "Data center architecture", "Spine-leaf design", "VXLAN and overlays", "Data center redundancy", "Storage networking") ] },
@@ -62,7 +62,7 @@ TRACKS.sp1 = [
     T("Network Architecture and Design", "Enterprise architecture", "Campus design", "Capacity planning", "Redundancy and scale", "Design documentation") ] }
 ];
 TRACKS.sp2 = [
-  { name: "Windows Server Administrator", color: "#38bdf8", icon: IC.server, blurb: "Run the Windows servers, Active Directory and Microsoft 365 that most companies depend on.", tools: ["sysinternals", "intune"], certs: ["az802", "md102"], paths: [
+  { name: "Windows Server Administrator", color: "#38bdf8", icon: IC.server, blurb: "Run the Windows servers, Active Directory and Microsoft 365 that most companies depend on.", tools: ["sysinternals", "intune"], certs: ["az900"], paths: [
     T("Windows Server Roles", "Installing and configuring Windows Server", "DNS and DHCP roles", "File and print servers", "Remote Desktop Services", "Server Manager and Windows Admin Center"),
     T("Active Directory at Scale", "Sites, replication and FSMO roles", "Group Policy design", "Delegation and least privilege", "Backup and recovery of AD", "Hybrid identity with Entra ID"),
     T("PowerShell Automation", "Scripts, functions and modules", "Remoting many servers", "Automating users and reports", "Scheduled tasks", "Error handling and logging"),
@@ -82,7 +82,7 @@ TRACKS.sp2 = [
     T("Enterprise Infrastructure", "Data center basics", "Identity and access at scale", "Configuration management", "Change management", "Documentation and runbooks") ] }
 ];
 TRACKS.sp3 = [
-  { name: "Azure Administrator", color: "#38bdf8", icon: IC.cloud, blurb: "Run a company's Microsoft cloud: identities, virtual machines, storage and networks.", tools: [], certs: ["az900", "az104"], paths: [
+  { name: "Azure Administrator", color: "#38bdf8", icon: IC.cloud, blurb: "Run a company's Microsoft cloud: identities, virtual machines, storage and networks.", tools: [], certs: ["az900"], paths: [
     T("Azure Fundamentals", "Regions, subscriptions and resource groups", "The Azure portal and CLI", "Core services", "Pricing and support", "Shared responsibility"),
     T("Azure Identity and Governance", "Microsoft Entra ID", "Role-based access control", "Policies and locks", "Management groups", "Cost management"),
     T("Azure Compute and Storage", "Virtual machines and scale sets", "App Service and containers", "Storage accounts", "Backup and recovery", "Monitoring with Azure Monitor"),
@@ -95,13 +95,13 @@ TRACKS.sp3 = [
     T("Google Cloud Fundamentals", "Projects and billing", "Console and gcloud CLI", "IAM basics", "Core products", "Pricing"),
     T("Google Cloud Compute and Storage", "Compute Engine", "Cloud Storage", "Cloud SQL", "Google Kubernetes Engine", "Monitoring and logging"),
     T("Google Cloud Networking and Security", "VPC networks", "Firewall rules", "Load balancing", "Identity-Aware Proxy", "Best practices") ] },
-  { name: "Cloud Security Engineer", color: "#f472b6", icon: IC.shield, blurb: "Protect cloud accounts, data and workloads from attack and misconfiguration.", tools: [], certs: ["cloud", "sc500"], paths: [
+  { name: "Cloud Security Engineer", color: "#f472b6", icon: IC.shield, blurb: "Protect cloud accounts, data and workloads from attack and misconfiguration.", tools: [], certs: ["cloud", "sc900"], paths: [
     T("Cloud Identity and Access", "Least privilege", "MFA and Conditional Access", "Service accounts and keys", "Privileged access", "Auditing permissions"),
     T("Securing Cloud Workloads", "Network segmentation", "Encryption and key management", "Hardening virtual machines and containers", "Secrets management", "Secure storage"),
     T("Cloud Detection and Compliance", "Cloud logs and alerts", "Posture management", "Common misconfigurations", "Compliance frameworks", "Incident response in the cloud") ] }
 ];
 TRACKS.sp4 = [
-  { name: "DevOps Engineer", color: "#a78bfa", icon: IC.loop, blurb: "Automate the path from a developer's code to a running application.", tools: ["docker"], certs: ["ghf", "az400"], paths: [
+  { name: "DevOps Engineer", color: "#a78bfa", icon: IC.loop, blurb: "Automate the path from a developer's code to a running application.", tools: ["docker"], certs: ["ghf"], paths: [
     T("Git and GitHub", "Commits, branches and merges", "Pull requests and reviews", "Branching strategies", "Resolving conflicts", "GitHub Actions basics"),
     T("CI/CD Pipelines", "Continuous integration", "Automated tests in the pipeline", "Build artifacts", "Deployment strategies", "Rollbacks"),
     T("Docker and Containers", "Images and containers", "Dockerfiles", "Registries", "Docker Compose", "Container security basics"),
@@ -130,7 +130,7 @@ TRACKS.sp5 = [
     T("APIs and REST", "Designing endpoints", "HTTP methods and status codes", "JSON and validation", "Authentication and tokens", "API documentation"),
     T("Databases for Developers", "SQL queries and joins", "Schema design", "ORMs", "Transactions", "NoSQL basics"),
     T("Backend in Production", "Logging and monitoring", "Caching and queues", "Security: OWASP Top 10", "Testing", "Deploying with containers") ] },
-  { name: "Cloud and AI Developer", color: "#38bdf8", icon: IC.cloud, blurb: "Build applications that run in the cloud and use AI services.", tools: ["docker"], certs: ["ai200"], paths: [
+  { name: "Cloud and AI Developer", color: "#38bdf8", icon: IC.cloud, blurb: "Build applications that run in the cloud and use AI services.", tools: ["docker"], certs: ["ai901"], paths: [
     T("Cloud Application Development", "App hosting options", "Serverless functions", "Cloud storage and databases", "Identity for apps", "CI/CD for cloud apps"),
     T("Building with AI", "Calling AI models from code", "Prompt design", "Retrieval and embeddings", "AI agents and tools", "Responsible AI and costs") ] },
   { name: "QA and Test Automation Engineer", color: "#fbbf24", icon: IC.check, blurb: "Make sure software works before users find the bugs.", tools: ["postman"], certs: [], paths: [
@@ -139,12 +139,12 @@ TRACKS.sp5 = [
     T("Performance and Security Testing", "Load testing basics", "Finding slow pages", "Security testing basics", "Accessibility testing", "Reporting quality") ] }
 ];
 TRACKS.sp6 = [
-  { name: "Data Analyst", color: "#fbbf24", icon: IC.chart, blurb: "Turn raw data into answers and dashboards people can act on.", tools: ["powerbi"], certs: ["data", "pl300"], paths: [
+  { name: "Data Analyst", color: "#fbbf24", icon: IC.chart, blurb: "Turn raw data into answers and dashboards people can act on.", tools: ["powerbi"], certs: ["data", "dp900"], paths: [
     T("SQL for Analysis", "Filtering and sorting", "Joins", "Grouping and aggregates", "Window functions", "Cleaning data"),
     T("Spreadsheets and Power BI", "Excel for analysis", "Data models", "Building reports", "DAX basics", "Sharing dashboards"),
     T("Statistics for Analysts", "Averages and spread", "Distributions", "Correlation", "A/B tests", "Avoiding common mistakes"),
     T("Data Storytelling", "Choosing the right chart", "Finding the insight", "Presenting to managers", "Dashboards that get used", "Data ethics") ] },
-  { name: "Database Administrator", color: "#fb923c", icon: IC.database, blurb: "Keep databases fast, safe and always available.", tools: ["mysqlworkbench"], certs: ["datasys", "dp300"], paths: [
+  { name: "Database Administrator", color: "#fb923c", icon: IC.database, blurb: "Keep databases fast, safe and always available.", tools: ["mysqlworkbench"], certs: ["datasys", "dp900"], paths: [
     T("Database Administration", "Installing and configuring", "Users and permissions", "Maintenance tasks", "Monitoring", "Upgrades"),
     T("Backup and Recovery", "Backup types", "Point-in-time recovery", "Replication", "High availability", "Testing restores"),
     T("Performance and Security", "Indexes", "Query tuning", "Encryption", "Auditing", "Hardening a database") ] },
@@ -163,11 +163,11 @@ TRACKS.sp7 = [
     T("Account and Access Support", "Password resets and MFA", "Locked accounts", "Group membership", "Shared mailboxes", "Verifying the user's identity"),
     T("Remote Support", "Remote desktop tools", "Guiding a user by phone", "Common Windows fixes", "Printer and Wi-Fi problems", "Remote support safety"),
     T("Customer Communication", "Listening and asking questions", "Explaining without jargon", "Difficult callers", "Writing clear updates", "Closing the ticket") ] },
-  { name: "Desktop Support Engineer", color: "#38bdf8", icon: IC.laptop, blurb: "Hands-on support: laptops, hardware, deployments and the problems help desk cannot fix.", tools: ["sysinternals", "intune"], certs: ["md102"], paths: [
+  { name: "Desktop Support Engineer", color: "#38bdf8", icon: IC.laptop, blurb: "Hands-on support: laptops, hardware, deployments and the problems help desk cannot fix.", tools: ["sysinternals", "intune"], certs: ["ab900"], paths: [
     T("Hardware Troubleshooting", "Diagnosing a dead PC", "Replacing parts", "Laptops and docking stations", "Peripherals", "Warranty and vendors"),
     T("Windows Deployment", "Imaging and Autopilot", "Drivers and updates", "Application packaging", "User profile migration", "Asset tracking"),
     T("Advanced Troubleshooting", "Slow computers", "Blue screens", "Network and VPN issues", "Reading event logs", "Root cause vs quick fix") ] },
-  { name: "Workplace Administrator", color: "#a78bfa", icon: IC.users, blurb: "Run the tools everyone works in: Microsoft 365, Google Workspace and Teams.", tools: ["microsoft365", "googleworkspace"], certs: ["sc900"], paths: [
+  { name: "Workplace Administrator", color: "#a78bfa", icon: IC.users, blurb: "Run the tools everyone works in: Microsoft 365, Google Workspace and Teams.", tools: ["microsoft365", "googleworkspace"], certs: ["ab900"], paths: [
     T("Microsoft 365 Administration", "Users and licences", "Exchange Online", "Teams and SharePoint", "Security defaults", "Service health"),
     T("Google Workspace Administration", "Users and organizational units", "Gmail and Drive settings", "Sharing rules", "Devices", "Reports"),
     T("Identity and Device Management", "Single sign-on", "MFA rollout", "Conditional Access", "Managing phones and laptops", "Onboarding and offboarding") ] },

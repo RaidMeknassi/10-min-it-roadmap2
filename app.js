@@ -72,7 +72,7 @@
     var box = toolsEl.querySelector(".tool-icons");
     ["servicenow", "jira", "microsoft365", "googleworkspace", "slack"].forEach(function (id) {   // tools with advanced certification paths
       var t = TOOLS.filter(function (x) { return x.id === id; })[0]; if (!t) return;
-      var a = document.createElement("a"); a.className = "tool-icon"; a.href = "tool.html?t=" + t.id; a.title = t.name; a.setAttribute("aria-label", t.name); a.style.setProperty("--tc", t.color);
+      var a = document.createElement("a"); a.className = "tool-icon"; a.href = t.id === "microsoft365" ? "microsoft.html?a=m365" : "tool.html?t=" + t.id; a.title = t.name; a.setAttribute("aria-label", t.name); a.style.setProperty("--tc", t.color);
       a.innerHTML = '<img src="assets/tool-icons/' + t.id + '.png" alt="" width="52" height="52">';
       var nm = { servicenow: "ServiceNow Admin", jira: "Jira Service Mgmt", microsoft365: "Microsoft 365 Admin", googleworkspace: "Google Workspace Admin", slack: "Slack Admin" }[t.id] || t.name;
       var wr = document.createElement("div"); wr.className = "tool-wrap"; wr.appendChild(a); var lb = document.createElement("span"); lb.className = "tool-label"; lb.textContent = nm; wr.appendChild(lb);
@@ -118,7 +118,7 @@
 
     var en = { info: info, lv: lv, card: card, metaEl: lv.querySelector(".lv-meta"),
                barEl: lv.querySelector(".lv-bar i"), barWrap: lv.querySelector(".lv-bar"), items: [] };
-    if ((info.id === "l2" || info.id === "l3" || info.id === "l4") && typeof comptiaRecNode === "function") { en.tail = comptiaRecNode(info.id); lv.insertBefore(en.tail, lv.querySelector(".flyout")); }   // Tech+ fits after Levels 0-2
+    if ((info.id === "l2" || info.id === "l3" || info.id === "l4" || info.id === "l52") && typeof comptiaRecNode === "function") { en.tail = comptiaRecNode(info.id); lv.insertBefore(en.tail, lv.querySelector(".flyout")); if (info.id === "l52") { en.tail.style.position = "relative"; en.tail.style.zIndex = "3"; en.tail.style.background = "#150b1d"; } }   // Tech+ fits after Levels 0-2
     entries.push(en);
     return en;
   }
