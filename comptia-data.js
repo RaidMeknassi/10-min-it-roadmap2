@@ -46,7 +46,7 @@ var COMPTIA_REC = {
   "adv-im4": ["ccna"], "adv-im3": ["rhcsa"], "adv-im5": ["sc300"], "adv-im10": ["cka"],
   "adv-im9": ["securityx", "sscp"],
   /* Cybersecurity specialization: certificates for each career */
-  "spec-analyst": ["cysa", "sc200", "sc900"], "spec-pentester": ["pentest"], "spec-engineer": ["secot"], "spec-ai": ["secai"], "adv-im7": ["data", "dataai"], "adv-im11": ["cloudnetx", "az104", "awssaa"]
+  "spec-analyst": ["cysa", "sc200", "sc900"], "spec-pentester": ["pentest"], "spec-ai": ["secai"], "adv-im7": ["data", "dataai"], "adv-im11": ["cloudnetx", "az104", "awssaa"]
 };
 function comptiaBadge(id, size) {
   var x = COMPTIA[id] && COMPTIA[id][4];
