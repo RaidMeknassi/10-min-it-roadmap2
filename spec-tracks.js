@@ -52,7 +52,7 @@ TRACKS.sp1 = [
   { name: "Network Security Engineer", color: "#f472b6", icon: IC.shield, blurb: "Protect the network: firewalls, VPNs, access control and zero trust.", tools: ["nmap"], certs: ["security", "ccnacyber"], paths: [
     T("Network Security", "Security fundamentals", "Firewalls", "Access control lists", "VPN fundamentals", "Securing network devices"),
     T("Advanced Network Security", "Next-generation firewalls", "IDS and IPS", "Network access control", "Zero trust networking", "Segmentation") ] },
-  { name: "Cloud and Data Center Network Engineer", color: "#22d3ee", icon: IC.cloud, blurb: "Design the networks inside clouds, data centers and wireless campuses.", tools: [], certs: ["cloudnetx"], paths: [
+  { name: "Cloud and Data Center Network Engineer", color: "#22d3ee", icon: IC.cloud, blurb: "Design the networks inside clouds, data centers and wireless campuses.", tools: [], certs: ["cloudnetx", "az700"], paths: [
     T("Wireless Networking", "Wireless fundamentals", "Wi-Fi standards", "Wireless security", "Enterprise wireless design", "Site surveys"),
     T("Cloud Networking", "Cloud networking fundamentals", "AWS networking", "Azure networking", "Hybrid cloud networks", "Cloud load balancing"),
     T("Data Center Networking", "Data center architecture", "Spine-leaf design", "VXLAN and overlays", "Data center redundancy", "Storage networking") ] },
@@ -95,13 +95,13 @@ TRACKS.sp3 = [
     T("Google Cloud Fundamentals", "Projects and billing", "Console and gcloud CLI", "IAM basics", "Core products", "Pricing"),
     T("Google Cloud Compute and Storage", "Compute Engine", "Cloud Storage", "Cloud SQL", "Google Kubernetes Engine", "Monitoring and logging"),
     T("Google Cloud Networking and Security", "VPC networks", "Firewall rules", "Load balancing", "Identity-Aware Proxy", "Best practices") ] },
-  { name: "Cloud Security Engineer", color: "#f472b6", icon: IC.shield, blurb: "Protect cloud accounts, data and workloads from attack and misconfiguration.", tools: [], certs: ["cloud", "cloudnetx"], paths: [
+  { name: "Cloud Security Engineer", color: "#f472b6", icon: IC.shield, blurb: "Protect cloud accounts, data and workloads from attack and misconfiguration.", tools: [], certs: ["cloud", "sc500"], paths: [
     T("Cloud Identity and Access", "Least privilege", "MFA and Conditional Access", "Service accounts and keys", "Privileged access", "Auditing permissions"),
     T("Securing Cloud Workloads", "Network segmentation", "Encryption and key management", "Hardening virtual machines and containers", "Secrets management", "Secure storage"),
     T("Cloud Detection and Compliance", "Cloud logs and alerts", "Posture management", "Common misconfigurations", "Compliance frameworks", "Incident response in the cloud") ] }
 ];
 TRACKS.sp4 = [
-  { name: "DevOps Engineer", color: "#a78bfa", icon: IC.loop, blurb: "Automate the path from a developer's code to a running application.", tools: ["docker"], certs: ["ghf"], paths: [
+  { name: "DevOps Engineer", color: "#a78bfa", icon: IC.loop, blurb: "Automate the path from a developer's code to a running application.", tools: ["docker"], certs: ["ghf", "az400"], paths: [
     T("Git and GitHub", "Commits, branches and merges", "Pull requests and reviews", "Branching strategies", "Resolving conflicts", "GitHub Actions basics"),
     T("CI/CD Pipelines", "Continuous integration", "Automated tests in the pipeline", "Build artifacts", "Deployment strategies", "Rollbacks"),
     T("Docker and Containers", "Images and containers", "Dockerfiles", "Registries", "Docker Compose", "Container security basics"),
@@ -139,12 +139,12 @@ TRACKS.sp5 = [
     T("Performance and Security Testing", "Load testing basics", "Finding slow pages", "Security testing basics", "Accessibility testing", "Reporting quality") ] }
 ];
 TRACKS.sp6 = [
-  { name: "Data Analyst", color: "#fbbf24", icon: IC.chart, blurb: "Turn raw data into answers and dashboards people can act on.", tools: ["powerbi"], certs: ["data"], paths: [
+  { name: "Data Analyst", color: "#fbbf24", icon: IC.chart, blurb: "Turn raw data into answers and dashboards people can act on.", tools: ["powerbi"], certs: ["data", "pl300"], paths: [
     T("SQL for Analysis", "Filtering and sorting", "Joins", "Grouping and aggregates", "Window functions", "Cleaning data"),
     T("Spreadsheets and Power BI", "Excel for analysis", "Data models", "Building reports", "DAX basics", "Sharing dashboards"),
     T("Statistics for Analysts", "Averages and spread", "Distributions", "Correlation", "A/B tests", "Avoiding common mistakes"),
     T("Data Storytelling", "Choosing the right chart", "Finding the insight", "Presenting to managers", "Dashboards that get used", "Data ethics") ] },
-  { name: "Database Administrator", color: "#fb923c", icon: IC.database, blurb: "Keep databases fast, safe and always available.", tools: ["mysqlworkbench"], certs: ["datasys"], paths: [
+  { name: "Database Administrator", color: "#fb923c", icon: IC.database, blurb: "Keep databases fast, safe and always available.", tools: ["mysqlworkbench"], certs: ["datasys", "dp300"], paths: [
     T("Database Administration", "Installing and configuring", "Users and permissions", "Maintenance tasks", "Monitoring", "Upgrades"),
     T("Backup and Recovery", "Backup types", "Point-in-time recovery", "Replication", "High availability", "Testing restores"),
     T("Performance and Security", "Indexes", "Query tuning", "Encryption", "Auditing", "Hardening a database") ] },

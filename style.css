@@ -1345,3 +1345,27 @@ a.cert-node-card.ct-tree:hover { box-shadow: 0 0 24px -6px #ef4444; transform: t
 .sp-gico { width: 78px; height: 78px; display: grid; place-items: center; border-radius: 22px; color: var(--pc); background: color-mix(in srgb, var(--pc) 14%, transparent); border: 2px solid color-mix(in srgb, var(--pc) 60%, transparent); box-shadow: 0 0 26px -8px var(--pc); }
 .sp-gico svg { width: 44px; height: 44px; }
 .sp-gsvg .sp-gl { font-size: 15.5px; }
+/* Microsoft roadmap page */
+.ms-hero { background: linear-gradient(135deg, #1e3a8a, #0f2a66); box-shadow: 0 20px 50px -24px #38bdf8; }
+.ms-legend { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; margin: 14px 0 18px; }
+.ms-l { font-size: 12px; font-weight: 700; padding: 4px 12px; border-radius: 999px; color: #0b1020; }
+.ms-l.f { background: #22c55e; } .ms-l.a { background: #38bdf8; } .ms-l.e { background: #f59e0b; } .ms-l.s { background: #c084fc; }
+.ms-track { margin-bottom: 16px; max-width: 1000px; }
+.ms-track .cs-chips { align-items: center; }
+.msr .cr-tile { min-width: 96px; max-width: 132px; }
+.msr .cr-tname { font-size: 11px !important; line-height: 1.25; }
+.msr .ct-vbadge b { font-size: 10.5px; }
+.msr .cr-detail { max-width: 760px; margin-left: auto; margin-right: auto; }
+/* AWS and Google Cloud roadmap pages */
+.aws-hero { background: linear-gradient(135deg, #b45309, #7c2d12); box-shadow: 0 20px 50px -24px #f59e0b; }
+.gc-hero { background: linear-gradient(135deg, #1a73e8, #188038); box-shadow: 0 20px 50px -24px #34a853; }
+.vr-pair { display: inline-flex; align-items: center; gap: 8px; }
+.vr-note { color: #fbbf24 !important; font-size: 13px; margin-top: 6px; }
+.vr-path { display: flex; flex-wrap: wrap; align-items: center; gap: 8px 14px; padding: 8px 4px; border-top: 1px solid rgba(255,255,255,.07); text-align: left; }
+.vr-path:first-child { border-top: 0; }
+.vr-path > b { flex: 0 0 210px; font-size: 13.5px; color: #e7e9f5; }
+.vr-steps { display: flex; flex-wrap: wrap; align-items: center; gap: 6px; }
+.vr-steps i { color: #8b90a6; font-style: normal; }
+.vr-step { font: inherit; font-size: 12px; font-weight: 800; color: #0b1020; background: var(--vb); border: 0; border-radius: 8px; padding: 5px 10px; cursor: pointer; }
+.vr-step:hover { filter: brightness(1.15); }
+@media (max-width: 560px) { .vr-path > b { flex-basis: 100%; } }
