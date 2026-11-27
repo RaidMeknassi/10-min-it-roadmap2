@@ -59,7 +59,9 @@
   var LVN = { F: "Fundamentals", A: "Associate", E: "Expert", S: "Specialty" }, LVC = { F: "#22c55e", A: "#38bdf8", E: "#f59e0b", S: "#c084fc" };
   var LVSUB = { E: "The top: design and lead. Usually needs an Associate first.", A: "The job-role exams. Pick the one that matches your work.", F: "Optional start for beginners. No experience needed." };
   var VALID = { F: "Does not expire (Fundamentals have no renewal).", A: "Valid 1 year. Renew for free online each year with a short Microsoft Learn assessment.", E: "Valid 1 year. Renew for free online each year. Expert level usually needs an Associate certification first.", S: "Valid 1 year. Renew for free online each year." };
-  var EXTRA = { m365: ["tool.html?t=microsoft365", "Open the Microsoft 365 course with lessons →"] };
+  /* Microsoft 365 has one pyramid only: the course pyramid on the Tools page */
+  var M365 = { "ab-900": 1, "md-102": 2, "ms-700": 3, "ms-721": 4, "ab-650": 5 }, EXTRA = {};
+  function m365Url(k) { return "tool.html?t=microsoft365" + (M365[k] ? "&l=" + M365[k] : ""); }
   var root = document.getElementById("cs-levels"), chips = {}, byId = {}, areaOf = {}, byArea = {}, detail = null;
   function id(c) { return c[0].toLowerCase(); }
   function el(t, c, x) { var e = document.createElement(t); if (c) e.className = c; if (x != null) e.textContent = x; return e; }
@@ -80,11 +82,11 @@
     root.innerHTML = ""; chips = {}; detail = null; document.getElementById("ms-intro").hidden = false;
     var grid = el("div", "ms-areas");
     TR.forEach(function (t) {
-      var a = el("a", "ms-area"); a.href = "microsoft.html?a=" + t.id; a.style.setProperty("--c", t.color);
+      var a = el("a", "ms-area"); a.href = t.id === "m365" ? m365Url() : "microsoft.html?a=" + t.id; a.style.setProperty("--c", t.color);
       a.appendChild(el("b", "", t.name)); a.appendChild(el("span", "", t.sub));
       var codes = el("span", "ms-area-codes"); t.certs.forEach(function (c) { var d = el("i", "", c[0]); d.style.background = LVC[c[2]]; codes.appendChild(d); }); a.appendChild(codes);
       a.appendChild(el("em", "", t.certs.length + " certifications →"));
-      a.onclick = function (e) { e.preventDefault(); try { history.pushState(null, "", a.href); } catch (x) {} area(t.id); scrollTo(0, 0); };
+      if (t.id !== "m365") a.onclick = function (e) { e.preventDefault(); try { history.pushState(null, "", a.href); } catch (x) {} area(t.id); scrollTo(0, 0); };
       grid.appendChild(a);
     });
     root.appendChild(grid);
@@ -119,6 +121,7 @@
   }
   function route() {
     var h = (location.hash || "").slice(1).toLowerCase(), a = new URLSearchParams(location.search).get("a");
+    if (areaOf[h] === "m365" || (!byId[h] && a === "m365")) { location.replace(m365Url(h)); return; }
     if (byId[h]) { area(areaOf[h], h); setTimeout(function () { if (detail) detail.scrollIntoView({ block: "center" }); }, 150); }
     else if (byArea[a]) area(a); else chooser();
   }

@@ -142,7 +142,7 @@ const TOOLS = [
 
   { id: "microsoft365", name: "Microsoft 365", group: "collab", color: "#d83b01", tags: ["Outlook", "Teams", "OneDrive", "SharePoint", "Copilot"],
     desc: "Outlook, Teams, OneDrive, SharePoint and more: the productivity ecosystem most offices use every day.",
-    note: "Microsoft changes its exams often. MS-900 retired on 31 March 2026 (replaced by AB-900). MS-102 is retiring and is replaced by AB-650. Always check Microsoft Learn before you book.",
+    note: "Levels 2, 3 and 4 are separate specializations: take the one that matches your job, in any order. Microsoft changes its exams often. MS-900 retired on 31 March 2026 (replaced by AB-900). MS-102 is retiring and is replaced by AB-650. Always check Microsoft Learn before you book.",
     levels: [
       { title: "Microsoft 365 for IT Support", role: "Beginner", desc: "Outlook, Teams, OneDrive, SharePoint, accounts, licensing basics and troubleshooting.", color: "#f2a07b", lessons: ["What Is Microsoft 365?", "Outlook: Mail, Calendar and Common Problems", "Teams: Chat, Meetings and Calls", "OneDrive: Sync and Sharing", "SharePoint: Sites and Libraries", "Fixing the Top 10 User Issues"] },
       { title: "Microsoft 365 Fundamentals", role: "Fundamentals", color: "#ff8c4c", cert: ["AB-900", "Microsoft 365 Copilot and Agent Administration Fundamentals", "Microsoft"],
@@ -154,6 +154,9 @@ const TOOLS = [
       { title: "Teams Administrator Associate", role: "Collaboration specialization", color: "#8b5cf6", cert: ["MS-700", "Teams Administrator Associate", "Microsoft"],
         desc: "Teams administration, meetings, calling, policies and collaboration.",
         lessons: ["Planning Teams Deployment", "Teams Policies", "Meetings, Calling and Rooms", "Governance and Lifecycle"] },
+      { title: "Collaboration Communications Systems Engineer Associate", role: "Voice and meeting rooms specialization", color: "#38bdf8", cert: ["MS-721", "Collaboration Communications Systems Engineer Associate", "Microsoft"],
+        desc: "Teams Phone, calling plans, meeting rooms and voice quality.",
+        lessons: ["Planning Teams Phone", "Phone Numbers and Calling Plans", "Call Queues and Auto Attendants", "Teams Rooms and Devices", "Troubleshooting Call Quality"] },
       { title: "Microsoft 365 and AI Services Administrator Associate", role: "Advanced administration", color: "#e11d48", cert: ["AB-650", "Microsoft 365 and AI Services Administrator Associate", "Microsoft"],
         desc: "Tenant administration, Entra ID, Defender, Purview, Copilot, AI agents and governance.",
         lessons: ["Microsoft 365 Tenant Administration", "Identity and Access with Entra ID", "Security with Microsoft Defender", "Compliance and Data Protection with Purview", "Managing Microsoft 365 Copilot", "Administering AI Agents", "Governance and Best Practices"] }
@@ -539,7 +542,8 @@ const CERT_INFO = {
   "microsoft365-1": ["The basics of Microsoft 365: cloud, productivity, security and AI (replaced MS-900).", "Beginners and anyone supporting Microsoft 365 users.", "IT support, M365 support technician."],
   "microsoft365-2": ["Proves you can manage company devices with Intune and Windows Autopilot.", "Desktop support and endpoint admins.", "Endpoint administrator, desktop engineer, 2nd line support."],
   "microsoft365-3": ["Proves you can set up and manage Microsoft Teams for a company.", "People who run Teams, meetings and calling.", "Teams administrator, collaboration engineer."],
-  "microsoft365-4": ["Proves you can run a Microsoft 365 tenant with its AI services: Entra ID, Defender, Purview, Copilot and agents (replaces MS-102).", "Experienced Microsoft 365 admins.", "Microsoft 365 administrator, M365 and AI services engineer."],
+  "microsoft365-4": ["Proves you can design and run Teams Phone, meeting rooms and voice systems.", "Teams admins who move into calling and meeting rooms.", "Voice engineer, collaboration engineer, Teams Rooms specialist."],
+  "microsoft365-5": ["Proves you can run a Microsoft 365 tenant with its AI services: Entra ID, Defender, Purview, Copilot and agents (replaces MS-102).", "Experienced Microsoft 365 admins.", "Microsoft 365 administrator, M365 and AI services engineer."],
   "googleworkspace-1": ["Proves you can manage Google Workspace: users, groups and basic settings.", "IT support staff in companies or schools using Google.", "Workspace admin, IT support."],
   "slack-1": ["Proves you can manage a Slack workspace: users, channels, apps and security.", "People who run Slack for their company.", "Slack administrator, collaboration admin."],
   "slack-2": ["Proves you can plan and roll out Slack for a whole organisation.", "Consultants and project leads.", "Slack consultant, collaboration consultant."],
@@ -649,7 +653,7 @@ var LEVEL53 = (function () {
 })();
 
 /* ---- certification badge pictures for tool levels (assets/cert-badges/<tool>-<level>.png) ---- */
-var TOOL_BADGES = { microsoft365: [0, 1, 2, 3, 4], servicenow: [0, 1, 2, 3, 4, 5, 6] };
+var TOOL_BADGES = { microsoft365: [0, 1, 2, 3, 5], servicenow: [0, 1, 2, 3, 4, 5, 6] };
 function toolBadgeSrc(toolId, i) { var l = TOOL_BADGES[toolId]; return l && l.indexOf(i) >= 0 ? "assets/cert-badges/" + toolId + "-" + i + ".png?v=3" : null; }
 
 /* ---- specialization paths that have lessons (so lesson pages can open them) ---- */

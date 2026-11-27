@@ -24,7 +24,7 @@
   hero.querySelector("h1").textContent = tool.name;
   hero.querySelector(".tp-desc").textContent = tool.desc;
   hero.querySelector(".tp-note").textContent = tool.note || "";
-  var ROAD = { microsoft365: ["microsoft.html?a=m365", "See all Microsoft 365 certifications on the Microsoft roadmap \u2192"], googleworkspace: ["gcloud.html#gwa", "See all Google certifications on the Google Cloud roadmap \u2192"] }[tool.id];
+  var ROAD = { microsoft365: ["microsoft.html", "See the other Microsoft areas (Azure, Security, Data, AI\u2026) \u2192"], googleworkspace: ["gcloud.html#gwa", "See all Google certifications on the Google Cloud roadmap \u2192"] }[tool.id];
   if (ROAD) { var rl = el("a", "tp-road", ROAD[1]); rl.href = ROAD[0]; hero.appendChild(rl); }
   main.appendChild(hero);
 
