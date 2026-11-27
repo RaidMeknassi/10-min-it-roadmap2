@@ -51,6 +51,9 @@
    ["CompTIA SecAI+", "SecAI+", "a", ["Cybersecurity", "Data and Artificial Intelligence"]], ["CompTIA SecOT+", "SecOT+", "a", ["Cybersecurity"]], ["CompTIA SecurityX", "SecurityX", "a", ["Cybersecurity"]],
    ["CompTIA CloudNetX", "CloudNetX", "a", ["Cloud Computing", "Network Engineering"]]].forEach(function (x) { C.push([x[0], "CompTIA", x[1], [x[2]], x[3]]); });
   [["Cisco CCST Networking", "CCST NET", "b", ["Network Engineering", "IT Support Engineering"]], ["Cisco CCNA Cybersecurity", "CCNA CYBER", "i", ["Cybersecurity"]], ["Cisco CCNA Automation", "CCNA AUTO", "a", ["Network Engineering", "DevOps and Automation"]], ["Cisco CCNP Cybersecurity", "CCNP CYBER", "a", ["Cybersecurity"]]].forEach(function (x) { C.push([x[0], "Cisco", x[1], [x[2]], x[3]]); });
+  [["ISC2 SSCP", "SSCP", "a", ["Cybersecurity"]], ["ISC2 CISSP", "CISSP", "a", ["Cybersecurity"]], ["ISC2 CCSP", "CCSP", "a", ["Cybersecurity", "Cloud Computing"]], ["ISC2 CSSLP", "CSSLP", "a", ["Cybersecurity", "Software Development"]], ["ISC2 CGRC", "CGRC", "a", ["Cybersecurity"]]].forEach(function (x) { C.push([x[0], "ISC2", x[1], [x[2]], x[3]]); });
+  var IS_ID = { "ISC2 Certified in Cybersecurity (CC)": "cc", "ISC2 SSCP": "sscp", "ISC2 CISSP": "cissp", "ISC2 CCSP": "ccsp", "ISC2 CSSLP": "csslp", "ISC2 CGRC": "cgrc" };
+  C.forEach(function (c) { if (IS_ID[c[0]]) c[5] = c[5] || "isc2.html#" + IS_ID[c[0]]; });
   var CS_ID = { "Cisco CCNA": "ccna", "Cisco CCNP Enterprise": "ccnpent", "Cisco CCNP Security": "ccnpsec", "Cisco CCST Networking": "ccstnet", "Cisco CCNA Cybersecurity": "ccnacyber", "Cisco CCNA Automation": "ccnaauto", "Cisco CCNP Cybersecurity": "ccnpcyber" };
   C.forEach(function (c) { if (CS_ID[c[0]]) c[5] = c[5] || "cisco.html#" + CS_ID[c[0]]; });
   var CT_ID = { "Tech+": "tech", "A+": "a", "N+": "network", "SEC+": "security", "LNX+": "linux", "CySA+": "cysa", "PT+": "pentest", "Server+": "server", "Cloud+": "cloud", "Project+": "project",
@@ -112,7 +115,7 @@
       card.appendChild(tags);
       var vd = (typeof certValidityEl === "function") ? certValidityEl(c[0]) : null; if (vd) card.appendChild(vd);
       if (typeof certLifeEl === "function") { var lf = certLifeEl(c[0]); card.appendChild(lf); if (/st-retired/.test(lf.className)) card.classList.add("is-retired"); }   // exam version, retirement date   // how long it stays valid + official links
-      if (c[5]) card.appendChild(el("span", "cx-go", certDone ? "✓ Completed" : c[5].indexOf("course") === 0 ? "Start the course →" : c[5].indexOf("comptia") === 0 ? "See the CompTIA roadmap →" : c[5].indexOf("cisco") === 0 ? "See the Cisco roadmap →" : "See the lessons →")); grid.appendChild(card);
+      if (c[5]) card.appendChild(el("span", "cx-go", certDone ? "✓ Completed" : c[5].indexOf("course") === 0 ? "Start the course →" : c[5].indexOf("comptia") === 0 ? "See the CompTIA roadmap →" : c[5].indexOf("cisco") === 0 ? "See the Cisco roadmap →" : c[5].indexOf("isc2") === 0 ? "See the ISC2 roadmap →" : "See the lessons →")); grid.appendChild(card);
     });
     $("cx-count").textContent = n ? n + " certification" + (n === 1 ? "" : "s") : "No certification found. Try another name or clear a filter.";
   }

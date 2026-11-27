@@ -1334,3 +1334,4 @@ a.cert-node-card.ct-tree:hover { box-shadow: 0 0 24px -6px #ef4444; transform: t
 .cs-chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
 .cs .cr-tile { min-width: 110px; }
 .cs .ct-vbadge b { font-size: 12px; }
+.is2-hero { background: linear-gradient(135deg, #3f6212, #365314); box-shadow: 0 20px 50px -24px #84cc16; }

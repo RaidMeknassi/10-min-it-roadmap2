@@ -21,7 +21,7 @@ var COMPTIA = {
   project: ["Project+", "Practitioner", "IT project management fundamentals: planning, scheduling, budgets and teams.", "Recommended with the Agile & Project Management pathway"]
 };
 /* certificates from other vendors shown with the same cards: [short name, level, what it covers, fit, {full, href, vendor, color}] */
-COMPTIA.isc2cc = ["CC", "Beginner", "ISC2's entry-level security certificate: security principles, access control, network security, incident response and security operations.", "Recommended after Beginner Level 4: Cybersecurity Fundamentals", { full: "ISC2 Certified in Cybersecurity (CC)", href: "certs.html?q=ISC2", vendor: "ISC2", color: "#84cc16" }];
+COMPTIA.isc2cc = ["CC", "Beginner", "ISC2's entry-level security certificate: security principles, access control, network security, incident response and security operations.", "Recommended after Beginner Level 4: Cybersecurity Fundamentals", { full: "ISC2 Certified in Cybersecurity (CC)", href: "isc2.html#cc", vendor: "ISC2", color: "#84cc16" }];
 COMPTIA.sc900 = ["SC-900", "Fundamentals", "Microsoft security, compliance and identity basics: Entra ID, Defender, Sentinel and Purview.", "Recommended in Advanced Module 9: Cybersecurity", { full: "Microsoft SC-900 Security, Compliance and Identity Fundamentals", href: "certs.html?q=SC-900", vendor: "Microsoft", color: "#38bdf8" }];
 COMPTIA.md102 = ["MD-102", "Associate", "Microsoft Endpoint Administrator: deploy, configure and secure Windows devices with Intune.", "Recommended after Intermediate Module 2: Windows", { full: "Microsoft MD-102 Endpoint Administrator", href: "certs.html?q=Endpoint", vendor: "Microsoft", color: "#38bdf8" }];
 COMPTIA.az802 = ["AZ-802", "Associate", "Microsoft Windows Server Administrator: Active Directory, DNS, DHCP, storage and hybrid servers.", "Recommended after Intermediate Module 4: Active Directory", { full: "Microsoft AZ-802 Windows Server Administrator", href: "certs.html?q=AZ-802", vendor: "Microsoft", color: "#38bdf8" }];
@@ -37,13 +37,14 @@ COMPTIA.az104 = ["AZ-104", "Associate", "Microsoft Azure Administrator: identiti
 COMPTIA.awssaa = ["SAA", "Associate", "AWS Solutions Architect Associate: designing secure, reliable and cost-effective systems on AWS.", "Recommended in Advanced Module 8: Cloud", { full: "AWS Solutions Architect Associate", href: "certs.html?q=Solutions Architect", vendor: "AWS", color: "#f59e0b" }];
 COMPTIA.sc200 = ["SC-200", "Associate", "Microsoft Security Operations Analyst: Defender XDR, Microsoft Sentinel, KQL hunting and incident response.", "Recommended in Advanced Module 9: Cybersecurity", { full: "Microsoft SC-200 Security Operations Analyst", href: "certs.html?q=SC-200", vendor: "Microsoft", color: "#38bdf8" }];
 COMPTIA.gcdl = ["CDL", "Foundational", "Google Cloud Digital Leader: cloud concepts, Google Cloud products, data and AI, security and cost basics.", "Recommended after Intermediate Module 8: Cloud", { full: "Google Cloud Digital Leader (CDL)", href: "certs.html?q=Digital Leader", vendor: "Google", color: "#34a853" }];
+COMPTIA.sscp = ["SSCP", "Practitioner", "ISC2 Systems Security Certified Practitioner: hands-on security for admins and analysts. Needs 1 year of security work.", "Recommended in Advanced Module 9: Cybersecurity", { full: "ISC2 SSCP", href: "isc2.html#sscp", vendor: "ISC2", color: "#84cc16" }];
 function certFull(id) { var c = COMPTIA[id]; return c[4] ? c[4].full : "CompTIA " + c[0]; }
 function certHref(id) { var c = COMPTIA[id]; return c[4] ? c[4].href : "comptia.html#" + id; }
 var COMPTIA_REC = {
   l2: ["tech"], l3: ["ccstnet"], l4: ["isc2cc"], l5: ["a"],
   im4: ["network"], im2: ["md102"], im3: ["linux"], im5: ["az802"], im10: ["server"], im7: ["datasys"], im11: ["cloud", "az900", "awsccp", "gcdl"], im9: ["security", "ccnacyber"],
   "adv-im4": ["ccna"], "adv-im3": ["rhcsa"], "adv-im5": ["sc300"], "adv-im10": ["cka"],
-  "adv-im9": ["cysa", "pentest", "securityx", "secai", "secot", "sc900", "sc200"], "adv-im7": ["data", "dataai"], "adv-im11": ["cloudnetx", "az104", "awssaa"]
+  "adv-im9": ["cysa", "pentest", "securityx", "secai", "secot", "sc900", "sc200", "sscp"], "adv-im7": ["data", "dataai"], "adv-im11": ["cloudnetx", "az104", "awssaa"]
 };
 function comptiaBadge(id, size) {
   var x = COMPTIA[id] && COMPTIA[id][4];

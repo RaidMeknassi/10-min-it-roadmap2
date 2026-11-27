@@ -15,7 +15,7 @@
   if (/path\.html$/.test(p) || (/lesson\.html$/.test(p) && /^agile\./.test(n))) k = "i";
   if (/tools?\.html$/.test(p)) k = "t";
   if (/languages?\.html$/.test(p) || (/lesson\.html$/.test(p) && (/^lang\./.test(n) || (typeof LANGS !== "undefined" && LANGS.some(function (L) { return L.lv.some(function (rows) { return rows.some(function (r) { return r[0] === n; }); }); }))))) k = "g";
-  if (/(certs|comptia|cisco)\.html$/.test(p)) k = "c";
+  if (/(certs|comptia|cisco|isc2)\.html$/.test(p)) k = "c";
   if (/plans\.html$/.test(p)) k = "p";
   if ((/level\.html$/.test(p) && /^adv-/.test(q.get("l") || "")) || (/lesson\.html$/.test(p) && /^adv-/.test(q.get("from") || ""))) k = "a";
   var a = document.querySelector('.top-nav a[data-nav="' + k + '"]'); if (a) a.classList.add("on");
