@@ -10,7 +10,7 @@ var COMPTIA = {
   pentest: ["PenTest+", "Advanced", "Ethical hacking and penetration testing: planning, scanning, exploiting and reporting.", "Recommended in Advanced Module 9: Cybersecurity"],
   securityx: ["SecurityX", "Expert", "Enterprise security architecture, engineering and strategy for senior security roles.", "Recommended in Advanced Module 9: Cybersecurity (expert level)"],
   secai: ["SecAI+", "Advanced", "AI security: protecting AI systems and using AI safely in security work.", "Recommended in Advanced Module 9: Cybersecurity"],
-  secot: ["SecOT+", "Advanced", "Operational technology (OT) and industrial control system security.", "Recommended in Advanced Module 9: Cybersecurity"],
+  secot: ["SecOT+", "Advanced", "Operational technology (OT) and industrial control system security.", "Niche: for security in factories, energy and critical infrastructure"],
   server: ["Server+", "Practitioner", "Servers, storage, virtualization and data center infrastructure.", "Recommended after Intermediate Module 6: Virtualization"],
   linux: ["Linux+", "Practitioner", "Linux administration, permissions, services, scripting and troubleshooting.", "Recommended after Intermediate Module 3: Linux"],
   cloud: ["Cloud+", "Practitioner", "Cloud operations and security: deploying, managing and troubleshooting cloud systems.", "Recommended after Intermediate Module 8: Cloud"],
@@ -44,7 +44,7 @@ var COMPTIA_REC = {
   l2: ["tech"], l3: ["ccstnet"], l4: ["isc2cc"], l5: ["a"],
   im4: ["network"], im2: ["md102"], im3: ["linux"], im5: ["az802"], im10: ["server"], im7: ["datasys"], im11: ["cloud", "az900", "awsccp", "gcdl"], im9: ["security", "ccnacyber"],
   "adv-im4": ["ccna"], "adv-im3": ["rhcsa"], "adv-im5": ["sc300"], "adv-im10": ["cka"],
-  "adv-im9": ["cysa", "pentest", "securityx", "secai", "secot", "sc900", "sc200", "sscp"], "adv-im7": ["data", "dataai"], "adv-im11": ["cloudnetx", "az104", "awssaa"]
+  "adv-im9": ["cysa", "pentest", "securityx", "secai", "sc900", "sc200", "sscp"], "adv-im7": ["data", "dataai"], "adv-im11": ["cloudnetx", "az104", "awssaa"]
 };
 function comptiaBadge(id, size) {
   var x = COMPTIA[id] && COMPTIA[id][4];
