@@ -1369,3 +1369,24 @@ a.cert-node-card.ct-tree:hover { box-shadow: 0 0 24px -6px #ef4444; transform: t
 .vr-step { font: inherit; font-size: 12px; font-weight: 800; color: #0b1020; background: var(--vb); border: 0; border-radius: 8px; padding: 5px 10px; cursor: pointer; }
 .vr-step:hover { filter: brightness(1.15); }
 @media (max-width: 560px) { .vr-path > b { flex-basis: 100%; } }
+/* Microsoft: area chooser and one pyramid per area */
+.ms-areas { display: grid; grid-template-columns: repeat(auto-fit, minmax(270px, 1fr)); gap: 14px; max-width: 1000px; margin: 18px auto; }
+.ms-area { display: flex; flex-direction: column; gap: 8px; text-align: left; text-decoration: none; color: #e7e9f5; padding: 18px 18px 14px; border-radius: 16px; background: rgba(255,255,255,.04); border: 1px solid rgba(255,255,255,.1); border-top: 4px solid var(--c); transition: transform .15s, background .15s; }
+.ms-area:hover { transform: translateY(-3px); background: rgba(255,255,255,.07); }
+.ms-area > b { font-size: 17px; color: var(--c); }
+.ms-area > span { font-size: 13px; color: #b6bad0; }
+.ms-area-codes { display: flex; flex-wrap: wrap; gap: 4px; }
+.ms-area-codes i { font-style: normal; font-size: 10px; font-weight: 800; color: #0b1020; padding: 2px 6px; border-radius: 6px; }
+.ms-area > em { font-style: normal; font-size: 12.5px; font-weight: 700; color: var(--c); margin-top: auto; }
+.ms-back { display: inline-block; margin: 6px 0 12px; color: #b6bad0; font-size: 14px; }
+.ms-pyr { max-width: 1000px; margin: 0 auto 18px; text-align: center; }
+.ms-pyr > h3 { color: var(--c); font-size: 24px; letter-spacing: .04em; text-transform: uppercase; margin: 0 0 4px; }
+.ms-pyr > .cs-sub { margin-bottom: 18px; }
+.ms-band { position: relative; margin: 0 auto 6px; padding: 16px 7% 18px; min-height: 150px; box-sizing: border-box; }
+.ms-band-bg { position: absolute; inset: 0; background: linear-gradient(180deg, color-mix(in srgb, var(--lc) 26%, transparent), color-mix(in srgb, var(--lc) 10%, transparent)); border-bottom: 3px solid var(--lc); }
+.ms-band > *:not(.ms-band-bg) { position: relative; }
+.ms-band-name { display: block; color: var(--lc); font-size: 15px; letter-spacing: .08em; text-transform: uppercase; }
+.ms-band-sub { display: block; color: #b6bad0; font-size: 12px; margin: 2px 0 10px; }
+.ms-side { display: block; font-size: 9.5px !important; font-weight: 800; color: #c084fc; text-transform: uppercase; letter-spacing: .04em; margin-top: 3px; }
+.ms-extra { display: block; text-align: center; margin: 4px auto 14px; font-weight: 700; color: #fb923c; }
+.tp-road { display: inline-block; margin-top: 8px; font-size: 13.5px; font-weight: 700; color: var(--c, #fb923c); }
