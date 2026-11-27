@@ -89,7 +89,7 @@
     });
 
     var en = {
-      info: info, lv: lv, card: card, sugg: lv.querySelector(".ct-rec") || sugg,
+      info: info, lv: lv, card: card, sugg: lv,   /* lines leave from under the last box (languages, tools, certificates) */
       metaEl: lv.querySelector(".lv-meta"),
       barEl:  lv.querySelector(".lv-bar i"),
       barWrap: lv.querySelector(".lv-bar"),

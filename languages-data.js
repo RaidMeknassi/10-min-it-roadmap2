@@ -119,7 +119,7 @@ const LANGS = [
 /* languages suggested after each Intermediate module */
 const LANG_SUGGEST = {   // each language is recommended once, under the module where it fits best
   im2: ["powershell", "cmd"], im3: ["bash"], im7: ["sql"], im8: ["html", "css", "javascript", "php", "json"],
-  im9: ["python", "kql", "spl", "regex"], im10: ["yaml", "go"], im11: ["terraform"]
+  im9: ["python", "spl", "regex"], im10: ["yaml", "go"], im11: ["kql", "terraform"]
 };
 
 /* build lesson rows, labels and lesson-page levels */
