@@ -27,7 +27,9 @@ COMPTIA.md102 = ["MD-102", "Associate", "Microsoft Endpoint Administrator: deplo
 COMPTIA.az802 = ["AZ-802", "Associate", "Microsoft Windows Server Administrator: Active Directory, DNS, DHCP, storage and hybrid servers.", "Recommended after Intermediate Module 4: Active Directory", { full: "Microsoft AZ-802 Windows Server Administrator", href: "certs.html?q=AZ-802", vendor: "Microsoft", color: "#38bdf8" }];
 COMPTIA.az900 = ["AZ-900", "Fundamentals", "Microsoft Azure Fundamentals: cloud concepts, Azure services, pricing and security basics.", "Recommended after Intermediate Module 8: Cloud", { full: "Microsoft AZ-900 Azure Fundamentals", href: "certs.html?q=AZ-900", vendor: "Microsoft", color: "#38bdf8" }];
 COMPTIA.awsccp = ["CCP", "Foundational", "AWS Certified Cloud Practitioner: AWS cloud concepts, core services, security and billing.", "Recommended after Intermediate Module 8: Cloud", { full: "AWS Certified Cloud Practitioner", href: "certs.html?q=AWS Cloud", vendor: "AWS", color: "#f59e0b" }];
-COMPTIA.ccna = ["CCNA", "Associate", "Cisco Certified Network Associate: routing, switching, IP services, security and automation basics.", "Recommended in Advanced Module 1: Networking", { full: "Cisco CCNA", href: "certs.html?q=CCNA", vendor: "Cisco", color: "#0ea5e9" }];
+COMPTIA.ccna = ["CCNA", "Associate", "Cisco Certified Network Associate: routing, switching, IP services, security and automation basics.", "Recommended in Advanced Module 1: Networking", { full: "Cisco CCNA", href: "cisco.html#ccna", vendor: "Cisco", color: "#0ea5e9" }];
+COMPTIA.ccstnet = ["CCST", "Entry", "Cisco Certified Support Technician Networking: a first, low-cost networking exam.", "Recommended after Beginner Level 3: Networking", { full: "Cisco CCST Networking", href: "cisco.html#ccstnet", vendor: "Cisco", color: "#0ea5e9" }];
+COMPTIA.ccnacyber = ["CCNA Cyber", "Associate", "Cisco CCNA Cybersecurity (formerly CyberOps Associate): SOC monitoring, analysis and incident response.", "Recommended after Intermediate Module 9: Cybersecurity", { full: "Cisco CCNA Cybersecurity", href: "cisco.html#ccnacyber", vendor: "Cisco", color: "#0ea5e9" }];
 COMPTIA.rhcsa = ["RHCSA", "Associate", "Red Hat Certified System Administrator: a hands-on exam on real Linux administration tasks.", "Recommended in Advanced Module 3: Linux", { full: "Red Hat RHCSA", href: "certs.html?q=RHCSA", vendor: "Red Hat", color: "#f43f5e" }];
 COMPTIA.sc300 = ["SC-300", "Associate", "Microsoft Identity and Access Administrator: Entra ID, single sign-on, MFA, Conditional Access and identity governance.", "Recommended in Advanced Module 4: Active Directory", { full: "Microsoft SC-300 Identity and Access Administrator", href: "certs.html?q=SC-300", vendor: "Microsoft", color: "#38bdf8" }];
 COMPTIA.cka = ["CKA", "Professional", "Certified Kubernetes Administrator: a hands-on exam on running and fixing Kubernetes clusters.", "Recommended in Advanced Module 6: Virtualization and Containers", { full: "Certified Kubernetes Administrator (CKA)", href: "certs.html?q=Kubernetes", vendor: "CNCF", color: "#326ce5" }];
@@ -38,8 +40,8 @@ COMPTIA.gcdl = ["CDL", "Foundational", "Google Cloud Digital Leader: cloud conce
 function certFull(id) { var c = COMPTIA[id]; return c[4] ? c[4].full : "CompTIA " + c[0]; }
 function certHref(id) { var c = COMPTIA[id]; return c[4] ? c[4].href : "comptia.html#" + id; }
 var COMPTIA_REC = {
-  l2: ["tech"], l4: ["isc2cc"], l5: ["a"],
-  im4: ["network"], im2: ["md102"], im3: ["linux"], im5: ["az802"], im10: ["server"], im7: ["datasys"], im11: ["cloud", "az900", "awsccp", "gcdl"], im9: ["security"],
+  l2: ["tech"], l3: ["ccstnet"], l4: ["isc2cc"], l5: ["a"],
+  im4: ["network"], im2: ["md102"], im3: ["linux"], im5: ["az802"], im10: ["server"], im7: ["datasys"], im11: ["cloud", "az900", "awsccp", "gcdl"], im9: ["security", "ccnacyber"],
   "adv-im4": ["ccna"], "adv-im3": ["rhcsa"], "adv-im5": ["sc300"], "adv-im10": ["cka"],
   "adv-im9": ["cysa", "pentest", "securityx", "secai", "secot", "sc900", "sc200"], "adv-im7": ["data", "dataai"], "adv-im11": ["cloudnetx", "az104", "awssaa"]
 };

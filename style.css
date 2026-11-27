@@ -1326,3 +1326,11 @@ a.cert-node-card.ct-tree:hover { box-shadow: 0 0 24px -6px #ef4444; transform: t
 .ct-vbadge b { font-size: 11px; white-space: nowrap; }
 .adv-road .node-tools .tools-group + .tools-group, .levels .node-tools .tools-group + .tools-group { margin-top: 6px; }
 .levels .node-tools .tools-chips { justify-content: center; }
+/* Cisco roadmap page */
+.cs-hero { background: linear-gradient(135deg, #075985, #0c4a6e); box-shadow: 0 20px 50px -24px #0ea5e9; }
+.cs-level { max-width: 860px; margin: 0 auto; padding: 16px; border: 1px solid color-mix(in srgb, var(--c) 50%, transparent); border-radius: 18px; background: color-mix(in srgb, var(--c) 8%, transparent); }
+.cs-level h3 { margin: 0; font-size: 20px; color: var(--c); text-transform: uppercase; letter-spacing: .05em; }
+.cs-sub { margin: 2px 0 12px; font-size: 13px; color: #aab0c4; }
+.cs-chips { display: flex; flex-wrap: wrap; justify-content: center; gap: 8px; }
+.cs .cr-tile { min-width: 110px; }
+.cs .ct-vbadge b { font-size: 12px; }

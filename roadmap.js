@@ -309,7 +309,7 @@ const CERTS = [
 /* Level 6: certifications for each specialization path */
 const PATH_CERTS = [
   ["Cybersecurity", "#f472b6", ["Microsoft SC-200", "CompTIA CySA+", "CompTIA PenTest+", "OffSec OSCP"]],
-  ["Network Engineering", "#60a5fa", ["CompTIA Network+", "Cisco CCNA", "Cisco CCNP Enterprise", "Cisco CCNP Security", "Cisco DevNet Associate / Professional", "AWS Advanced Networking", "Azure Network Engineer"]],
+  ["Network Engineering", "#60a5fa", ["CompTIA Network+", "Cisco CCNA", "Cisco CCNP Enterprise", "Cisco CCNP Security", "Cisco CCNA / CCNP Automation (formerly DevNet)", "AWS Advanced Networking", "Azure Network Engineer"]],
   ["Cloud Computing", "#22d3ee", ["Microsoft AZ-900 / AZ-104", "AWS Cloud Practitioner / Solutions Architect Associate", "Google Associate Cloud Engineer"]],
   ["DevOps and Automation", "#a78bfa", ["Certified Kubernetes Administrator (CKA)", "HashiCorp Terraform Associate", "GitHub Foundations"]],
   ["Systems Engineering", "#fb923c", ["Microsoft Windows Server Administrator (AZ-802)", "Red Hat RHCSA", "VMware VCP"]],
