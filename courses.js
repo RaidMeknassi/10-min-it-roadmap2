@@ -594,7 +594,8 @@ var LEVEL52 = (function () {
 })();
 /* tools shown under a level (they also stay in the Tools section) */
 var LEVEL_TOOLS = { "im2": ["wintools"], "im8": ["apache", "postman"], "im10": ["virtual", "docker"], "im7": ["dbtools"], "im9": ["nmap"],
-  "adv-im4": ["network"], "adv-im2": ["intune"], "adv-im3": ["ansible"], "adv-im8": ["nginx"], "adv-im10": ["kubernetes"], "adv-im7": ["powerbi"], "adv-im9": ["sentinel", "splunk", "kali", "burp"] };
+  "adv-im4": ["network"], "adv-im2": ["intune"], "adv-im3": ["ansible"], "adv-im8": ["nginx"], "adv-im10": ["kubernetes"], "adv-im7": ["powerbi"], "adv-im9": ["kali"],
+  "spec-analyst": ["sentinel", "splunk"], "spec-pentester": ["burp"] };
 function levelToolsBox(levelId) {
   var ids = LEVEL_TOOLS[levelId]; if (!ids) return null;
   var box = document.createElement("div"); box.className = "node-tools";

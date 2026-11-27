@@ -109,6 +109,12 @@
         col.appendChild(link());
         col.appendChild(lvCard(pathCard(pt.name, "lesson.html?t=l7&g=" + gi + "&p=" + pi, g.color, pt.topics.length + " topics · coming soon"), pt.name));
       });
+      /* tools and certificates for this career */
+      var key = "spec-" + (CIMG[g.name] || "");
+      var tb = (typeof levelToolsBox === "function") ? levelToolsBox(key) : null;
+      if (tb) { col.appendChild(link()); var tt = el("div", "lang-sugg-t", "Recommended tools"); tb.insertBefore(tt, tb.firstChild); tb.querySelectorAll(".tools-group-title").forEach(function (x) { x.remove(); }); tb.classList.add("sp-extra"); col.appendChild(tb); }
+      var cr = (typeof comptiaRecNode === "function") ? comptiaRecNode(key) : null;
+      if (cr) { col.appendChild(link()); cr.classList.add("sp-extra"); col.appendChild(cr); }
       col.appendChild(el("span", "sp-fill")); col.appendChild(el("span", "sp-bb")); col.appendChild(el("span", "sp-trunk"));
       grid.appendChild(col);
     });

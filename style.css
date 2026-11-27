@@ -1335,3 +1335,9 @@ a.cert-node-card.ct-tree:hover { box-shadow: 0 0 24px -6px #ef4444; transform: t
 .cs .cr-tile { min-width: 110px; }
 .cs .ct-vbadge b { font-size: 12px; }
 .is2-hero { background: linear-gradient(135deg, #3f6212, #365314); box-shadow: 0 20px 50px -24px #84cc16; }
+/* tools and certificates inside the Cybersecurity career columns */
+.sp-group .sp-extra { width: 100%; max-width: 260px; margin: 0 auto; box-sizing: border-box; }
+.sp-group .node-tools.sp-extra { padding: 10px; text-align: center; }
+.sp-group .node-tools.sp-extra .tools-chips { justify-content: center; }
+.sp-group .cert-node-card.sp-extra { padding: 8px 10px; gap: 10px; }
+.sp-group .cert-node-card.sp-extra .cert-node-text b { font-size: 12.5px; }

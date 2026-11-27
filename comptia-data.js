@@ -44,7 +44,9 @@ var COMPTIA_REC = {
   l2: ["tech"], l3: ["ccstnet"], l4: ["isc2cc"], l5: ["a"],
   im4: ["network"], im2: ["md102"], im3: ["linux"], im5: ["az802"], im10: ["server"], im7: ["datasys"], im11: ["cloud", "az900", "awsccp", "gcdl"], im9: ["security", "ccnacyber"],
   "adv-im4": ["ccna"], "adv-im3": ["rhcsa"], "adv-im5": ["sc300"], "adv-im10": ["cka"],
-  "adv-im9": ["cysa", "pentest", "securityx", "secai", "sc900", "sc200", "sscp"], "adv-im7": ["data", "dataai"], "adv-im11": ["cloudnetx", "az104", "awssaa"]
+  "adv-im9": ["securityx", "sscp"],
+  /* Cybersecurity specialization: certificates for each career */
+  "spec-analyst": ["cysa", "sc200", "sc900"], "spec-pentester": ["pentest"], "spec-engineer": ["secot"], "spec-ai": ["secai"], "adv-im7": ["data", "dataai"], "adv-im11": ["cloudnetx", "az104", "awssaa"]
 };
 function comptiaBadge(id, size) {
   var x = COMPTIA[id] && COMPTIA[id][4];
