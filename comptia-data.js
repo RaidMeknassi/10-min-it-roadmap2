@@ -38,6 +38,18 @@ COMPTIA.awssaa = ["SAA", "Associate", "AWS Solutions Architect Associate: design
 COMPTIA.sc200 = ["SC-200", "Associate", "Microsoft Security Operations Analyst: Defender XDR, Microsoft Sentinel, KQL hunting and incident response.", "Recommended in Advanced Module 9: Cybersecurity", { full: "Microsoft SC-200 Security Operations Analyst", href: "certs.html?q=SC-200", vendor: "Microsoft", color: "#38bdf8" }];
 COMPTIA.gcdl = ["CDL", "Foundational", "Google Cloud Digital Leader: cloud concepts, Google Cloud products, data and AI, security and cost basics.", "Recommended after Intermediate Module 8: Cloud", { full: "Google Cloud Digital Leader (CDL)", href: "certs.html?q=Digital Leader", vendor: "Google", color: "#34a853" }];
 COMPTIA.sscp = ["SSCP", "Practitioner", "ISC2 Systems Security Certified Practitioner: hands-on security for admins and analysts. Needs 1 year of security work.", "Recommended in Advanced Module 9: Cybersecurity", { full: "ISC2 SSCP", href: "isc2.html#sscp", vendor: "ISC2", color: "#84cc16" }];
+(function () {   // more certificates used on the specialization trees: id, badge text, level, covers, full name, search word, vendor, colour
+  [["gace", "ACE", "Associate", "Google Associate Cloud Engineer: deploy and run applications on Google Cloud.", "Google Associate Cloud Engineer", "Associate Cloud", "Google", "#34a853"],
+   ["ghf", "GH-900", "Foundational", "GitHub Foundations: repositories, pull requests, Actions and collaboration.", "GitHub Foundations", "GitHub", "GitHub", "#94a3b8"],
+   ["terraform", "TF", "Associate", "HashiCorp Terraform Associate: infrastructure as code with Terraform.", "HashiCorp Terraform Associate", "Terraform", "HashiCorp", "#a78bfa"],
+   ["pcep", "PCEP", "Entry", "Python Institute PCEP: the entry-level Python programmer certificate.", "Python Institute PCEP", "PCEP", "Python", "#fbbf24"],
+   ["ai200", "AI-200", "Associate", "Microsoft Azure AI Cloud Developer: build cloud and AI applications on Azure.", "Microsoft AI-200 Azure AI Cloud Developer", "AI-200", "Microsoft", "#38bdf8"],
+   ["dp900", "DP-900", "Fundamentals", "Microsoft Azure Data Fundamentals: core data concepts and Azure data services.", "Microsoft DP-900 Data Fundamentals", "DP-900", "Microsoft", "#38bdf8"],
+   ["ai901", "AI-901", "Fundamentals", "Microsoft Azure AI Fundamentals: AI and machine learning concepts and Azure AI services.", "Microsoft Azure AI Fundamentals", "AI-900", "Microsoft", "#38bdf8"],
+   ["vcp", "VCP", "Professional", "VMware Certified Professional: install, configure and manage VMware vSphere.", "VMware VCP", "VMware", "VMware", "#84cc16"]
+  ].forEach(function (x) { COMPTIA[x[0]] = [x[1], x[2], x[3], "", { full: x[4], href: "certs.html?q=" + encodeURIComponent(x[5]), vendor: x[6], color: x[7] }]; });
+  COMPTIA.itilf = ["ITIL", "Foundation", "ITIL Foundation: the common language of IT service management. Full course on this site.", "", { full: "ITIL Foundation", href: "course.html?c=itil", vendor: "PeopleCert", color: "#a855f7" }];
+})();
 function certFull(id) { var c = COMPTIA[id]; return c[4] ? c[4].full : "CompTIA " + c[0]; }
 function certHref(id) { var c = COMPTIA[id]; return c[4] ? c[4].href : "comptia.html#" + id; }
 var COMPTIA_REC = {

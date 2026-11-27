@@ -25,6 +25,7 @@
     var s = el("div", "sp-stage"); s.appendChild(el("h2", "", title)); if (text) s.appendChild(el("p", "", text)); return s;
   }
   function link() { return el("div", "sp-link"); }
+  function slug(t) { return t.toLowerCase().replace(/[^a-z0-9]+/g, "-").replace(/^-|-$/g, ""); }
 
   /* "Languages to learn" box for this specialization */
   function langStage() {
@@ -85,32 +86,41 @@
     tree.appendChild(link());
     tree.appendChild(stage("What's next?", "Continue to Level 7 and choose your Advanced Specialization."));
     var go = el("a", "sp-go", "Level 7 \u00B7 Advanced Specializations \u2192"); go.href = "level.html?l=l6"; tree.appendChild(go);
-  } else if (i === 0) {
-    document.getElementById("sp-title").textContent = "Cyber Security Learning Roadmap";
-    document.getElementById("sp-sub").textContent = "From fundamental principles to advanced techniques, this roadmap provides clear steps and essential resources to help you build a robust skill set.";
-    tree.appendChild(lvCard(pathCard("Pre-Security Basics"), "Pre-Security Basics"));
-    tree.appendChild(link()); tree.appendChild(lvCard(pathCard("Cybersecurity Foundations 101"), "Cybersecurity Foundations 101"));
+  } else if (i === 0 || (typeof SPEC_TREE !== "undefined" && SPEC_TREE["sp" + i])) {
+    /* career tree: foundations, then one column per career (paths, tools, certificates) */
+    var tid = i === 0 ? "l7" : "sp" + i, cfg = i === 0 ? null : SPEC_TREE[tid];
+    document.getElementById("sp-title").textContent = cfg ? cfg.title : "Cyber Security Learning Roadmap";
+    document.getElementById("sp-sub").textContent = cfg ? cfg.sub : "From fundamental principles to advanced techniques, this roadmap provides clear steps and essential resources to help you build a robust skill set.";
+    if (cfg) cfg.base.forEach(function (bc, k) { if (k) tree.appendChild(link()); tree.appendChild(lvCard(pathCard(bc[0], bc[1], P.color, bc[2]), bc[0])); });
+    else { tree.appendChild(lvCard(pathCard("Pre-Security Basics"), "Pre-Security Basics"));
+      tree.appendChild(link()); tree.appendChild(lvCard(pathCard("Cybersecurity Foundations 101"), "Cybersecurity Foundations 101")); }
     tree.appendChild(link());
-    var note = stage("Cyber Security Career Skills", "Master the specific skills necessary for your career of interest. Not sure which career path is right for you? Look at the groups below and pick the one that fits you.");
+    var note = stage(cfg ? cfg.note : "Cyber Security Career Skills", "Master the specific skills necessary for your career of interest. Not sure which career path is right for you? Look at the groups below and pick the one that fits you.");
     note.classList.add("sp-note"); tree.appendChild(note);
     tree.appendChild(link());
     var grid = el("div", "sp-groups");
-    var groups = TRACKS.l7.concat([]);
+    var groups = TRACKS[tid].concat([]);
+    if (groups.length !== 4) grid.style.gridTemplateColumns = "repeat(" + groups.length + ", minmax(0, 1fr))";
     groups.forEach(function (g, gi) {
       var col = el("div", "sp-group"); col.style.setProperty("--pc", g.color);
       col.appendChild(el("span", "sp-bt")); col.appendChild(el("span", "sp-stub"));
       var CIMG = { "Security Analyst": "analyst", "Penetration Tester": "pentester", "Security Engineer": "engineer", "AI Security": "ai" };
-      var gh = el("div", "sp-ghead");
-      if (CIMG[g.name]) { gh.classList.add("sp-gimg"); var gi2 = document.createElement("img"); gi2.src = "assets/career-icons/" + CIMG[g.name] + ".png?v=2"; gi2.alt = ""; gi2.title = g.blurb; gh.appendChild(gi2);
-        var ws = g.name.split(" "), lt = el("div", "sp-gl"); lt.appendChild(el("span", "", ws.slice(0, -1).join(" "))); lt.appendChild(el("b", "", ws[ws.length - 1])); gh.appendChild(lt); gh.title = g.blurb; }
+      var gh = el("div", "sp-ghead"), ws = g.name.split(" "), lt = el("div", "sp-gl");
+      lt.appendChild(el("span", "", ws.slice(0, -1).join(" "))); lt.appendChild(el("b", "", ws[ws.length - 1]));
+      if (CIMG[g.name]) { gh.classList.add("sp-gimg"); var gi2 = document.createElement("img"); gi2.src = "assets/career-icons/" + CIMG[g.name] + ".png?v=2"; gi2.alt = ""; gi2.title = g.blurb; gh.appendChild(gi2); gh.appendChild(lt); gh.title = g.blurb; }
+      else if (g.icon) { gh.classList.add("sp-gimg", "sp-gsvg"); var ic = el("div", "sp-gico"); ic.innerHTML = '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="1.7" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">' + g.icon + '</svg>'; gh.appendChild(ic); gh.appendChild(lt); gh.title = g.blurb; }
       else { gh.appendChild(el("h3", "", g.name)); gh.appendChild(el("p", "", g.blurb)); }
       col.appendChild(gh);
       g.paths.forEach(function (pt, pi) {
         col.appendChild(link());
-        col.appendChild(lvCard(pathCard(pt.name, "lesson.html?t=l7&g=" + gi + "&p=" + pi, g.color, pt.topics.length + " topics · coming soon"), pt.name));
+        var SL = cfg && typeof SPEC_LESSONS !== "undefined" && SPEC_LESSONS[pt.name] && SPEC_LESSONS[pt.name].path === P.name ? SPEC_LESSONS[pt.name] : null;   // this path already has lessons
+        col.appendChild(lvCard(SL ? pathCard(pt.name, "#" + slug(pt.name), g.color, SL.lessons.length + " lessons")
+          : pathCard(pt.name, "lesson.html?t=" + tid + "&g=" + gi + "&p=" + pi, g.color, pt.topics.length + " topics · coming soon"), pt.name));
       });
       /* tools and certificates for this career */
-      var key = "spec-" + (CIMG[g.name] || "");
+      var key = "spec-" + (CIMG[g.name] || tid + "-" + gi);
+      if (g.tools && g.tools.length && typeof LEVEL_TOOLS !== "undefined") LEVEL_TOOLS[key] = g.tools;
+      if (g.certs && g.certs.length && typeof COMPTIA_REC !== "undefined") COMPTIA_REC[key] = g.certs;
       var tb = (typeof levelToolsBox === "function") ? levelToolsBox(key) : null;
       if (tb) { col.appendChild(link()); var tt = el("div", "lang-sugg-t", "Recommended tools"); tb.insertBefore(tt, tb.firstChild); tb.querySelectorAll(".tools-group-title").forEach(function (x) { x.remove(); }); tb.classList.add("sp-extra"); col.appendChild(tb); }
       var cr = (typeof comptiaRecNode === "function") ? comptiaRecNode(key) : null;
@@ -119,6 +129,13 @@
       grid.appendChild(col);
     });
     tree.appendChild(grid);
+    /* lessons that already exist for this specialization */
+    if (cfg && typeof SPEC_LESSONS !== "undefined") {
+      var have = Object.keys(SPEC_LESSONS).filter(function (n) { return SPEC_LESSONS[n].path === P.name; });
+      if (have.length) { tree.appendChild(link()); tree.appendChild(stage("Lessons available now", "These paths already have lessons you can start."));
+        have.forEach(function (n) { tree.appendChild(link()); var c = specLessonsCard(n); c.id = slug(n); c.style.scrollMarginTop = "110px"; tree.appendChild(c); }); }
+    }
+    if (cfg) { langStage(); }
   } else {
     document.getElementById("sp-title").textContent = P.title || (P.name + " Learning Roadmap");
     document.getElementById("sp-sub").textContent = "This specialization is coming soon. Here is the path we are planning, step by step.";

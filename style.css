@@ -1341,3 +1341,7 @@ a.cert-node-card.ct-tree:hover { box-shadow: 0 0 24px -6px #ef4444; transform: t
 .sp-group .node-tools.sp-extra .tools-chips { justify-content: center; }
 .sp-group .cert-node-card.sp-extra { padding: 8px 10px; gap: 10px; }
 .sp-group .cert-node-card.sp-extra .cert-node-text b { font-size: 12.5px; }
+/* career headers with a line icon (specialization trees) */
+.sp-gico { width: 78px; height: 78px; display: grid; place-items: center; border-radius: 22px; color: var(--pc); background: color-mix(in srgb, var(--pc) 14%, transparent); border: 2px solid color-mix(in srgb, var(--pc) 60%, transparent); box-shadow: 0 0 26px -8px var(--pc); }
+.sp-gico svg { width: 44px; height: 44px; }
+.sp-gsvg .sp-gl { font-size: 15.5px; }

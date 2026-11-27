@@ -28,9 +28,12 @@
   if (qs.get("t") !== null) {
     var tid = qs.get("t"), gi = parseInt(qs.get("g"), 10), pi = parseInt(qs.get("p"), 10);
     var grp = TRACKS[tid] && TRACKS[tid][gi], tp = grp && grp.paths[pi], tl = tid === "l7" ? LEVEL7 : LEVEL8;
+    var spI = /^sp\d+$/.test(tid) ? parseInt(tid.slice(2), 10) : -1, backHref = "level.html?l=" + tid;   // sp<N>: career tree of specialization N
+    if (spI >= 0 && PATHS[spI]) { tl = { name: PATHS[spI].name, title: "Specialization" }; backHref = "spec.html?s=" + spI; }
+    else if (tid === "l7") backHref = "spec.html?s=0";
     if (!tp) { location.replace("index.html"); return; }
     document.title = tp.name + " · 10-Minute IT Roadmap"; main.style.setProperty("--c", grp.color);
-    main.appendChild(crumbs([["Road map", "index.html#map"], [tl.name + " · " + tl.title, "level.html?l=" + tid], [grp.name], [tp.name]]));
+    main.appendChild(crumbs([["Road map", "index.html#map"], [tl.name + " · " + tl.title, backHref], [grp.name], [tp.name]]));
     var th = el("div", "lp-head"); th.innerHTML = '<div class="lp-title"><p class="lp-track"></p><h1></h1></div>';
     th.querySelector(".lp-track").textContent = tl.name + " · " + grp.name; th.querySelector("h1").textContent = tp.name; main.appendChild(th);
     var tc = el("div", "lp-stage t-card");
@@ -43,7 +46,7 @@
     var fi = 0; flatPaths.forEach(function (x, i) { if (x[0] === gi && x[1] === pi) fi = i; });
     function tb(x, txt) { var l = el("a", "lp-btn", txt); l.href = "lesson.html?t=" + tid + "&g=" + x[0] + "&p=" + x[1]; l.style.setProperty("--c", x[3].color); return l; }
     tf.appendChild(fi > 0 ? tb(flatPaths[fi - 1], "← " + flatPaths[fi - 1][2].name) : el("span"));
-    var tm = el("a", "lp-btn lp-mid", "All " + tl.name + " paths"); tm.href = "level.html?l=" + tid; tf.appendChild(tm);
+    var tm = el("a", "lp-btn lp-mid", "All " + tl.name + " paths"); tm.href = backHref; tf.appendChild(tm);
     tf.appendChild(fi < flatPaths.length - 1 ? tb(flatPaths[fi + 1], flatPaths[fi + 1][2].name + " →") : el("span"));
     main.appendChild(tf);
     var yy = $("year"); if (yy) yy.textContent = new Date().getFullYear();
