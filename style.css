@@ -1390,3 +1390,7 @@ a.cert-node-card.ct-tree:hover { box-shadow: 0 0 24px -6px #ef4444; transform: t
 .ms-side { display: block; font-size: 9.5px !important; font-weight: 800; color: #c084fc; text-transform: uppercase; letter-spacing: .04em; margin-top: 3px; }
 .ms-extra { display: block; text-align: center; margin: 4px auto 14px; font-weight: 700; color: #fb923c; }
 .tp-road { display: inline-block; margin-top: 8px; font-size: 13.5px; font-weight: 700; color: var(--c, #fb923c); }
+.ms-oldpyr { margin-top: 4px; }
+.ms-oldpyr .pyr-mid { height: 54px; }
+.ms-pyr .pyr-hint { margin: 6px 0 14px; }
+.ms-pyr .ms-legend { margin-top: 14px; }

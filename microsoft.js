@@ -94,26 +94,28 @@
     root.innerHTML = ""; chips = {}; document.getElementById("ms-intro").hidden = true;
     var back = el("a", "ms-back", "← All Microsoft areas"); back.href = "microsoft.html"; back.onclick = function (e) { e.preventDefault(); try { history.pushState(null, "", "microsoft.html"); } catch (x) {} chooser(); }; root.appendChild(back);
     var box = el("div", "ms-pyr"); box.style.setProperty("--c", t.color);
-    box.appendChild(el("h3", "", t.name)); box.appendChild(el("p", "cs-sub", t.sub + ". Start at the bottom and climb. Click a certification to see what it covers."));
-    var order = ["E", "A", "F"].filter(function (L) { return t.certs.some(function (c) { return c[2] === L || (L === "A" && c[2] === "S"); }); });
-    order.forEach(function (L, n) {
-      var band = el("div", "ms-band"); band.style.setProperty("--lc", LVC[L]);
-      var w = order.length === 1 ? 100 : 58 + (42 * n) / (order.length - 1), wt = order.length === 1 ? 100 : n === 0 ? w - 14 : 58 + (42 * (n - 1)) / (order.length - 1);
-      band.style.width = w + "%"; var cut = (1 - wt / w) * 50;
-      var bg = el("span", "ms-band-bg"); bg.style.clipPath = "polygon(" + cut + "% 0," + (100 - cut) + "% 0,100% 100%,0 100%)"; band.appendChild(bg);
-      band.appendChild(el("b", "ms-band-name", LVN[L])); band.appendChild(el("small", "ms-band-sub", LVSUB[L]));
-      var row = el("div", "cs-chips");
-      t.certs.forEach(function (c) {
-        if (!(c[2] === L || (L === "A" && c[2] === "S"))) return;
-        var b = el("button", "cr-chip cr-tile"); b.type = "button"; b.innerHTML = badge(c, 56) + '<span class="cr-tname"></span>' + (c[2] === "S" ? '<span class="ms-side">Side specialty</span>' : "");
-        b.querySelector(".cr-tname").textContent = c[1].replace(" (beta)", ""); b.onclick = function () { show(id(c), true); }; chips[id(c)] = b; row.appendChild(b);
-      });
-      band.appendChild(row); box.appendChild(band);
-    });
+    box.appendChild(el("h3", "", t.name)); box.appendChild(el("p", "cs-sub", t.sub + "."));
+    var rank = { F: 0, A: 1, S: 2, E: 3 }, list = t.certs.map(function (c, n) { return [c, n]; }).sort(function (a, b) { return rank[a[0][2]] - rank[b[0][2]] || a[1] - b[1]; }).map(function (x) { return x[0]; });
+    var N = list.length, multi = list.filter(function (c) { return c[2] === "A"; }).length > 1;
+    box.appendChild(el("p", "pyr-hint", "Start at the bottom and climb. Click a level to see what it covers." + (multi ? " The blue Associate exams can be taken in any order: pick the one that matches your job." : "")));
+    var pyr = el("section", "pyr ms-oldpyr");
+    for (var j = 0; j < N; j++) (function (j) {
+      var k = N - 1 - j, c = list[k], top = j / N, bot = (j + 1) / N;
+      var row = el("a", "pyr-row"); row.href = "microsoft.html?a=" + aid + "#" + id(c); row.style.setProperty("--c", LVC[c[2]]);
+      row.innerHTML = '<span class="pyr-l"></span><span class="pyr-mid"><span class="pyr-shape"></span><span class="pyr-num"></span></span><span class="pyr-r"></span>';
+      row.querySelector(".pyr-shape").style.clipPath = "polygon(" + (50 - 50 * top) + "% 0," + (50 + 50 * top) + "% 0," + (50 + 50 * bot) + "% 100%," + (50 - 50 * bot) + "% 100%)";
+      row.querySelector(".pyr-num").textContent = "L" + k;
+      row.querySelector(".pyr-l").textContent = c[0];
+      row.querySelector(".pyr-r").textContent = c[1].replace(" (beta)", "") + (c[2] === "S" ? " (side specialty)" : "");
+      row.onclick = function (e) { e.preventDefault(); pyr.classList.add("has-sel"); show(id(c), true); };
+      chips[id(c)] = row; pyr.appendChild(row);
+    })(j);
+    box.appendChild(pyr);
+    var lg = el("div", "ms-legend"); ["F", "A", "S", "E"].forEach(function (L) { if (list.some(function (c) { return c[2] === L; })) { var x = el("span", "ms-l " + L.toLowerCase(), LVN[L]); lg.appendChild(x); } }); box.appendChild(lg);
     root.appendChild(box);
     detail = el("div", "cr-detail"); detail.id = "cr-detail"; detail.hidden = true; root.appendChild(detail);
     if (EXTRA[aid]) { var x = el("a", "ms-extra", EXTRA[aid][1]); x.href = EXTRA[aid][0]; root.appendChild(x); }
-    if (pickId) show(pickId, false);
+    if (pickId) { var pp = root.querySelector(".pyr"); if (pp) pp.classList.add("has-sel"); show(pickId, false); }
   }
   function route() {
     var h = (location.hash || "").slice(1).toLowerCase(), a = new URLSearchParams(location.search).get("a");
