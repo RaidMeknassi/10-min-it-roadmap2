@@ -4,7 +4,7 @@
    TRACKS.sp<N> belongs to PATHS[N]. Edit freely. */
 var SPEC_TREE = {
   sp1: { title: "Network Engineering Learning Roadmap", sub: "From networking basics to a professional network career. CCNA-level skills come first, then you choose your field.",
-    base: [["Networking Fundamentals", "level.html?l=l3", "Beginner Level 3"], ["Intermediate and Advanced Networking", "level.html?l=adv-im4", "Intermediate Module 1 + Advanced Module 1"]], note: "Network Engineering Career Skills" },
+    base: [["Networking Fundamentals", "level.html?l=l3", "Beginner Level 3"], ["Intermediate Networking", "level.html?l=im4", "Intermediate Module 1"], ["Advanced Networking", "level.html?l=adv-im4", "Advanced Module 1"]], note: "Network Engineering Career Skills" },
   sp2: { title: "Systems Engineering Learning Roadmap", sub: "From managing one server to running a company's whole infrastructure. Start with the foundations, then pick the career that fits you.",
     base: [["Windows Administration", "level.html?l=im2", "Intermediate Module 2"], ["Linux Administration", "level.html?l=im3", "Intermediate Module 3"]], note: "Systems Engineering Career Skills" },
   sp3: { title: "Cloud Computing Learning Roadmap", sub: "Learn one cloud well first. The ideas are the same in Azure, AWS and Google Cloud, only the names change.",
