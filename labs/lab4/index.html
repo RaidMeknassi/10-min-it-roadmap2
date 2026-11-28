@@ -28,7 +28,9 @@ h2{margin:0 0 8px;font-size:12px;letter-spacing:.12em;color:#60a5fa;text-transfo
 .slot.full{border:0;background:none}
 .slot .piece{width:100%;height:100%;cursor:default}
 .slot .piece:hover{transform:none}
-#s-fan{z-index:3}
+#s-fan{z-index:3;place-items:start center;padding-top:1px;font-size:9px;line-height:1}
+#s-fan:not(.full){pointer-events:auto}
+#s-fan.full{padding:0;place-items:stretch}
 .msg{margin:14px auto 0;max-width:940px;text-align:center;min-height:44px;font-size:15px;color:#d4d4e6}
 .msg.err{color:#fbbf24}
 .go{display:none;margin:10px auto 0;font:800 16px system-ui;border:0;border-radius:999px;padding:12px 30px;color:#07070d;background:linear-gradient(90deg,#60a5fa,#2dd4bf);cursor:pointer}
