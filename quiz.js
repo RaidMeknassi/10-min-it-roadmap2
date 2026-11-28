@@ -69,7 +69,8 @@
     var map = {}; q.pairs.forEach(function (p) { map[p[0]] = p[1]; });
     var wrap = el("div", "m-wrap"), L = el("div", "m-col"), R = el("div", "m-col"), sel = null, matched = 0, tries = 0;
     box.appendChild(el("div", "q-step", "Tap an item, then tap what it matches"));
-    function mk(t, side) { var b = el("button", "m-item", t); b.type = "button"; b.dataset.side = side; return b; }
+    L.appendChild(el("div", "m-head", "Items")); R.appendChild(el("div", "m-head m-head-r", "Answers"));
+    function mk(t, side) { var b = el("button", "m-item" + (side === "r" ? " m-ans" : ""), t); b.type = "button"; b.dataset.side = side; return b; }
     left.forEach(function (t) { var b = mk(t, "l"); b.onclick = function () { if (b.classList.contains("ok")) return; if (sel) sel.classList.remove("sel"); sel = b; b.classList.add("sel"); }; L.appendChild(b); });
     right.forEach(function (t) {
       var b = mk(t, "r");

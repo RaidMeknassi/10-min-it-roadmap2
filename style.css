@@ -1407,3 +1407,11 @@ a.cert-node-card.ct-tree:hover { box-shadow: 0 0 24px -6px #ef4444; transform: t
 .soon-back { display: inline-block; margin-top: 12px; font-weight: 700; color: var(--c, #fb923c); }
 /* dark page base: no white flash when the phone over-scrolls at the top or bottom */
 html { background-color: #070812; }
+/* match quiz: the answer column looks different from the items */
+.m-head { font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); margin-bottom: 2px; }
+.m-head-r { color: var(--qc); }
+.m-item.m-ans { border-style: dashed; border-color: color-mix(in srgb, var(--qc) 55%, transparent); background: color-mix(in srgb, var(--qc) 10%, transparent); border-radius: 999px; padding-left: 16px; }
+.m-item.m-ans:hover { background: color-mix(in srgb, var(--qc) 18%, transparent); }
+.m-item.m-ans.ok { border-style: solid; border-color: #4ade80; background: rgba(74,222,128,.14); }
+.m-item.m-ans.no { border-color: #f87171; }
+@media (max-width: 720px) { .m-col + .m-col { margin-top: 10px; } }
