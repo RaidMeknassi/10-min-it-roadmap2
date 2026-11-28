@@ -183,6 +183,7 @@ function langSuggestBox(levelId) {
     var L = langById(id); if (!L) return;
     var a = document.createElement("a"); a.href = "language.html?l=" + L.id; a.title = L.name; a.setAttribute("aria-label", L.name); a.className = "lang-sugg-a";
     a.innerHTML = langIcon(L, 40) + '<span class="lang-sugg-n"></span>'; a.querySelector(".lang-sugg-n").textContent = L.name; a.addEventListener("click", function (e) { e.stopPropagation(); });
+    if (typeof langReady === "function" && !langReady(L)) markSoon(a);
     box.querySelector(".lang-sugg-icons").appendChild(a);
   });
   return box;

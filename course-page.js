@@ -26,6 +26,7 @@
   function box(id, num, extra) {
     var t = M[id], a = el("a", "irm-box irm-" + id + (extra ? " " + extra : "")); a.href = "course.html?c=itil&m=" + id; a.dataset.m = id; a.style.setProperty("--c", t.color);
     if (modDone(id)) a.classList.add("is-done");
+    if (!t.foundation && typeof rowsReady === "function" && !rowsReady(t.lessons.concat(t.examLessons || []))) a.classList.add("mod-soon");
     a.innerHTML = (num ? '<span class="irm-num"></span>' : "") + itilBadgeImg(id, 64, "irm-logo") + "<h3></h3><p></p>";
     if (num) a.querySelector(".irm-num").textContent = num;
     a.querySelector("h3").textContent = t.title.replace(/^ITIL /, "ITIL ").toUpperCase();
@@ -49,7 +50,7 @@
     sec.querySelector(".irm-pdesc").textContent = d.desc;
     sec.querySelector(".irm-rule").textContent = d.rule;
     d.modules.forEach(function (id) {
-      var t = M[id], a = el("a", "irm-mod" + (modDone(id) ? " is-done" : "")); a.href = "course.html?c=itil&m=" + id; a.dataset.m = id;
+      var t = M[id], a = el("a", "irm-mod" + (modDone(id) ? " is-done" : "") + (typeof rowsReady === "function" && !rowsReady(t.lessons.concat(t.examLessons || [])) ? " mod-soon" : "")); a.href = "course.html?c=itil&m=" + id; a.dataset.m = id;
       a.innerHTML = itilBadgeImg(id, 40, "irm-mod-logo") + "<b></b><small></small>"; a.querySelector("b").textContent = t.code.toUpperCase(); a.querySelector("small").textContent = t.desc;
       a.addEventListener("click", function (e) { e.preventDefault(); pick(id, true); });
       sec.querySelector(".irm-mods").appendChild(a);
@@ -110,6 +111,7 @@
     all.forEach(function (r) { if (done[r[0]]) c++; });
     panel.appendChild(head(t, t.desc + (id === "master" ? "" : " Needs ITIL Foundation first (ITIL 4 Foundation counts).")));
     var ab = certAbout(id); if (ab) panel.appendChild(ab);
+    if (typeof rowsReady === "function" && !rowsReady(all)) { panel.appendChild(soonNote()); return; }
     panel.appendChild(el("p", "lv-meta", all.length + " lessons · " + c + " / " + all.length + " done"));
     var list = el("div", "lvlist"); t.lessons.forEach(function (r) { list.appendChild(card(r)); }); panel.appendChild(list);
     if (t.examLessons.length) {

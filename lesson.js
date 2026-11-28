@@ -36,6 +36,7 @@
     main.appendChild(crumbs([["Road map", "index.html#map"], [tl.name + " · " + tl.title, backHref], [grp.name], [tp.name]]));
     var th = el("div", "lp-head"); th.innerHTML = '<div class="lp-title"><p class="lp-track"></p><h1></h1></div>';
     th.querySelector(".lp-track").textContent = tl.name + " · " + grp.name; th.querySelector("h1").textContent = tp.name; main.appendChild(th);
+    if (typeof specPathReady === "function" && !specPathReady(tp.name)) { main.appendChild(comingSoonBox(backHref, "\u2190 Back")); return; }
     var tc = el("div", "lp-stage t-card");
     tc.innerHTML = "<div class='lp-card'><h3>What you will learn</h3><ul class='lp-topics'></ul><p></p></div>";
     tp.topics.forEach(function (t) { tc.querySelector("ul").appendChild(el("li", "", t)); });

@@ -27,6 +27,7 @@
   var ROAD = { microsoft365: ["microsoft.html", "See the other Microsoft areas (Azure, Security, Data, AI\u2026) \u2192"], googleworkspace: ["gcloud.html#gwa", "See all Google certifications on the Google Cloud roadmap \u2192"] }[tool.id];
   if (ROAD) { var rl = el("a", "tp-road", ROAD[1]); rl.href = ROAD[0]; hero.appendChild(rl); }
   main.appendChild(hero);
+  if (typeof toolReady === "function" && !toolReady(tool)) { main.appendChild(comingSoonBox("tools.html", "\u2190 Back to Tools")); var y0 = $("year"); if (y0) y0.textContent = new Date().getFullYear(); return; }
 
   // pyramid
   var pyr = el("section", "pyr"); pyr.setAttribute("aria-label", tool.name + " levels");
@@ -36,6 +37,7 @@
     var top = j / N, bot = (j + 1) / N;
     var row = el("a", "pyr-row"); row.href = "tool.html?t=" + tool.id + "&l=" + i; row.dataset.i = i; row.style.setProperty("--c", lv.color);
     var lvDone = rowsDone(lv.lessons.concat(lv.exam || [])); if (lvDone) row.classList.add("is-done");
+    if (typeof toolLevelReady === "function" && !toolLevelReady(tool, i)) row.classList.add("pyr-soon");
     row.innerHTML = '<span class="pyr-l"></span><span class="pyr-mid"><span class="pyr-shape"></span><span class="pyr-num"></span></span><span class="pyr-r"></span>';
     row.querySelector(".pyr-shape").style.clipPath = "polygon(" + (50 - 50 * top) + "% 0," + (50 + 50 * top) + "% 0," + (50 + 50 * bot) + "% 100%," + (50 - 50 * bot) + "% 100%)";
     row.querySelector(".pyr-num").textContent = lvDone ? "✓" : "L" + i;
@@ -78,6 +80,9 @@
     if (bsrc) { var bimg = el("img", "tp-badge-img"); bimg.src = bsrc; bimg.alt = lv.cert ? lv.cert[0] : lv.title; var old = head.querySelector(".cx-badge, .tp-lvnum"); if (old) old.replaceWith(bimg); else head.insertBefore(bimg, head.firstChild); }
     head.appendChild(info); panel.appendChild(head);
     var ab = lv.cert ? certAbout(tool.id + "-" + i) : null; if (ab) panel.appendChild(ab);
+    var lvReady = typeof toolLevelReady !== "function" || toolLevelReady(tool, i);
+    if (!lvReady) panel.appendChild(soonNote("The lessons for this level are being recorded. They will appear here as soon as they are ready."));
+    if (lvReady) {
     function lessonCard(r) {
       var a = el("a", "lc" + (done[r[0]] ? " done" : "")); a.href = "lesson.html?n=" + encodeURIComponent(r[0]) + "&from=" + encodeURIComponent(tool.id + "-" + i);
       a.innerHTML = '<span class="cl-ico"></span><span class="lc-body"><b></b><small></small></span><span class="lc-tags"></span><span class="lc-check">✓</span>';
@@ -111,6 +116,7 @@
       if (lv.examNote) ex.appendChild(el("p", "exam-note", lv.examNote));
       var el2 = el("div", "lvlist"); lv.exam.forEach(function (r) { el2.appendChild(lessonCard(r)); }); ex.appendChild(el2);
       panel.appendChild(ex);
+    }
     }
     var nav = el("nav", "lv-nav");
     function nb(j, txt) { var a = el("a", "lv-nl", txt); a.href = "tool.html?t=" + tool.id + "&l=" + j; a.style.setProperty("--c", tool.levels[j].color); a.addEventListener("click", function (e) { e.preventDefault(); pick(j, true); panel.scrollIntoView({ behavior: "smooth", block: "start" }); }); return a; }

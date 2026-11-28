@@ -1415,3 +1415,10 @@ html { background-color: #070812; }
 .m-item.m-ans.ok { border-style: solid; border-color: #4ade80; background: rgba(74,222,128,.14); }
 .m-item.m-ans.no { border-color: #f87171; }
 @media (max-width: 720px) { .m-col + .m-col { margin-top: 10px; } }
+/* not ready yet (no lesson has content): greyed and locked */
+.is-soon { opacity: .45; filter: grayscale(.6); cursor: default !important; }
+a.is-soon:hover, .is-soon:hover { transform: none !important; }
+.pyr-row.pyr-soon .pyr-shape { filter: saturate(.25) brightness(.6); }
+.pyr-row.pyr-soon .pyr-l, .pyr-row.pyr-soon .pyr-r { opacity: .55; }
+.irm-box.mod-soon, .irm-mod.mod-soon { opacity: .5; filter: grayscale(.5); }
+.soon-note { margin: 18px auto; }

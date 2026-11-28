@@ -615,6 +615,7 @@ function levelToolsBox(levelId) {
       var a = document.createElement("a"); a.className = "tool-chip"; a.href = "tool.html?t=" + t.id; a.style.setProperty("--tc", t.color);
       a.innerHTML = '<img src="assets/tool-icons/' + t.id + '.png" alt="" width="18" height="18"><span></span>'; a.querySelector("span").textContent = t.name;
       a.addEventListener("click", function (e) { e.stopPropagation(); });
+      if (typeof toolReady === "function" && !toolReady(t)) markSoon(a);
       grp.querySelector(".tools-chips").appendChild(a);
     });
     if (isNew) box.appendChild(grp);

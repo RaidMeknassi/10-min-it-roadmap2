@@ -36,7 +36,7 @@
     var mods = sec.querySelector(".irm-mods");
     t.certs.forEach(function (c, j) {
       if (j) mods.appendChild(el("div", "irm-step" + (c.alt ? " irm-alt" : ""), c.alt ? "also popular:" : "↓"));
-      var a = el("a", "irm-mod" + (rowsDone(c.lessons.concat(c.examLessons || [])) ? " is-done" : "")); a.href = "path.html?p=agile&c=" + c.id; a.dataset.m = c.id;
+      var a = el("a", "irm-mod" + (rowsDone(c.lessons.concat(c.examLessons || [])) ? " is-done" : "") + (typeof rowsReady === "function" && !rowsReady(c.lessons.concat(c.examLessons || [])) ? " mod-soon" : "")); a.href = "path.html?p=agile&c=" + c.id; a.dataset.m = c.id;
       a.innerHTML = "<b></b><small></small>"; a.querySelector("b").textContent = c.code; a.querySelector("small").textContent = c.title + " · " + c.vendor;
       a.addEventListener("click", function (e) { e.preventDefault(); pick(c.id, true); });
       mods.appendChild(a);
@@ -73,6 +73,8 @@
     if (rowsDone(c.lessons.concat(c.examLessons || []))) { h.querySelector(".tp-info").appendChild(el("p", "cert-done", "✓ Certification course completed")); h.classList.add("is-done-head"); }
     panel.appendChild(h);
     var ab = certAbout(id); if (ab) panel.appendChild(ab);
+    if (typeof rowsReady === "function" && !rowsReady(c.lessons.concat(c.examLessons || []))) panel.appendChild(soonNote());
+    else {
     var all = c.lessons.concat(c.examLessons), d = 0; all.forEach(function (r) { if (done[r[0]]) d++; });
     panel.appendChild(el("p", "lv-meta", all.length + " lessons · " + d + " / " + all.length + " done"));
     var list = el("div", "lvlist"); c.lessons.forEach(function (r) { list.appendChild(card(r)); }); panel.appendChild(list);
@@ -81,6 +83,7 @@
     ex.querySelector("h3").textContent = "Exam Preparation · " + c.code;
     ex.querySelector("p").textContent = "Get ready for the " + c.title + " exam (" + c.vendor + "): know the format, check every objective, practise, then take a full mock exam.";
     var l2 = el("div", "lvlist"); c.examLessons.forEach(function (r) { l2.appendChild(card(r)); }); ex.appendChild(l2); panel.appendChild(ex);
+    }
     var k = ORDER.indexOf(id), nav = el("nav", "lv-nav");
     function nb(j, txt) { var x = el("a", "lv-nl", txt); x.href = "path.html?p=agile&c=" + ORDER[j]; x.style.setProperty("--c", byId[ORDER[j]].color); x.addEventListener("click", function (e) { e.preventDefault(); pick(ORDER[j], true); }); return x; }
     nav.appendChild(k > 0 ? nb(k - 1, "← " + byId[ORDER[k - 1]].code) : el("span"));

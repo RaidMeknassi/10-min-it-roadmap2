@@ -17,6 +17,7 @@
   hero.querySelector(".badge").textContent = (LANG_GROUPS.filter(function (g) { return g.id === L.group; })[0] || {}).name || "Language";
   hero.querySelector(".tp-desc").textContent = L.desc;
   main.appendChild(hero);
+  if (typeof langReady === "function" && !langReady(L)) { main.appendChild(comingSoonBox("languages.html", "\u2190 Back to Languages")); var y0 = $("year"); if (y0) y0.textContent = new Date().getFullYear(); return; }
   var gWrap = el("section", "lg-big"); main.appendChild(el("p", "pyr-hint", "Click a level on the gauge to see its lessons."));
   main.appendChild(gWrap);
   var panel = el("section", "tp-panel"); main.appendChild(panel);
@@ -50,7 +51,8 @@
     head.querySelector(".tp-cert").textContent = rows.length + " lessons · " + c + " / " + rows.length + " done";
     if (c === rows.length) head.querySelector(".tp-info").appendChild(el("p", "cert-done", "✓ Level completed"));
     panel.appendChild(head);
-    var list = el("div", "lvlist"); rows.forEach(function (r) { list.appendChild(lessonCard(r)); }); panel.appendChild(list);
+    if (typeof rowsReady === "function" && !rowsReady(rows)) panel.appendChild(soonNote());
+    else { var list = el("div", "lvlist"); rows.forEach(function (r) { list.appendChild(lessonCard(r)); }); panel.appendChild(list); }
     var nav = el("nav", "lv-nav");
     function nb(j, txt) { var a = el("a", "lv-nl", txt); a.href = "language.html?l=" + L.id + "&v=" + (j + 1); a.style.setProperty("--c", LANG_LEVELS[j].color); a.addEventListener("click", function (e) { e.preventDefault(); pick(j, true); }); return a; }
     nav.appendChild(i > 0 ? nb(i - 1, "← " + LANG_LEVELS[i - 1].name) : el("span"));

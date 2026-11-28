@@ -46,7 +46,7 @@
       head.innerHTML = "<h2></h2><p></p>"; head.querySelector("h2").textContent = g.name; head.querySelector("p").textContent = g.blurb; list.appendChild(head);
       g.paths.forEach(function (pt, pi) {
         total++;
-        var a = el("a", "lc"); a.href = "lesson.html?t=" + lv.id + "&g=" + gi + "&p=" + pi; a.style.setProperty("--c", g.color);
+        var a = el("div", "lc is-soon"); a.style.setProperty("--c", g.color);
         a.innerHTML = '<span class="lc-dot"></span><span class="lc-body"><b></b><small></small></span><span class="lc-tags"><span class="tg t-soon">Coming soon</span></span>';
         a.querySelector("b").textContent = pt.name; a.querySelector("small").textContent = pt.topics.length + " topics";
         list.appendChild(a);

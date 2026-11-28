@@ -14,7 +14,7 @@
 
   function pathCard(name, href, color, sub) {
     var a = el(href ? "a" : "div", "sp-path");
-    if (href) a.href = href;
+    if (href) a.href = href; else if (/coming soon/i.test(sub || "Coming soon")) a.classList.add("is-soon");
     a.style.setProperty("--pc", color || P.color);
     a.appendChild(el("b", "", name));
     a.appendChild(el("span", "sp-state", sub || "Coming soon"));
@@ -47,6 +47,7 @@
   /* a specialization path that already has lessons: card with its lesson list */
   function specLessonsCard(t) {
     var S = (typeof SPEC_LESSONS !== "undefined") && SPEC_LESSONS[t]; if (!S) return null;
+    if (typeof specPathReady === "function" && !specPathReady(t)) return pathCard(t, null, P.color, S.lessons.length + " lessons \u00B7 coming soon");
     var doneMap = {}; try { doneMap = JSON.parse(localStorage.getItem("itroadmap-v2-done") || "{}"); } catch (e) {}
     var d = 0; S.lessons.forEach(function (r) { if (doneMap[r[0]]) d++; });
     var card = pathCard(t, null, P.color, S.lessons.length + " lessons \u00B7 " + d + " / " + S.lessons.length + " done");
@@ -113,9 +114,9 @@
       col.appendChild(gh);
       g.paths.forEach(function (pt, pi) {
         col.appendChild(link());
-        var SL = cfg && typeof SPEC_LESSONS !== "undefined" && SPEC_LESSONS[pt.name] && SPEC_LESSONS[pt.name].path === P.name ? SPEC_LESSONS[pt.name] : null;   // this path already has lessons
+        var SL = cfg && typeof SPEC_LESSONS !== "undefined" && SPEC_LESSONS[pt.name] && SPEC_LESSONS[pt.name].path === P.name && (typeof specPathReady !== "function" || specPathReady(pt.name)) ? SPEC_LESSONS[pt.name] : null;   // this path already has lessons
         col.appendChild(lvCard(SL ? pathCard(pt.name, "#" + slug(pt.name), g.color, SL.lessons.length + " lessons")
-          : pathCard(pt.name, "lesson.html?t=" + tid + "&g=" + gi + "&p=" + pi, g.color, pt.topics.length + " topics · coming soon"), pt.name));
+          : pathCard(pt.name, null, g.color, pt.topics.length + " topics · coming soon"), pt.name));
       });
       /* tools and certificates for this career */
       var key = "spec-" + (CIMG[g.name] || tid + "-" + gi);
@@ -131,7 +132,7 @@
     tree.appendChild(grid);
     /* lessons that already exist for this specialization */
     if (cfg && typeof SPEC_LESSONS !== "undefined") {
-      var have = Object.keys(SPEC_LESSONS).filter(function (n) { return SPEC_LESSONS[n].path === P.name; });
+      var have = Object.keys(SPEC_LESSONS).filter(function (n) { return SPEC_LESSONS[n].path === P.name && (typeof specPathReady !== "function" || specPathReady(n)); });
       if (have.length) { tree.appendChild(link()); tree.appendChild(stage("Lessons available now", "These paths already have lessons you can start."));
         have.forEach(function (n) { tree.appendChild(link()); var c = specLessonsCard(n); c.id = slug(n); c.style.scrollMarginTop = "110px"; tree.appendChild(c); }); }
     }
@@ -154,8 +155,8 @@
       return row;
     }
     function ntBox(t, href, sub) { var n = el(href ? "a" : "div", "nt-node nt-wide"); if (href) n.href = href; n.appendChild(el("b", "", t)); if (sub) n.appendChild(el("small", "", sub)); return n; }
-    function cnt(name) { return SPEC_LESSONS[name] ? SPEC_LESSONS[name].lessons.length + " lessons" : "coming soon"; }
-    function anc(name) { return SPEC_LESSONS[name] ? "#" + name.toLowerCase().replace(/[^a-z0-9]+/g, "-") : null; }
+    function cnt(name) { return SPEC_LESSONS[name] && (typeof specPathReady !== "function" || specPathReady(name)) ? SPEC_LESSONS[name].lessons.length + " lessons" : "coming soon"; }
+    function anc(name) { return SPEC_LESSONS[name] && (typeof specPathReady !== "function" || specPathReady(name)) ? "#" + name.toLowerCase().replace(/[^a-z0-9]+/g, "-") : null; }
     if (i === 1) {
       /* Network Engineering: roadmap map (fundamentals -> advanced -> five branches -> professional specializations -> careers) */
       document.getElementById("sp-title").textContent = P.title;
@@ -185,7 +186,7 @@
         tree.appendChild(link()); tree.appendChild(stage(g.title + " · lessons", g.text));
         g.items.forEach(function (t) {
           tree.appendChild(link());
-          var c = specLessonsCard(t); c.id = anc(t).slice(1); tree.appendChild(c);
+          var c = specLessonsCard(t); c.id = t.toLowerCase().replace(/[^a-z0-9]+/g, "-"); tree.appendChild(c);
         });
       });
       tree.appendChild(link()); langStage(); certStage();

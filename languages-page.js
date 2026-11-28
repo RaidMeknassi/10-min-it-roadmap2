@@ -19,6 +19,7 @@
     a.innerHTML = '<div class="lg-top">' + langIcon(L, 52) + '<div class="lg-body"><b></b><p></p></div></div><div class="lg-gauge">' + langGauge(p) + '<small></small></div>';
     a.querySelector("b").textContent = L.name; a.querySelector("p").textContent = L.desc;
     a.querySelector("small").textContent = p === 3 ? "✓ All 3 levels done" : "Now: " + LANG_LEVELS[p].name + " · 3 levels · " + (L.lv[0].length + L.lv[1].length + L.lv[2].length) + " lessons";
+    if (typeof langReady === "function" && !langReady(L)) { markSoon(a); a.querySelector("small").textContent = "\uD83D\uDEA7 Coming soon \u00B7 3 levels"; }
     return a;
   }
   function render() {

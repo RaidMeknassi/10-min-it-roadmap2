@@ -31,6 +31,23 @@ function isLive(id) { return RELEASE[id] !== "soon"; }
 /* a small "Coming soon" message that replaces a page which is not released yet */
 function comingSoonBox(backHref, backText) {
   var d = document.createElement("div"); d.className = "soon-box";
-  d.innerHTML = '<span class="soon-ico">🚧</span><h2>Coming soon</h2><p>This module is still being recorded. It will open here as soon as it is ready.</p><a class="soon-back"></a>';
+  d.innerHTML = '<span class="soon-ico">🚧</span><h2>Coming soon</h2><p>This part is still being recorded. It will open here as soon as it is ready.</p><a class="soon-back"></a>';
   var a = d.querySelector("a"); a.href = backHref; a.textContent = backText; return d;
 }
+
+/* ---- Content-based "Coming soon": courses, certifications, tools, languages and specialization paths
+   are greyed out automatically while none of their lessons has a video, quiz or lab yet.
+   They open by themselves as soon as the first lesson gets content. ---- */
+function lessonReady(k) {
+  return !!((typeof VIDEOS !== "undefined" && VIDEOS[k]) || (typeof LESSON_PAGES !== "undefined" && LESSON_PAGES[k]) ||
+    (typeof QUIZZES !== "undefined" && QUIZZES[k]) || (typeof realLab === "function" && realLab(k)));
+}
+function rowsReady(rows) { return (rows || []).some(function (r) { return lessonReady(r[0]); }); }
+function toolLevelReady(t, i) { var l = t.levels[i]; return !!l && rowsReady(l.lessons.concat(l.exam || [])); }
+function toolReady(t) { return t.levels.some(function (l, i) { return toolLevelReady(t, i); }); }
+function langReady(L) { return !!L && L.lv.some(rowsReady); }
+function specPathReady(name) { var S = typeof SPEC_LESSONS !== "undefined" && SPEC_LESSONS[name]; return !!S && rowsReady(S.lessons); }
+/* a link that is not ready yet: greyed, not clickable */
+function markSoon(a) { a.removeAttribute("href"); a.classList.add("is-soon"); a.setAttribute("aria-disabled", "true"); a.title = (a.title ? a.title + " · " : "") + "Coming soon"; a.addEventListener("click", function (e) { e.preventDefault(); e.stopPropagation(); }, true); return a; }
+/* note shown instead of an empty lesson list */
+function soonNote(text) { var d = document.createElement("div"); d.className = "soon-box soon-note"; d.innerHTML = '<span class="soon-ico">🚧</span><h2>Lessons coming soon</h2><p></p>'; d.querySelector("p").textContent = text || "The lessons for this part are being recorded. They will appear here as soon as they are ready."; return d; }
