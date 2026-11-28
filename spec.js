@@ -92,7 +92,28 @@
     var tid = i === 0 ? "l7" : "sp" + i, cfg = i === 0 ? null : SPEC_TREE[tid];
     document.getElementById("sp-title").textContent = cfg ? cfg.title : "Cyber Security Learning Roadmap";
     document.getElementById("sp-sub").textContent = cfg ? cfg.sub : "From fundamental principles to advanced techniques, this roadmap provides clear steps and essential resources to help you build a robust skill set.";
-    if (cfg) cfg.base.forEach(function (bc, k) { if (k) tree.appendChild(link()); tree.appendChild(lvCard(pathCard(bc[0], bc[1], P.color, bc[2]), bc[0])); });
+    /* progress of the level / module / language a base card links to (the same ticks as everywhere else) */
+    function baseProgress(href) {
+      var G = function (n) { try { return eval(n); } catch (e) { return undefined; } };
+      var beg = (typeof LEVELS !== "undefined" ? LEVELS : []).concat([G("LEVEL55"), G("LEVEL54"), G("LEVEL52"), G("LEVEL53")].filter(Boolean));
+      var im = typeof INTERMEDIATE_LEVELS !== "undefined" ? INTERMEDIATE_LEVELS : [], adv = typeof ADVANCED_LEVELS !== "undefined" ? ADVANCED_LEVELS : [];
+      var live = function (id) { return typeof isLive !== "function" || isLive(id); }, rows = null, soon = false, m;
+      if (!href) return null;
+      if ((m = /level\.html\?l=([^&#]+)/.exec(href))) { var lv = beg.concat(im, adv).filter(function (x) { return x.id === m[1]; })[0]; if (!lv) return null; soon = !live(lv.id); rows = lv.lessons; }
+      else if (/^index\.html/.test(href)) { rows = []; beg.forEach(function (x) { rows = rows.concat(x.lessons); }); }
+      else if (/^intermediate\.html/.test(href)) { rows = []; im.forEach(function (x) { if (live(x.id)) rows = rows.concat(x.lessons); }); }
+      else if ((m = /language\.html\?l=([^&#]+)/.exec(href)) && typeof langById === "function") { var L = langById(m[1]); if (!L) return null; soon = typeof langReady === "function" && !langReady(L); rows = L.lv[0].concat(L.lv[1], L.lv[2]); }
+      if (!rows) return null;
+      var dm = {}; try { dm = JSON.parse(localStorage.getItem("itroadmap-v2-done") || "{}"); } catch (e) {}
+      var seen = {}, n = 0, c = 0; rows.forEach(function (r) { if (seen[r[0]]) return; seen[r[0]] = 1; n++; if (dm[r[0]]) c++; });
+      return { n: n, c: c, soon: soon };
+    }
+    if (cfg) cfg.base.forEach(function (bc, k) {
+      if (k) tree.appendChild(link());
+      var pr = baseProgress(bc[1]), card = pathCard(bc[0], pr && pr.soon ? null : bc[1], P.color, bc[2] + (pr ? (pr.soon ? " \u00B7 coming soon" : pr.n && pr.c === pr.n ? " \u00B7 \u2713 Completed" : " \u00B7 " + pr.c + " / " + pr.n + " done") : ""));
+      if (pr && !pr.soon && pr.n) { card.querySelector(".sp-bar i").style.width = (pr.c / pr.n * 100) + "%"; if (pr.c === pr.n) card.classList.add("is-done"); }
+      tree.appendChild(lvCard(card, bc[0]));
+    });
     else { tree.appendChild(lvCard(pathCard("Pre-Security Basics"), "Pre-Security Basics"));
       tree.appendChild(link()); tree.appendChild(lvCard(pathCard("Cybersecurity Foundations 101"), "Cybersecurity Foundations 101")); }
     tree.appendChild(link());
