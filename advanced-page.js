@@ -11,8 +11,8 @@
   var IL = (typeof ADVANCED_LEVELS !== "undefined") ? ADVANCED_LEVELS : [];
   function lessonsOf(lv) { return lv.lessons || []; }
   var total = 0, doneN = 0;
-  IL.forEach(function (lv) { lessonsOf(lv).forEach(function (r) { total++; if (done[r[0]]) doneN++; }); });
-  document.getElementById("adv-progress-text").textContent = doneN + " / " + total + " lessons";
+  IL.forEach(function (lv) { if (typeof isLive === "function" && !isLive(lv.id)) return; lessonsOf(lv).forEach(function (r) { total++; if (done[r[0]]) doneN++; }); });
+  document.getElementById("adv-progress-text").textContent = total ? doneN + " / " + total + " lessons" : "Coming soon";
   document.getElementById("adv-bar-fill").style.width = (total ? doneN / total * 100 : 0) + "%";
 
   function link() { return el("div", "adv-link"); }
@@ -25,10 +25,11 @@ var road = el("div", "road adv-road"); var svg = document.createElementNS("http:
     var lv = IL[i], L = lessonsOf(lv), dn = 0; L.forEach(function (r) { if (done[r[0]]) dn++; });
     var w = el("div", "lv"); w.style.setProperty("--c", lv.color);
     w.innerHTML = '<a class="lv-card" style="text-decoration:none"><span class="badge"></span><img class="im-icon" src="assets/int-icons/' + lv.id.replace(/^adv-/, "") + '.png" alt="" aria-hidden="true" width="72" height="72" onerror="this.remove()"><h2></h2><div class="lv-meta"></div><div class="lv-bar"><i></i></div></a>';
-    var c = w.querySelector(".lv-card"); c.href = "level.html?l=" + lv.id;
+    var c = w.querySelector(".lv-card"), live = (typeof isLive !== "function") || isLive(lv.id);
+    if (live) c.href = "level.html?l=" + lv.id; else { w.classList.add("soon"); c.setAttribute("aria-disabled", "true"); var stg = el("span", "soon-tag", "Coming soon"); c.insertBefore(stg, c.firstChild); }
     w.querySelector(".badge").textContent = "Advanced " + (i + 1);
     w.querySelector("h2").textContent = lv.title;
-    w.querySelector(".lv-meta").textContent = L.length ? L.length + " lessons \u00B7 " + dn + " / " + L.length + " done" : "Lessons coming soon";
+    w.querySelector(".lv-meta").textContent = !live ? "Coming soon" : L.length ? L.length + " lessons \u00B7 " + dn + " / " + L.length + " done" : "Lessons coming soon";
     w.querySelector(".lv-bar i").style.width = (L.length ? dn / L.length * 100 : 0) + "%";
     var im = lv.id.replace(/^adv-/, "");
     var tb = (typeof levelToolsBox === "function") ? levelToolsBox(lv.id) : null;

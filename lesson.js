@@ -73,6 +73,11 @@
   var n = qs.get("n"), from = qs.get("from"), ix = -1;
   flat.forEach(function (l, i) { if (l.n === n && (ix < 0 || (from && l.level.id === from))) ix = i; });
   if (ix < 0) { location.replace("index.html"); return; }
+  if (typeof isLive === "function" && flat.filter(function (l) { return l.n === n; }).every(function (l) { return !isLive(l.level.id); })) {   // lesson of a module that is not released yet
+    var sl = flat[ix].level, sh = /^adv-/.test(sl.id) ? ["advanced.html", "\u2190 Back to Advanced"] : /^im\d+$/.test(sl.id) ? ["intermediate.html", "\u2190 Back to Intermediate"] : ["index.html#map", "\u2190 Back to the road map"];
+    document.title = "Coming soon · 10-Minute IT Roadmap"; main.appendChild(comingSoonBox(sh[0], sh[1]));
+    return;
+  }
   function lblOf(it) {   // a level can number its lessons itself (Level 5 -> 5.4, Level 5.1 -> 5.1.7 ...)
     if (it.level.lbl) { var k = -1; it.level.lessons.forEach(function (r, i) { if (k < 0 && r[0] === it.n) k = i; }); if (k >= 0) return it.level.lbl(k); }
     return LBL[it.n] || it.n;

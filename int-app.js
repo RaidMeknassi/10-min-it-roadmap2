@@ -57,8 +57,9 @@
 
   /* ---- makeLevel: create a level card with flyout lesson list ---- */
   function makeLevel(info, container, flip) {
+    var live = (typeof isLive !== "function") || isLive(info.id);
     var lv = document.createElement("div");
-    lv.className = "lv" + (flip ? " flip" : "");
+    lv.className = "lv" + (flip ? " flip" : "") + (live ? "" : " soon");
     lv.id = info.id;
     lv.style.setProperty("--c", info.color);
     lv.innerHTML =
@@ -83,10 +84,11 @@
     if (cn) lv.insertBefore(cn, lv.querySelector(".flyout"));
 
     var card = lv.querySelector(".lv-card");
-    card.addEventListener("click", function (e) {
+    if (live) card.addEventListener("click", function (e) {
       e.stopPropagation();
       location.href = "level.html?l=" + info.id;
     });
+    else { lv.querySelector(".flyout").remove(); card.removeAttribute("aria-haspopup"); card.setAttribute("aria-disabled", "true"); var stg = document.createElement("span"); stg.className = "soon-tag"; stg.textContent = "Coming soon"; card.insertBefore(stg, card.firstChild); card.addEventListener("click", function (e) { e.stopPropagation(); }); }
 
     var en = {
       info: info, lv: lv, card: card, sugg: lv,   /* lines leave from under the last box (languages, tools, certificates) */
@@ -98,7 +100,7 @@
     entries.push(en);
 
     var list = lv.querySelector(".fl-list");
-    info.lessons.forEach(function (row) {
+    if (live) info.lessons.forEach(function (row) {
       var n = row[0];
       total++;
       var b = document.createElement("button");
@@ -186,7 +188,7 @@
         it.el.classList.toggle("done", d);
       });
       en.complete = (c === en.items.length && en.items.length > 0);
-      en.metaEl.textContent = en.items.length + " lessons · " + c + " / " + en.items.length + " done";
+      en.metaEl.textContent = en.info && typeof isLive === "function" && !isLive(en.info.id) ? "Coming soon" : en.items.length + " lessons · " + c + " / " + en.items.length + " done";
       en.barEl.style.width  = en.items.length ? (c / en.items.length * 100) + "%" : "0%";
     });
     var pt = document.getElementById("int-progress-text");

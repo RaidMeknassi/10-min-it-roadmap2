@@ -15,6 +15,13 @@
   document.title = lv.name + " · " + lv.title + " · 10-Minute IT Roadmap";
   document.body.style.setProperty("--c", lv.color);
   $("lv-badge").textContent = lv.name; $("lv-title").textContent = lv.title;
+  if (typeof isLive === "function" && !isLive(lv.id)) {   // module not released yet
+    var soonHome = /^adv-/.test(lv.id) ? ["advanced.html", "\u2190 Back to Advanced"] : /^im\d+$/.test(lv.id) ? ["intermediate.html", "\u2190 Back to Intermediate"] : ["index.html#map", "\u2190 Back to the road map"];
+    $("lv-meta").textContent = "Coming soon"; $("lv-bar").style.display = "none"; $("lv-nav").style.display = "none";
+    $("level-list").appendChild(comingSoonBox(soonHome[0], soonHome[1]));
+    var yy = $("year"); if (yy) yy.textContent = new Date().getFullYear();
+    return;
+  }
   function el(tag, cls, txt) { var e = document.createElement(tag); if (cls) e.className = cls; if (txt != null) e.textContent = txt; return e; }
   function tag(t, cls) { return el("span", "tg " + cls, t); }
   var list = $("level-list");
