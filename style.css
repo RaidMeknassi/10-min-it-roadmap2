@@ -1405,3 +1405,5 @@ a.cert-node-card.ct-tree:hover { box-shadow: 0 0 24px -6px #ef4444; transform: t
 .soon-box h2 { margin: 8px 0; }
 .soon-box p { color: var(--muted, #b6bad0); }
 .soon-back { display: inline-block; margin-top: 12px; font-weight: 700; color: var(--c, #fb923c); }
+/* dark page base: no white flash when the phone over-scrolls at the top or bottom */
+html { background-color: #070812; }
