@@ -1,4 +1,5 @@
 <!doctype html>
+<meta charset="utf-8">
 <title>Lab 1 - Input, Process, Output</title>
 <style>
 *{box-sizing:border-box}
@@ -62,7 +63,7 @@ button:disabled{opacity:.4;cursor:default}
   </div>
 </div>
 
-<div class="trace" id="trace">Try a few numbers. Different ones. Big ones too.</div>
+<div class="trace" id="trace">Send 3 numbers to unlock the mission. Different ones, big ones too.</div>
 <div class="hist" id="hist"></div>
 
 <div class="mission hidden" id="mission">
@@ -94,10 +95,11 @@ function run(){
         var s=document.createElement("span"); s.textContent=v+" → "+e; $("hist").insertBefore(s,$("hist").firstChild);
         if($("hist").children.length>8)$("hist").removeChild($("hist").lastChild);
         sent++; busy=false; $("send").disabled=false; $("state").textContent="waiting";
-        if(sent>=3)$("mission").classList.remove("hidden");
-      },500);
-    },900);
-  },700);
+        if(sent<3)$("trace").textContent+="   ·   "+(3-sent)+" more to unlock the mission";
+        if(sent===3){$("mission").classList.remove("hidden");setTimeout(function(){$("mission").scrollIntoView({behavior:"smooth",block:"center"})},200);}
+      },250);
+    },450);
+  },300);
 }
 $("send").onclick=run;
 $("num").addEventListener("keydown",function(e){if(e.key==="Enter")run()});
@@ -121,7 +123,7 @@ $("startm").onclick=function(){
     opts.forEach(function(e){var x=document.createElement("button");x.textContent=e;x.onclick=function(){
       var all=b.querySelectorAll(".opts button");all.forEach(function(k){k.disabled=true});
       if(e===ans){score++;x.classList.add("good")}else{x.classList.add("bad");all.forEach(function(k){if(k.textContent===ans)k.classList.add("good")})}
-      round++;setTimeout(ask,1100)};b.lastChild.appendChild(x)});
+      round++;setTimeout(ask,800)};b.lastChild.appendChild(x)});
   }
   ask();
 };
