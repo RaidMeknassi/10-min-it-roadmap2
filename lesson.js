@@ -37,11 +37,26 @@
     var th = el("div", "lp-head"); th.innerHTML = '<div class="lp-title"><p class="lp-track"></p><h1></h1></div>';
     th.querySelector(".lp-track").textContent = tl.name + " · " + grp.name; th.querySelector("h1").textContent = tp.name; main.appendChild(th);
     if (typeof specPathReady === "function" && !specPathReady(tp.name)) { main.appendChild(comingSoonBox(backHref, "\u2190 Back")); return; }
+    var SLx = (typeof SPEC_LESSONS !== "undefined") && SPEC_LESSONS[tp.name];
+    if (SLx) {   // this path has lessons: list them here
+      var dN = 0; SLx.lessons.forEach(function (r) { if (done[r[0]]) dN++; });
+      main.appendChild(el("p", "lv-meta", SLx.lessons.length + " lessons \u00B7 " + dN + " / " + SLx.lessons.length + " done"));
+      var ll = el("div", "lvlist");
+      SLx.lessons.forEach(function (r) {
+        var a = el("a", "lc" + (done[r[0]] ? " done" : "")); a.href = "lesson.html?n=" + encodeURIComponent(r[0]);
+        a.innerHTML = '<span class="cl-ico"></span><span class="lc-body"><b></b><small></small></span><span class="lc-tags"></span><span class="lc-check">\u2713</span>';
+        a.querySelector(".cl-ico").textContent = LBL[r[0]] || ""; a.querySelector("b").textContent = r[1];
+        a.querySelector("small").textContent = "Lesson " + (LBL[r[0]] || "") + " \u00B7 10 min";
+        lessonTags(r[0]).forEach(function (x) { a.querySelector(".lc-tags").appendChild(el("span", "tg " + x[1], x[0])); });
+        ll.appendChild(a);
+      });
+      main.appendChild(ll);
+    }
     var tc = el("div", "lp-stage t-card");
     tc.innerHTML = "<div class='lp-card'><h3>What you will learn</h3><ul class='lp-topics'></ul><p></p></div>";
     tp.topics.forEach(function (t) { tc.querySelector("ul").appendChild(el("li", "", t)); });
     tc.querySelector("p").innerHTML = tid === "l8" ? "These are <b>real attack practice</b> labs in a safe environment. Coming soon. Only practise on systems you own or are allowed to test." : "Lessons and labs for this path are <b>coming soon</b>.";
-    main.appendChild(tc);
+    if (!SLx) main.appendChild(tc);
     var tf = el("div", "lp-foot"), flatPaths = [];
     TRACKS[tid].forEach(function (g, a) { g.paths.forEach(function (x, b) { flatPaths.push([a, b, x, g]); }); });
     var fi = 0; flatPaths.forEach(function (x, i) { if (x[0] === gi && x[1] === pi) fi = i; });

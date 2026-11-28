@@ -115,7 +115,7 @@
       g.paths.forEach(function (pt, pi) {
         col.appendChild(link());
         var SL = cfg && typeof SPEC_LESSONS !== "undefined" && SPEC_LESSONS[pt.name] && SPEC_LESSONS[pt.name].path === P.name && (typeof specPathReady !== "function" || specPathReady(pt.name)) ? SPEC_LESSONS[pt.name] : null;   // this path already has lessons
-        col.appendChild(lvCard(SL ? pathCard(pt.name, "#" + slug(pt.name), g.color, SL.lessons.length + " lessons")
+        col.appendChild(lvCard(SL ? pathCard(pt.name, "lesson.html?t=" + tid + "&g=" + gi + "&p=" + pi, g.color, SL.lessons.length + " lessons")
           : pathCard(pt.name, null, g.color, pt.topics.length + " topics · coming soon"), pt.name));
       });
       /* tools and certificates for this career */
@@ -130,12 +130,6 @@
       grid.appendChild(col);
     });
     tree.appendChild(grid);
-    /* lessons that already exist for this specialization */
-    if (cfg && typeof SPEC_LESSONS !== "undefined") {
-      var have = Object.keys(SPEC_LESSONS).filter(function (n) { return SPEC_LESSONS[n].path === P.name && (typeof specPathReady !== "function" || specPathReady(n)); });
-      if (have.length) { tree.appendChild(link()); tree.appendChild(stage("Lessons available now", "These paths already have lessons you can start."));
-        have.forEach(function (n) { tree.appendChild(link()); var c = specLessonsCard(n); c.id = slug(n); c.style.scrollMarginTop = "110px"; tree.appendChild(c); }); }
-    }
     if (cfg) { langStage(); }
   } else {
     document.getElementById("sp-title").textContent = P.title || (P.name + " Learning Roadmap");
