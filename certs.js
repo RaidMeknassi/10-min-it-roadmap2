@@ -113,7 +113,7 @@
       n++;
       var col = V[c[1]] || "#a78bfa", card = el(c[5] ? "a" : "div", "cx-card" + (c[5] ? " cx-link" : "")); if (c[5]) card.href = c[5]; card.style.setProperty("--vc", col);
       var certDone = c[7] && typeof rowsDone === "function" && rowsDone(c[7]()); if (certDone) card.classList.add("is-done");
-      var certSoon = c[7] && typeof rowsReady === "function" && !rowsReady(c[7]()); if (certSoon && c[5]) markSoon(card);
+      var certSoon = typeof rowsReady === "function" && (c[7] ? !rowsReady(c[7]()) : !certLinkReady(c[5])); if (certSoon) { if (c[5]) markSoon(card); else card.classList.add("is-soon"); }
       var badge = el("div", "cx-badge"); badge.appendChild(el("small", "", c[1])); badge.appendChild(el("b", "", c[2]));
       if (c[8]) { var bi = el("img", "cx-img cx-img-tool"); bi.src = c[8]; bi.alt = c[2]; card.appendChild(bi); } else
       if (c[6] && typeof itilBadgeImg === "function") { var w = document.createElement("div"); w.innerHTML = itilBadgeImg(c[6], 106, "cx-img"); card.appendChild(w.firstChild); } else card.appendChild(badge);
@@ -124,7 +124,7 @@
       card.appendChild(tags);
       var vd = (typeof certValidityEl === "function") ? certValidityEl(c[0]) : null; if (vd) card.appendChild(vd);
       if (typeof certLifeEl === "function") { var lf = certLifeEl(c[0]); card.appendChild(lf); if (/st-retired/.test(lf.className)) card.classList.add("is-retired"); }   // exam version, retirement date   // how long it stays valid + official links
-      if (c[5]) card.appendChild(el("span", "cx-go", certSoon ? "\uD83D\uDEA7 Coming soon" : certDone ? "✓ Completed" : c[5].indexOf("course") === 0 ? "Start the course →" : c[5].indexOf("comptia") === 0 ? "See the CompTIA roadmap →" : c[5].indexOf("cisco") === 0 ? "See the Cisco roadmap →" : c[5].indexOf("isc2") === 0 ? "See the ISC2 roadmap →" : c[5].indexOf("microsoft.html") === 0 ? "See the Microsoft roadmap →" : c[5].indexOf("aws.html") === 0 ? "See the AWS roadmap →" : c[5].indexOf("gcloud.html") === 0 ? "See the Google Cloud roadmap →" : "See the lessons →")); grid.appendChild(card);
+      if (c[5] || certSoon) card.appendChild(el("span", "cx-go", certSoon ? "\uD83D\uDEA7 Coming soon" : certDone ? "✓ Completed" : c[5].indexOf("course") === 0 ? "Start the course →" : c[5].indexOf("comptia") === 0 ? "See the CompTIA roadmap →" : c[5].indexOf("cisco") === 0 ? "See the Cisco roadmap →" : c[5].indexOf("isc2") === 0 ? "See the ISC2 roadmap →" : c[5].indexOf("microsoft.html") === 0 ? "See the Microsoft roadmap →" : c[5].indexOf("aws.html") === 0 ? "See the AWS roadmap →" : c[5].indexOf("gcloud.html") === 0 ? "See the Google Cloud roadmap →" : "See the lessons →")); grid.appendChild(card);
     });
     $("cx-count").textContent = n ? n + " certification" + (n === 1 ? "" : "s") : "No certification found. Try another name or clear a filter.";
   }

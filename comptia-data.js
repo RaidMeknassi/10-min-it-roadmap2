@@ -78,7 +78,7 @@ function comptiaRecNode(levelId) {
   if (ids.length === 1) {
     var id = ids[0], a = document.createElement("a"); a.className = "cert-node-card ct-tree ct-rec"; a.href = certHref(id);
     a.innerHTML = comptiaBadge(id, 58) + '<div class="cert-node-text"><b></b><span>Recommended Certification</span></div>';
-    a.querySelector(".cert-node-text b").textContent = certFull(id); return stop(a);
+    a.querySelector(".cert-node-text b").textContent = certFull(id); return typeof lockCertLinks === "function" ? lockCertLinks(stop(a)) : stop(a);
   }
   var box = document.createElement("div"); box.className = "ct-recbox ct-rec";
   box.innerHTML = '<span class="ct-recbox-t">Recommended certifications</span><div class="ct-recbox-i"></div>';
@@ -87,7 +87,7 @@ function comptiaRecNode(levelId) {
     t.innerHTML = comptiaBadge(id, 52) + '<span class="ct-tname"></span>'; t.querySelector(".ct-tname").textContent = COMPTIA[id][0];
     box.querySelector(".ct-recbox-i").appendChild(stop(t));
   });
-  return stop(box);
+  return typeof lockCertLinks === "function" ? lockCertLinks(stop(box)) : stop(box);
 }
 /* "Suggested certificate" box at the bottom of a level / module page */
 function comptiaLevelBox(levelId) {
@@ -101,5 +101,6 @@ function comptiaLevelBox(levelId) {
     a.querySelector(".ct-info b").textContent = certFull(id); a.querySelector(".ct-info span").textContent = c[2] + (c[4] ? " See it on the Certifications page \u2192" : " See all CompTIA certifications \u2192");
     list.appendChild(a);
   });
+  if (typeof lockCertLinks === "function") lockCertLinks(w);
   return w;
 }

@@ -51,3 +51,12 @@ function specPathReady(name) { var S = typeof SPEC_LESSONS !== "undefined" && SP
 function markSoon(a) { a.removeAttribute("href"); a.classList.add("is-soon"); a.setAttribute("aria-disabled", "true"); a.title = (a.title ? a.title + " · " : "") + "Coming soon"; a.addEventListener("click", function (e) { e.preventDefault(); e.stopPropagation(); }, true); return a; }
 /* note shown instead of an empty lesson list */
 function soonNote(text) { var d = document.createElement("div"); d.className = "soon-box soon-note"; d.innerHTML = '<span class="soon-ico">🚧</span><h2>Lessons coming soon</h2><p></p>'; d.querySelector("p").textContent = text || "The lessons for this part are being recorded. They will appear here as soon as they are ready."; return d; }
+
+/* certifications: only the ones with lessons on this site can be opened (ITIL Foundation for now) */
+function certLinkReady(href) { return /^course\.html\?c=itil(#|$)/.test(href || ""); }
+function lockCertLinks(node) {
+  if (!node) return node;
+  var list = [].slice.call(node.querySelectorAll ? node.querySelectorAll("a") : []); if (node.tagName === "A") list.unshift(node);
+  list.forEach(function (a) { if (!certLinkReady(a.getAttribute("href"))) markSoon(a); });
+  return node;
+}

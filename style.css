@@ -1430,3 +1430,8 @@ a.lc.done .lc-check { background: #4ade80; border-color: #4ade80; color: #07070d
 a.lc .lc-check:focus-visible { outline: 2px solid #4ade80; outline-offset: 2px; }
 a.lc .lc-check.pop { animation: tickpop .35s ease; }
 @keyframes tickpop { 0% { transform: scale(.6); } 60% { transform: scale(1.25); } 100% { transform: scale(1); } }
+/* Certs page: roadmap links per vendor */
+.cx-vendors { display: flex; flex-wrap: wrap; justify-content: center; align-items: center; gap: 8px; max-width: 900px; margin: 14px auto 4px; }
+.cx-vendors span { width: 100%; text-align: center; font-size: 11px; font-weight: 800; letter-spacing: .08em; text-transform: uppercase; color: var(--muted); }
+.cx-vendors a { padding: 7px 14px; border-radius: 999px; font-size: 13px; font-weight: 700; text-decoration: none; color: #fff; border: 1px solid color-mix(in srgb, var(--vc) 60%, transparent); background: color-mix(in srgb, var(--vc) 16%, transparent); }
+.cx-vendors a:hover { background: color-mix(in srgb, var(--vc) 30%, transparent); }
